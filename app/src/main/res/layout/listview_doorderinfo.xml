@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <View style="@style/line" />
+
+    <LinearLayout
+        style="@style/marginlr"
+        android:layout_width="match_parent"
+        android:layout_height="106dp" >
+
+        <ImageView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/test"
+            android:id="@+id/img_picUrl" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1" >
+
+            <TextView
+                style="@style/wrap_content"
+                android:maxLines="2"
+                android:text="少发简历撒的解放路撒福建省大啥的房间里撒费吉萨刘东丰"
+                android:id="@+id/tv_proName" />
+
+            <TextView
+                android:id="@+id/pro_specifno"
+                style="@style/wrap_content"
+                android:layout_below="@id/tv_proName"
+                android:maxLines="2"
+                android:text="规格撒发生的房间圣达菲萨芬萨达撒旦法撒旦飞洒发"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/pro_salePrice"
+                style="@style/wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="￥3400.00"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/pro_stockQty"
+                style="@style/wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="X 2" />
+        </RelativeLayout>
+    </LinearLayout>
+
+   
+
+</LinearLayout>

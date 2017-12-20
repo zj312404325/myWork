@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="14dp"
+        android:text="弹出窗口标题"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp" >
+
+       <Button  android:id="@+id/cacelButton"   style="@style/btnblue"   android:text="注册" android:layout_weight="1"/>
+	  	<Button  android:id="@+id/confirmButton" style="@style/btnblue"           
+            android:text="登录" android:layout_weight="1" android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>

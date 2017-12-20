@@ -1,0 +1,211 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".Order_Xh_Info_Activity" >
+
+    <include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
+		    
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" >
+			    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="订单状态：" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1"
+				         />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="交易成功" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true" android:textColor="#066601"  android:id="@+id/tv_orderStatus"/>		    
+				   			    
+				</RelativeLayout>
+				<LinearLayout style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="订单编号：" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="23234234234234234234" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true" android:id="@+id/tv_orderNo" />		    
+				   			    
+				</RelativeLayout>
+				<LinearLayout style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="下单时间：" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="2016-09-12 21:12:23" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true"  android:id="@+id/tv_createDate" />		    
+				   			    
+				</RelativeLayout>
+				<LinearLayout style="@style/line" />
+			</LinearLayout>
+			
+		   <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp" >
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp"/>
+				<RelativeLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+				    style="@style/marginlr" android:layout_marginTop="16dp">
+				    <TextView style="@style/wrap_content" android:text="收货人：某某某" android:id="@+id/tv_contact"/>
+				    <TextView style="@style/wrap_content" android:text="13812832456" android:layout_alignParentRight="true"
+				        android:id="@+id/tv_mobilePhone"/>
+				</RelativeLayout>
+		
+				<TextView android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="东南开发区东南大道333号" android:layout_marginTop="5dp" style="@style/marginlr" 
+				    android:id="@+id/tv_buyAddr"/>
+				<TextView android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="邮编：215500" android:layout_marginTop="5dp" style="@style/marginlr" 
+				    android:layout_marginBottom="16dp"
+				    android:id="@+id/tv_postCode"/>
+				
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp"/>
+		    </LinearLayout>    
+		    
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="16dp" 
+    android:background="#ffffff" >
+			     <LinearLayout style="@style/line"  />
+	  			<LinearLayout android:layout_width="match_parent" android:layout_height="30dp" android:layout_marginLeft="16dp"
+	  			    android:layout_marginRight="16dp" android:orientation="horizontal" android:id="@+id/orderinfo" >
+	  			    <ImageView android:background="@drawable/order_ico" android:layout_width="17dp" android:layout_height="18dp" 
+	  			        android:layout_gravity="center_vertical" />
+	  			    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp"  android:layout_weight="1"
+	  			        android:text="聊城市广朋金属材料有限公司 " android:layout_gravity="center_vertical" 
+	  			        android:id="@+id/tv_owner"  android:maxLines="1"  />
+	  			    
+	  			</LinearLayout>
+	  			<LinearLayout style="@style/line" android:layout_marginLeft="16dp"   android:layout_marginRight="16dp"  />	 
+	  			
+	  			
+	  			<com.jinying.jyapp.view.MyListView android:layout_width="match_parent" android:layout_height="wrap_content"
+  			   		 android:id="@+id/list_orderinfo">  			    
+  				</com.jinying.jyapp.view.MyListView>
+  				
+		
+			</LinearLayout>    
+			
+		     <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp">
+			    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp" android:id="@+id/rl_paytype">
+				    <TextView style="@style/wrap_content" android:text="支付方式" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="在线支付" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true" android:layout_alignParentRight="true" android:id="@+id/tv_isOnline" />		    
+				   			    
+				</RelativeLayout>
+				
+				<LinearLayout style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="发票信息" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="普通发票" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true"  android:layout_alignParentRight="true" android:id="@+id/tv_invoiceType" />		    
+				   			    
+				</RelativeLayout>
+				<LinearLayout style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+				    android:paddingTop="16dp" android:paddingBottom="16dp" android:id="@+id/ll_invoiceTypeCOMMON">
+				    <TextView style="@style/wrap_content" android:text="发票抬头：" android:textColor="#939393"  
+				        android:id="@+id/tv_title" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="发票内容：" android:textColor="#939393"
+				        android:id="@+id/tv_invoiceContent" />		    
+				   			    
+				</LinearLayout>
+				<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+				    android:paddingTop="16dp" android:paddingBottom="16dp" android:id="@+id/ll_invoiceTypeVAT">
+				     <TextView style="@style/wrap_content" android:text="单位名称：" android:textColor="#939393" 
+				        android:id="@+id/tv_companyName" />
+				     <TextView style="@style/wrap_content" android:text="纳税人识别号：" android:textColor="#939393" 
+				        android:id="@+id/tv_taxNo" />
+				      <TextView style="@style/wrap_content" android:text="注册地址：" android:textColor="#939393" 
+				        android:id="@+id/tv_registerAddress" />
+				       <TextView style="@style/wrap_content" android:text="注册电话：" android:textColor="#939393" 
+				        android:id="@+id/tv_registerPhone" />
+				        <TextView style="@style/wrap_content" android:text="开户银行：" android:textColor="#939393" 
+				        android:id="@+id/tv_bankName" />
+				      <TextView style="@style/wrap_content" android:text="银行账户：" android:textColor="#939393" 
+				        android:id="@+id/tv_bankNo" />
+				   	 <TextView style="@style/wrap_content" android:text="发票内容：明细" android:textColor="#939393"
+				        android:id="@+id/tv_invoiceContent1"  />		    
+				   			    
+				</LinearLayout>
+				<LinearLayout style="@style/line" />
+			</LinearLayout>
+			
+		     
+		     <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp" android:layout_marginBottom="20dp">
+			    <RelativeLayout android:layout_width="match_parent" android:layout_height="30dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="商品总额" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="￥2344.00" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true" android:layout_alignParentRight="true"
+				        android:textColor="#b53144" android:id="@+id/tv_productMoney" />		    
+				   			    
+				</RelativeLayout>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="30dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="运费" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="￥2344.00" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true"  android:layout_alignParentRight="true"
+				         android:textColor="#b53144" android:id="@+id/tv_feeMoney"  />		    
+				   			    
+				</RelativeLayout>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="30dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="其它费用" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="￥2344.00" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true"  android:layout_alignParentRight="true"
+				         android:textColor="#b53144" android:id="@+id/tv_machiningMoney"  />		    
+				   			    
+				</RelativeLayout>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="30dp" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
+				    <TextView style="@style/wrap_content" android:text="优惠" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="￥2344.00" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true"  android:layout_alignParentRight="true"
+				         android:textColor="#b53144" android:id="@+id/tv_dealsMoney"  />		    
+				   			    
+				</RelativeLayout>
+				
+				<LinearLayout style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" 
+				    android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+				    android:paddingTop="16dp" android:paddingBottom="16dp"> 
+				   	<TextView style="@style/wrap_content" android:text="￥2344.00" 
+				        android:layout_centerVertical="true"  android:layout_alignParentRight="true"
+				         android:textColor="#b53144" android:textSize="20dp" android:id="@+id/tv_money" />	
+				    <TextView style="@style/wrap_content" android:text="实付款: "  android:textColor="#939393"
+				       android:layout_toLeftOf ="@id/tv_money" android:layout_centerVertical="true"/>
+				   			    
+				</RelativeLayout>
+				<LinearLayout style="@style/line" />
+			</LinearLayout>
+			
+			<Button  android:id="@+id/btn_topay" style="@style/btnblue"            
+            android:text="去支付" android:layout_width="match_parent" android:layout_marginBottom="20dp" 
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp" android:visibility="gone"/>
+			
+			<Button  android:id="@+id/btn_tosh" style="@style/btnblue"            
+            android:text="确认收货" android:layout_width="match_parent"  android:layout_marginBottom="20dp" 
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp" android:visibility="gone"/>
+	    </LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

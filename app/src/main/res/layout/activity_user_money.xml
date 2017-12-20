@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   	android:background="#ececec"
+    tools:context=".UserMoneyActivity" >
+
+    <include  android:id="@+id/top_title"  layout="@layout/top" />
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="0px"
+	     android:layout_alignParentBottom="true"  android:id="@+id/bottom_tap"  android:orientation="horizontal" />
+	<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+   		android:layout_below="@id/top_title" android:id="@+id/top_tap">
+	    
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+	    	    android:background="#ffffff">
+		    	<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+		    	    android:padding="16dp">
+		    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+		    	        android:layout_weight="1" >
+		    	        <TextView style="@style/wrap_content" android:text="账户余额（元）" android:textSize="12dp"/>
+		    	        <TextView style="@style/wrap_content" android:text="加载中..." android:textColor="#42bd67"
+		    	            android:textSize="16dp" android:layout_marginTop="5dp" android:id="@+id/tv_umoney"/>
+		    	        
+		    	    </LinearLayout>
+		    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+		    	         android:layout_weight="1" >
+		    	        <TextView style="@style/wrap_content" android:text="冻结金额（元）" android:textSize="12dp"/>
+		    	        <TextView style="@style/wrap_content" android:text="加载中..." android:textColor="#e16262"
+		    	            android:textSize="16dp" android:layout_marginTop="5dp" android:id="@+id/tv_frozenmoney"/>
+		    	    </LinearLayout>
+		    	</LinearLayout>
+		    	<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+		    	<LinearLayout android:layout_width="wrap_content"  android:layout_height="wrap_content" android:orientation="horizontal"
+		    	    android:background="#ffffff" android:layout_gravity="center_horizontal" android:padding="20dp" >
+		    	    
+		    	    <Button  android:id="@+id/btn_cz" style="@style/btnbluesmall"            
+	            android:text="充值" android:layout_width="120dp" />
+		    	    
+		    	    <Button  android:id="@+id/btn_tx" style="@style/btnorangesmall"            
+	            android:text="提现" android:layout_width="120dp" android:layout_marginLeft="20dp" />
+		    	    
+		    	</LinearLayout>
+	    	</LinearLayout>
+	    	
+	    	<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+	    	    android:background="#ffffff" android:layout_marginTop="16dp">
+	    	    <TextView style="@style/wrap_content" android:text="资金账户操作明细" android:layout_margin="16dp" 
+	    	        android:textSize="16dp" />
+	    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="30dp" android:layout_marginLeft="16dp"
+	    	        android:layout_marginRight="16dp"  >
+		    	    <Button android:layout_width="match_parent"  android:layout_height="30dp" android:text="最近一个月"
+		    	        android:layout_weight="1" style="@style/btnumlefts" android:id="@+id/btn_s1"/>
+	    	        <Button android:layout_width="match_parent"  android:layout_height="30dp" android:text="最近三个月"
+	    	             android:layout_weight="1" style="@style/btnummibble"  android:id="@+id/btn_s2"/>
+	    	        <Button android:layout_width="match_parent"  android:layout_height="30dp" android:text="最近一年"
+	    	             android:layout_weight="1" style="@style/btnumright"  android:id="@+id/btn_s3"/>
+	    	    </LinearLayout>
+	    	    
+	    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+		    	    android:padding="16dp">
+		    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+		    	        android:layout_weight="1" >
+		    	        <TextView style="@style/wrap_content" android:text="收入：" android:textSize="12dp" android:layout_gravity="center_vertical"/>
+		    	        <TextView style="@style/wrap_content" android:text="123214" android:textColor="#42bd67"
+		    	            android:textSize="16dp" android:layout_gravity="center_vertical"
+		    	            android:id="@+id/tv_inMoney"/>
+		    	        <TextView style="@style/wrap_content" android:text="   元" android:textSize="12dp" android:layout_gravity="center_vertical"/>
+		    	    </LinearLayout>
+		    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+		    	         android:layout_weight="1" >
+		    	        <TextView style="@style/wrap_content" android:text="支出：" android:textSize="12dp" android:layout_gravity="center_vertical"/>
+		    	        <TextView style="@style/wrap_content" android:text="234" android:textColor="#e16262"
+		    	            android:textSize="16dp" android:layout_gravity="center_vertical"
+		    	            android:id="@+id/tv_outMoney"/>
+		    	        <TextView style="@style/wrap_content" android:text="   元" android:textSize="12dp" android:layout_gravity="center_vertical"/>
+		    	    </LinearLayout>
+		    	</LinearLayout>
+	    	    
+	    	</LinearLayout>
+	    	<View style="@style/line"/>
+		</LinearLayout>
+
+		<RelativeLayout style="@style/fill" android:layout_below="@id/top_tap" android:layout_above="@id/bottom_tap" 
+		    android:background="#ffffff">
+			<com.example.administrator.helloworld.view.XListView
+				        android:id="@+id/xListView"
+				        android:layout_width="fill_parent" android:divider="@null"  
+				        android:layout_height="fill_parent" android:cacheColorHint="#00000000">
+			</com.example.administrator.helloworld.view.XListView>
+			<TextView android:id="@+id/listtv" style="@style/wrap_content" android:text="暂无数据" android:textColor="#939393" 
+			    android:layout_centerInParent="true" />
+		  
+			    
+		</RelativeLayout>
+</RelativeLayout>

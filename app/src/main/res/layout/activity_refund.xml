@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RefundActivity" >
+
+    <include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+		    android:focusable="true"  android:focusableInTouchMode="true" >
+		    
+		    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="退款金额：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
+
+			       />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_money"  android:maxLength="10"
+			        android:inputType="numberDecimal"
+			        />		    
+			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+		    
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="退款说明：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp"  
+			        
+			        />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_refundmemo"  android:maxLength="200"
+			        android:hint="最多200字" android:textSize="14dp"/>		    
+			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			<com.example.administrator.helloworld.view.MyListView android:layout_width="match_parent" android:layout_height="wrap_content"
+  			    android:id="@+id/list_orderinfo" >
+  			    
+  			</com.example.administrator.helloworld.view.MyListView>
+  			
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			<ImageView android:layout_width="80dp" android:layout_height="80dp" android:background="@drawable/refund" 
+			    android:layout_margin="10dp" android:id="@+id/img_fileurl"/>
+	
+		    
+		    <Button  android:id="@+id/savebtn" style="@style/btnblue"            
+            android:text="提交申请" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
+		    
+		    
+	    </LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ 	android:background="#ffffff"
+    tools:context=".Forget2Activity" >
+
+	<RelativeLayout
+		android:id="@+id/top_title"
+		android:layout_width="fill_parent"
+		android:layout_height="45dp"
+		android:background="@color/login_back_blue">
+
+ 
+   		<TextView
+   		    android:id="@+id/title"
+   		    style="@style/wrap_content"
+   		    android:layout_centerInParent="true"
+			android:textSize="16dp"
+   		    android:text="重置密码成功"
+   		    android:textColor="#ffffff" />
+    
+	</RelativeLayout>
+	<LinearLayout
+		style="@style/fill"
+		android:orientation="vertical"
+		android:layout_below="@id/top_title"  >
+		
+	    <LinearLayout
+			style="@style/wrap_content"
+			android:orientation="horizontal"
+			android:layout_gravity="center_horizontal"
+	        android:layout_marginTop="50dp"
+			android:layout_marginBottom="50dp">
+	        <ImageView
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				android:background="@drawable/ok"/>
+	        <TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+	            android:text="恭喜，密码重置成功"/>
+	        
+	    </LinearLayout>
+	    
+	   <Button
+		   style="@style/btndarkblue"
+		   android:id="@+id/submitbtn"
+		   android:layout_gravity="center_horizontal"
+		   android:text="完成"
+		   android:layout_width="150dp"/>
+	</LinearLayout>
+
+</RelativeLayout>

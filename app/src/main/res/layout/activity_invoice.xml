@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InvoiceActivity" >
+
+    <include  android:id="@+id/top"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top" >
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
+			
+		   <com.example.administrator.helloworld.view.MyListView android:id="@+id/mlv_addrlist"
+		       android:layout_width="match_parent"  android:layout_height="wrap_content" 
+		   ></com.example.administrator.helloworld.view.MyListView>
+		      <Button  android:id="@+id/addbtn" style="@style/btnblue"            
+            android:text="新建发票" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
+		    
+		</LinearLayout>
+	</ScrollView>
+
+
+</RelativeLayout>

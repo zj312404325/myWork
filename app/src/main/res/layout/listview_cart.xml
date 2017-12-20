@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+        android:background="#ffffff" android:layout_marginTop="10dp">
+	    <View style="@style/line" />
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="40dp" android:id="@+id/ll_company">
+		    <CheckBox style="@style/wrap_content" android:layout_gravity="center_vertical" android:id="@+id/ck_check"/>
+		    <TextView style="@style/wrap_content" android:id="@+id/tv_owner" android:text="聊城市广朋金属材料有限公司" android:layout_gravity="center_vertical"/>
+		    <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_gravity="center_vertical"
+		        android:layout_marginLeft="10dp"/>
+		</LinearLayout>
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical">
+	    <com.example.administrator.helloworld.view.MyListView
+					        android:id="@+id/lv_infolist"
+					        android:layout_width="fill_parent"
+					        android:layout_height="wrap_content" android:cacheColorHint="#00000000">
+		</com.example.administrator.helloworld.view.MyListView>
+	    <View style="@style/line"/>
+	    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

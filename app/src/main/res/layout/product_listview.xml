@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"  android:layout_height="87dp" android:orientation="vertical"  >
+  				<LinearLayout  android:layout_width="match_parent"  android:layout_height="86dp" 
+			    android:orientation="horizontal"  android:id="@+id/ll_proInfo">
+			        <RelativeLayout android:layout_width="86dp" android:layout_height="86dp" >
+			            <ImageView android:layout_width="66dp" android:layout_height="66dp" android:id="@+id/proImage"
+			                android:background="@drawable/test" android:layout_centerInParent="true"/>
+			        </RelativeLayout>
+			        <LinearLayout android:layout_width="match_parent" android:layout_height="86dp" android:layout_weight="1" 
+			            android:orientation="vertical">
+			            <TextView style="@style/wrap_content" android:text="镀锌飞洒发放假啊失联飞机拉三等奖范德萨傻大姐弗利萨都放假了撒旦法撒旦就发了圣达菲建设大路分" 
+			            	    android:layout_marginTop="10dp" android:maxLines="2" android:textSize="11dp"
+			            	    android:lineSpacingExtra="4dp" android:textColor="#0083c8" android:id="@+id/proName" 
+			            	    android:layout_height="30dp"/>
+			            <TextView style="@style/wrap_content" android:text="规格：" android:maxLines="1" android:id="@+id/prospec"
+			            	 android:textSize="11dp" android:lineSpacingExtra="5dp"/>
+			       
+				         <RelativeLayout android:layout_width="match_parent" android:layout_height="20dp"  >
+				            	
+				            <TextView style="@style/wrap_content" android:text="￥1234.00"  android:id="@+id/salePrice"
+			                android:textColor="#b53144" android:textSize="12dp" android:layout_alignParentLeft="true"
+			                android:layout_centerVertical="true"/>
+				            <ImageView android:background="@drawable/xianhuo1" android:layout_width="54dp" android:layout_height="20dp"
+				                android:layout_alignParentRight="true" android:id="@+id/isfuture"/>
+				        </RelativeLayout>   
+				        <View style="@style/line"/> 	
+			            	
+			        </LinearLayout>
+		    </LinearLayout>
+		    
+</LinearLayout>		    

@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ececec"
+    tools:context=".UserInfoEditActivity" >
+
+     <include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+	<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
+		
+		
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    android:background="#ffffff" android:layout_marginTop="15dp" >
+			<LinearLayout style="@style/line" />
+		    		    		
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			   				    
+			    <TextView style="@style/wrap_content" android:text="真实姓名：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="张三" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_realname" />		    
+			   			   			    
+			</RelativeLayout>
+			<LinearLayout style="@style/line" />
+					    
+		    <RelativeLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp" >
+
+		        <TextView
+		            style="@style/wrap_content"
+		            android:layout_width="80dp"
+		            android:layout_alignParentLeft="true"
+		            android:layout_centerVertical="true"
+		            android:maxLines="1"
+		            android:text="性别："
+		            android:textColor="#939393" />
+
+		    
+		        <RadioGroup android:id="@+id/rg_sex" android:contentDescription="性别" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		            android:orientation="horizontal" android:layout_marginLeft="80dp" android:layout_centerVertical="true" >
+				     <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rg_sex1" android:text="男" android:checked="true"></RadioButton>
+				     <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rg_sex2" android:text="女"></RadioButton>    
+				 </RadioGroup>
+		    </RelativeLayout>
+
+			<LinearLayout style="@style/line" />
+			
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="手机号码：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_mobile" />		    
+			   			   			    
+			</RelativeLayout>
+			<LinearLayout style="@style/line" />
+		
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="注册邮箱：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_email" />		    
+			   			   			    
+			</RelativeLayout>
+			<LinearLayout style="@style/line" />
+		
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="公司固话：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_phone" />		    
+			   			   			    
+			</RelativeLayout>
+			<LinearLayout style="@style/line" />
+			
+		</LinearLayout>
+		
+		<Button  android:id="@+id/savebtn" style="@style/btnblue"            
+            android:text="保     存" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
+	</LinearLayout>
+		
+	</ScrollView>
+
+</RelativeLayout>

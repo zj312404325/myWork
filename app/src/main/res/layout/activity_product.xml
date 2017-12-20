@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProductActivity" android:background="#ffffff">
+
+	<include  android:id="@+id/top"  layout="@layout/top_search_product1" />
+
+	<LinearLayout android:layout_width="fill_parent" android:layout_height="0px"
+	     android:layout_alignParentBottom="true"  android:id="@+id/bottom_tap"  android:orientation="horizontal" />
+
+   
+	 <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" 
+		        android:orientation="horizontal" android:background="#eaeaeb" android:layout_below="@id/top"
+		        android:id="@+id/tab" >
+		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1" android:tag="1">
+		            <TextView style="@style/wrap_content" android:text="品类" android:id="@+id/tab_txt1" android:textColor="#939393" 
+		                android:layout_centerInParent="true"/>
+		            <ImageButton android:id="@+id/tab_img1"  android:layout_width="14dp" android:layout_height="7dp" android:background="@drawable/searchdown"
+		                android:layout_toRightOf="@id/tab_txt1" 
+		                android:layout_centerVertical="true"/>
+		             <LinearLayout android:id="@+id/tab_line1" android:layout_width="fill_parent" android:layout_height="1dp" 
+		    	         android:background="#939393" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		            
+		            <LinearLayout android:layout_width="1dp" android:layout_height="16dp" 
+		    	        android:background="#939393" android:layout_alignParentRight="true"
+		    	        android:layout_centerVertical="true" />
+		        </RelativeLayout>
+		        <RelativeLayout style="@style/fill" android:id="@+id/tab2" android:layout_weight="1">
+		            <TextView style="@style/wrap_content" android:text="默认" android:id="@+id/tab_txt2" android:textColor="#2192cd"
+		                android:layout_centerInParent="true"/>
+
+		             <LinearLayout android:id="@+id/tab_line2" android:layout_width="fill_parent" android:layout_height="1dp" 
+		    	        android:background="#939393" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		            
+		            <LinearLayout android:layout_width="1dp" android:layout_height="16dp" 
+		    	        android:background="#939393" android:layout_alignParentRight="true"
+		    	        android:layout_centerVertical="true" />
+		            
+		        </RelativeLayout>
+		        <RelativeLayout style="@style/fill" android:id="@+id/tab3" android:layout_weight="1" android:tag="2">
+		            <TextView style="@style/wrap_content" android:text="价格" android:id="@+id/tab_txt3"  android:textColor="#939393" 
+		                android:layout_centerInParent="true"/>
+		            <ImageButton android:id="@+id/tab_img3"  android:layout_width="6dp" android:layout_height="10dp" android:background="@drawable/tab_s1"
+		                android:layout_toRightOf="@id/tab_txt3" 
+		                android:layout_centerVertical="true"/>
+		             <LinearLayout android:id="@+id/tab_line3" android:layout_width="fill_parent" android:layout_height="1dp" 
+		    	        android:background="#939393" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		            
+		            <LinearLayout android:layout_width="1dp" android:layout_height="16dp" 
+		    	        android:background="#939393" android:layout_alignParentRight="true"
+		    	        android:layout_centerVertical="true" />
+		            
+		        </RelativeLayout>
+		        <RelativeLayout style="@style/fill" android:id="@+id/tab4" android:layout_weight="1" android:tag="1">
+		             <TextView style="@style/wrap_content" android:text="筛选" android:id="@+id/tab_txt4"  android:textColor="#939393" 
+		                android:layout_centerInParent="true"/>
+		            <ImageButton android:id="@+id/tab_img4"  android:layout_width="14dp" android:layout_height="7dp" android:background="@drawable/searchdown"
+		                android:layout_toRightOf="@id/tab_txt4" android:layout_centerVertical="true"/>
+		             <LinearLayout android:id="@+id/tab_line4" android:layout_width="fill_parent" android:layout_height="1dp" 
+		    	        android:background="#939393" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		           
+		            
+		        </RelativeLayout>
+		    </LinearLayout>
+	
+	
+		<RelativeLayout style="@style/fill" android:layout_below="@id/tab" android:layout_above="@id/bottom_tap">
+			<com.jinying.jyapp.view.XListView
+				        android:id="@+id/xListView"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent" android:cacheColorHint="#00000000">
+			</com.jinying.jyapp.view.XListView>
+			<TextView android:id="@+id/listtv" style="@style/wrap_content" android:text="暂无数据" android:textColor="#939393" 
+			    android:layout_centerInParent="true" />
+		  
+			    
+		</RelativeLayout>
+	<LinearLayout style="@style/match_parent" android:id="@+id/future" android:layout_below="@id/tab" android:orientation="vertical"
+	    android:background="#ededed" android:visibility="gone" android:clickable="true">
+		<LinearLayout style="@style/match_parent" android:layout_margin="10dp">
+		    <TextView android:id="@+id/f1"    android:text="现货" android:maxLines="1"    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" android:background="@color/bg_selectvlaue_gary"  android:textColor="#939393" />
+		    <TextView android:id="@+id/f2"    android:text="期货" android:maxLines="1"    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" android:background="@color/bg_selectvlaue_gary" android:layout_marginLeft="10dp" 
+	    android:textColor="#939393" />
+		    <TextView android:id="@+id/f3"    android:text="加工" android:maxLines="1"    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" android:background="@color/bg_selectvlaue_gary"  android:layout_marginLeft="10dp"  
+	    android:textColor="#939393"/>
+		    <TextView android:id="@+id/f4"    android:text="全部" android:maxLines="1"    android:layout_width="wrap_content"
+		       android:textColor="#ffffff"
+	    android:layout_height="wrap_content" android:background="@color/bg_selectvlaue_blue"  android:layout_marginLeft="10dp"  />
+		</LinearLayout>
+		<View style="@style/line"/>
+	</LinearLayout>
+	<LinearLayout style="@style/match_parent" android:id="@+id/searech" android:layout_below="@id/tab" android:orientation="vertical"
+	     android:background="#ededed" android:visibility="gone" android:clickable="true">
+	    <LinearLayout style="@style/match_parent" android:layout_margin="10dp">
+	        <TextView style="@style/wrap_content" android:text="价格区间：" android:layout_marginRight="10dp" 
+	            android:layout_gravity="center_vertical" />
+	        <EditText android:layout_width="80dp" android:layout_height="25dp" android:background="#ffffff" android:hint=""
+	            android:layout_gravity="center_vertical" android:textSize="14dp" android:id="@+id/txt_priceStart"  android:inputType="number"/>
+	        <TextView style="@style/wrap_content" android:text="至" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"/>
+	        <EditText android:layout_width="80dp" android:layout_height="25dp" android:background="#ffffff" android:hint=""
+	            android:layout_gravity="center_vertical" android:textSize="14dp" android:id="@+id/txt_priceEnd"  android:inputType="number"/>
+	    </LinearLayout>
+	    
+	   <LinearLayout style="@style/match_parent" android:layout_margin="10dp">
+	        <TextView style="@style/wrap_content" android:text="区域选择：" android:layout_marginRight="10dp" 
+	            android:layout_gravity="center_vertical"/>
+	        <EditText android:layout_width="195dp" android:layout_height="25dp" android:background="#ffffff" android:hint=" 选择区域"
+	            android:layout_gravity="center_vertical" android:textSize="14dp" android:id="@+id/txt_zone" android:focusable="false" />
+
+	    </LinearLayout>
+	    <LinearLayout style="@style/match_parent">
+	        <Button android:id="@+id/chongzhi" android:text="重置" android:gravity="center" android:layout_width="match_parent"
+	            android:layout_height="30dp" android:layout_weight="1" android:background="@null"
+	            android:textSize="14dp"/>
+	        <Button android:id="@+id/queding" android:text="确定" android:gravity="center" android:layout_width="match_parent"
+	            android:layout_height="30dp" android:layout_weight="1" android:background="#0083c8" android:textColor="#ffffff"
+	            android:textSize="14dp"/>
+	    </LinearLayout>
+	    <View style="@style/line"/>
+	</LinearLayout>
+
+</RelativeLayout>

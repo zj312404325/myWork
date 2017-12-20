@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#ffffff"
+    tools:context=".IndexActivity" >
+    
+    <include  android:id="@+id/top"  layout="@layout/top_search_product" />
+
+	<!-- 底部菜单 -->
+	<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
+	<LinearLayout style="@style/fill"  android:layout_below="@id/top" android:layout_above="@id/bottom_tap"
+		    android:orientation="horizontal">
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" 
+		    	android:orientation="vertical" android:layout_weight="1">
+		    	<ListView android:id="@+id/c" android:layout_width="match_parent"  android:layout_height="wrap_content" ></ListView>
+		    </LinearLayout>
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" 
+		    	android:orientation="vertical" android:layout_weight="1">
+		       
+		    	<ListView android:id="@+id/c1" android:layout_width="match_parent"  android:layout_height="wrap_content" ></ListView>
+		      
+		    </LinearLayout>
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" 
+		    	android:orientation="vertical" android:layout_weight="1">
+		       <ListView android:id="@+id/c2" android:layout_width="match_parent"  android:layout_height="wrap_content" ></ListView>
+		    </LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

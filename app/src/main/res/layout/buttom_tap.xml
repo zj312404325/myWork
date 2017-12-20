@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="horizontal"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:layout_alignParentBottom="true" android:gravity="center"
+	android:background="#ffffff">
+	<LinearLayout android:layout_width="fill_parent" android:layout_height="2px" android:background="#b5b6b9">
+	    
+	</LinearLayout>
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		 android:paddingTop="3dip" android:layout_marginTop="2px"	 >
+		
+	    <LinearLayout android:orientation="vertical" android:id="@+id/buttom_tap_1"
+	android:layout_width="0dip"
+			android:layout_weight="0.20" android:layout_height="wrap_content"
+			android:clickable="true">
+			
+			<ImageView android:layout_width="50dp" android:id="@+id/buttom_tap_img_1"
+				android:layout_gravity="center_horizontal" android:layout_height="50dp"
+				android:layout_centerVertical="true" android:src="@drawable/buttom_tap_1" 
+				android:layout_marginTop="3dp" />
+		</LinearLayout>
+	    
+	    
+		<LinearLayout android:orientation="vertical" android:id="@+id/buttom_tap_2"
+	android:layout_width="0dip"
+			android:layout_weight="0.20" android:layout_height="wrap_content"
+			android:clickable="true">
+			
+			<ImageView android:layout_width="50dp" android:id="@+id/buttom_tap_img_2"
+				android:layout_gravity="center_horizontal" android:layout_height="50dp"
+				android:layout_centerVertical="true" android:src="@drawable/buttom_tap_2" 
+				android:layout_marginTop="3dp" />
+		</LinearLayout>
+		
+		<LinearLayout android:orientation="vertical" android:id="@+id/buttom_tap_3"
+	android:layout_width="0dip"
+			android:layout_weight="0.20" android:layout_height="wrap_content"
+			android:clickable="true">
+			
+			<ImageView android:layout_width="50dp" android:id="@+id/buttom_tap_img_3"
+				android:layout_gravity="center_horizontal" android:layout_height="50dp"
+				android:layout_centerVertical="true" android:src="@drawable/buttom_tap_3" 
+				android:layout_marginTop="3dp" />
+		</LinearLayout>
+		
+		<LinearLayout android:orientation="vertical" android:id="@+id/buttom_tap_4"
+	android:layout_width="0dip"
+			android:layout_weight="0.20" android:layout_height="wrap_content"
+			android:clickable="true">
+			
+			<ImageView android:layout_width="50dp" android:id="@+id/buttom_tap_img_4"
+				android:layout_gravity="center_horizontal" android:layout_height="50dp"
+				android:layout_centerVertical="true" android:src="@drawable/buttom_tap_4" 
+				android:layout_marginTop="3dp" />
+				
+		</LinearLayout>
+		
+		<LinearLayout android:orientation="vertical" android:id="@+id/buttom_tap_5"
+	android:layout_width="0dip"
+			android:layout_weight="0.20" android:layout_height="wrap_content"
+			android:clickable="true">
+			
+			<ImageView android:layout_width="50dp" android:id="@+id/buttom_tap_img_5"
+				android:layout_gravity="center_horizontal" android:layout_height="50dp"
+				android:layout_centerVertical="true" android:src="@drawable/buttom_tap_5" 
+				android:layout_marginTop="3dp" />
+		</LinearLayout>
+		
+		
+		
+	</LinearLayout>
+	
+		
+</RelativeLayout>

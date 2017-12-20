@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Register2Activity" >
+
+     <RelativeLayout
+		 android:id="@+id/top_title"
+		 android:layout_width="fill_parent"
+		 android:layout_height="45dp"
+		 android:background="#0083c8">
+
+   		<TextView
+			style="@style/wrap_content"
+   		    android:id="@+id/title"
+   		    android:layout_centerInParent="true"
+			android:textSize="16dp"
+   		    android:text="注册"
+   		    android:textColor="#ffffff" />
+    
+	</RelativeLayout>
+	<LinearLayout
+		style="@style/fill"
+		android:orientation="vertical"
+		android:layout_below="@id/top_title"  >
+	     <LinearLayout
+			 	android:layout_width="match_parent"
+			 	android:layout_height="40dp"
+		        android:orientation="horizontal"
+			 	android:layout_below="@id/top"
+		        android:id="@+id/tab" >
+		        <RelativeLayout
+					style="@style/fill"
+					android:id="@+id/tab1"
+					android:layout_weight="1">
+		            <TextView
+						style="@style/wrap_content"
+						android:text="企业账户"
+						android:id="@+id/tab_txt1"
+		                android:layout_centerInParent="true"/>
+		  
+		             <LinearLayout
+						 android:id="@+id/tab_line1"
+						 android:layout_width="fill_parent"
+						 android:layout_height="8dp"
+		    	         android:background="@drawable/line_select"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
+		            
+		            <LinearLayout
+						android:layout_width="1dp"
+						android:layout_height="16dp"
+		    	        android:background="#b5b6b9"
+						android:layout_alignParentRight="true"
+		    	        android:layout_centerVertical="true" />
+		        </RelativeLayout>
+		        <RelativeLayout
+					style="@style/fill"
+					android:id="@+id/tab2"
+					android:layout_weight="1">
+		            <TextView
+						style="@style/wrap_content"
+						android:text="个人账户"
+						android:id="@+id/tab_txt2"
+		                android:layout_centerInParent="true"/>
+
+		             <LinearLayout
+						 android:id="@+id/tab_line2"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+		    	         android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
+		        </RelativeLayout>
+		    </LinearLayout>
+	    	<LinearLayout
+				android:background="@drawable/reg3"
+				android:layout_height="20dp"
+				android:layout_width="wrap_content"
+	    	    android:layout_marginLeft="20dp"
+		  	    android:layout_marginRight="20dp"
+				android:layout_marginTop="20dp">
+			</LinearLayout>
+	    	
+	    	<LinearLayout
+				style="@style/wrap_content"
+				android:orientation="horizontal"
+				android:layout_gravity="center_horizontal"
+	        	android:layout_marginTop="50dp"
+				android:layout_marginBottom="50dp">
+		        <ImageView
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:background="@drawable/ok"/>
+		        <TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+		            android:text="恭喜，完成注册"/>
+		    </LinearLayout>
+		    
+		   <Button
+			   style="@style/btndarkblue"
+			   android:id="@+id/submitbtn"
+			   android:layout_gravity="center_horizontal"
+			   android:text="完成"
+			   android:layout_width="150dp"/>
+	</LinearLayout>
+
+</RelativeLayout>

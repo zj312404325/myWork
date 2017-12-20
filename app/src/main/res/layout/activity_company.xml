@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".CompanyActivity" >
+
+    <RelativeLayout android:id="@+id/top"
+     android:layout_width="fill_parent"  android:layout_height="45dp" android:background="#0083c8">    
+
+       
+   		<TextView   android:id="@+id/title"    style="@style/wrap_content"
+   		    android:layout_centerInParent="true" android:textSize="16dp"
+   		    android:text="商家列表" 	    android:textColor="#ffffff" />
+	</RelativeLayout>
+
+	<LinearLayout android:layout_width="match_parent" android:layout_height="45dp" 
+		        android:orientation="horizontal"  android:layout_below="@id/top"
+		        android:id="@+id/topsearch"  android:focusable="true"  
+   android:focusableInTouchMode="true" android:background="#ececec">
+	    <EditText android:hint="请输入商家名称" style="@style/EditText" android:layout_gravity="center_vertical"
+	        android:layout_weight="1" android:layout_marginLeft="16dp" android:layout_marginRight="16dp" 
+	        android:id="@+id/txt_keyword">
+			
+	        
+	    </EditText>
+	    
+	    <Button  style="@style/btnblue"  android:text="搜索" android:id="@+id/search_btn"
+		            android:layout_width="60dp" android:layout_height="30dp"
+		            android:layout_gravity="center_vertical" android:layout_marginRight="16dp"   />
+	</LinearLayout>
+
+	<!-- 底部菜单 -->
+	<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
+	
+	<LinearLayout style="@style/match_parent" 
+	    android:layout_below="@id/topsearch" android:layout_above="@id/bottom_tap" android:background="#ffffff" 
+	    android:orientation="vertical">
+	    <View style="@style/line"/>
+	    
+	   
+			<com.example.administrator.helloworld.view.XListView
+				        android:id="@+id/xListView"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent" android:cacheColorHint="#00000000">
+			</com.example.administrator.helloworld.view.XListView>
+			<TextView android:id="@+id/listtv" style="@style/wrap_content" android:text="暂无数据" android:textColor="#939393" 
+			    android:layout_centerInParent="true" />
+		  
+			    
+	
+	    
+	    
+	</LinearLayout>
+
+</RelativeLayout>

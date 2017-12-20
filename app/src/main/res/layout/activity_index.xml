@@ -1,0 +1,147 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:orientation="vertical" android:background="#ffffff"
+tools:context=".IndexActivity" >
+
+<include  android:id="@+id/top"  layout="@layout/top_search_product" />
+
+<!-- 底部菜单 -->
+<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
+<ScrollView style="@style/fill" android:layout_below="@id/top" android:layout_above="@id/bottom_tap" >
+    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.example.administrator.helloworld.view.ShufflingView android:id="@+id/shufflingView" android:layout_width="match_parent"
+            android:layout_height="170dp" > </com.example.administrator.helloworld.view.ShufflingView>
+
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="120dp" >
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_p1" android:background="@drawable/index_pro1" android:tag="1226"
+                    android:layout_width="100dp" android:layout_height="100dp" android:scaleType="center" android:layout_centerInParent="true" />
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_p2" android:background="@drawable/index_pro2" android:tag="1674"
+                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true"  />
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_p3" android:background="@drawable/index_pro3" android:tag="1689"
+                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <TextView android:layout_width="100dp" android:text="办公用品" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center" />
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <TextView android:layout_width="100dp" android:text="劳保用品" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <TextView android:layout_width="100dp" android:text="五金工具" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="120dp" >
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_p4" android:background="@drawable/index_pro4" android:tag="3396"
+                    android:layout_width="100dp" android:layout_height="100dp" android:scaleType="center" android:layout_centerInParent="true" />
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_p5" android:background="@drawable/index_pro5" android:tag="1227"
+                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true"  />
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_p6" android:background="@drawable/index_pro6" android:tag="1229"
+                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <TextView android:layout_width="100dp" android:text="包装材料" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center" />
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <TextView android:layout_width="100dp" android:text="电工电器" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <TextView android:layout_width="100dp" android:text="环保辅料" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout  android:layout_width="match_parent" android:layout_height="30dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/index_today_discount" />
+        </RelativeLayout>
+
+        <RelativeLayout  android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="#eaeaeb">
+            <TextView android:id="@+id/listdiscount" style="@style/wrap_content" android:text="数据加载中……" android:textColor="#939393"
+                android:layout_centerInParent="true" android:layout_marginTop="10dp"/>
+            <com.example.administrator.helloworld.view.MyGridView android:numColumns="2" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/mydiscountgw">
+            </com.example.administrator.helloworld.view.MyGridView>
+
+        </RelativeLayout>
+
+        <RelativeLayout  android:layout_width="match_parent" android:layout_height="30dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:scaleType="centerCrop"
+
+                android:src="@drawable/index_mymatch" />
+        </RelativeLayout>
+
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="80dp" >
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_fast_btn" android:background="@drawable/index_fast_match"
+                    android:layout_width="180dp" android:layout_height="80dp"  android:scaleType="center" android:layout_centerInParent="true"  />
+            </RelativeLayout>
+            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+                <ImageButton android:id="@+id/index_order_btn" android:background="@drawable/index_order_match"
+                    android:layout_width="180dp" android:layout_height="80dp"  android:scaleType="center" android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout  android:layout_width="match_parent" android:layout_height="30dp"
+            android:background="#eaeaeb">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/index_hot_product"
+                android:scaleType="fitCenter"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout  android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="#eaeaeb">
+            <TextView android:id="@+id/listtv" style="@style/wrap_content" android:text="数据加载中……" android:textColor="#939393"
+                android:layout_centerInParent="true" android:layout_marginTop="10dp"/>
+            <com.example.administrator.helloworld.view.MyGridView android:numColumns="2" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/mygw">
+
+            </com.example.administrator.helloworld.view.MyGridView>
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+</ScrollView>
+</RelativeLayout>

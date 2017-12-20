@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+		        android:background="#ffffff"  android:paddingLeft="16dp"  android:paddingRight="16dp" android:padding="16dp"
+		        android:layout_marginBottom="16dp">
+		        
+
+         		<LinearLayout android:orientation="vertical"   android:layout_weight="1" android:layout_width="match_parent"
+         		    android:layout_height="wrap_content" android:layout_gravity="center_vertical"
+         		    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			       
+			       <TextView style="@style/match_parent"  android:text="普通发票"
+				                android:id="@+id/tv_in_invoiceType" android:textColor="#000000" android:textSize="16dp"/>
+					<TextView style="@style/match_parent"  android:text="苏州金赢网电子商务有限公司"
+						android:id="@+id/tv_in_invoiceInfo"/>
+					<TextView style="@style/match_parent"  android:text="明细"
+						android:id="@+id/tv_in_invoiceContent"/>
+					<TextView style="@style/wrap_content" android:visibility="gone" android:id="@+id/temp"/>
+
+					<TextView
+						android:layout_marginTop="5dp"
+						android:layout_width="fill_parent"
+						android:layout_height="1dp"
+						android:background="#c6c6c6"
+						/>
+			        
+			   </LinearLayout>
+			    <LinearLayout style="@style/wrap_content" android:orientation="horizontal"
+					android:layout_gravity="center_vertical" android:layout_marginTop="5dp">
+					<RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" android:background="@drawable/radio_item"
+						android:text="" android:id="@+id/rb_invoiceDefault" android:layout_gravity="center_vertical" android:layout_marginLeft="10dp"/>
+					<TextView style="@style/wrap_content" android:text="默认发票"
+						android:layout_gravity="center_vertical"  />
+		           	<TextView  style="@style/wrap_content"  android:text="编辑" android:layout_marginLeft="120dp"
+						android:drawableLeft="@drawable/icon_edit" android:id="@+id/btn_edit"    android:layout_gravity="center_vertical"
+		            />
+		        	<TextView  style="@style/wrap_content"  android:text="删除" android:layout_marginLeft="20dp"
+						android:drawableLeft="@drawable/icon_del" android:id="@+id/btn_del" android:layout_gravity="center_vertical"
+		            />
+		        </LinearLayout>
+	</LinearLayout>
+</LinearLayout>

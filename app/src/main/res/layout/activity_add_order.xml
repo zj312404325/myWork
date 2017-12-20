@@ -1,0 +1,191 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".AddOrderActivity" >
+
+   <include  android:id="@+id/top_title"  layout="@layout/top" />
+   
+ 	<RelativeLayout android:id="@+id/bottom" android:layout_width="match_parent" android:layout_height="40dp"
+	    android:layout_alignParentBottom="true" android:background="#ffffff">
+	    <LinearLayout style="@style/line" ></LinearLayout>
+	    
+	  	<LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent" 
+	  	    android:layout_centerVertical="true" android:layout_marginLeft="16dp">
+	        <TextView style="@style/wrap_content" android:text="实付款：" android:textColor="@color/gray" android:layout_gravity="center_vertical"
+	            android:textSize="10dp" />
+	        <TextView style="@style/wrap_content" android:text="￥3400.00" android:textColor="@color/red" android:layout_gravity="center_vertical"
+	            android:textSize="16dp" android:id="@+id/tv_totalPrice1"/>
+	    </LinearLayout>
+	    
+	    <Button android:text="提交订单" android:layout_width="100dp" android:layout_height="40dp"
+	        android:background="#0083c8" android:textColor="#ffffff" android:textSize="14dp" 
+	        android:layout_alignParentRight="true" android:id="@+id/btn_tj"  />
+	    	    
+	</RelativeLayout>
+   
+   
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" android:layout_above="@id/bottom">
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
+
+		     <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp" android:id="@+id/ll_address" >
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp"/>
+				<RelativeLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+				    style="@style/marginlr" android:layout_marginTop="16dp">
+				    <TextView style="@style/wrap_content" android:text="" android:id="@+id/tv_ad_contact" />
+				    <TextView style="@style/wrap_content" android:text="" android:layout_alignParentRight="true"
+				        android:id="@+id/tv_ad_mobilephone"/>
+				</RelativeLayout>
+				<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" style="@style/marginlr">
+					<TextView android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="" 
+					    android:layout_marginTop="5dp" android:layout_gravity="center_vertical" android:layout_weight="1" 
+					    android:id="@+id/tv_ad_addinfo"/>
+					 <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_gravity="center_vertical"
+		        android:layout_marginLeft="10dp"/>
+				</LinearLayout>
+				
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp"
+				    android:layout_marginTop="10dp"/>
+		    </LinearLayout>  
+		    
+		     
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp" android:id="@+id/ll_address1" android:visibility="gone">
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp" />			
+				<LinearLayout android:layout_width="match_parent"  android:layout_height="40dp" style="@style/marginlr">
+					<TextView android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="选择收货地址" 
+					     android:layout_gravity="center_vertical" android:layout_weight="1" />
+					 <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_gravity="center_vertical"
+		        android:layout_marginLeft="10dp"/>
+				</LinearLayout>				
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp"
+				    android:layout_marginTop="10dp"/>
+		    </LinearLayout>  
+		    
+		    
+		     <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp" android:id="@+id/ll_bank" >
+								<RelativeLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+				    style="@style/marginlr" android:layout_marginTop="16dp">
+				    <TextView style="@style/wrap_content" android:text="" android:id="@+id/tv_bk_bankName" />
+				    <TextView style="@style/wrap_content" android:text="" android:layout_alignParentRight="true"
+				        android:id="@+id/tv_bk_bankAdd"/>
+				</RelativeLayout>
+				<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" style="@style/marginlr">
+					<TextView android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="" 
+					    android:layout_marginTop="5dp" android:layout_gravity="center_vertical" android:layout_weight="1" 
+					    android:id="@+id/tv_bk_bankNo"/>
+					 <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_gravity="center_vertical"
+		        android:layout_marginLeft="10dp" android:layout_marginBottom="10dp"/>
+				</LinearLayout>
+				
+				
+		    </LinearLayout>  
+		    
+		     <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp" android:id="@+id/ll_bank1" android:visibility="gone">
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp"/>			
+				<LinearLayout android:layout_width="match_parent"  android:layout_height="40dp" style="@style/marginlr">
+					<TextView android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="选择银行账号" 
+					     android:layout_gravity="center_vertical" android:layout_weight="1" />
+					 <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_gravity="center_vertical"
+		        android:layout_marginLeft="10dp"/>
+				</LinearLayout>				
+				<ImageView android:background="@drawable/order_line" android:layout_width="match_parent" android:layout_height="3dp"
+				    android:layout_marginTop="10dp"/>
+		    </LinearLayout>  
+		    
+		    
+		    
+		    
+		     
+		     <LinearLayout 
+				    android:layout_width="match_parent"
+				    android:layout_height="match_parent" android:background="#ffffff"
+				    android:orientation="vertical" android:layout_marginTop="10dp" android:layout_marginBottom="10dp">
+				   
+				    <com.example.administrator.helloworld.view.MyListView android:layout_width="match_parent" android:layout_height="wrap_content" 
+				        android:id="@+id/mlv_prolist">"
+				        
+				    </com.example.administrator.helloworld.view.MyListView>
+				    <View style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content"
+				        android:minHeight="80dp" style="@style/marginlr"
+				        android:paddingTop="10dp" android:paddingBottom="10dp">
+				        <TextView style="@style/match_parent" android:text="发票信息" android:layout_gravity="center_vertical"
+				            android:layout_weight="1"/>
+				        <LinearLayout android:layout_width="wrap_content"  android:layout_height="wrap_content"
+				            android:orientation="vertical" android:layout_gravity="center_vertical"
+				            android:id="@+id/ll_Invoice">
+				            <TextView style="@style/match_parent" android:gravity="right" android:text=""
+				                android:id="@+id/tv_in_invoiceType"/>
+				            <TextView style="@style/match_parent" android:gravity="right" android:text=""
+				                android:id="@+id/tv_in_invoiceInfo"/>
+				            <TextView style="@style/match_parent" android:gravity="right" android:text="" 
+				                android:id="@+id/tv_in_invoiceContent"/>
+				        </LinearLayout>
+				        <LinearLayout android:layout_width="wrap_content"  android:layout_height="wrap_content"
+				            android:orientation="vertical" android:layout_gravity="center_vertical"
+				            android:id="@+id/ll_Invoice1" android:visibility="gone">
+				            <TextView style="@style/match_parent" android:gravity="right" android:text="未设置发票"/>
+				        </LinearLayout>
+				        <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_gravity="center_vertical"
+					        android:layout_marginLeft="10dp"/>
+				    </LinearLayout>
+				    <View style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				    
+				    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+					    android:layout_marginLeft="16dp" android:layout_marginRight="10dp">
+					    <TextView style="@style/wrap_content" android:text="运输方式：" android:layout_alignParentLeft="true" 
+					        android:layout_centerVertical="true" android:layout_width="80dp" android:maxLines="1"  
+					       />
+					    
+					   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+					        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_outType" android:focusable="false" />		    
+					   	<ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>
+					   			    
+					</RelativeLayout>
+				    <View style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				    <RelativeLayout style="@style/fill" android:background="#ffffff" android:layout_height="110dp">
+
+				        <ImageView android:background="@drawable/nopic" android:layout_width="74dp" android:layout_height="74dp"
+				            android:layout_marginLeft="20dp" android:layout_marginTop="20dp" android:id="@+id/iv_annex"/>
+				        <TextView style="@style/wrap_content" android:layout_marginTop="20dp" android:layout_marginLeft="114dp" 
+				            android:textSize="12dp"
+				            android:text="上传附件照片：
+如果需要上传附件照片，请点击左边图片"/>
+				  
+		
+				    </RelativeLayout>
+				    <View style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				    
+				    
+				    
+				    
+				    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+					    android:layout_marginLeft="16dp" android:layout_marginRight="10dp" android:focusable="true"  
+   android:focusableInTouchMode="true">
+					    <TextView style="@style/wrap_content" android:text="买家留言：" android:layout_alignParentLeft="true" 
+					        android:layout_centerVertical="true"  android:layout_width="80dp" android:maxLines="1" 
+					       />
+					    
+					   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+					        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_buyMemo"  />		    
+					   					   			    
+					</RelativeLayout>
+				    <View style="@style/line" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+				    
+				    <LinearLayout android:layout_width="match_parent"  android:layout_height="30dp" style="@style/marginlr">
+				        <TextView style="@style/match_parent" android:gravity="right" android:text="小计：" android:layout_weight="1" android:layout_gravity="center_vertical"/>
+				        <TextView style="@style/wrap_content" android:gravity="right" android:text="￥3400.00" android:layout_gravity="center_vertical"
+				            android:textColor="@color/red" android:id="@+id/tv_totalPrice"/>
+				    </LinearLayout>
+				    <View style="@style/line" />
+				</LinearLayout>
+		    
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

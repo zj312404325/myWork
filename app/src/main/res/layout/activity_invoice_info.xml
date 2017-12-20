@@ -1,0 +1,154 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".InvoiceInfoActivity" >
+
+     <include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+	<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
+	    
+	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    android:background="#ffffff" android:layout_marginTop="10dp" android:padding="10dp" >
+		    <TextView style="@style/wrap_content" android:text="发票类型"/>
+		   
+		        <RadioGroup android:id="@+id/rg_invoiceType" android:contentDescription="发票类型" android:layout_width="wrap_content" 
+		            android:layout_height="wrap_content" android:orientation="horizontal" android:layout_gravity="center_horizontal">
+				    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:tag="COMMON"
+				         android:text="普通发票" android:checked="true" android:layout_marginRight="16dp"
+				         android:id="@+id/rg_invoiceType1"></RadioButton>
+				    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:tag="VAT"
+				         android:text="增值税发票"  android:id="@+id/rg_invoiceType2"></RadioButton>    
+				</RadioGroup>
+		        
+		  
+		    
+	    </LinearLayout>
+	    
+	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    android:background="#ffffff" android:layout_marginTop="10dp" android:id="@+id/ll_i1" >
+		 	    
+		    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="发票抬头：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
+			        
+			       />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_title"  android:maxLength="50"
+			        />		    
+			   			    
+			</RelativeLayout>
+		</LinearLayout>
+	    
+	    
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    android:background="#ffffff" android:layout_marginTop="10dp" android:visibility="gone" android:id="@+id/ll_i2" >
+		 	    
+		    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="单位名称：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
+			        
+			       />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_companyName" android:maxLength="50" />		    
+			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+		    
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="纳税人识别号：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="100dp" android:maxLines="1" 
+			        
+			        />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="100dp" 
+			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_taxNo" android:maxLength="20"/>		    
+			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="注册地址：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
+			        />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_registerAddress" android:maxLength="100"/>		    
+			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+		    
+			
+			
+		
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="注册电话：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1"
+			         />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_registerPhone" android:maxLength="20"/>		    
+			  			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="开户银行：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_bankName" android:maxLength="50"/>		    
+			   			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			
+			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+			    <TextView style="@style/wrap_content" android:text="银行账户：" android:layout_alignParentLeft="true" 
+			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			    
+			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_bankNo" android:maxLength="20"/>		    
+			   			   			    
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			
+		</LinearLayout>
+		
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    android:background="#ffffff" android:layout_marginTop="10dp" android:padding="10dp" >
+		    <TextView style="@style/wrap_content" android:text="发票内容"/>
+		   
+		        <RadioGroup android:id="@+id/rg_invoiceContentType" android:contentDescription="发票类型" android:layout_width="wrap_content" 
+		            android:layout_height="wrap_content" android:orientation="horizontal" >
+				    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"  android:tag="1"
+				         android:text="明细" android:checked="true" android:layout_marginRight="16dp"
+				          android:id="@+id/rg_invoiceContentType1"></RadioButton>
+				    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"   android:tag="0"
+				         android:text="其它" android:id="@+id/rg_invoiceContentType2">
+				    </RadioButton>   
+				     
+				</RadioGroup>
+		  		<EditText  android:layout_width="match_parent" android:hint="输入发票内容"  android:layout_height="40dp"
+			        android:layout_centerVertical="true" android:background="@null"   android:id="@+id/et_invoiceContent"
+			        android:visibility="gone" android:maxLength="100" android:textSize="12dp"/>		
+		    
+	    </LinearLayout>
+		
+		<Button  android:id="@+id/savebtn" style="@style/btnblue"            
+            android:text="保     存" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
+	</LinearLayout>
+		
+	</ScrollView>
+
+</RelativeLayout>

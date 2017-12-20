@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".PreparePayActivity" >
+
+    <include  android:id="@+id/top_title"  layout="@layout/top" />
+    <ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
+		    
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" >
+			    <LinearLayout android:layout_width="wrap_content" android:layout_height="50dp" 
+			        android:layout_gravity="center_horizontal">
+				   	 <TextView style="@style/wrap_content" android:text="待付款金额:" android:layout_gravity="center_vertical"   />		    
+				   	<TextView style="@style/wrap_content" android:text="加载中。。。" android:layout_gravity="center_vertical" 
+				   	    android:textSize="20dp" android:textColor="#bb3144"  android:id="@+id/tv_money" />		    
+				</LinearLayout>
+				<LinearLayout style="@style/line" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"/>
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+				    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+				    <TextView style="@style/wrap_content" android:text="余额：" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:id="@+id/rb_umoney"  />
+				    
+				   	 <TextView style="@style/wrap_content" android:text="加载中。。。" android:layout_toRightOf="@id/rb_umoney"
+				        android:layout_centerVertical="true" android:id="@+id/tv_umoney" android:textSize="18dp" android:textColor="#bb3144"  />	
+				        	    
+				   	
+				        
+				   	<TextView style="@style/wrap_content" android:text="加载中。。。" android:textSize="18dp" android:textColor="#bb3144" 
+				        android:layout_centerVertical="true" android:id="@+id/tv_umoneysy" android:layout_alignParentRight="true" />
+				   	<TextView style="@style/wrap_content" android:text="剩余：" android:layout_toLeftOf="@id/tv_umoneysy"
+				        android:layout_centerVertical="true" />			    
+				</RelativeLayout>
+			</LinearLayout>
+			
+		    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+		    	android:background="#ffffff" android:layout_marginTop="16dp" >
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:focusable="true"  android:focusableInTouchMode="true">
+				    <TextView style="@style/wrap_content" android:text="支付密码：" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
+				        
+				       />
+				    
+				   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
+				        android:layout_centerVertical="true" android:background="@null"  android:inputType="textPassword"
+				        android:id="@+id/et_password"/>		    
+				   			    
+				</RelativeLayout>
+				<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0"
+				    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" />
+		        
+				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+				    <CheckBox style="@style/wrap_content" android:text="同意此款不冻结，卖家可以立即提现" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:id="@+id/rb_isfreezone" />
+				    				   			    
+				</RelativeLayout>
+				
+		        <LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0"
+				    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" />
+		        
+		        <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:id="@+id/rl_paypwdedit">
+				    <TextView style="@style/wrap_content" android:text="如需修改密码？点击此处设置" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true" android:id="@+id/tv_haspwd"  />
+				    <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>				   			    
+				</RelativeLayout>
+				
+		        <LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0"
+				    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" />
+		        
+		        <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:id="@+id/rl_recharge">
+				    <TextView style="@style/wrap_content" android:text="充值" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true"  />
+				    <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>				   			    
+				</RelativeLayout>
+				
+		        <LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0"
+				    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" />
+		        
+		        <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
+			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:id="@+id/rl_downpay">
+				    <TextView style="@style/wrap_content" android:text="线下支付" android:layout_alignParentLeft="true" 
+				        android:layout_centerVertical="true"  />
+				    <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>				   			    
+				</RelativeLayout>
+		        
+		        <LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0"
+				    />
+		        
+		    </LinearLayout>
+		    
+		    <Button  android:id="@+id/btn_pay" style="@style/btnblue"            
+            android:text="余额支付" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
+		    
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

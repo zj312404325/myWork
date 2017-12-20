@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources>  
+    <declare-styleable name="MyView">  
+        <attr name="textColor" format="color" />  
+        <attr name="textSize" format="float" />  
+        <attr name="imgBg" format="reference" />
+        <attr name="imgWidth" format="float" />
+        <attr name="imgHeight" format="float" />
+        <attr name="text" format="string" />
+        <attr name="hint" format="string" />
+         <attr name="ispwd" format="integer" />
+        <attr name="isfouce" format="integer" />
+        <attr name="maxLength" format="integer" />
+    </declare-styleable> 
+    <declare-styleable name="AmountView">
+        <!-- 左右2边+-按钮的宽度 -->
+        <attr name="btnWidth" format="dimension" />
+        <!-- 中间TextView的宽度 -->
+        <attr name="tvWidth" format="dimension" />
+        <!--<attr name="tvColor" format="color"/>-->
+        <attr name="tvTextSize" format="dimension"/>
+        <attr name="btnTextSize" format="dimension"/>
+    </declare-styleable> 
+</resources>  

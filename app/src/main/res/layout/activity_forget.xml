@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:test="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#ffffff"
+    tools:context=".ForgetActivity" >
+
+
+    <include  android:id="@+id/top_title"  layout="@layout/top" />
+    <LinearLayout
+        style="@style/fill"
+        android:orientation="vertical"
+        android:layout_below="@id/top_title" >
+        <!--<com.example.administrator.helloworld.view.MyEditText android:id="@+id/et_mobile"  android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" android:layout_marginTop="20dp" 	    test:textSize="14" 	    test:hint="请输入手机号"
+            />-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_wihte_frame">
+                <EditText
+                    android:id="@+id/et_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:hint="请输入手机号"
+                    android:inputType="phone"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            style="@style/wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="12dp"
+            android:id="@+id/tv_ts"
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            android:text="(验证码已发送到你手机，若2分钟未收到，请联系客服)"
+            android:textColor="@color/orange"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="100dp"
+                android:background="@drawable/shape_wihte_frame"
+                android:id="@+id/line1">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="请输入验证码"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="90dp"
+                    android:textSize="14dp"
+                    android:id="@+id/et_mobileCode" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="250dp">
+                <Button
+                    android:id="@+id/btn_VerifyCode"
+                    android:layout_width="80dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/login_back_gray"
+                    android:text="获取验证码"
+                    android:textSize="14dp"
+                    android:textColor="@color/login_text_gray"
+                    android:enabled="false"/>
+            </LinearLayout>
+            <!--<LinearLayout android:layout_alignParentBottom="true" android:layout_width="match_parent" android:layout_height="3dp"
+                android:background="@drawable/input_g" android:id="@+id/input_pwd_b" android:orientation="horizontal"></LinearLayout>-->
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <Button
+                style="@style/loginbtnlongoff"
+                android:id="@+id/nextbtn"
+                android:text="下一步"
+                android:layout_weight="1"
+                android:enabled="false"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.administrator.helloworld">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
+    <permission
+        android:name="com.example.administrator.helloworld.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="com.example.administrator.helloworld.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <application
+        android:name="com.example.administrator.helloworld.common.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ForgetActivity"
+            android:label="@string/title_activity_forget" />
+        <activity
+            android:name=".Forget1Activity"
+            android:label="@string/title_activity_forget1" />
+        <activity
+            android:name=".Forget2Activity"
+            android:label="@string/title_activity_forget2" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register" />
+        <activity
+            android:name=".Register1Activity"
+            android:label="@string/title_activity_register1" />
+        <activity
+            android:name=".Register2Activity"
+            android:label="@string/title_activity_register2" />
+        <activity
+            android:name=".Top"
+            android:label="@string/title_activity_register" />
+        <activity android:name=".view.Top" />
+        <activity android:name=".IndexActivity"></activity>
+
+        <activity
+            android:name=".AddOrderActivity"
+            android:label="@string/title_activity_add_order" >
+        </activity>
+
+        <activity
+            android:name=".CartActivity"
+            android:label="@string/title_activity_cart" >
+        </activity>
+
+        <activity
+            android:name=".ProductInfoActivity"
+            android:label="@string/title_activity_product_info" >
+        </activity>
+
+        <activity
+            android:name=".UserCenterActivity"
+            android:label="@string/title_activity_user_center" >
+        </activity>
+
+        <activity
+            android:name=".UserInfoActivity"
+            android:label="@string/title_activity_user_info" >
+        </activity>
+        <activity
+            android:name=".UserInfoEditActivity"
+            android:label="@string/title_activity_user_info_edit" >
+        </activity>
+        <activity
+            android:name=".AuthenticationActivity"
+            android:label="@string/title_activity_authentication" >
+        </activity>
+        <activity
+            android:name=".EditPwdActivity"
+            android:label="@string/title_activity_edit_pwd" >
+        </activity>
+        <activity
+            android:name=".EditPwdResActivity"
+            android:label="@string/title_activity_edit_pwd_res" >
+        </activity>
+        <activity
+            android:name=".AddressActivity"
+            android:label="@string/title_activity_address" >
+        </activity>
+        <activity
+            android:name=".AddressOrderActivty"
+            android:label="@string/title_activity_address" >
+        </activity>
+        <activity
+            android:name=".AddressInfoActivity"
+            android:label="@string/title_activity_address_info" >
+        </activity>
+        <activity
+            android:name=".Order_Product_Activity"
+            android:label="@string/title_activity_order__xh_" >
+        </activity>
+        <activity
+            android:name=".Order_Xh_Info_Activity"
+            android:label="@string/title_activity_order__xh__info_" >
+        </activity>
+
+        <activity
+            android:name=".ProductInfoChActivity"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity1"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity11"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity2"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity22"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity3"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity33"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity4"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity44"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".ProductInfoChActivity5"
+            android:label="@string/title_activity_product_info_ch"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+        <activity
+            android:name=".CommentActivity"
+            android:label="@string/title_activity_comment" >
+        </activity>
+        <activity
+            android:name=".ProductInfoCActivity"
+            android:label="@string/title_activity_product_info_c" >
+        </activity>
+        <activity
+            android:name=".AddOrder1Activity"
+            android:label="@string/title_activity_add_order" >
+        </activity>
+        <activity
+            android:name=".CompanyActivity"
+            android:label="@string/title_activity_company" >
+        </activity>
+        <activity
+            android:name=".CompanyInfoActivity"
+            android:label="@string/title_activity_company_info" >
+        </activity>
+        <activity
+            android:name=".InvoiceActivity"
+            android:label="@string/title_activity_invoice" >
+        </activity>
+        <activity
+            android:name=".InvoiceOrderActivity"
+            android:label="@string/title_activity_invoice" >
+        </activity>
+        <activity
+            android:name=".InvoiceInfoActivity"
+            android:label="@string/title_activity_invoice_info" >
+        </activity>
+        <activity
+            android:name=".BankActivity"
+            android:label="@string/title_activity_bank" >
+        </activity>
+        <activity
+            android:name=".BankOrderActivity"
+            android:label="@string/title_activity_bank" >
+        </activity>
+        <activity
+            android:name=".BankInfoActivity"
+            android:label="@string/title_activity_bank_info" >
+        </activity>
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".PreparePayActivity"
+            android:label="@string/title_activity_prepare_pay" >
+        </activity>
+        <activity
+            android:name=".PayPasswordActivity"
+            android:label="@string/title_activity_pay_password" >
+        </activity>
+        <activity
+            android:name=".PayPasswordEditActivity"
+            android:label="@string/title_activity_pay_password_edit" >
+        </activity>
+        <activity
+            android:name=".PayXxActivity"
+            android:label="@string/title_activity_pay_xx" >
+        </activity>
+        <activity
+            android:name=".RechargeActivity"
+            android:label="@string/title_activity_recharge" >
+        </activity>
+        <activity
+            android:name=".RefundActivity"
+            android:label="@string/title_activity_refund" >
+        </activity>
+        <activity
+            android:name=".UserMoneyActivity"
+            android:label="@string/title_activity_user_money" >
+        </activity>
+        <activity android:name=".TXActivity" >
+        </activity>
+        <activity
+            android:name=".TxZxActivity"
+            android:label="@string/title_activity_tx_zx" >
+        </activity>
+
+    </application>
+
+</manifest>
