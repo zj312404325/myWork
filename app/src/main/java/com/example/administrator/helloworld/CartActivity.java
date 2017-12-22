@@ -1,46 +1,15 @@
 package com.example.administrator.helloworld;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.helloworld.common.ButtomTapActivity;
-import com.example.administrator.helloworld.common.MyApplication;
-import com.example.administrator.helloworld.util.BigDecimalUtil;
-import com.example.administrator.helloworld.util.CommonUtil;
-import com.example.administrator.helloworld.util.DensityUtil;
-import com.example.administrator.helloworld.util.FormatUtil;
-import com.example.administrator.helloworld.util.PricesUtil;
-import com.example.administrator.helloworld.util.XUtilsHelper;
-import com.example.administrator.helloworld.view.AmountView;
-import com.example.administrator.helloworld.view.MyListView;
-import com.example.administrator.helloworld.view.XListView;
-
-import android.os.Bundle;
-import android.os.Handler;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,11 +18,33 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.administrator.helloworld.common.ButtomTapActivity;
+import com.example.administrator.helloworld.util.BigDecimalUtil;
+import com.example.administrator.helloworld.util.CommonUtil;
+import com.example.administrator.helloworld.util.DensityUtil;
+import com.example.administrator.helloworld.util.FormatUtil;
+import com.example.administrator.helloworld.util.PricesUtil;
+import com.example.administrator.helloworld.util.XUtilsHelper;
+import com.example.administrator.helloworld.view.AmountView;
+import com.example.administrator.helloworld.view.MyListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_cart)
 public class CartActivity extends  ButtomTapActivity{
@@ -179,7 +170,6 @@ public class CartActivity extends  ButtomTapActivity{
 						dateMap.put("buyCartList", dateMapinfo);
 					}
 					dateMaps.add(dateMap);
-					Log.i("这尼玛", "跪了"+dateMaps.toString());
 					sap.notifyDataSetChanged();
 					getAllMoney();
 				} catch (JSONException e) {

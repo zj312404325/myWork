@@ -7,18 +7,35 @@
 
      <include  android:id="@+id/top_title"  layout="@layout/top" />
 	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
-		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
 	
-		    <LinearLayout style="@style/wrap_content" android:orientation="horizontal" android:layout_gravity="center_horizontal" 
-	        android:layout_marginTop="50dp" android:layout_marginBottom="50dp">
-	        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:background="@drawable/ok"/>
-	        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical"
+		    <LinearLayout
+				style="@style/wrap_content"
+				android:orientation="horizontal"
+				android:layout_gravity="center_horizontal"
+	        	android:layout_marginTop="50dp"
+				android:layout_marginBottom="50dp">
+	        <ImageView
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				android:background="@drawable/ok"/>
+	        <TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
 	            android:text="恭喜，密码修改成功"/>
 	        
 	    	</LinearLayout>
 	    
-	   			<Button  android:id="@+id/loginout" style="@style/btnblue" android:layout_gravity="center_horizontal"            
-            		android:text="退出并重新登录" android:layout_width="150dp"/>
+	   			<Button
+					style="@style/btndarkblue"
+					android:id="@+id/loginout"
+					android:layout_gravity="center_horizontal"
+            		android:text="退出并重新登录"
+					android:layout_width="150dp"/>
 		</LinearLayout>
 	</ScrollView>
 

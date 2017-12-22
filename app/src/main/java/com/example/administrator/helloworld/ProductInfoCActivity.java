@@ -1,46 +1,42 @@
 package com.example.administrator.helloworld;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.helloworld.common.TopActivity;
-import com.example.administrator.helloworld.util.CommonUtil;
-import com.example.administrator.helloworld.util.DensityUtil;
-import com.example.administrator.helloworld.util.FormatUtil;
-import com.example.administrator.helloworld.util.URLImageParser;
-import com.example.administrator.helloworld.util.XUtilsHelper;
-import com.example.administrator.helloworld.view.MyGridView;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.example.administrator.helloworld.common.TopActivity;
+import com.example.administrator.helloworld.util.CommonUtil;
+import com.example.administrator.helloworld.util.DensityUtil;
+import com.example.administrator.helloworld.util.URLImageParser;
+import com.example.administrator.helloworld.util.XUtilsHelper;
+import com.example.administrator.helloworld.view.MyGridView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_product_info_c)
 public class ProductInfoCActivity extends TopActivity {
@@ -95,33 +91,28 @@ public class ProductInfoCActivity extends TopActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
-		super.title.setText("产品详情");
+		//super.title.setText("产品详情");
 		Intent i = this.getIntent();
 		try {
 			info = new JSONObject(i.getStringExtra("info"));
-			super.title.setText(info.getString("proName"));
 			URLImageParser p = new URLImageParser(tv_proDesc, ProductInfoCActivity.this);
-			String html = info.getString("proDesc");
+			String html = info.getString("prodesc");
 			Spanned htmlSpan = Html.fromHtml(html, p, null);
-			tv_proDesc.setText(htmlSpan);
-			tv_proArea.setText(info.getString("proArea"));
-			tv_brand.setText(info.getString("brand"));
-			tv_categoryName.setText(info.getString("categoryName"));
-			tv_storename.setText(info.getString("storename"));
-			tv_storekw.setText(info.getString("storekw"));
-		
+			tv_proDesc.setText(htmlSpan.toString());
+			tv_brand.setText(info.getJSONObject("mallProductAttr").get("var1").toString());
+			tv_categoryName.setText(info.getString("categorymame"));
+
 			String [] from ={"proName"};
-	        int [] to = {R.id.protitle};
+			int [] to = {R.id.protitle};
 			sap = new ProSimpleAdapter(this, data_list, R.layout.list_indexprolist, from, to);
 			gv.setAdapter(sap);
 			getDate();
-			
 		} catch (JSONException e) {
 			e.printStackTrace();
 			progressDialog.hide();
 		}
 	}
-	
+
 	private void getDate() throws JSONException{
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:test="http://schemas.android.com/apk/res/com.example.administrator.helloworld"
+    xmlns:test="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -11,43 +11,90 @@
     
         <RelativeLayout android:layout_width="match_parent"  android:layout_height="wrap_content">
             <ScrollView style="@style/fill" >
-			<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical"
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
 			    android:padding="16dp" >
-			    <LinearLayout android:id="@+id/ll_chinfo" android:layout_width="match_parent"  android:layout_height="wrap_content"
-			        android:orientation="vertical">
-					
-				</LinearLayout>
-				<LinearLayout android:id="@+id/ll_prices" android:layout_width="match_parent"  android:layout_height="wrap_content"
-			        android:orientation="vertical">
-				</LinearLayout>
-				<LinearLayout android:id="@+id/ll_info" android:layout_width="match_parent"  android:layout_height="wrap_content"
-			        android:orientation="vertical" >
-					<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp"
-					    android:id="@+id/ll_quantity">
-					    <TextView style="@style/wrap_content" android:text="库存：" android:textColor="@color/gray" /> 
-					    <TextView style="@style/wrap_content" android:id="@+id/tv_quantity" android:text=""  android:textColor="@color/gray"/>
-					</LinearLayout>
-					<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp">
-					    <TextView style="@style/wrap_content" android:text="商品编号：" android:textColor="@color/gray"/> 
-					    <TextView style="@style/wrap_content" android:id="@+id/tv_procode" android:text="" android:textColor="@color/gray"/>
-					</LinearLayout>
-					<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp"
-					    android:id="@+id/ll_proquality">
-					    <TextView style="@style/wrap_content" android:text="材质：" android:textColor="@color/gray"/> 
-					    <TextView style="@style/wrap_content" android:id="@+id/tv_proquality" android:text="" android:textColor="@color/gray"/>
-					</LinearLayout>
-					
-					<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp">
-					    <TextView style="@style/wrap_content" android:text="备注：" android:textColor="@color/gray"/> 
-					    <TextView style="@style/wrap_content" android:id="@+id/tv_remark" android:text="" android:textColor="@color/gray"/>
-					</LinearLayout>
-					<LinearLayout android:id="@+id/ll_count" android:layout_width="match_parent"  android:layout_height="wrap_content"
-			        android:orientation="vertical">
+
+				<RelativeLayout android:layout_width="match_parent"  android:layout_height="wrap_content">
+					<ImageView
+						android:layout_width="100dp"
+						android:layout_height="100dp"
+						android:src="@drawable/nopic"
+						android:id="@+id/iv_showImage"
+						android:scaleType="fitCenter"
+						/>
+
+					<LinearLayout
+						android:id="@+id/ll_info"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:layout_alignBottom="@id/iv_showImage"
+						android:layout_toRightOf="@id/iv_showImage">
+							<LinearLayout
+								android:layout_width="match_parent"
+								android:layout_height="50dp">
+								<TextView
+									style="@style/wrap_content"
+									android:id="@+id/tv_showPrice"
+									android:text=""
+									android:textColor="@color/gray"
+									android:layout_gravity="center_vertical"/>
+							</LinearLayout>
+							<LinearLayout
+								android:layout_width="match_parent"
+								android:layout_height="30dp"
+								android:id="@+id/ll_quantity">
+								<TextView
+									style="@style/wrap_content"
+									android:text="库存："
+									android:textColor="@color/gray"
+									android:layout_gravity="center_vertical"/>
+								<TextView
+									style="@style/wrap_content"
+									android:id="@+id/tv_quantity"
+									android:text=""
+									android:textColor="@color/gray"
+									android:layout_gravity="center_vertical"/>
+							</LinearLayout>
+
+							<LinearLayout
+								android:id="@+id/ll_prices"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:orientation="vertical">
+							</LinearLayout>
+
+						</LinearLayout>
+				</RelativeLayout>
+
+					<LinearLayout
+						android:id="@+id/ll_count"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+			        	android:orientation="vertical">
+
 						<LinearLayout style="@style/line" android:layout_marginTop="10dp"></LinearLayout>
-						<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+						<LinearLayout
+							android:id="@+id/ll_chinfo"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="vertical">
+						</LinearLayout>
+
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal"
 						    android:layout_marginTop="10dp" >
-						    <TextView style="@style/wrap_content" android:text="数量：" android:layout_centerVertical="true" android:textColor="@color/gray"/> 
-						     <com.example.administrator.helloworld.view.AmountView
+						    <TextView
+								style="@style/wrap_content"
+								android:text="数量："
+								android:layout_centerVertical="true"
+								android:textColor="@color/gray"/>
+							<com.example.administrator.helloworld.view.AmountView
 						        android:id="@+id/amount_view"
 						        android:layout_width="wrap_content"
 						        android:layout_height="36dp"
@@ -59,26 +106,44 @@
 						</RelativeLayout>
 						
 					</LinearLayout>
-					<LinearLayout android:layout_width="match_parent" android:layout_height="1dp" 
-						    android:background="#ffffff" android:layout_marginTop="40dp"></LinearLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="1dp"
+						android:background="#ffffff"
+						android:layout_marginTop="40dp">
+					</LinearLayout>
+
 			</LinearLayout>
 			</ScrollView>
-			<Button android:layout_width="25dp" android:layout_height="25dp" android:layout_alignParentRight="true"
-			    android:layout_marginRight="5dp" android:layout_marginTop="5dp" android:background="@drawable/close"
+			<Button
+				android:layout_width="25dp"
+				android:layout_height="25dp"
+				android:layout_alignParentRight="true"
+			    android:layout_marginRight="5dp"
+				android:layout_marginTop="5dp"
+				android:background="@drawable/close"
 			    android:id="@+id/close"/>
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
-			    android:layout_alignParentBottom="true" android:background="#e0e0e0">
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+			    android:layout_alignParentBottom="true"
+				android:background="#e0e0e0">
 			    <LinearLayout style="@style/line" ></LinearLayout>
-			    <Button  style="@style/btngray"  android:text="取消" 
-		            android:layout_width="100dp" android:layout_height="30dp"
+			    <Button
+					style="@style/btngray"
+					android:text="取消"
+		            android:layout_width="100dp"
+					android:layout_height="30dp"
 		            android:layout_marginLeft="16dp"
 		            android:layout_marginBottom="5dp"
 		            android:layout_alignParentBottom="true"
 		            android:id="@+id/btn_close" 
 		            />
-		     	<Button  style="@style/btnblue"  android:text="确定" 
-		            android:layout_width="100dp" android:layout_height="30dp"
+		     	<Button
+					style="@style/btnblue"
+					android:text="确定"
+		            android:layout_width="100dp"
+					android:layout_height="30dp"
 		            android:layout_marginRight="16dp"
 		            android:layout_alignParentBottom="true"
 		            android:layout_alignParentRight="true"

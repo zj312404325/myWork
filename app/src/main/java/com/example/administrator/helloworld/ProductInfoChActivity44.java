@@ -1,21 +1,19 @@
 package com.example.administrator.helloworld;
 
-import java.text.Format;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.administrator.helloworld.common.BaseActivity;
 import com.example.administrator.helloworld.util.DensityUtil;
@@ -24,26 +22,20 @@ import com.example.administrator.helloworld.util.XUtilsHelper;
 import com.example.administrator.helloworld.view.AmountView;
 import com.example.administrator.helloworld.view.MyGridView;
 
-import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 /**
  * 镀锌模块
  * @author Administrator
@@ -60,22 +52,15 @@ public class ProductInfoChActivity44 extends BaseActivity {
 	private LinearLayout ll_prices;
 	@ViewInject(R.id.ll_info)
 	private LinearLayout ll_info;
-	@ViewInject(R.id.ll_proquality)
-	private LinearLayout ll_proquality;
+
 	@ViewInject(R.id.ll_count)
 	private LinearLayout ll_count;
 	@ViewInject(R.id.ll_quantity)
 	private LinearLayout ll_quantity;
-	
-	@ViewInject(R.id.tv_procode)
-	private TextView tv_procode;
-	@ViewInject(R.id.tv_remark)
-	private TextView tv_remark;
+
 	@ViewInject(R.id.tv_quantity)
 	private TextView tv_quantity;
-	@ViewInject(R.id.tv_proquality)
-	private TextView tv_proquality;
-	
+
 	
 	
 	
@@ -118,7 +103,7 @@ public class ProductInfoChActivity44 extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
 		
-		ll_proquality.setVisibility(View.GONE);//隐藏材质
+		//ll_proquality.setVisibility(View.GONE);//隐藏材质
 		
 		Intent intent = this.getIntent();
 		String [] from ={"text"};
@@ -269,8 +254,8 @@ public class ProductInfoChActivity44 extends BaseActivity {
 	
 	private void setInfo(JSONObject selectPro) throws JSONException{
 		tv_quantity.setText(selectPro.get("quantity").toString());
-		tv_procode.setText(selectPro.get("procode").toString());
-		tv_remark.setText(selectPro.get("remark").toString());
+		//tv_procode.setText(selectPro.get("procode").toString());
+		//tv_remark.setText(selectPro.get("remark").toString());
 		mAmountView.setGoods_storage(FormatUtil.toDouble(selectPro.get("quantity").toString()));
 		mAmountView.setGoods_min(minMoq);
 		mAmountView.setAmount(count);

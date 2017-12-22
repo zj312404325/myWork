@@ -108,9 +108,10 @@
 				android:layout_marginTop="20dp">
 		  	    
 				<Button
-					style="@style/btndarkblue"
+					style="@style/loginbtnlongoff"
 					android:id="@+id/submitbtn"
 					android:text="提交"
+					android:enabled="false"
 					android:layout_weight="1"/>
 
 	  		</LinearLayout>

@@ -5,143 +5,271 @@
     android:background="#ececec"
     tools:context=".ProductInfoActivity" >
 
-   <RelativeLayout android:id="@+id/top_title" android:layout_width="fill_parent"  android:layout_height="45dp" android:background="#0083c8">    
+   <RelativeLayout
+	   android:id="@+id/top_title"
+	   android:layout_width="fill_parent"
+	   android:layout_height="45dp"
+	   android:background="#0083c8">
 
-      <ImageButton android:id="@+id/top_back" android:background="@drawable/nav_left" android:layout_width="48dp"
-         android:layout_height="22dp" android:layout_centerVertical="true" android:layout_marginLeft="10dp"/>
+      <ImageButton
+		  android:id="@+id/top_back"
+		  android:background="@drawable/nav_left"
+		  android:layout_width="48dp"
+          android:layout_height="22dp"
+		  android:layout_centerVertical="true"
+		  android:layout_marginLeft="10dp"/>
    		<TextView
+			style="@style/wrap_content"
    		    android:id="@+id/title"
-   		    style="@style/wrap_content"
    		    android:layout_centerInParent="true"
    		    android:textSize="16dp"
    		    android:text="商品详情"
    		    android:textColor="#ffffff" />
     
 	</RelativeLayout>
-	<LinearLayout android:id="@+id/bottom_tap" android:layout_width="match_parent" android:layout_height="40dp" 
-	    android:orientation="horizontal" android:layout_alignParentBottom="true">
-	    <Button style="@style/fill" android:layout_weight="1" android:text="立即购买" android:textColor="#ffffff"
-	        android:background="#3bc4f4" android:id="@+id/addBuy"/>
-	    <Button style="@style/fill" android:layout_weight="1" android:text="加入购物车" android:textColor="#ffffff"
-	        android:background="#0083c8" android:id="@+id/addBuyCart"/>
+	<LinearLayout
+		android:id="@+id/bottom_tap"
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+	    android:orientation="horizontal"
+		android:layout_alignParentBottom="true">
+	    <Button
+			style="@style/fill"
+			android:layout_weight="1"
+			android:text="我的购物车"
+			android:textColor="#ffffff"
+	        android:background="#3bc4f4"
+			android:id="@+id/addBuy"/>
+	    <Button
+			style="@style/fill"
+			android:layout_weight="1"
+			android:text="加入购物车"
+			android:textColor="#ffffff"
+	        android:background="@color/login_back_blue"
+			android:id="@+id/addBuyCart"/>
 	</LinearLayout>
 	<ScrollView style="@style/fill" android:layout_below="@id/top_title" android:layout_above="@id/bottom_tap" >
-		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" 
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
 			    android:orientation="vertical" >
-			    <RelativeLayout android:layout_width="match_parent" android:layout_height="320dp" android:background="#c8e0ff"
-			        >
-			         <com.example.administrator.helloworld.view.ShufflingView android:id="@+id/shufflingView" android:layout_width="match_parent"
-		    android:layout_height="320dp" > </com.example.administrator.helloworld.view.ShufflingView>
-			        
-			        
-			        
-			        <ImageView android:layout_width="58dp" android:layout_height="58dp" android:background="@drawable/xianhuo"
-			            android:id="@+id/img_isFuture"/>
-			        <LinearLayout android:layout_width="100dp" android:layout_height="91dp" 
-			            android:layout_alignParentRight="true" android:background="#329ad6"
-			            android:layout_marginTop="16dp" android:layout_marginRight="16dp" android:orientation="vertical">
-			            <RelativeLayout android:layout_width="wrap_content" android:layout_height="30dp"
-			                android:id="@+id/rl_index">
-			                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_marginLeft="5dp"
-			                    android:background="@drawable/pi1" android:layout_centerVertical="true" />
-			                <TextView style="@style/wrap_content" android:text="首页" android:textColor="#ffffff"
-			                    android:layout_centerVertical="true" android:layout_alignParentRight="true"
-			                    android:layout_marginRight="5dp"/>
-			            </RelativeLayout>
-			            <LinearLayout style="@style/line" android:background="#ffffff" />
-			            <RelativeLayout android:layout_width="wrap_content" android:layout_height="30dp"
-			                android:id="@+id/rl_fl">
-			                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_marginLeft="5dp"
-			                    android:background="@drawable/pi2" android:layout_centerVertical="true" />
-			                <TextView style="@style/wrap_content" android:text="分类" android:textColor="#ffffff"
-			                    android:layout_centerVertical="true" android:layout_alignParentRight="true"
-			                    android:layout_marginRight="5dp"/>
-			            </RelativeLayout>
-			            <LinearLayout style="@style/line" android:background="#ffffff" />
-			            <RelativeLayout android:layout_width="wrap_content" android:layout_height="30dp"
-			                android:id="@+id/rl_userinfo">
-			                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:layout_marginLeft="5dp"
-			                    android:background="@drawable/pi3" android:layout_centerVertical="true" />
-			                <TextView style="@style/wrap_content" android:text="我的金赢" android:textColor="#ffffff"
-			                    android:layout_centerVertical="true" android:layout_alignParentRight="true"
-			                    android:layout_marginRight="5dp"/>
-			            </RelativeLayout>
-			        </LinearLayout>
+			    <RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="250dp"
+					android:background="#c8e0ff">
+
+			         <com.example.administrator.helloworld.view.ShufflingView
+						 android:id="@+id/shufflingView"
+						 android:layout_width="match_parent"
+						 android:layout_height="250dp" >
+					 </com.example.administrator.helloworld.view.ShufflingView>
 			    </RelativeLayout>
 			    
-			    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+			    <LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
 			        android:background="#ffffff">
-			        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" 
-			            android:layout_marginTop="10dp" android:layout_marginBottom="10dp" android:id="@+id/tv_proName"
-			            style="@style/marginlr" android:text=""/>
-			        <RelativeLayout style="@style/marginlr" android:layout_width="match_parent" android:layout_height="25dp" >
-			            <TextView style="@style/wrap_content" android:text="所属分类：" android:textColor="@color/gray"
-			                android:textSize="12dp" android:id="@+id/tv_proCode"/>
-			            <TextView style="@style/wrap_content" android:id="@+id/tv_brand" android:text="品牌：" android:layout_alignParentRight="true"
-			                 android:textColor="@color/gray" android:textSize="12dp"/>
-			            <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />			            
-			            
+
+						<TextView
+							style="@style/marginlr"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:id="@+id/tv_proName"
+							android:text=""/>
+						<TextView
+							style="@style/marginlr"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:id="@+id/tv_salePrice"
+							android:text=""/>
+						<LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
+
+			        <RelativeLayout
+						style="@style/marginlr"
+						android:layout_width="match_parent"
+						android:layout_height="25dp" >
+			            <TextView
+							style="@style/wrap_content"
+							android:text="商品编号："
+							android:textColor="@color/gray"
+			                android:textSize="12dp"
+							android:id="@+id/tv_proCode"/>
+			            <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 			        </RelativeLayout>
-			        <RelativeLayout style="@style/match_parent" android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
-			            android:paddingLeft="16dp" android:paddingRight="16dp" android:id="@+id/rl_owner">
-			             <TextView style="@style/wrap_content" android:id="@+id/tv_owner" android:text="公司名称：" 
-			                 android:textColor="@color/gray" android:textSize="14dp" android:layout_centerVertical="true" />
-			             
-			            <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>
-			        </RelativeLayout>
-			       
+					<RelativeLayout
+						style="@style/marginlr"
+						android:layout_width="match_parent"
+						android:layout_height="25dp" >
+						<TextView
+							style="@style/wrap_content"
+							android:id="@+id/tv_brand"
+							android:text="品          牌："
+							android:textColor="@color/gray"
+							android:textSize="12dp"/>
+						<LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
+					</RelativeLayout>
+					<RelativeLayout
+						style="@style/marginlr"
+						android:layout_width="match_parent"
+						android:layout_height="25dp" >
+						<TextView
+							style="@style/wrap_content"
+							android:id="@+id/tv_minqty"
+							android:text="起   批  量："
+							android:textColor="@color/gray"
+							android:textSize="12dp"/>
+						<LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
+					</RelativeLayout>
+					<RelativeLayout
+						style="@style/marginlr"
+						android:layout_width="match_parent"
+						android:layout_height="25dp" >
+						<TextView
+							style="@style/wrap_content"
+							android:id="@+id/tv_transfee"
+							android:text="运          费："
+							android:textColor="@color/gray"
+							android:textSize="12dp"/>
+						<LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
+					</RelativeLayout>
+					<RelativeLayout
+						style="@style/marginlr"
+						android:layout_width="match_parent"
+						android:layout_height="25dp" >
+						<TextView
+							style="@style/wrap_content"
+							android:text="联 系方式：0512-52686666"
+							android:textColor="@color/gray"
+							android:textSize="12dp"/>
+						<LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
+					</RelativeLayout>
 			    </LinearLayout>
 		 
-			    <RelativeLayout style="@style/match_parent" android:paddingTop="10dp" android:paddingBottom="10dp"
-			        android:paddingLeft="16dp" android:paddingRight="16dp" android:background="#ffffff"
-			        android:layout_marginTop="10dp" android:id="@+id/rl_ch_pro">
-			        <TextView style="@style/wrap_content" android:text="请选择     产品属性" android:textColor="@color/gray"
-			                android:textSize="12dp" android:id="@+id/tv_ch_pro"/>	
-			        <ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>		        
+			    <RelativeLayout
+					style="@style/match_parent"
+					android:paddingTop="10dp"
+					android:paddingBottom="10dp"
+			        android:paddingLeft="16dp"
+					android:paddingRight="16dp"
+					android:background="#ffffff"
+			        android:layout_marginTop="10dp"
+					android:id="@+id/rl_ch_pro">
+			        <TextView
+						style="@style/wrap_content"
+						android:text="请选择     产品属性"
+						android:textColor="@color/gray"
+						android:textSize="12dp"
+						android:id="@+id/tv_ch_pro"/>
+			        <ImageView
+						android:layout_width="9dp"
+						android:layout_height="16dp"
+						android:background="@drawable/right"
+						android:layout_centerVertical="true"
+						android:layout_alignParentRight="true"/>
 			    </RelativeLayout>
 			    
-			    <LinearLayout style="@style/match_parent" android:layout_marginTop="10dp" android:background="#ffffff" android:paddingTop="10dp" android:paddingBottom="10dp"
-			        android:paddingLeft="16dp" android:paddingRight="16dp" android:orientation="vertical"
+			    <LinearLayout
+					style="@style/match_parent"
+					android:layout_marginTop="10dp"
+					android:background="#ffffff"
+					android:paddingTop="10dp"
+					android:paddingBottom="10dp"
+			        android:paddingLeft="16dp"
+					android:paddingRight="16dp"
+					android:orientation="vertical"
 			        android:visibility="gone">
 			        <TextView style="@style/wrap_content" android:text="买家评价"/>
 			        <LinearLayout style="@style/match_parent" android:layout_marginTop="10dp">
-			            <ImageView android:layout_width="20dp" android:layout_height="20dp" android:background="@drawable/userhead"/>
-			            <TextView style="@style/wrap_content" android:text="某某买家" android:layout_marginLeft="10dp"/>
+			            <ImageView
+							android:layout_width="20dp"
+							android:layout_height="20dp"
+							android:background="@drawable/userhead"/>
+			            <TextView
+							style="@style/wrap_content"
+							android:text="某某买家"
+							android:layout_marginLeft="10dp"/>
 			        </LinearLayout>
 			        <LinearLayout style="@style/match_parent" android:layout_marginTop="10dp">
-			            <TextView style="@style/match_parent" android:layout_weight="1" android:text="服务态度:" android:textColor="@color/gray"/>
-			            <TextView style="@style/match_parent" android:layout_weight="1" android:text="交易顺畅:" android:textColor="@color/gray"/>
-			            <TextView style="@style/match_parent" android:layout_weight="1" android:text="货物质量:" android:textColor="@color/gray"/>
+			            <TextView
+							style="@style/match_parent"
+							android:layout_weight="1"
+							android:text="服务态度:"
+							android:textColor="@color/gray"/>
+			            <TextView
+							style="@style/match_parent"
+							android:layout_weight="1"
+							android:text="交易顺畅:"
+							android:textColor="@color/gray"/>
+			            <TextView
+							style="@style/match_parent"
+							android:layout_weight="1"
+							android:text="货物质量:"
+							android:textColor="@color/gray"/>
 			        </LinearLayout>
 			        <LinearLayout style="@style/match_parent">
 			            <LinearLayout style="@style/match_parent" android:layout_weight="1">
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
 			            </LinearLayout>
 			            <LinearLayout style="@style/match_parent" android:layout_weight="1">
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
 			            </LinearLayout>
 			            <LinearLayout style="@style/match_parent" android:layout_weight="1" >
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
-			                <ImageView android:layout_width="15dp" android:layout_height="15dp" android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
+			                <ImageView
+								android:layout_width="15dp"
+								android:layout_height="15dp"
+								android:background="@drawable/start"/>
 			            </LinearLayout>
 			        </LinearLayout>
 			        <TextView style="@style/wrap_content" android:layout_marginTop="10dp"  android:textColor="@color/gray"
 			             android:text="费吉萨代理费就撒了房间里撒动静分离撒解放路萨达啊书法家拉萨的减肥圣达菲"/>
 			        <TextView style="@style/wrap_content" android:layout_marginTop="10dp"  android:textColor="@color/gray"
 			             android:text="暂无评价"/>
-			        <Button android:id="@+id/allcomment" android:text="查看全部评价" android:background="@color/bg_btn_blue1"
-			            style="@style/wrap_content" android:layout_height="30dp" android:layout_gravity="center"
-			            android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
-			            android:textColor="#0083c8" android:textSize="14dp"/>
+			        <Button
+						style="@style/wrap_content"
+						android:id="@+id/allcomment"
+						android:text="查看全部评价"
+						android:background="@color/bg_btn_blue1"
+						android:layout_height="30dp"
+						android:layout_gravity="center"
+			            android:layout_marginTop="10dp"
+						android:layout_marginBottom="10dp"
+			            android:textColor="#0083c8"
+						android:textSize="14dp"/>
 			    </LinearLayout>
 			    <LinearLayout style="@style/line"  />
 			    
 			    <RelativeLayout style="@style/match_parent" android:layout_height="40dp" android:id="@+id/toinfo">
-			         <TextView style="@style/wrap_content" android:text="点击显示图文详情" android:layout_centerInParent="true"/>
+			         <TextView
+						 style="@style/wrap_content"
+						 android:text="点击显示图文详情"
+						 android:layout_centerInParent="true"/>
 			    </RelativeLayout>
 		 
 		 

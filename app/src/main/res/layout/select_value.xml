@@ -6,7 +6,9 @@
     android:gravity="center"
     android:padding="10dp">
 
-	<TextView android:id="@+id/text"    android:text="文字发圣达菲圣达菲"  
+	<TextView
+		android:id="@+id/text"
+		android:text="文字发圣达菲圣达菲"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	      />

@@ -1,17 +1,18 @@
 package com.example.administrator.helloworld;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.administrator.helloworld.common.MyApplication;
 import com.example.administrator.helloworld.common.UserActivity;
@@ -20,35 +21,21 @@ import com.example.administrator.helloworld.util.FormatUtil;
 import com.example.administrator.helloworld.util.XUtilsHelper;
 import com.example.administrator.helloworld.view.ShufflingView;
 
-import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_product_info)
 public class ProductInfoActivity extends UserActivity {
-	
-	
-	@ViewInject(R.id.rl_userinfo)
-	private RelativeLayout rl_userinfo;
-	@ViewInject(R.id.rl_fl)
-	private RelativeLayout rl_fl;
-	@ViewInject(R.id.rl_index)
-	private RelativeLayout rl_index;
-	@ViewInject(R.id.rl_owner)
-	private RelativeLayout rl_owner;
-	
 
 	@ViewInject(R.id.rl_ch_pro)
 	private RelativeLayout rl_ch_pro;
@@ -74,21 +61,26 @@ public class ProductInfoActivity extends UserActivity {
 	
 	private JSONObject resdata;
 	private JSONObject info;
+	private JSONObject defaultProp;
 	private JSONArray sellProductProps; //所有产品
 	private JSONObject selectPro; //选中的产品
-	
-	@ViewInject(R.id.img_isFuture)
-	private ImageView img_isFuture; //现货期货图标
+
 	@ViewInject(R.id.tv_proName)
 	private TextView tv_proName;//产品标题
-	@ViewInject(R.id.tv_proCode)
-	private TextView tv_proCode;
 	@ViewInject(R.id.tv_brand)
 	private TextView tv_brand;
 	@ViewInject(R.id.tv_owner)
 	private TextView tv_owner;
 	@ViewInject(R.id.tv_ch_pro)
 	private TextView tv_ch_pro;
+	@ViewInject(R.id.tv_proCode)
+	private TextView tv_proCode;
+	@ViewInject(R.id.tv_minqty)
+	private TextView tv_minqty;
+	@ViewInject(R.id.tv_transfee)
+	private TextView tv_transfee;
+	@ViewInject(R.id.tv_salePrice)
+	private TextView tv_salePrice;
 	
 	private String pId="";
 	private double count=0;
@@ -109,7 +101,7 @@ public class ProductInfoActivity extends UserActivity {
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("id", id);
-		XUtilsHelper.getInstance().post("app/getProductInfo.htm", maps,new XUtilsHelper.XCallBack(){
+		XUtilsHelper.getInstance().post("app/getMallProductInfo.htm", maps,new XUtilsHelper.XCallBack(){
 
 			@SuppressLint("NewApi")
 			@Override
@@ -127,32 +119,49 @@ public class ProductInfoActivity extends UserActivity {
 					else{
 						resdata = (JSONObject)res.get("data");
 						info = resdata.getJSONObject("info");
+						defaultProp=resdata.getJSONObject("defaultProp");
 						sellProductProps = resdata.getJSONArray("propsArr");
-						templateid  = resdata.getJSONObject("info").getString("templateid");
+						Log.i("这尼玛", "sellProductProps:"+sellProductProps);
 						if(sellProductProps.length()>0){
 							selectPro = sellProductProps.getJSONObject(0);
 						}
 						else{
 							tv_ch_pro.setText("此产品已经下架");
 						}
-						//count =FormatUtil.toDouble(resdata.getString("minNum"));
-						
-						String isFutures = info.getString("isFutures");
+						count =FormatUtil.toDouble(resdata.getString("minNum"));
 						getImgData(info.getJSONArray("showProductImg"));
-						if(isFutures.equals("0")){
-							img_isFuture.setBackgroundResource(R.drawable.xianhuo);
+						if(FormatUtil.isNoEmpty(info.getString("procode"))){
+							tv_proCode.setText("商品编号："+info.getString("procode"));
 						}
-						else if(isFutures.equals("1")){
-							img_isFuture.setBackgroundResource(R.drawable.qihuo);
+						else{
+							tv_proCode.setText("商品编号：暂无");
 						}
-						else if(isFutures.equals("2")){
-							img_isFuture.setBackgroundResource(R.drawable.jiagong);
+						if(FormatUtil.isNoEmpty(info.getJSONObject("mallProductAttr").get("var1"))) {
+							tv_brand.setText("品牌：" + info.getJSONObject("mallProductAttr").get("var1"));
 						}
-						tv_proName.setText(info.getString("proName"));
-						tv_proCode.setText("所属分类："+info.getString("categoryName"));
-						tv_brand.setText("品牌："+info.getString("brand"));
-						tv_owner.setText("公司名称："+info.getString("owner"));
-						rl_owner.setTag(info.getString("ownerID"));
+						else{
+							tv_brand.setText("品牌：暂无");
+						}
+						if(FormatUtil.isNoEmpty(count) && count>0) {
+							tv_minqty.setText("起批量：≥" + count);
+						}
+						else{
+							tv_minqty.setText("起批量：≥1");
+						}
+						if(FormatUtil.isNoEmpty(info.getString("transFee"))) {
+							tv_transfee.setText("运费：" + info.getString("transFee")+"元");
+						}
+						else{
+							tv_transfee.setText("运费：0元");
+						}
+						tv_proName.setText(info.getString("proname"));
+
+						if(info.getString("isDiscount").equals("1") && info.getString("isOnDiscount").equals("1")) {
+							tv_salePrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+defaultProp.getString("mynewprice")+"</big></big></font>/"+info.getString("unit")));
+						}
+						else{
+							tv_salePrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+defaultProp.getString("myprice")+"</big></big></font>/"+info.getString("unit")));
+						}
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -171,7 +180,7 @@ public class ProductInfoActivity extends UserActivity {
 	public void getImgData(JSONArray imglist) throws JSONException{
 		mImageIds.clear();
 		for(int i=0;i<imglist.length();i++){
-			mImageIds.add(CommonUtil.getStrings(R.string.img_url)+imglist.getJSONObject(i).get("imgPath").toString());						
+			mImageIds.add(CommonUtil.getStrings(R.string.img_url)+imglist.getJSONObject(i).get("imgpath").toString());
 		}
         shufflingView.setImagers(mImageIds);
         shufflingView.setOnitenClicklistener(new ShufflingView.OnitemClicklistener(){
@@ -210,85 +219,20 @@ public class ProductInfoActivity extends UserActivity {
 	private void gotoch(){
 		try{
 			if(sellProductProps.length()>0){
-			boolean isFutures = resdata.getJSONObject("info").getString("isFutures").equals("1")||
-					resdata.getJSONObject("info").getString("isFutures").equals("2");
-			if(templateid.equals("0")){
 				Intent i = new Intent(getApplicationContext(),ProductInfoChActivity.class);
 				i.putExtra("data", resdata.toString());
 				i.putExtra("selectPro", selectPro.toString());
+				i.putExtra("defaultProp", defaultProp.toString());
 				i.putExtra("count", count);
 				startActivityForResult(i, 0);
-			}
-			else if(templateid.equals("1")){
-				if(isFutures){
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity11.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-				else{
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity1.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-			}
-			else if(templateid.equals("2")){
-				if(isFutures){
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity22.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-				else{
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity2.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-			}
-			else if(templateid.equals("3")){
-				if(isFutures){
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity33.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-				else{
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity3.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-			}
-			else if(templateid.equals("4") ||templateid.equals("5") ){
-				if(isFutures){
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity44.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-				else{
-					Intent i = new Intent(getApplicationContext(),ProductInfoChActivity4.class);
-					i.putExtra("data", resdata.toString());
-					i.putExtra("selectPro", selectPro.toString());
-					i.putExtra("count", count);
-					startActivityForResult(i, 0);
-				}
-			}
 			}
 			else{
 				CommonUtil.alter("此产品暂无库存！！！");
 			}
 		}
-		catch(Exception e){}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -305,11 +249,8 @@ public class ProductInfoActivity extends UserActivity {
 				    		selectPro = sellProductProps.getJSONObject(i);
 				    	}
 				    }
-				    if(templateid.equals("3")){
-				    	tv_ch_pro.setText("选择："+selectPro.getString("var6")+"   共"+FormatUtil.toString(count)+info.getString("unit"));
-				    }
-				    else
-				    	tv_ch_pro.setText("选择："+selectPro.getString("var1")+"   共"+FormatUtil.toString(count)+info.getString("unit"));
+
+				    tv_ch_pro.setText("选择："+selectPro.getString("var1")+"   共"+FormatUtil.toString(count)+info.getString("unit"));
 			   }
 			   catch(Exception ep){ep.printStackTrace();}
 		    break;
@@ -430,28 +371,6 @@ public class ProductInfoActivity extends UserActivity {
 	@Event(R.id.top_back)
 	private void top_backclick(View v){
 		MyApplication.getInstance().finishActivity();
-	}
-	
-	@Event(value={R.id.rl_fl,R.id.rl_index,R.id.rl_userinfo,R.id.rl_owner},type=View.OnTouchListener.class)
-	private boolean rlTouch(View v, MotionEvent event){
-		if (event.getAction() == event.ACTION_UP) {
-			if(v.getId() == R.id.rl_index){
-				startActivity(new Intent(getApplicationContext(),IndexActivity.class));
-			}
-			else if(v.getId() == R.id.rl_fl){
-				startActivity(new Intent(getApplicationContext(),CategoryActivity.class));
-			}
-			else if(v.getId() == R.id.rl_userinfo){
-				startActivity(new Intent(getApplicationContext(),UserCenterActivity.class));
-			}
-			else if(v.getId() == R.id.rl_owner){
-				Intent i = new Intent(getApplicationContext(),CompanyInfoActivity.class);
-				i.putExtra("id",v.getTag().toString() );
-				startActivity(i);
-			}
-			return false;
-		}
-		return true;
 	}
 
 }

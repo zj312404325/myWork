@@ -6,33 +6,63 @@
     tools:context=".ProductInfoCActivity" >
 
     <include  android:id="@+id/top_title"  layout="@layout/top" />
-     <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" 
-		        android:orientation="horizontal" android:background="#ffffff" android:layout_below="@id/top_title"
+     <LinearLayout
+		 		android:layout_width="match_parent"
+		 		android:layout_height="40dp"
+		        android:orientation="horizontal"
+		 		android:background="#ffffff"
+		 		android:layout_below="@id/top_title"
 		        android:id="@+id/tab" >
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="图文详情" android:id="@+id/tab_txt1" 
+		            <TextView
+						style="@style/wrap_content"
+						android:text="图文详情"
+						android:id="@+id/tab_txt1"
 		                android:textColor="#0083c8"
 		                android:layout_centerInParent="true"/>
 	
-		             <LinearLayout android:id="@+id/tab_line1" android:layout_width="fill_parent" android:layout_height="2dp" 
-		    	        android:background="@drawable/tab_s3" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		             <LinearLayout
+						 android:id="@+id/tab_line1"
+						 android:layout_width="fill_parent"
+						 android:layout_height="2dp"
+		    	         android:background="@drawable/tab_s3"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
 
 		        </RelativeLayout>
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab2" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="产品参数" android:id="@+id/tab_txt2" 
-		                android:layout_centerInParent="true" android:textColor="#000000"/>
+		            <TextView
+						style="@style/wrap_content"
+						android:text="产品参数"
+						android:id="@+id/tab_txt2"
+		                android:layout_centerInParent="true"
+						android:textColor="#000000"/>
 		           
-		             <LinearLayout android:id="@+id/tab_line2" android:layout_width="fill_parent" android:layout_height="1dp" 
-		    	        android:background="#b5b6b9" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		             <LinearLayout
+						 android:id="@+id/tab_line2"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+		    	         android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
 		          
 		            
 		        </RelativeLayout>
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab3" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="店铺推荐" android:id="@+id/tab_txt3" 
-		                android:layout_centerInParent="true" android:textColor="#000000"/>
+		            <TextView
+						style="@style/wrap_content"
+						android:text="店铺推荐"
+						android:id="@+id/tab_txt3"
+		                android:layout_centerInParent="true"
+						android:textColor="#000000"/>
 		         
-		             <LinearLayout android:id="@+id/tab_line3" android:layout_width="fill_parent" android:layout_height="1dp" 
-		    	        android:background="#b5b6b9" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		             <LinearLayout
+						 android:id="@+id/tab_line3"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+		    	         android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
 		
 		            
 		        </RelativeLayout>
@@ -41,72 +71,161 @@
     
 	<ScrollView style="@style/fill" android:layout_below="@id/tab" >
 	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical">
-			<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
-			    android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="10dp" android:paddingBottom="10dp"
-			    android:background="#ffffff" android:layout_marginTop="10dp"
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+			    android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
+			    android:background="#ffffff"
+				android:layout_marginTop="10dp"
 			    android:id="@+id/proinfo1">
-				<TextView  android:id="@+id/tv_proDesc" android:text="盛大房间里圣达菲婕拉色调就弗利萨打几份萨达盛大积分拉萨的减肥了撒旦法倒萨撒的减肥了盛大积分了撒旦法三大房间里少打飞机了撒旦法"
-				    style="@style/wrap_content" android:lineSpacingMultiplier="1.5"/>
+				<TextView
+					android:id="@+id/tv_proDesc"
+					android:text="爱的风格大方给发个梵蒂冈地方"
+				    style="@style/wrap_content"
+					android:lineSpacingMultiplier="1.5"/>
 			</LinearLayout>
-			<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
-			    android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="10dp" android:paddingBottom="10dp"
-			    android:background="#ffffff" android:layout_marginTop="10dp"
-			    android:id="@+id/proinfo2" android:visibility="gone">
-				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-					    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
-					    <TextView style="@style/wrap_content" android:text="产地：" android:layout_alignParentLeft="true" 
-					        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+			    android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp"
+			    android:background="#ffffff"
+				android:layout_marginTop="10dp"
+			    android:id="@+id/proinfo2"
+				android:visibility="gone">
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="50dp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp">
+					    <TextView
+							style="@style/wrap_content"
+							android:text="产地："
+							android:layout_alignParentLeft="true"
+					        android:layout_centerVertical="true"
+							android:textColor="#939393"
+							android:layout_width="80dp"
+							android:maxLines="1" />
 					    
-					   	 <TextView style="@style/wrap_content" android:text="23234234234234234234" android:layout_marginLeft="80dp" 
-					        android:layout_centerVertical="true"  android:id="@+id/tv_proArea" />		    
+					   	 <TextView
+							 style="@style/wrap_content"
+							 android:text="23234234234234234234"
+							 android:layout_marginLeft="80dp"
+					         android:layout_centerVertical="true"
+							 android:id="@+id/tv_proArea" />
 					   			    
 					</RelativeLayout>
 					<LinearLayout style="@style/line"/>
-					<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-					    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
-					    <TextView style="@style/wrap_content" android:text="品牌：" android:layout_alignParentLeft="true" 
-					        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+					    android:layout_marginLeft="16dp"
+						android:layout_marginRight="16dp">
+					    <TextView style="@style/wrap_content"
+							android:text="品牌："
+							android:layout_alignParentLeft="true"
+					        android:layout_centerVertical="true"
+							android:textColor="#939393"
+							android:layout_width="80dp"
+							android:maxLines="1" />
 					    
-					   	 <TextView style="@style/wrap_content" android:text="2016-09-12 21:12:23" android:layout_marginLeft="80dp" 
-					        android:layout_centerVertical="true" android:id="@+id/tv_brand" />		    
+					   	 <TextView
+							 style="@style/wrap_content"
+							 android:text="2016-09-12 21:12:23"
+							 android:layout_marginLeft="80dp"
+							 android:layout_centerVertical="true"
+							 android:id="@+id/tv_brand" />
 					   			    
 					</RelativeLayout>
 					<LinearLayout style="@style/line" />
-					<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-					    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
-					    <TextView style="@style/wrap_content" android:text="产品分类：" android:layout_alignParentLeft="true" 
-					        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+					    android:layout_marginLeft="16dp"
+						android:layout_marginRight="16dp">
+					    <TextView
+							style="@style/wrap_content"
+							android:text="产品分类："
+							android:layout_alignParentLeft="true"
+					        android:layout_centerVertical="true"
+							android:textColor="#939393"
+							android:layout_width="80dp"
+							android:maxLines="1" />
 					    
-					   	 <TextView style="@style/wrap_content" android:text="2016-09-12 21:12:23" android:layout_marginLeft="80dp" 
-					        android:layout_centerVertical="true" android:id="@+id/tv_categoryName" />		    
+					   	 <TextView
+							 style="@style/wrap_content"
+							 android:text="2016-09-12 21:12:23"
+							 android:layout_marginLeft="80dp"
+					         android:layout_centerVertical="true"
+							 android:id="@+id/tv_categoryName" />
 					   			    
 					</RelativeLayout>
 					<LinearLayout style="@style/line" />
-					<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-					    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
-					    <TextView style="@style/wrap_content" android:text="所在仓库：" android:layout_alignParentLeft="true" 
-					        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+					    android:layout_marginLeft="16dp"
+						android:layout_marginRight="16dp">
+					    <TextView
+							style="@style/wrap_content"
+							android:text="所在仓库："
+							android:layout_alignParentLeft="true"
+					        android:layout_centerVertical="true"
+							android:textColor="#939393"
+							android:layout_width="80dp"
+							android:maxLines="1" />
 					    
-					   	 <TextView style="@style/wrap_content" android:text="2016-09-12 21:12:23" android:layout_marginLeft="80dp" 
-					        android:layout_centerVertical="true"  android:id="@+id/tv_storename" />		    
+					   	 <TextView
+							 style="@style/wrap_content"
+							 android:text="2016-09-12 21:12:23"
+							 android:layout_marginLeft="80dp"
+					         android:layout_centerVertical="true"
+							 android:id="@+id/tv_storename" />
 					   			    
 					</RelativeLayout>
 					<LinearLayout style="@style/line" />
-					<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-					    android:layout_marginLeft="16dp" android:layout_marginRight="16dp">
-					    <TextView style="@style/wrap_content" android:text="库位：" android:layout_alignParentLeft="true" 
-					        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+					    android:layout_marginLeft="16dp"
+						android:layout_marginRight="16dp">
+					    <TextView
+							style="@style/wrap_content"
+							android:text="库位："
+							android:layout_alignParentLeft="true"
+					        android:layout_centerVertical="true"
+							android:textColor="#939393"
+							android:layout_width="80dp"
+							android:maxLines="1" />
 					    
-					   	 <TextView style="@style/wrap_content" android:text="2016-09-12 21:12:23" android:layout_marginLeft="80dp" 
-					        android:layout_centerVertical="true" android:id="@+id/tv_storekw" />"
-					   			    
+					   	 <TextView
+							 style="@style/wrap_content"
+							 android:text="2016-09-12 21:12:23"
+							 android:layout_marginLeft="80dp"
+					         android:layout_centerVertical="true"
+							 android:id="@+id/tv_storekw" />"
 					</RelativeLayout>
 			</LinearLayout>
-			<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
-				android:layout_marginTop="10dp" android:visibility="gone"
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_marginTop="10dp"
+				android:visibility="gone"
 			    android:id="@+id/proinfo3">
-				<com.jinying.jyapp.view.MyGridView android:numColumns="2" android:layout_width="match_parent" android:layout_height="wrap_content" 
-				    android:id="@+id/gv"></com.jinying.jyapp.view.MyGridView>
+				<com.jinying.jyapp.view.MyGridView
+					android:numColumns="2"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+				    android:id="@+id/gv">
+				</com.jinying.jyapp.view.MyGridView>
 				
 			</LinearLayout>
 		</LinearLayout>

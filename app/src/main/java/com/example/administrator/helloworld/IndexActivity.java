@@ -1,43 +1,12 @@
 package com.example.administrator.helloworld;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-
-import com.example.administrator.helloworld.common.BaseActivity;
-import com.example.administrator.helloworld.common.ButtomTapActivity;
-import com.example.administrator.helloworld.common.MyApplication;
-import com.example.administrator.helloworld.common.TopSearchActivity;
-import com.example.administrator.helloworld.util.CommonUtil;
-import com.example.administrator.helloworld.util.DensityUtil;
-import com.example.administrator.helloworld.util.FormatUtil;
-import com.example.administrator.helloworld.util.UpdateApp;
-import com.example.administrator.helloworld.util.XUtilsHelper;
-import com.example.administrator.helloworld.view.MyGridView;
-import com.example.administrator.helloworld.view.ShufflingView;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +16,28 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.administrator.helloworld.common.TopSearchActivity;
+import com.example.administrator.helloworld.util.CommonUtil;
+import com.example.administrator.helloworld.util.DensityUtil;
+import com.example.administrator.helloworld.util.FormatUtil;
+import com.example.administrator.helloworld.util.UpdateApp;
+import com.example.administrator.helloworld.util.XUtilsHelper;
+import com.example.administrator.helloworld.view.MyGridView;
+import com.example.administrator.helloworld.view.ShufflingView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_index)
 public class IndexActivity extends TopSearchActivity  {
@@ -324,7 +314,7 @@ public class IndexActivity extends TopSearchActivity  {
                     public boolean onTouch(View arg0, MotionEvent e) {
                         if(e.getAction() == MotionEvent.ACTION_UP){
                             Intent i = new Intent(getApplicationContext(),ProductInfoActivity.class);
-                            i.putExtra("id", data_list.get(position).get("iD").toString());
+                            i.putExtra("id", data_list.get(position).get("id").toString());
                             startActivity(i);
                             return false;
                         }

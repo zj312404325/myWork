@@ -6,17 +6,29 @@
     tools:context=".CartActivity" >
 
    
-    <RelativeLayout android:id="@+id/top"
-     android:layout_width="fill_parent"  android:layout_height="45dp" android:background="#0083c8">    
+    <RelativeLayout
+		android:id="@+id/top"
+     	android:layout_width="fill_parent"
+		android:layout_height="45dp"
+		android:background="#0083c8">
 
        
-   		<TextView   android:id="@+id/title"    style="@style/wrap_content"
-   		    android:layout_centerInParent="true" android:textSize="16dp"
-   		    android:text="我的购物车" 	    android:textColor="#ffffff" />
+   		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/title"
+   		    android:layout_centerInParent="true"
+			android:textSize="16dp"
+   		    android:text="我的购物车"
+			android:textColor="#ffffff" />
    		
-   		<TextView android:id="@+id/top_del" style="@style/wrap_content"
-         android:layout_centerVertical="true" android:layout_marginRight="10dp"
-         android:layout_alignParentRight="true" android:text="删除" android:textColor="#ffffff" />
+   		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/top_del"
+         	android:layout_centerVertical="true"
+			android:layout_marginRight="10dp"
+         	android:layout_alignParentRight="true"
+			android:text="删除"
+			android:textColor="#ffffff" />
 	</RelativeLayout>
 	
     
@@ -24,22 +36,46 @@
 
 	<!-- 底部菜单 -->
 	<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
-	<RelativeLayout android:id="@+id/bottom_js" android:layout_width="match_parent" android:layout_height="40dp"
-	    android:layout_above="@id/bottom_tap" android:background="#ffffff">
+	<RelativeLayout
+		android:id="@+id/bottom_js"
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+	    android:layout_above="@id/bottom_tap"
+		android:background="#ffffff">
 	    <LinearLayout style="@style/line" ></LinearLayout>
 	    
-	    <CheckBox android:text="全选" style="@style/wrap_content" android:layout_centerVertical="true"
+	    <CheckBox
+			style="@style/wrap_content"
+			android:text="全选"
+			android:layout_centerVertical="true"
 	        android:id="@+id/ck_all" />
 	    
-	    <Button android:text="去结算（0）" android:layout_width="100dp" android:layout_height="40dp"
-	        android:background="#0083c8" android:textColor="#ffffff" android:textSize="14dp" 
-	        android:layout_alignParentRight="true" android:id="@+id/btn_js"  />
-	    <LinearLayout android:layout_width="wrap_content" android:layout_height="40dp" 
-	        android:layout_toLeftOf="@id/btn_js" android:orientation="vertical">
-	        <TextView style="@style/wrap_content" android:text="合计（不含运费）" android:textColor="@color/gray"
-	            android:textSize="10dp" android:layout_marginTop="3dp"/>
-	        <TextView style="@style/wrap_content" android:text="￥0.00" android:textColor="@color/red"
-	            android:textSize="16dp" android:id="@+id/tv_allmoney"/>
+	    <Button
+			android:text="去结算（0）"
+			android:layout_width="100dp"
+			android:layout_height="40dp"
+	        android:background="#0083c8"
+			android:textColor="#ffffff"
+			android:textSize="14dp"
+	        android:layout_alignParentRight="true"
+			android:id="@+id/btn_js"  />
+	    <LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="40dp"
+	        android:layout_toLeftOf="@id/btn_js"
+			android:orientation="vertical">
+	        <TextView
+				style="@style/wrap_content"
+				android:text="合计（不含运费）"
+				android:textColor="@color/gray"
+	            android:textSize="10dp"
+				android:layout_marginTop="3dp"/>
+	        <TextView
+				style="@style/wrap_content"
+				android:text="￥0.00"
+				android:textColor="@color/red"
+	            android:textSize="16dp"
+				android:id="@+id/tv_allmoney"/>
 	    </LinearLayout>	    
 	</RelativeLayout>
 	
@@ -76,18 +112,28 @@
 
 	</LinearLayout>-->
 	
-	<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" 
-	    android:layout_above="@id/bottom_js" android:layout_below="@id/tab" android:orientation="vertical">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+	    android:layout_above="@id/bottom_js"
+		android:layout_below="@id/tab"
+		android:orientation="vertical">
 		<ScrollView android:layout_width="match_parent" android:layout_height="match_parent" >
+
 		<com.example.administrator.helloworld.view.MyListView
-				        android:id="@+id/xListView"
-				        android:layout_width="fill_parent"
-				        android:layout_height="fill_parent" android:cacheColorHint="#00000000">
-			</com.example.administrator.helloworld.view.MyListView>
+			android:id="@+id/xListView"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:cacheColorHint="#00000000">
+		</com.example.administrator.helloworld.view.MyListView>
 			
 		</ScrollView>
-		<TextView android:id="@+id/listtv" style="@style/wrap_content" android:text="暂无数据" android:textColor="#939393" 
-			    android:layout_centerInParent="true" />
+		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/listtv"
+			android:text="暂无数据"
+			android:textColor="#939393"
+			android:layout_centerInParent="true" />
 	</LinearLayout>
 	
 

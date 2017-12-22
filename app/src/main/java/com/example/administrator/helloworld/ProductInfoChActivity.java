@@ -1,51 +1,41 @@
 package com.example.administrator.helloworld;
 
-import java.text.Format;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.baidu.mapapi.map.Text;
 import com.example.administrator.helloworld.common.BaseActivity;
-import com.example.administrator.helloworld.common.MyApplication;
-import com.example.administrator.helloworld.util.CommonUtil;
 import com.example.administrator.helloworld.util.DensityUtil;
 import com.example.administrator.helloworld.util.FormatUtil;
 import com.example.administrator.helloworld.util.XUtilsHelper;
 import com.example.administrator.helloworld.view.AmountView;
 import com.example.administrator.helloworld.view.MyGridView;
 
-import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  * 通用模块
  * @author Administrator
@@ -62,14 +52,15 @@ public class ProductInfoChActivity extends BaseActivity {
 	private LinearLayout ll_prices;
 	@ViewInject(R.id.ll_info)
 	private LinearLayout ll_info;
-	@ViewInject(R.id.tv_procode)
-	private TextView tv_procode;
-	@ViewInject(R.id.tv_remark)
-	private TextView tv_remark;
+
 	@ViewInject(R.id.tv_quantity)
 	private TextView tv_quantity;
-	@ViewInject(R.id.tv_proquality)
-	private TextView tv_proquality;
+
+	@ViewInject(R.id.tv_showPrice)
+	private TextView tv_showPrice;
+
+	@ViewInject(R.id.iv_showImage)
+	private ImageView iv_showImage;
 	
 	
 	@ViewInject(R.id.close)
@@ -86,12 +77,14 @@ public class ProductInfoChActivity extends BaseActivity {
 	@ViewInject(R.id.amount_view)
 	private AmountView mAmountView;
 	
-	private JSONObject resdata;	
-	
+	private JSONObject resdata;
+	private JSONObject info;
 	
 	JSONArray sellProductProps;
 	
 	JSONObject selectPro;
+
+	JSONObject defaultProp;
 	
 	private String var1;
 	
@@ -111,8 +104,10 @@ public class ProductInfoChActivity extends BaseActivity {
 	    data_list1 = new ArrayList<Map<String, Object>>();
 		try {
 			resdata =new JSONObject( intent.getStringExtra("data"));
+			info = resdata.getJSONObject("info");
 			double count1 = intent.getDoubleExtra("count", 0);
 			selectPro = new JSONObject(intent.getStringExtra("selectPro"));
+			defaultProp = new JSONObject(intent.getStringExtra("defaultProp"));
 			sellProductProps = resdata.getJSONArray("propsArr");
 			for(int i=0;i<sellProductProps.length();i++){
 					 Map<String, Object> map = new HashMap<String, Object>();
@@ -134,6 +129,15 @@ public class ProductInfoChActivity extends BaseActivity {
 			sim_adapter1 = new TestSimpleAdapter1(this, data_list1, R.layout.select_value, from, to);
 			createDiv("规格",sim_adapter1);
 			getPriceInfo(selectPro.getString("id").toString(),count1);
+
+			if(info.getString("isDiscount").equals("1") && info.getString("isOnDiscount").equals("1")) {
+				tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+defaultProp.getString("mynewprice")+"</big></big></font>/"+info.getString("unit")));
+			}
+			else{
+				tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+defaultProp.getString("myprice")+"</big></big></font>/"+info.getString("unit")));
+			}
+			//绑定图片
+			XUtilsHelper.getInstance().bindCommonImage(iv_showImage, info.get("picUrl").toString(), true);
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -166,14 +170,12 @@ public class ProductInfoChActivity extends BaseActivity {
         
         MyGridView gview = new MyGridView(this);
         gview.setNumColumns(3);
-        LinearLayout.LayoutParams lp1 =new LinearLayout.
-        		LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams lp1 =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp1.setMargins(0, DensityUtil.dip2px( 5), 0, 0);
         gview.setLayoutParams(lp1);
         
         LinearLayout ll = new LinearLayout(this);
-        LinearLayout.LayoutParams lp2 =new LinearLayout.
-        		LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px( 0.5f));
+        LinearLayout.LayoutParams lp2 =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px( 0.5f));
         lp2.setMargins(0, DensityUtil.dip2px(10), 0, 0);
         ll.setLayoutParams(lp2);
         ll.setBackgroundColor(0xFFd0d0d0);
@@ -256,9 +258,9 @@ public class ProductInfoChActivity extends BaseActivity {
 	
 	private void setInfo(JSONObject selectPro) throws JSONException{
 		tv_quantity.setText(selectPro.get("quantity").toString());
-		tv_procode.setText(selectPro.get("procode").toString());
-		tv_proquality.setText(selectPro.get("proquality").toString());
-		tv_remark.setText(selectPro.get("remark").toString());
+		//tv_procode.setText(selectPro.get("procode").toString());
+		//tv_proquality.setText(selectPro.get("proquality").toString());
+		//tv_remark.setText(selectPro.get("remark").toString());
 		mAmountView.setGoods_storage(FormatUtil.toDouble(selectPro.get("quantity").toString()));
 		mAmountView.setGoods_min(minMoq);
 		mAmountView.setAmount(count);
