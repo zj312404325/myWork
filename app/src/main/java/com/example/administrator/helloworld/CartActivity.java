@@ -119,8 +119,8 @@ public class CartActivity extends  ButtomTapActivity{
 	
 	
 	
-	private void getDate(){
-		progressDialog.show();;
+	private void getData(){
+		progressDialog.show();
 		listtv.setVisibility(View.GONE);
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
@@ -138,8 +138,6 @@ public class CartActivity extends  ButtomTapActivity{
 					res = new JSONObject(result);
 					setServerKey(res.get("serverKey").toString());
 					JSONArray buyCartList = (JSONArray)res.get("data");
-					Log.i("这尼玛", buyCartList.length()+"");
-					Log.i("这尼玛", "老陈"+buyCartList.toString());
 					if(buyCartList.length()==0 ) {
 						listtv.setVisibility(View.VISIBLE);
 					}
@@ -202,15 +200,15 @@ public class CartActivity extends  ButtomTapActivity{
 				if(convertView==null){ 
 					convertView=mInflater.inflate(R.layout.listview_cart, null); 
 				} 
-				LinearLayout ll_company = (LinearLayout)convertView.findViewById(R.id.ll_company);
+				//LinearLayout ll_company = (LinearLayout)convertView.findViewById(R.id.ll_company);
 				TextView tv_owner = (TextView)convertView.findViewById(R.id.tv_owner);
-				CheckBox ck_check = (CheckBox)convertView.findViewById(R.id.ck_check);
+				//CheckBox ck_check = (CheckBox)convertView.findViewById(R.id.ck_check);
 				MyListView lv_infolist = (MyListView)convertView.findViewById(R.id.lv_infolist);
-				if(dateMaps.get(position).get("isCheck").toString().equals("1")){
+				/*if(dateMaps.get(position).get("isCheck").toString().equals("1")){
 					ck_check.setChecked(true);
 				}
 				else
-					ck_check.setChecked(false);
+					ck_check.setChecked(false);*/
 				
 				
 				final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(position).get("buyCartList");
@@ -220,7 +218,7 @@ public class CartActivity extends  ButtomTapActivity{
 						new int[]{R.id.tv_proName});
 				lv_infolist.setAdapter(sapinfo);	
 				
-				ck_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				/*ck_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 					
 					@Override
 					public void onCheckedChanged(CompoundButton arg0, boolean arg1) {	
@@ -230,8 +228,8 @@ public class CartActivity extends  ButtomTapActivity{
 						}
 						catch(Exception ep){ep.printStackTrace();}
 					}
-				});
-				ll_company.setOnTouchListener(new View.OnTouchListener() {
+				});*/
+				/*ll_company.setOnTouchListener(new View.OnTouchListener() {
 					
 					@Override
 					public boolean onTouch(View arg0, MotionEvent event) {
@@ -244,7 +242,7 @@ public class CartActivity extends  ButtomTapActivity{
 						}
 						return true;
 					}
-				});
+				});*/
 			}
 			catch(Exception e){
 				Log.v("PRO", e.getMessage());
@@ -309,6 +307,7 @@ public class CartActivity extends  ButtomTapActivity{
 						if(arg0.getId() == R.id.ck_checkinfo){
 							String isCheck = arg1?"1":"0";
 							mdata.get(position).put("isCheck", isCheck);
+							sap.notifyDataSetChanged();
 							getAllMoney();
 						}
 					}
@@ -354,7 +353,6 @@ public class CartActivity extends  ButtomTapActivity{
 		try{
 			double tem = 0;
 			int count = 0;
-			Log.i("这尼玛", "交钱"+dateMaps.toString());
 			for(int i=0;i<dateMaps.size();i++){
 				List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(i).get("buyCartList"); 
 				
@@ -456,7 +454,7 @@ public class CartActivity extends  ButtomTapActivity{
 			tab_line1.setLayoutParams(lp2);
 			isfuture = "2";
 		}
-		getDate();
+		getData();
 
 	}
 	
@@ -487,17 +485,17 @@ public class CartActivity extends  ButtomTapActivity{
 		}
 		final String serverKey1 = super.serverKey;
 		final String ids1  = ids;
-		new  Builder(this).setTitle("金赢网提醒" )
-		.setMessage("你确定要删除吗？" )  
+		new  Builder(this).setTitle("金赢工业超市提醒您：" )
+		.setMessage("确定要删除吗？" )
 		.setPositiveButton("是" ,  new OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
-				progressDialog.show();;
+				progressDialog.show();
 				Map<String, String> maps= new HashMap<String, String>();
 				maps.put("serverKey", serverKey1);
 				maps.put("ids", ids1);
-				XUtilsHelper.getInstance().post("app/deleteBuyCart.htm", maps,new XUtilsHelper.XCallBack(){
+				XUtilsHelper.getInstance().post("app/deleteMallBuyCart.htm", maps,new XUtilsHelper.XCallBack(){
 
 					@SuppressLint("NewApi")
 					@Override

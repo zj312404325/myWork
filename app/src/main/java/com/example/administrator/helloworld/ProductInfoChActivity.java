@@ -59,6 +59,9 @@ public class ProductInfoChActivity extends BaseActivity {
 	@ViewInject(R.id.tv_showPrice)
 	private TextView tv_showPrice;
 
+	@ViewInject(R.id.tv_showProname)
+	private TextView tv_showProname;
+
 	@ViewInject(R.id.iv_showImage)
 	private ImageView iv_showImage;
 	
@@ -91,8 +94,10 @@ public class ProductInfoChActivity extends BaseActivity {
 	private String pId = "";
 	
 	private double count;
-	
+
 	private double minMoq;
+
+	private double selectPrice=0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +134,7 @@ public class ProductInfoChActivity extends BaseActivity {
 			sim_adapter1 = new TestSimpleAdapter1(this, data_list1, R.layout.select_value, from, to);
 			createDiv("规格",sim_adapter1);
 			getPriceInfo(selectPro.getString("id").toString(),count1);
-
+			pId=selectPro.getString("id").toString();
 			if(info.getString("isDiscount").equals("1") && info.getString("isOnDiscount").equals("1")) {
 				tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+defaultProp.getString("mynewprice")+"</big></big></font>/"+info.getString("unit")));
 			}
@@ -193,7 +198,7 @@ public class ProductInfoChActivity extends BaseActivity {
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("id", id);
-		XUtilsHelper.getInstance().post("app/getPriceJson.htm", maps,new XUtilsHelper.XCallBack(){
+		XUtilsHelper.getInstance().post("app/getMallPriceJson.htm", maps,new XUtilsHelper.XCallBack(){
 			@SuppressLint("NewApi")
 			@Override
 			public void onResponse(String result)  {
@@ -203,7 +208,7 @@ public class ProductInfoChActivity extends BaseActivity {
 					res1 = new JSONObject(result);
 					setServerKey(res1.get("serverKey").toString());
 					JSONArray   parr = (JSONArray)res1.get("data");
-					chanageDiv(parr,count1);
+					changeDiv(parr,count1);
 					
 					
 				} catch (JSONException e) {
@@ -215,49 +220,42 @@ public class ProductInfoChActivity extends BaseActivity {
 		});
 	}
 	
-	private void chanageDiv(JSONArray a,double count1) throws JSONException{
+	private void changeDiv(JSONArray a,double count1) throws JSONException{
 		ll_prices.removeAllViews();
-		for(int i=0;i<a.length();i++){
-			if(i==0){
+		for(int i=0;i<a.length();i++) {
+			if (i == 0) {
 				minMoq = FormatUtil.toDouble(a.getJSONObject(i).getString("moq"));
 				count = minMoq;
-				if(count1 != 0){
+				if (count1 != 0) {
 					count = count1;
 				}
 			}
-			
-			LinearLayout.LayoutParams lp =new LinearLayout.
-	        		LayoutParams(DensityUtil.dip2px(150), LinearLayout.LayoutParams.WRAP_CONTENT);
-			TextView t1 = new TextView(this);
-			t1.setLayoutParams(lp);
-			t1.setText("起批量（吨）≥"+a.getJSONObject(i).getString("moq"));
-			t1.setTextColor(Color.parseColor("#939393"));
-			
-			TextView t2 = new TextView(this);
-			t2.setLayoutParams(lp);
-			if(a.getJSONObject(i).getString("price").equals("0")){
-				t2.setText("面议");
+
+			if (FormatUtil.toDouble(a.getJSONObject(i).getString("price")) == 0) {
+				tv_showPrice.setText("面议");
+			} else {
+				if(info.getString("isDiscount").equals("1") && info.getString("isOnDiscount").equals("1")) {
+					tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+a.getJSONObject(i).getString("discountPrice")+"</big></big></font>/"+info.getString("unit")));
+					selectPrice=FormatUtil.toDouble(a.getJSONObject(i).getString("discountPrice"));
+				}
+				else{
+					tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+a.getJSONObject(i).getString("price")+"</big></big></font>/"+info.getString("unit")));
+					selectPrice=FormatUtil.toDouble(a.getJSONObject(i).getString("price"));
+				}
 			}
-			else
-				t2.setText("￥"+a.getJSONObject(i).getString("price")+"/"+resdata.getJSONObject("info").getString("unit"));
-			t2.setTextColor(Color.parseColor("#FFFF0000"));
-			
-			LinearLayout.LayoutParams lp1 =new LinearLayout.
-	        		LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-			LinearLayout ll = new LinearLayout(this);			
-			lp1.setMargins(0, DensityUtil.dip2px(10), 0, 0);  
-			ll.setLayoutParams(lp1);
-			ll.setOrientation(LinearLayout.HORIZONTAL);
-			
-			ll.addView(t1);
-			ll.addView(t2);
-			ll_prices.addView(ll);
+			setInfo(selectPro);
 		}
-		setInfo(selectPro);
 	}
 	
 	private void setInfo(JSONObject selectPro) throws JSONException{
-		tv_quantity.setText(selectPro.get("quantity").toString());
+		tv_quantity.setText(selectPro.get("quantity").toString()+info.get("unit").toString());
+		tv_showProname.setText(info.get("proname").toString());
+		/*if(info.getString("isDiscount").equals("1") && info.getString("isOnDiscount").equals("1")) {
+			tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+selectPro.getString("mynewprice")+"</big></big></font>/"+info.getString("unit")));
+		}
+		else{
+			tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+selectPro.getString("myprice")+"</big></big></font>/"+info.getString("unit")));
+		}*/
 		//tv_procode.setText(selectPro.get("procode").toString());
 		//tv_proquality.setText(selectPro.get("proquality").toString());
 		//tv_remark.setText(selectPro.get("remark").toString());
@@ -353,7 +351,8 @@ public class ProductInfoChActivity extends BaseActivity {
 	private void closeclick(View v){
 		Intent mIntent = new Intent();
 		if(v.getId()==R.id.btn_ok){
-			mIntent.putExtra("pId", pId); 
+			mIntent.putExtra("pId", pId);
+			mIntent.putExtra("selectPrice", selectPrice);
 			mIntent.putExtra("count", mAmountView.getAmount()); 
 			setResult(RESULT_OK, mIntent);
 			this.finish();

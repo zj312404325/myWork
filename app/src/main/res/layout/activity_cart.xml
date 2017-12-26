@@ -79,39 +79,6 @@
 	    </LinearLayout>	    
 	</RelativeLayout>
 	
-	<!--<LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
-		        android:orientation="horizontal" android:background="#ffffff" android:layout_below="@id/top"
-		        android:id="@+id/tab" >
-		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="现货" android:id="@+id/tab_txt1"
-		                android:textColor="#0083c8"
-		                android:layout_centerInParent="true"/>
-
-		             <LinearLayout android:id="@+id/tab_line1" android:layout_width="fill_parent" android:layout_height="2dp"
-		    	        android:background="@drawable/tab_s3" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
-
-		        </RelativeLayout>
-		        <RelativeLayout style="@style/fill" android:id="@+id/tab2" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="期货" android:id="@+id/tab_txt2"
-		                android:layout_centerInParent="true" android:textColor="#000000"/>
-
-		             <LinearLayout android:id="@+id/tab_line2" android:layout_width="fill_parent" android:layout_height="1dp"
-		    	        android:background="#b5b6b9" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
-
-
-		        </RelativeLayout>
-		        <RelativeLayout style="@style/fill" android:id="@+id/tab3" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="加工" android:id="@+id/tab_txt3"
-		                android:layout_centerInParent="true" android:textColor="#000000"/>
-
-		             <LinearLayout android:id="@+id/tab_line3" android:layout_width="fill_parent" android:layout_height="1dp"
-		    	        android:background="#b5b6b9" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
-
-
-		        </RelativeLayout>
-
-	</LinearLayout>-->
-	
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

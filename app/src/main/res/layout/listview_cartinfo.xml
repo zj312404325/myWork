@@ -2,29 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants">
    
 
     <View style="@style/line"/>
     <LinearLayout  android:layout_width="match_parent"  android:layout_height="106dp">
-        <CheckBox style="@style/wrap_content" android:layout_gravity="center_vertical" android:id="@+id/ck_checkinfo"/>
-        <ImageView android:layout_width="86dp" android:layout_height="86dp" android:id="@+id/img_proImgPaht" 
-            android:background="@drawable/test" android:layout_gravity="center_vertical"/>
-      <RelativeLayout  android:layout_width="match_parent"  android:layout_height="86dp"
-            android:layout_gravity="center_vertical" android:layout_weight="1" android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"> 
-            <TextView android:id="@+id/tv_proName" style="@style/wrap_content" android:text="少发简历撒的解放路撒福建省大啥的房间里撒费吉萨刘东丰" 
-               android:maxLines="2"/>
-           <com.example.administrator.helloworld.view.AmountView android:id="@+id/av_quantity"
-                 android:layout_height="33dp" android:layout_width="120dp"
-                 android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
-                ></com.example.administrator.helloworld.view.AmountView>
-            <TextView android:id="@+id/tv_salePrice" style="@style/wrap_content" android:text="￥3400.00" 
-                  android:textColor="@color/red" 
-                 android:layout_alignParentBottom="true"/>
-
-            
-
+        <CheckBox
+            style="@style/wrap_content"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/ck_checkinfo"
+            android:focusable="false" />
+        <ImageView
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:id="@+id/img_proImgPaht"
+            android:background="@drawable/test"
+            android:layout_gravity="center_vertical"/>
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="86dp"
+          android:layout_gravity="center_vertical"
+          android:layout_weight="1"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp">
+            <TextView
+                android:id="@+id/tv_proName"
+                style="@style/wrap_content"
+                android:text="少发简历撒的解放路撒福建省大啥的房间里撒费吉萨刘东丰"
+                android:maxLines="2"/>
+           <com.example.administrator.helloworld.view.AmountView
+               android:id="@+id/av_quantity"
+               android:layout_height="33dp"
+               android:layout_width="120dp"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentBottom="true">
+           </com.example.administrator.helloworld.view.AmountView>
+            <TextView
+                android:id="@+id/tv_salePrice"
+                style="@style/wrap_content"
+                android:text="￥3400.00"
+                android:textColor="@color/red"
+                android:layout_alignParentBottom="true"/>
         </RelativeLayout>
     </LinearLayout>
 

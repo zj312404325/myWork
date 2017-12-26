@@ -84,6 +84,7 @@ public class ProductInfoActivity extends UserActivity {
 	
 	private String pId="";
 	private double count=0;
+	private double selectPrice=0;
 	private String templateid;
 
 	@Override
@@ -244,12 +245,13 @@ public class ProductInfoActivity extends UserActivity {
 				    Bundle b=data.getExtras(); //data为B中回传的Intent
 				    pId=b.getString("pId");//str即为回传的值
 				    count = b.getDouble("count");
+				    selectPrice=b.getDouble("selectPrice");
 				    for(int i=0;i<sellProductProps.length();i++){
 				    	if(sellProductProps.getJSONObject(i).get("id").toString().equals(pId)){
 				    		selectPro = sellProductProps.getJSONObject(i);
 				    	}
 				    }
-
+				    tv_salePrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+selectPrice+"</big></big></font>/"+info.getString("unit")));
 				    tv_ch_pro.setText("选择："+selectPro.getString("var1")+"   共"+FormatUtil.toString(count)+info.getString("unit"));
 			   }
 			   catch(Exception ep){ep.printStackTrace();}
@@ -269,10 +271,10 @@ public class ProductInfoActivity extends UserActivity {
 		progressDialog.show();
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
-		maps.put("proId", info.getString("ID"));
+		maps.put("proId", info.getString("id"));
 		maps.put("propId", pId);
 		maps.put("quantity", ""+count);
-		XUtilsHelper.getInstance().post("app/addBuyCart.htm", maps,new XUtilsHelper.XCallBack(){
+		XUtilsHelper.getInstance().post("app/addMallBuyCart.htm", maps,new XUtilsHelper.XCallBack(){
 
 			@SuppressLint("NewApi")
 			@Override
@@ -288,7 +290,7 @@ public class ProductInfoActivity extends UserActivity {
 					}
 					else{
 						new AlertDialog.Builder(MyApplication.getInstance().currentActivity())
-						.setTitle("金赢网")
+						.setTitle("金赢工业超市")
 						.setMessage("加入成功，是否继续购物？")
 								.setPositiveButton("去结算", new DialogInterface.OnClickListener() {
 
