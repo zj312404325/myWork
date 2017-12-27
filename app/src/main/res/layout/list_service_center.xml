@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_weight="1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp">
+
+			<TextView
+				style="@style/match_parent"
+				android:id="@+id/tv_centerName"
+				android:text="XX服务中心"
+				android:textColor="#000000"
+				android:textSize="24dp"
+				android:layout_marginTop="5dp"
+				android:drawableLeft="@drawable/icon_arrow"/>
+
+			<TextView
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="1dp"
+				android:background="#c6c6c6" />
+
+			<RelativeLayout style="@style/wrap_content" >
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/tv_address"
+					android:layout_marginTop="5dp"
+					android:text="江苏省常熟市地址地址地址"
+					android:drawableLeft="@drawable/icon_address"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/tv_contact"
+					android:layout_marginTop="5dp"
+					android:text="大傻子"
+					android:width="180dp"
+					android:drawableLeft="@drawable/icon_contact"
+					android:layout_below="@id/tv_address"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:id="@+id/tv_phone"
+					android:width="180dp"
+					android:text="1383838438"
+					android:layout_marginTop="5dp"
+					android:drawableLeft="@drawable/icon_phone"
+					android:layout_toRightOf="@id/tv_contact"
+					android:layout_below="@id/tv_address"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/tv_fax"
+					android:layout_marginTop="5dp"
+					android:text="52686666"
+					android:width="180dp"
+					android:drawableLeft="@drawable/icon_fax"
+					android:layout_below="@id/tv_contact"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:id="@+id/tv_email"
+					android:width="180dp"
+					android:text="123@qq.com"
+					android:layout_marginTop="5dp"
+					android:drawableLeft="@drawable/icon_email"
+					android:layout_toRightOf="@id/tv_fax"
+					android:layout_below="@id/tv_contact"/>
+			</RelativeLayout>
+
+			<TextView
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="1dp"
+				android:background="#c6c6c6" />
+
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/mapinfo"
+				android:layout_marginTop="5dp"
+				android:text="查看地图"
+				android:layout_gravity="center_horizontal" />
+		</LinearLayout>
+
+</LinearLayout>

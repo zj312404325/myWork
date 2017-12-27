@@ -276,6 +276,21 @@
             android:name=".TxZxActivity"
             android:label="@string/title_activity_tx_zx" >
         </activity>
+        <activity
+            android:name=".DiscoveryActivity"
+            android:label="DiscoveryActivity" >
+        </activity>
+
+        <activity
+            android:name=".AboutusActivity"
+            android:label="AboutusActivity" >
+        </activity>
+
+        <activity
+            android:name=".ServiceCenterActivity"
+            android:label="ServiceCenterActivity" >
+        </activity>
+
 
     </application>
 
