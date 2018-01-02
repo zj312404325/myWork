@@ -230,7 +230,7 @@
 		  	    
 				<Button
 					android:id="@+id/btn_exit"
-					style="@style/btnblue"
+					style="@style/btndarkblue"
 	            	android:text="退    出"
 					android:layout_weight="1"/>
 	  		</LinearLayout>

@@ -155,7 +155,7 @@ public class MallIntegralActivity extends TopActivity {
                     @Override
                     public boolean onTouch(View arg0, MotionEvent e) {
                         if(e.getAction() == MotionEvent.ACTION_UP){
-                            Intent i = new Intent(getApplicationContext(),ProductInfoActivity.class);
+                            Intent i = new Intent(getApplicationContext(),GiftDetailActivity.class);
                             i.putExtra("id", resMaps.get(position).get("id").toString());
                             startActivity(i);
                             return false;

@@ -312,6 +312,16 @@
             android:label="MallIntegralActivity" >
         </activity>
 
+        <activity
+            android:name=".GiftDetailActivity"
+            android:label="GiftDetailActivity" >
+        </activity>
+
+        <activity
+            android:name=".GiftExchangeActivity"
+            android:label="GiftExchangeActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

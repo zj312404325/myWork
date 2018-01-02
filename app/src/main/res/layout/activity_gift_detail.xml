@@ -1,0 +1,184 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".GiftDetailActivity" >
+
+   <RelativeLayout
+	   android:id="@+id/top_title"
+	   android:layout_width="fill_parent"
+	   android:layout_height="45dp"
+	   android:background="@color/login_back_blue">
+
+      <ImageButton
+		  android:id="@+id/top_back"
+		  android:background="@drawable/nav_left"
+		  android:layout_width="48dp"
+          android:layout_height="22dp"
+		  android:layout_centerVertical="true"
+		  android:layout_marginLeft="10dp"/>
+   		<TextView
+			style="@style/wrap_content"
+   		    android:id="@+id/title"
+   		    android:layout_centerInParent="true"
+   		    android:textSize="16dp"
+   		    android:text="礼品详情"
+   		    android:textColor="#ffffff" />
+	</RelativeLayout>
+
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" android:layout_above="@id/bottom_tap" >
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+			    android:orientation="vertical" >
+			    <RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="250dp"
+					android:background="#c8e0ff">
+
+			         <!--<com.example.administrator.jymall.view.ShufflingView
+						 android:id="@+id/shufflingView"
+						 android:layout_width="match_parent"
+						 android:layout_height="250dp" >
+					 </com.example.administrator.jymall.view.ShufflingView>-->
+
+					<ImageView
+						android:id="@+id/iv_showImg"
+						android:layout_width="match_parent"
+						android:layout_height="250dp" >
+					</ImageView>
+
+			    </RelativeLayout>
+			    
+			    <LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+			        android:background="#ffffff">
+
+						<TextView
+							style="@style/marginlr"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:id="@+id/tv_giftName"
+							android:layout_marginTop="5dp"
+							android:textSize="20dp"
+							android:text=""/>
+
+						<TextView
+							style="@style/marginlr"
+							android:text="商品编号："
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:textColor="@color/gray"
+							android:textSize="12dp"
+							android:layout_marginTop="10dp"
+							android:id="@+id/tv_giftNo"/>
+
+						<TextView
+							style="@style/marginlr"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:id="@+id/tv_giftScore"
+							android:layout_marginTop="10dp"
+							android:text="所需积分：5999积分"/>
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="5dp"
+							android:background="#ffffff">
+							<TextView
+								style="@style/marginlr"
+								android:layout_width="80dp"
+								android:layout_height="20dp"
+								android:text="申请台数："
+								android:textSize="14dp"
+								android:layout_gravity="center_vertical"/>
+
+							<com.example.administrator.jymall.view.AmountView
+								android:id="@+id/av_quantity"
+								android:layout_height="30dp"
+								android:layout_width="120dp"
+								android:layout_alignParentRight="true"
+								android:layout_alignParentBottom="true">
+							</com.example.administrator.jymall.view.AmountView>
+
+						</LinearLayout>
+
+						<TextView
+							style="@style/marginlr"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:id="@+id/tv_quantity"
+							android:layout_marginTop="5dp"
+							android:text="库存：10件"/>
+
+						<TextView
+							style="@style/marginlr"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:id="@+id/tv_myScore"
+							android:layout_marginTop="10dp"
+							android:text="可用积分：9999分"/>
+
+						<LinearLayout
+							android:layout_marginTop="5dp"
+							android:layout_width="fill_parent"
+							android:layout_height="10dp"
+							android:background="#d0d0d0" />
+
+
+			        <RelativeLayout
+						style="@style/marginlr"
+						android:layout_marginTop="5dp"
+						android:layout_width="match_parent"
+						android:layout_height="25dp" >
+			            <TextView
+							style="@style/wrap_content"
+							android:text="礼品详情"
+							android:textColor="@color/gray"
+			                android:textSize="12dp"
+							android:layout_marginTop="5dp"
+							android:id="@+id/tv_proCode"/>
+			            <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
+			        </RelativeLayout>
+
+					<RelativeLayout
+						style="@style/marginlr"
+						android:layout_marginTop="5dp"
+						android:layout_width="match_parent"
+						android:layout_height="25dp" >
+						<TextView
+							style="@style/wrap_content"
+							android:id="@+id/tv_giftDesc"
+							android:text="商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情"
+							android:lines="5"
+							android:textColor="@color/gray"
+							android:textSize="12dp"/>
+
+					</RelativeLayout>
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="20dp"
+						android:layout_marginRight="20dp"
+						android:orientation="horizontal"
+						android:layout_marginTop="10dp">
+
+						<Button
+							style="@style/btndarkblue"
+							android:id="@+id/submitbtn"
+							android:text="提交"
+							android:enabled="false"
+							android:layout_weight="1"/>
+
+					</LinearLayout>
+			    </LinearLayout>
+
+		 </LinearLayout>
+	</ScrollView>
+</RelativeLayout>
