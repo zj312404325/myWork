@@ -22,15 +22,13 @@ package kankan.wheel.widget;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.example.administrator.helloworld.R;
+import com.example.administrator.jymall.R;
 
 import kankan.wheel.widget.adapters.WheelViewAdapter;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;

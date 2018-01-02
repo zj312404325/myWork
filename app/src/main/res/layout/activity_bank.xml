@@ -8,9 +8,10 @@
 	<ScrollView style="@style/fill" android:layout_below="@id/top" >
 		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
 			
-		   <com.example.administrator.helloworld.view.MyListView android:id="@+id/mlv_addrlist"
+		   <com.example.administrator.jymall.view.MyListView
+               android:id="@+id/mlv_addrlist"
 		       android:layout_width="match_parent"  android:layout_height="wrap_content" 
-		   ></com.example.administrator.helloworld.view.MyListView>
+		   ></com.example.administrator.jymall.view.MyListView>
 		      <Button  android:id="@+id/addbtn" style="@style/btnblue"            
             android:text="新增银行账户" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
             android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>

@@ -12,11 +12,11 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical" >
 			
-		   <com.example.administrator.helloworld.view.MyListView
+		   <com.example.administrator.jymall.view.MyListView
 			   android:id="@+id/mlv_addrlist"
 		       android:layout_width="match_parent"
 			   android:layout_height="wrap_content">
-		   </com.example.administrator.helloworld.view.MyListView>
+		   </com.example.administrator.jymall.view.MyListView>
 
 		  <Button
 			  android:id="@+id/addbtn"

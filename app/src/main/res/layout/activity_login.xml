@@ -23,7 +23,7 @@
 
     <LinearLayout style="@style/fill" android:orientation="vertical" android:layout_below="@id/top_title"  >
 
-        <com.example.administrator.helloworld.view.MyEditText
+        <com.example.administrator.jymall.view.MyEditText
             android:id="@+id/input_user"
             android:layout_width="match_parent"
             android:layout_height="40dp"

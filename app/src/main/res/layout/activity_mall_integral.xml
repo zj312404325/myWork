@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".MallIntegralActivity" >
+
+    <include  android:id="@+id/top"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+			
+		   <!--<com.example.administrator.jymall.view.MyListView
+			   android:id="@+id/lv_scorelist"
+		       android:layout_width="match_parent"
+			   android:layout_height="wrap_content">
+		   </com.example.administrator.jymall.view.MyListView>-->
+
+			<com.example.administrator.jymall.view.MyGridView
+				android:numColumns="2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/gw_scorelist">
+			</com.example.administrator.jymall.view.MyGridView>
+		    
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

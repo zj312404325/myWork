@@ -1,0 +1,775 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#ececec"
+	tools:context=".IntelMarketActivity" >
+
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp">
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="#ffffff"
+					android:layout_marginTop="5dp">
+					<ImageView
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:background="@drawable/intelmarket_top"
+						android:scaleType="fitCenter"/>
+					<TextView
+						style="@style/match_parent"
+						android:text="金赢智能工业超市"
+						android:textSize="16dp"
+						android:layout_gravity="center_vertical"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="#ffffff"
+					android:layout_marginTop="5dp">
+					<ImageView
+						android:layout_width="40dp"
+						android:layout_height="40dp"
+						android:layout_marginLeft="20dp"
+						android:background="@drawable/icon_market1"
+						android:scaleType="fitCenter"/>
+					<TextView
+						style="@style/match_parent"
+						android:text="你可获得工业行业有事产品的免费推荐，试用和使用"
+						android:textSize="14dp"
+						android:layout_marginLeft="30dp"
+						android:layout_gravity="center_vertical"/>
+				</LinearLayout>
+
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6"
+					/>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="#ffffff"
+					android:layout_marginTop="5dp">
+					<ImageView
+						android:layout_width="40dp"
+						android:layout_height="40dp"
+						android:layout_marginLeft="20dp"
+						android:background="@drawable/icon_market2"
+						android:scaleType="fitCenter"/>
+					<TextView
+						style="@style/match_parent"
+						android:text="你可实现向有针对性客户的工业品供货、分销和产品推广"
+						android:textSize="14dp"
+						android:layout_marginLeft="30dp"
+						android:layout_gravity="center_vertical"/>
+				</LinearLayout>
+
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6"
+					/>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="#ffffff"
+					android:layout_marginTop="5dp">
+					<ImageView
+						android:layout_width="40dp"
+						android:layout_height="40dp"
+						android:layout_marginLeft="20dp"
+						android:background="@drawable/icon_market3"
+						android:scaleType="fitCenter"/>
+					<TextView
+						style="@style/match_parent"
+						android:text="你还可以靠它立等可取、依您所需、自动购买工业产品"
+						android:textSize="14dp"
+						android:layout_marginLeft="30dp"
+						android:layout_gravity="center_vertical"/>
+				</LinearLayout>
+
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6"
+					/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="10dp"
+				android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+					<RelativeLayout style="@style/fill" android:layout_weight="1">
+						<TextView
+							style="@style/match_parent"
+							android:id="@+id/vender"
+							android:text="售货机"
+							android:textColor="#000000"
+							android:textSize="16dp"
+							android:layout_marginTop="5dp"/>
+						<TextView
+							style="@style/match_parent"
+							android:layout_below="@id/vender"
+							android:text="可配备五金配件、劳保用品、办公用品、定制零件等产品"
+							android:textSize="10dp"
+							android:layout_marginTop="5dp"/>
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="8">
+						<ImageView
+							android:layout_marginTop="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:background="@drawable/icon_arrow_down"
+							android:scaleType="centerCrop"/>
+					</RelativeLayout>
+				</LinearLayout>
+
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6" />
+
+				<LinearLayout
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:id="@+id/venderDetail"
+						android:layout_width="240dp"
+						android:layout_height="100dp"
+						android:text="针对部分工业产品非标的特点，金赢网www.jinying365.com免费为平台客户配备工业品自动售货机，结合不同客户的需求和金赢网专业团队的产品筛选优势，对应的工业产品将由金赢网配置齐全后存放于售货机内供客户按需购买。客户视其所需，可自助购买并开取对应产品。"
+						android:textSize="12dp" />
+					<ImageView
+						android:layout_width="80dp"
+						android:layout_height="100dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="5dp"
+						android:background="@drawable/icon_vender"
+						android:scaleType="centerInside" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_marginTop="10dp"
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_19"
+							android:layout_width="70dp"
+							android:layout_height="90dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_27"
+							android:layout_width="70dp"
+							android:layout_height="90dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_40"
+							android:layout_width="70dp"
+							android:layout_height="90dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_80"
+							android:layout_width="70dp"
+							android:layout_height="90dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							android:layout_width="100dp"
+							android:text="19格"
+							android:layout_height="30dp"
+							android:layout_centerInParent="true"
+							android:gravity="center" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							android:layout_width="100dp"
+							android:text="27格"
+							android:layout_height="30dp"
+							android:layout_centerInParent="true"
+							android:gravity="center"/>
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							android:layout_width="100dp"
+							android:text="40格"
+							android:layout_height="30dp"
+							android:layout_centerInParent="true"
+							android:gravity="center"/>
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							android:layout_width="100dp"
+							android:text="80格"
+							android:layout_height="30dp"
+							android:layout_centerInParent="true"
+							android:gravity="center"/>
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="10dp"
+					android:background="#d0d0d0" />
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+					<RelativeLayout style="@style/fill" android:layout_weight="1">
+						<TextView
+							style="@style/match_parent"
+							android:id="@+id/operation"
+							android:text="操作方法"
+							android:textColor="#000000"
+							android:textSize="16dp"
+							android:layout_marginTop="5dp"/>
+						<TextView
+							style="@style/match_parent"
+							android:layout_below="@id/operation"
+							android:text="自助购买可支持IC卡支付、微信支付、支付宝支付"
+							android:textSize="10dp"
+							android:layout_marginTop="5dp"/>
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="8">
+						<ImageView
+							android:layout_marginTop="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:background="@drawable/icon_arrow_down"
+							android:scaleType="centerCrop"/>
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_marginTop="10dp"
+					android:orientation="vertical"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<LinearLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							style="@style/match_parent"
+							android:layout_marginTop="5dp"
+							android:layout_width="100dp"
+							android:drawableLeft="@drawable/icon_blue_block"
+							android:text="选择产品：" />
+						<TextView
+							style="@style/match_parent"
+							android:layout_marginTop="5dp"
+							android:text="输入想要商品的对应柜号，如101，请按“确认”键" />
+					</LinearLayout>
+					<LinearLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							style="@style/match_parent"
+							android:layout_marginTop="5dp"
+							android:layout_width="100dp"
+							android:drawableLeft="@drawable/icon_blue_block"
+							android:text="确认价格：" />
+						<TextView
+							style="@style/match_parent"
+							android:layout_marginTop="5dp"
+							android:text="此时会显示商品价格，请确认是否为此价格，如确认无误请按“确认”键；如商品和价格确认有误，请按“取消”键取消当前操作，返回上一级操作步骤" />
+					</LinearLayout>
+					<LinearLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							style="@style/match_parent"
+							android:layout_marginTop="5dp"
+							android:layout_width="100dp"
+							android:drawableLeft="@drawable/icon_blue_block"
+							android:text="支付取货：" />
+						<TextView
+							style="@style/match_parent"
+							android:layout_marginTop="5dp"
+							android:text="使用一张充值好的IC卡在指定的刷卡位置轻按即可打开相应柜门取出商品（需取出柜中全部商品）" />
+					</LinearLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="fill_parent"
+					android:layout_height="10dp"
+					android:background="#d0d0d0"
+					android:layout_marginTop="5dp"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+					<RelativeLayout style="@style/fill" android:layout_weight="1">
+						<TextView
+							style="@style/match_parent"
+							android:id="@+id/custom"
+							android:text="我们的客户"
+							android:layout_centerVertical="true"
+							android:textColor="#000000"
+							android:textSize="16dp"
+							android:layout_marginTop="5dp"/>
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="8">
+						<ImageView
+							android:layout_marginTop="10dp"
+							android:layout_marginBottom="10dp"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:background="@drawable/icon_arrow_down"
+							android:scaleType="centerCrop"/>
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="fill_parent"
+					android:layout_height="0.5dp"
+					android:background="#d0d0d0"
+					android:layout_marginTop="5dp"/>
+
+				<LinearLayout
+					android:layout_marginTop="10dp"
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom1"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom2"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom3"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom4"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom5"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom6"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom7"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom8"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom9"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom10"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom11"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom12"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom13"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom14"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom15"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom16"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom17"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom18"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom19"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom20"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom21"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom22"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom23"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom24"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom25"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom26"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom27"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom28"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom29"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom30"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom31"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/icon_custom32"
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:layout_width="300dp"
+							android:layout_height="70dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="20dp"
+					android:layout_marginRight="20dp"
+					android:orientation="horizontal"
+					android:layout_marginTop="20dp">
+
+					<Button
+						style="@style/btndarkblue"
+						android:id="@+id/supplybtn"
+						android:text="点击申请"
+						android:layout_weight="1" />
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

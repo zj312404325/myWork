@@ -25,8 +25,8 @@
    		    android:textSize="16dp"
    		    android:text="商品详情"
    		    android:textColor="#ffffff" />
-    
 	</RelativeLayout>
+
 	<LinearLayout
 		android:id="@+id/bottom_tap"
 		android:layout_width="match_parent"
@@ -58,11 +58,11 @@
 					android:layout_height="250dp"
 					android:background="#c8e0ff">
 
-			         <com.example.administrator.helloworld.view.ShufflingView
+			         <com.example.administrator.jymall.view.ShufflingView
 						 android:id="@+id/shufflingView"
 						 android:layout_width="match_parent"
 						 android:layout_height="250dp" >
-					 </com.example.administrator.helloworld.view.ShufflingView>
+					 </com.example.administrator.jymall.view.ShufflingView>
 			    </RelativeLayout>
 			    
 			    <LinearLayout

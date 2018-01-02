@@ -1,0 +1,213 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#ececec"
+	tools:context=".SupplyMarketActivity" >
+
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff">
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:background="#ffffff"
+				android:layout_marginTop="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_width="80dp"
+					android:layout_height="20dp"
+					android:text="联  系  人："
+					android:textSize="14dp"
+					android:layout_gravity="center_vertical"/>
+				<EditText
+					android:id="@+id/et_contact"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:textSize="10sp"
+					android:hint=""
+					android:maxLength="16"
+					android:background="@null"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6"
+					/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="10dp"
+				android:background="#c6c6c6"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				/>
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:background="#ffffff"
+				android:layout_marginTop="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_width="80dp"
+					android:layout_height="20dp"
+					android:text="联系电话："
+					android:textSize="14dp"
+					android:inputType="phone"
+					android:maxLength="11"
+					android:layout_gravity="center_vertical"/>
+				<EditText
+					android:id="@+id/et_mobile"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:textSize="10sp"
+					android:hint=""
+					android:inputType="phone"
+					android:maxLength="16"
+					android:background="@null"/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="10dp"
+				android:background="#c6c6c6"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				/>
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:background="#ffffff"
+				android:layout_marginTop="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_width="80dp"
+					android:layout_height="20dp"
+					android:text="公司名称："
+					android:textSize="14dp"
+					android:layout_gravity="center_vertical"/>
+				<EditText
+					android:id="@+id/et_compname"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:textSize="10sp"
+					android:hint=""
+					android:maxLength="16"
+					android:background="@null"/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="10dp"
+				android:background="#c6c6c6"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				/>
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:background="#ffffff"
+				android:layout_marginTop="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_width="80dp"
+					android:layout_height="20dp"
+					android:text="申请台数："
+					android:textSize="14dp"
+					android:layout_gravity="center_vertical"/>
+
+				<com.example.administrator.jymall.view.AmountView
+					android:id="@+id/av_quantity"
+					android:layout_height="33dp"
+					android:layout_width="120dp"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentBottom="true">
+				</com.example.administrator.jymall.view.AmountView>
+
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="10dp"
+				android:background="#c6c6c6"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				/>
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:background="#ffffff"
+				android:layout_marginTop="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_width="80dp"
+					android:layout_height="20dp"
+					android:text="备          注："
+					android:textSize="14dp"
+					android:layout_gravity="center_vertical"/>
+				<EditText
+					android:id="@+id/et_remark"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:textSize="10sp"
+					android:hint=""
+					android:maxLength="16"
+					android:background="@null"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:orientation="horizontal"
+				android:layout_marginTop="20dp">
+
+				<Button
+					style="@style/loginbtnlongoff"
+					android:id="@+id/submitbtn"
+					android:text="提交"
+					android:enabled="false"
+					android:layout_weight="1"/>
+
+			</LinearLayout>
+
+
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

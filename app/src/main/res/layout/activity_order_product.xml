@@ -87,11 +87,11 @@
 	
 	
 		<RelativeLayout style="@style/fill" android:layout_below="@id/tab" android:layout_above="@id/bottom_tap">
-			<com.example.administrator.helloworld.view.XListView
+			<com.example.administrator.jymall.view.XListView
 				        android:id="@+id/xListView"
 				        android:layout_width="fill_parent"
 				        android:layout_height="fill_parent" android:cacheColorHint="#00000000">
-			</com.example.administrator.helloworld.view.XListView>
+			</com.example.administrator.jymall.view.XListView>
 			<TextView android:id="@+id/listtv" style="@style/wrap_content" android:text="暂无数据" android:textColor="#939393" 
 			    android:layout_centerInParent="true" />
 		  
