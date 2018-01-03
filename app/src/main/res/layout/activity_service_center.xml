@@ -5,57 +5,14 @@
     android:background="#ececec"
     tools:context=".ServiceCenterActivity" >
 
-    <RelativeLayout
-		android:id="@+id/top"
-     	android:layout_width="fill_parent"
-		android:layout_height="45dp"
-		android:background="@color/login_back_blue">
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
 
-   		<TextView
-			style="@style/wrap_content"
-			android:id="@+id/title"
-   		    android:layout_centerInParent="true"
-			android:textSize="16dp"
-   		    android:text="区域服务中心"
-			android:textColor="#ffffff" />
-	</RelativeLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="45dp"
-		android:orientation="horizontal"
-		android:layout_below="@id/top"
-		android:id="@+id/topsearch"
-		android:focusable="true"
-   		android:focusableInTouchMode="true"
-		android:background="#ececec">
-
-	    <EditText
-			style="@style/EditText"
-			android:hint="请输入商家名称"
-			android:layout_gravity="center_vertical"
-	        android:layout_weight="1"
-			android:layout_marginLeft="16dp"
-			android:layout_marginRight="16dp"
-	        android:id="@+id/txt_keyword">
-	    </EditText>
-	    
-	    <Button
-			style="@style/btnblue"
-			android:text="搜索"
-			android:id="@+id/search_btn"
-			android:layout_width="60dp"
-			android:layout_height="30dp"
-			android:layout_gravity="center_vertical"
-			android:layout_marginRight="16dp"   />
-	</LinearLayout>
 
 	<!-- 底部菜单 -->
 	<!--<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />-->
 	
 	<LinearLayout style="@style/match_parent" 
-	    android:layout_below="@id/topsearch"
-		android:layout_above="@id/bottom_tap"
+	    android:layout_below="@id/top_title"
 		android:background="#ffffff"
 	    android:orientation="vertical">
 	    <View style="@style/line"/>

@@ -58,6 +58,7 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
+        super.title.setText("区域服务中心");
         progressDialog.hide();
 
         sap = new ProSimpleAdapter(ServiceCenterActivity.this, dateMaps,

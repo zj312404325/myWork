@@ -3,6 +3,7 @@ package com.example.administrator.jymall;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -146,7 +147,13 @@ public class GiftDetailActivity extends UserActivity {
                             tv_giftScore.setText("所需积分：9999积分");
                         }
                         if(FormatUtil.isNoEmpty(gift.getString("description"))){
-                            tv_giftDesc.setText(gift.getString("description"));
+                            CharSequence  charSequence;
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                                charSequence = Html.fromHtml(gift.getString("description"),Html.FROM_HTML_MODE_LEGACY);
+                            } else {
+                                charSequence = Html.fromHtml(gift.getString("description"));
+                            }
+                            tv_giftDesc.setText(charSequence);
                         }
                         else{
                             tv_giftDesc.setText("");

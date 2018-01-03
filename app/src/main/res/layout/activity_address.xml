@@ -20,7 +20,7 @@
 
 		  <Button
 			  android:id="@+id/addbtn"
-			  style="@style/btnblue"
+			  style="@style/btndarkblue"
 			  android:text="新建地址"
 			  android:layout_width="match_parent"
 			  android:layout_marginTop="20dp"
