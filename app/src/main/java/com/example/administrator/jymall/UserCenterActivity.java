@@ -1,14 +1,14 @@
 package com.example.administrator.jymall;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.administrator.jymall.common.ButtomTapActivity;
 import com.example.administrator.jymall.common.MyApplication;
@@ -16,17 +16,15 @@ import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 
-import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @ContentView(R.layout.activity_user_center)
 public class UserCenterActivity extends ButtomTapActivity {
@@ -35,17 +33,7 @@ public class UserCenterActivity extends ButtomTapActivity {
 
 	@ViewInject(R.id.uc_info)
 	private RelativeLayout uc_info;
-	
-	@ViewInject(R.id.orderxh)
-	private RelativeLayout orderxh;
-	@ViewInject(R.id.orderqh)
-	private RelativeLayout orderqh;
-	@ViewInject(R.id.orderjg)
-	private RelativeLayout orderjg;
-	
-	@ViewInject(R.id.zhgl)
-	private Button zhgl;
-	
+
 	@ViewInject(R.id.tv_xh1)
 	private TextView tv_xh1;
 	@ViewInject(R.id.tv_xh2)
@@ -54,52 +42,7 @@ public class UserCenterActivity extends ButtomTapActivity {
 	private TextView tv_xh3;
 	@ViewInject(R.id.tv_xh4)
 	private TextView tv_xh4;
-	
-	@ViewInject(R.id.tv_qh1)
-	private TextView tv_qh1;
-	@ViewInject(R.id.tv_qh2)
-	private TextView tv_qh2;
-	@ViewInject(R.id.tv_qh3)
-	private TextView tv_qh3;
-	@ViewInject(R.id.tv_qh4)
-	private TextView tv_qh4;
-	
-	@ViewInject(R.id.tv_jg1)
-	private TextView tv_jg1;
-	@ViewInject(R.id.tv_jg2)
-	private TextView tv_jg2;
-	@ViewInject(R.id.tv_jg3)
-	private TextView tv_jg3;
-	@ViewInject(R.id.tv_jg4)
-	private TextView tv_jg4;
-	
-	@ViewInject(R.id.rl_xh1)
-	private RelativeLayout rl_xh1;
-	@ViewInject(R.id.rl_xh2)
-	private RelativeLayout rl_xh2;
-	@ViewInject(R.id.rl_xh3)
-	private RelativeLayout rl_xh3;
-	@ViewInject(R.id.rl_xh4)
-	private RelativeLayout rl_xh4;
-	
-	@ViewInject(R.id.rl_qh1)
-	private RelativeLayout rl_qh1;
-	@ViewInject(R.id.rl_qh2)
-	private RelativeLayout rl_qh2;
-	@ViewInject(R.id.rl_qh3)
-	private RelativeLayout rl_qh3;
-	@ViewInject(R.id.rl_qh4)
-	private RelativeLayout rl_qh4;
-	
-	@ViewInject(R.id.rl_jg1)
-	private RelativeLayout rl_jg1;
-	@ViewInject(R.id.rl_jg2)
-	private RelativeLayout rl_jg2;
-	@ViewInject(R.id.rl_jg3)
-	private RelativeLayout rl_jg3;
-	@ViewInject(R.id.rl_jg4)
-	private RelativeLayout rl_jg4;
-	
+
 	@ViewInject(R.id.heador)
 	private ImageView heador;
 	@ViewInject(R.id.comp)
@@ -109,7 +52,6 @@ public class UserCenterActivity extends ButtomTapActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.i("这尼玛", "基老陈成型了");
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
 		parentControl();
@@ -178,57 +120,7 @@ public class UserCenterActivity extends ButtomTapActivity {
 							else{
 								tv_xh4.setText(res.getString("buyPermitNum"));
 							}
-							//期货
-							if(res.getString("qhbuyPayNum").equals("0")){
-								tv_qh1.setVisibility(View.GONE);
-							}
-							else{
-								tv_qh1.setText(res.getString("qhbuyPayNum"));
-							}
-							if(res.getString("qhbuyRecNum").equals("0")){
-								tv_qh2.setVisibility(View.GONE);
-							}
-							else{
-								tv_qh2.setText(res.getString("qhbuyRecNum"));
-							}
-							if(res.getString("qhbuyEndNum").equals("0")){
-								tv_qh3.setVisibility(View.GONE);
-							}
-							else{
-								tv_qh3.setText(res.getString("qhbuyEndNum"));
-							}
-							if(res.getString("qhbuyPermitNum").equals("0")){
-								tv_qh4.setVisibility(View.GONE);
-							}
-							else{
-								tv_qh4.setText(res.getString("qhbuyPermitNum"));
-							}
-							//加工
-							if(res.getString("jgbuyPayNum").equals("0")){
-								tv_jg1.setVisibility(View.GONE);
-							}
-							else{
-								tv_jg1.setText(res.getString("jgbuyPayNum"));
-							}
-							if(res.getString("jgbuyRecNum").equals("0")){
-								tv_jg2.setVisibility(View.GONE);
-							}
-							else{
-								tv_jg2.setText(res.getString("jgbuyRecNum"));
-							}
-							if(res.getString("jgbuyEndNum").equals("0")){
-								tv_jg3.setVisibility(View.GONE);
-							}
-							else{
-								tv_jg3.setText(res.getString("jgbuyEndNum"));
-							}
-							if(res.getString("jgbuyPermitNum").equals("0")){
-								tv_jg4.setVisibility(View.GONE);
-							}
-							else{
-								tv_jg4.setText(res.getString("jgbuyPermitNum"));
-							}
-							
+
 						}
 						
 					} catch (JSONException e) {
@@ -243,106 +135,38 @@ public class UserCenterActivity extends ButtomTapActivity {
 		catch(Exception e){e.printStackTrace();}
 	}
 	
-	
-	@Event(value={R.id.uc_info,R.id.zhgl},type=View.OnTouchListener.class)
-	private boolean ucinfoTouch(View v, MotionEvent event){
-		Log.i("这尼玛", "基老陈正在启动: ");
+
+	@Event(value=R.id.rl_myMatch,type=View.OnTouchListener.class)
+	private boolean myMatchTouch(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			Intent i = new Intent(getApplicationContext(),UserInfoActivity.class);
-			startActivity(i);
+			startActivity(new Intent(getApplicationContext(),MyMatchActivity.class));
 			return false;
 		}
 		return true;
 	}
-	
-	@Event(value={R.id.orderxh,R.id.rl_xh1,R.id.rl_xh2,R.id.rl_xh3,R.id.rl_xh4},type=View.OnTouchListener.class)
-	private boolean orderxhTouch(View v, MotionEvent event){
+
+	@Event(value=R.id.rl_userCenter,type=View.OnTouchListener.class)
+	private boolean userCenterTouch(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			if(v.getId() == R.id.orderxh){
-				startActivity(new Intent(getApplicationContext(),Order_Product_Activity.class));
-			}
-			else if(v.getId() == R.id.rl_xh1){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "1");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_xh2){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "3");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_xh3){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "4");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_xh4){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "6");
-				startActivity(i);
-			}			
+			startActivity(new Intent(getApplicationContext(),UserInfoActivity.class));
 			return false;
 		}
 		return true;
 	}
-	
-	@Event(value={R.id.orderqh,R.id.rl_qh1,R.id.rl_qh2,R.id.rl_qh3,R.id.rl_qh4},type=View.OnTouchListener.class)
-	private boolean orderqhTouch(View v, MotionEvent event){
+
+	@Event(value=R.id.rl_myScore,type=View.OnTouchListener.class)
+	private boolean myScoreTouch(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			if(v.getId() == R.id.orderqh){
-				startActivity(new Intent(getApplicationContext(),Order_Product_Activity.class));
-			}
-			else if(v.getId() == R.id.rl_qh1){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "1");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_qh2){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "3");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_qh3){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "4");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_qh4){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "6");
-				startActivity(i);
-			}			
+			startActivity(new Intent(getApplicationContext(),MyScoreIndexActivity.class));
 			return false;
 		}
 		return true;
 	}
-	
-	@Event(value={R.id.orderjg,R.id.rl_jg1,R.id.rl_jg2,R.id.rl_jg3,R.id.rl_jg4},type=View.OnTouchListener.class)
-	private boolean orderjgTouch(View v, MotionEvent event){
+
+	@Event(value=R.id.rl_myCredit,type=View.OnTouchListener.class)
+	private boolean myCreditTouch(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			if(v.getId() == R.id.orderjg){
-				startActivity(new Intent(getApplicationContext(),Order_Product_Activity.class));
-			}
-			else if(v.getId() == R.id.rl_jg1){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "1");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_jg2){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "3");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_jg3){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "4");
-				startActivity(i);
-			}
-			else if(v.getId() == R.id.rl_jg4){
-				Intent i = new Intent(getApplicationContext(),Order_Product_Activity.class);
-				i.putExtra("orderStatus", "6");
-				startActivity(i);
-			}			
+			startActivity(new Intent(getApplicationContext(),MyCreditActivity.class));
 			return false;
 		}
 		return true;

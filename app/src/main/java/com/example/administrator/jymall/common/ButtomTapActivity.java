@@ -13,7 +13,7 @@ import com.example.administrator.jymall.CategoryActivity;
 import com.example.administrator.jymall.DiscoveryActivity;
 import com.example.administrator.jymall.IndexActivity;
 import com.example.administrator.jymall.R;
-import com.example.administrator.jymall.UserInfoActivity;
+import com.example.administrator.jymall.UserCenterActivity;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -95,7 +95,7 @@ public class ButtomTapActivity extends UserActivity {
 	@Event(value=R.id.buttom_tap_5,type=OnTouchListener.class)
 	private boolean btn5(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			startActivity(new Intent(getApplicationContext(),UserInfoActivity.class));
+			startActivity(new Intent(getApplicationContext(),UserCenterActivity.class));
 			return false;
 		}
 		return true;

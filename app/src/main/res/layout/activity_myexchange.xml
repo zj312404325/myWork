@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+	android:orientation="vertical"
+    tools:context=".MyExchangeActivity" >
+
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="150dp"
+		android:background="#ffffff"
+		android:id="@+id/rl_showImg">
+
+	</RelativeLayout>
+
+	<LinearLayout style="@style/match_parent"
+		android:background="#ffffff"
+	    android:orientation="vertical">
+	    <View style="@style/line"/>
+			<com.example.administrator.jymall.view.XListView
+				android:id="@+id/xListView"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:cacheColorHint="#00000000">
+			</com.example.administrator.jymall.view.XListView>
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/listtv"
+				android:text="暂无数据"
+				android:textColor="#939393"
+			    android:layout_centerInParent="true" />
+	</LinearLayout>
+
+	<LinearLayout style="@style/match_parent"
+		android:background="#ffffff"
+		android:layout_marginTop="20dp"
+		android:orientation="horizontal">
+
+		<TextView
+			style="@style/wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_height="20dp"
+			android:text="收入积分"
+			android:gravity="center"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="1"
+			android:textColor="#939393"
+			android:layout_centerInParent="true" />
+
+		<TextView
+			style="@style/wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_height="20dp"
+			android:text="支出积分"
+			android:gravity="center"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="1"
+			android:textColor="#939393"
+			android:layout_centerInParent="true" />
+	</LinearLayout>
+
+	<LinearLayout style="@style/match_parent"
+		android:background="#ffffff"
+		android:orientation="horizontal">
+
+		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/total_income"
+			android:layout_height="30dp"
+			android:text="+1400"
+			android:gravity="center"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="1"
+			android:textColor="#939393"
+			android:layout_centerInParent="true" />
+
+		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/total_pay"
+			android:layout_height="30dp"
+			android:text="-900"
+			android:gravity="center"
+			android:layout_gravity="center_vertical"
+			android:layout_weight="1"
+			android:textColor="#939393"
+			android:layout_centerInParent="true" />
+	</LinearLayout>
+
+
+</LinearLayout>

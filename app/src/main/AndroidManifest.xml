@@ -322,6 +322,26 @@
             android:label="GiftExchangeActivity" >
         </activity>
 
+        <activity
+            android:name=".MyScoreActivity"
+            android:label="MyScoreActivity" >
+        </activity>
+
+        <activity
+            android:name=".MyMatchActivity"
+            android:label="MyMatchActivity" >
+        </activity>
+
+        <activity
+            android:name=".MyCreditActivity"
+            android:label="MyCreditActivity" >
+        </activity>
+
+        <activity
+            android:name=".MyScoreIndexActivity"
+            android:label="MyScoreIndexActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />
