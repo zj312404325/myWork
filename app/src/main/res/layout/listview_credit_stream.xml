@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_weight="1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp">
+
+		<LinearLayout
+			android:layout_weight="1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<TextView
+				style="@style/wrap_content"
+				android:layout_weight="1"
+				android:id="@+id/tv_orderNo"
+				android:text="订单编号：123123213213123123"
+				android:textSize="12sp"
+				android:height="20dp"
+				android:layout_marginTop="5dp"/>
+
+			<TextView
+				style="@style/wrap_content"
+				android:layout_weight="1"
+				android:id="@+id/tv_orderTime"
+				android:gravity="right"
+				android:text="2018-01-01 12:00:00"
+				android:textSize="12sp"
+				android:height="20dp"
+				android:layout_marginTop="5dp"/>
+		</LinearLayout>
+
+		<TextView
+			android:layout_marginTop="5dp"
+			android:layout_width="fill_parent"
+			android:layout_height="0.5dp"
+			android:background="#c6c6c6" />
+
+		<LinearLayout
+			style="@style/wrap_content"
+			android:orientation="vertical">
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/tv_buyerName"
+				android:layout_marginTop="5dp"
+				android:textSize="14sp"
+				android:text="买家名称：基佬陈"/>
+
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/tv_money"
+				android:layout_marginTop="5dp"
+				android:textSize="14sp"
+				android:text="流水金额：999.00"/>
+
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/tv_type"
+				android:text="类			   型：订单支付"
+				android:layout_marginTop="5dp"
+				android:textSize="14sp"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+</LinearLayout>

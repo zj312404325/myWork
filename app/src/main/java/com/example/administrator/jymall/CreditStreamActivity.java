@@ -31,33 +31,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ContentView(R.layout.activity_myexchange)
-public class MyExchangeActivity extends TopActivity implements IXListViewListener {
+@ContentView(R.layout.activity_credit_stream)
+public class CreditStreamActivity extends TopActivity implements IXListViewListener {
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;
     @ViewInject(R.id.listtv)
     private TextView listtv;
-    @ViewInject(R.id.tv_myScore)
-    private TextView tv_myScore;
+    @ViewInject(R.id.tv_myPay)
+    private TextView tv_myPay;
 
     public List<Map<String, Object>> dateMaps= new ArrayList<Map<String, Object>>();
     private SimpleAdapter sap;
     private Handler mHandler;
     private int start = 1;
-    private String myScore="";
+    private String totalPay="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
-        super.title.setText("我的兑换记录");
+        super.title.setText("我的积分");
         progressDialog.hide();
 
-        sap = new ProSimpleAdapter(MyExchangeActivity.this, dateMaps,
-                R.layout.listview_myexchange,
-                new String[]{"exchangeTime"},
-                new int[]{R.id.tv_exchangeTime});
+        sap = new ProSimpleAdapter(CreditStreamActivity.this, dateMaps,
+                R.layout.listview_credit_stream,
+                new String[]{"buyerName"},
+                new int[]{R.id.tv_buyerName});
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
@@ -78,7 +78,7 @@ public class MyExchangeActivity extends TopActivity implements IXListViewListene
         maps.put("serverKey", super.serverKey);
         maps.put("currentPage", ""+start);
 
-        XUtilsHelper.getInstance().post("app/mallExchangeList.htm", maps,new XUtilsHelper.XCallBack(){
+        XUtilsHelper.getInstance().post("app/mallCreditStream.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")
             @Override
@@ -94,25 +94,24 @@ public class MyExchangeActivity extends TopActivity implements IXListViewListene
                 try {
                     res = new JSONObject(result);
                     setServerKey(res.get("serverKey").toString());
-                    JSONArray exchangeList = (JSONArray)res.get("data");
-                    myScore= FormatUtil.toString(res.get("score"));
-                    tv_myScore.setText(myScore);
+                    JSONArray streamList = (JSONArray)res.get("data");
+                    totalPay= FormatUtil.toString(res.get("totalmoney"));
+                    tv_myPay.setText(totalPay);
 
-                    if(exchangeList.length()==0 && start == 1) {
+                    if(streamList.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);
                     }
-                    else if(exchangeList.length() ==  10 ) {
+                    else if(streamList.length() ==  10 ) {
                         listViewAll.setPullLoadEnable(true);
                     }
 
-                    for(int i=0;i<exchangeList.length();i++){
+                    for(int i=0;i<streamList.length();i++){
                         Map<String, Object> dateMap = new HashMap<String, Object>();
-                        dateMap.put("gift", exchangeList.getJSONObject(i).get("gift"));
-                        dateMap.put("giftintegral", exchangeList.getJSONObject(i).get("giftintegral"));
-                        dateMap.put("quantity", exchangeList.getJSONObject(i).get("quantity"));
-                        dateMap.put("totalintegral", exchangeList.getJSONObject(i).get("totalintegral"));
-                        dateMap.put("createdate", exchangeList.getJSONObject(i).get("createdate"));
-                        dateMap.put("isAccepted", exchangeList.getJSONObject(i).get("isAccepted"));
+                        dateMap.put("orderno", streamList.getJSONObject(i).get("orderno"));
+                        dateMap.put("inusername", streamList.getJSONObject(i).get("inusername"));
+                        dateMap.put("mtype", streamList.getJSONObject(i).get("mtype"));
+                        dateMap.put("inmoney", streamList.getJSONObject(i).get("inmoney"));
+                        dateMap.put("createdate", streamList.getJSONObject(i).get("createdate"));
                         dateMaps.add(dateMap);
                     }
                     sap.notifyDataSetChanged();
@@ -142,7 +141,7 @@ public class MyExchangeActivity extends TopActivity implements IXListViewListene
         public View getView(final int position, View convertView, ViewGroup parent) {
             holder=null;
             if(convertView==null){
-                convertView=mInflater.inflate(R.layout.listview_myexchange, null);
+                convertView=mInflater.inflate(R.layout.listview_credit_stream, null);
                 holder=new ViewHolder();
                 x.view().inject(holder,convertView);
                 convertView.setTag(holder);
@@ -151,42 +150,40 @@ public class MyExchangeActivity extends TopActivity implements IXListViewListene
                 holder=(ViewHolder) convertView.getTag();
             }
 
-            String gift=myMaps.get(position).get("gift").toString();
-            String giftintegral=myMaps.get(position).get("giftintegral").toString();
-            String quantity=myMaps.get(position).get("quantity").toString();
-            String totalintegral=myMaps.get(position).get("totalintegral").toString();
+            String orderno=myMaps.get(position).get("orderno").toString();
+            String inusername=myMaps.get(position).get("inusername").toString();
+            String mtype=myMaps.get(position).get("mtype").toString();
+            String inmoney=myMaps.get(position).get("inmoney").toString();
             String createdate=myMaps.get(position).get("createdate").toString();
-            String isAccepted=myMaps.get(position).get("isAccepted").toString();
 
-            holder.tv_exchangeTime.setText("兑换时间："+createdate);
-            holder.tv_giftName.setText("礼品名称："+gift);
-            holder.tv_quantity.setText("兑换数量："+quantity);
-            holder.tv_giftScore.setText("礼品积分："+giftintegral);
-            holder.tv_totalScore.setText("总计积分："+totalintegral);
-
-            if(isAccepted.equals("1")){
-                holder.tv_permitState.setText("审核状态：已审核");
+            holder.tv_orderNo.setText("订单编号："+orderno);
+            holder.tv_orderTime.setText(createdate);
+            holder.tv_buyerName.setText("买家名称："+inusername);
+            holder.tv_money.setText("流水金额："+inmoney);
+            if(mtype.equals("1")){
+                holder.tv_type.setText("类    型：订单支付");
             }
-            else {
-                holder.tv_permitState.setText("审核状态：未审核");
+            else if(mtype.equals("2")){
+                holder.tv_type.setText("类    型：退款");
+            }
+            else if(mtype.equals("3")){
+                holder.tv_type.setText("类    型：退货退款");
             }
             return super.getView(position, convertView, parent);
         }
     }
 
     class ViewHolder{
-        @ViewInject(R.id.tv_exchangeTime)
-        private TextView tv_exchangeTime;
-        @ViewInject(R.id.tv_giftName)
-        private TextView tv_giftName;
-        @ViewInject(R.id.tv_giftScore)
-        private TextView tv_giftScore;
-        @ViewInject(R.id.tv_quantity)
-        private TextView tv_quantity;
-        @ViewInject(R.id.tv_totalScore)
-        private TextView tv_totalScore;
-        @ViewInject(R.id.tv_permitState)
-        private TextView tv_permitState;
+        @ViewInject(R.id.tv_orderNo)
+        private TextView tv_orderNo;
+        @ViewInject(R.id.tv_orderTime)
+        private TextView tv_orderTime;
+        @ViewInject(R.id.tv_buyerName)
+        private TextView tv_buyerName;
+        @ViewInject(R.id.tv_money)
+        private TextView tv_money;
+        @ViewInject(R.id.tv_type)
+        private TextView tv_type;
     }
 
     private void onLoad() {

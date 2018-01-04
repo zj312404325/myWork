@@ -342,6 +342,21 @@
             android:label="MyScoreIndexActivity" >
         </activity>
 
+        <activity
+            android:name=".MyExchangeActivity"
+            android:label="MyExchangeActivity" >
+        </activity>
+
+        <activity
+            android:name=".MyCreditIndexActivity"
+            android:label="MyCreditIndexActivity" >
+        </activity>
+
+        <activity
+            android:name=".CreditStreamActivity"
+            android:label="CreditStreamActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

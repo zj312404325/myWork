@@ -1,0 +1,168 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#ececec"
+	tools:context=".MyCreditActivity" >
+
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp">
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:id="@+id/step1"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:text="				 拥有VIP信用支付特权的用户，可享受订单月度结算或年度结算"
+					android:textColor="#000000"
+					android:textSize="16dp"
+					android:layout_marginTop="5dp"/>
+
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6"
+					/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:text="获得特权步骤："
+					android:textSize="14dp"/>
+				
+				<ImageView
+					android:layout_marginTop="5dp"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@drawable/index_mymatch"/>
+
+				<ImageView
+					android:layout_marginTop="5dp"
+					android:layout_gravity="center"
+					android:layout_width="200dp"
+					android:layout_height="200dp"
+					android:background="@drawable/supply_step1"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_marginTop="5dp"
+				android:layout_width="fill_parent"
+				android:layout_height="10dp"
+				android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:id="@+id/step3"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:text="联系我们"
+					android:textColor="#000000"
+					android:textSize="16dp"
+					android:layout_marginTop="5dp"/>
+
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6" />
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:text="电		话：0512-52686666" />
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:text="地		址：江苏省常熟市东南开发区东南大道333号" />
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:text="传		真：0512-52686666" />
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:text="邮		箱：kf@jinying365.com" />
+
+				<LinearLayout
+					android:layout_width="fill_parent"
+					android:layout_height="0.5dp"
+					android:background="#d0d0d0"
+					android:layout_marginTop="5dp"/>
+
+				<LinearLayout
+					android:layout_marginTop="10dp"
+					android:orientation="horizontal"
+					android:layout_weight="1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp">
+
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/code_wechat"
+							android:layout_width="100dp"
+							android:layout_height="100dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<ImageView
+							android:background="@drawable/code_sina"
+							android:layout_width="100dp"
+							android:layout_height="100dp"
+							android:scaleType="center"
+							android:layout_centerInParent="true"  />
+					</RelativeLayout>
+				</LinearLayout>
+
+				<LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							android:layout_width="100dp"
+							android:text="金赢网官方微信"
+							android:layout_height="30dp"
+							android:layout_centerInParent="true"
+							android:gravity="center" />
+					</RelativeLayout>
+					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							android:layout_width="100dp"
+							android:text="金赢网官方微博"
+							android:layout_height="30dp"
+							android:layout_centerInParent="true"
+							android:gravity="center"/>
+					</RelativeLayout>
+				</LinearLayout>
+
+			</LinearLayout>
+
+
+
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

@@ -166,7 +166,7 @@ public class UserCenterActivity extends ButtomTapActivity {
 	@Event(value=R.id.rl_myCredit,type=View.OnTouchListener.class)
 	private boolean myCreditTouch(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			startActivity(new Intent(getApplicationContext(),MyCreditActivity.class));
+			startActivity(new Intent(getApplicationContext(),MyCreditIndexActivity.class));
 			return false;
 		}
 		return true;

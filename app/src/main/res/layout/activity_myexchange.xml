@@ -14,6 +14,25 @@
 		android:background="#ffffff"
 		android:id="@+id/rl_showImg">
 
+		<TextView
+			style="@style/wrap_content"
+			android:layout_marginTop="50dp"
+			android:id="@+id/myshow"
+			android:text="当前积分"
+			android:textColor="#939393"
+			android:textSize="18sp"
+			android:layout_centerHorizontal="true" />
+
+		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/tv_myScore"
+			android:layout_below="@+id/myshow"
+			android:text="8888"
+			android:textColor="#939393"
+			android:textSize="25sp"
+			android:layout_centerInParent="true"/>
+
+
 	</RelativeLayout>
 
 	<LinearLayout style="@style/match_parent"
@@ -33,61 +52,5 @@
 				android:textColor="#939393"
 			    android:layout_centerInParent="true" />
 	</LinearLayout>
-
-	<LinearLayout style="@style/match_parent"
-		android:background="#ffffff"
-		android:layout_marginTop="20dp"
-		android:orientation="horizontal">
-
-		<TextView
-			style="@style/wrap_content"
-			android:layout_marginTop="5dp"
-			android:layout_height="20dp"
-			android:text="收入积分"
-			android:gravity="center"
-			android:layout_gravity="center_vertical"
-			android:layout_weight="1"
-			android:textColor="#939393"
-			android:layout_centerInParent="true" />
-
-		<TextView
-			style="@style/wrap_content"
-			android:layout_marginTop="5dp"
-			android:layout_height="20dp"
-			android:text="支出积分"
-			android:gravity="center"
-			android:layout_gravity="center_vertical"
-			android:layout_weight="1"
-			android:textColor="#939393"
-			android:layout_centerInParent="true" />
-	</LinearLayout>
-
-	<LinearLayout style="@style/match_parent"
-		android:background="#ffffff"
-		android:orientation="horizontal">
-
-		<TextView
-			style="@style/wrap_content"
-			android:id="@+id/total_income"
-			android:layout_height="30dp"
-			android:text="+1400"
-			android:gravity="center"
-			android:layout_gravity="center_vertical"
-			android:layout_weight="1"
-			android:textColor="#939393"
-			android:layout_centerInParent="true" />
-
-		<TextView
-			style="@style/wrap_content"
-			android:id="@+id/total_pay"
-			android:layout_height="30dp"
-			android:text="-900"
-			android:gravity="center"
-			android:layout_gravity="center_vertical"
-			android:layout_weight="1"
-			android:textColor="#939393"
-			android:layout_centerInParent="true" />
-	</LinearLayout>
-
 
 </LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_weight="1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp">
+
+		<TextView
+			android:layout_marginTop="5dp"
+			android:layout_width="fill_parent"
+			android:layout_height="5dp"
+			android:background="#c6c6c6" />
+
+		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/tv_exchangeTime"
+			android:text=""
+			android:textSize="12sp"
+			android:layout_width="300dp"
+			android:height="20dp"
+			android:layout_marginTop="5dp"/>
+
+		<TextView
+			android:layout_marginTop="5dp"
+			android:layout_width="fill_parent"
+			android:layout_height="0.5dp"
+			android:background="#c6c6c6" />
+
+		<LinearLayout
+			style="@style/wrap_content"
+			android:orientation="vertical">
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/tv_giftName"
+				android:layout_marginTop="5dp"
+				android:textSize="14sp"
+				android:text="礼品名称：毛巾毛巾毛巾"/>
+
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/tv_giftScore"
+				android:layout_marginTop="5dp"
+				android:textSize="14sp"
+				android:text="礼品积分：999积分"/>
+
+			<TextView
+				style="@style/match_parent"
+				android:id="@+id/tv_quantity"
+				android:width="180dp"
+				android:text="礼品数量：1"
+				android:layout_marginTop="5dp"
+				android:textSize="14sp"/>
+
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/tv_totalScore"
+				android:layout_marginTop="5dp"
+				android:text="总计积分：999"
+				android:textSize="14sp"/>
+
+			<TextView
+				style="@style/match_parent"
+				android:id="@+id/tv_permitState"
+				android:width="180dp"
+				android:text="审核状态：待审核"
+				android:layout_marginTop="5dp"
+				/>
+		</LinearLayout>
+
+	</LinearLayout>
+</LinearLayout>
