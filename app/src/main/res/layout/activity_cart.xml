@@ -10,15 +10,14 @@
 		android:id="@+id/top"
      	android:layout_width="fill_parent"
 		android:layout_height="45dp"
-		android:background="#0083c8">
+		android:background="@color/login_back_blue">
 
-       
    		<TextView
 			style="@style/wrap_content"
 			android:id="@+id/title"
    		    android:layout_centerInParent="true"
 			android:textSize="16dp"
-   		    android:text="我的购物车"
+   		    android:text="购物车"
 			android:textColor="#ffffff" />
    		
    		<TextView
@@ -31,8 +30,6 @@
 			android:textColor="#ffffff" />
 	</RelativeLayout>
 	
-    
-    
 
 	<!-- 底部菜单 -->
 	<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
@@ -54,7 +51,7 @@
 			android:text="去结算（0）"
 			android:layout_width="100dp"
 			android:layout_height="40dp"
-	        android:background="#0083c8"
+	        android:background="@color/login_back_blue"
 			android:textColor="#ffffff"
 			android:textSize="14dp"
 	        android:layout_alignParentRight="true"
@@ -85,15 +82,14 @@
 	    android:layout_above="@id/bottom_js"
 		android:orientation="vertical">
 		<ScrollView android:layout_width="match_parent" android:layout_height="match_parent" >
-
-		<com.example.administrator.jymall.view.MyListView
-			android:id="@+id/xListView"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:cacheColorHint="#00000000">
-		</com.example.administrator.jymall.view.MyListView>
-			
+			<com.example.administrator.jymall.view.MyListView
+				android:id="@+id/xListView"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:cacheColorHint="#00000000">
+			</com.example.administrator.jymall.view.MyListView>
 		</ScrollView>
+
 		<TextView
 			style="@style/wrap_content"
 			android:id="@+id/listtv"

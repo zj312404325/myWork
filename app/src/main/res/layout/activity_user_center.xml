@@ -6,29 +6,7 @@
     tools:context=".UserCenterActivity" >
 
    <include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
-   
-   <RelativeLayout
-	   android:id="@+id/top_title"
-	   android:layout_width="fill_parent"
-	   android:layout_height="45dp"
-	   android:background="#0083c8">
 
-       <ImageButton
-		   android:id="@+id/top_back"
-		   android:background="@drawable/setting"
-		   android:layout_width="25dp"
-		   android:layout_height="24dp"
-		   android:layout_centerVertical="true"
-		   android:layout_marginLeft="10dp"
-		   android:visibility="gone"/>
-   		<TextView
-			style="@style/wrap_content"
-   		    android:id="@+id/title"
-   		    android:layout_centerInParent="true"
-   		    android:textSize="16dp"
-   		    android:text="我的金赢"
-   		    android:textColor="#ffffff" />
-	</RelativeLayout>
 	<ScrollView
 		style="@style/fill"
 		android:layout_below="@id/top_title"
@@ -116,7 +94,7 @@
 						android:layout_weight="1"
 						android:id="@+id/rl_xh2">
 	    		        <ImageView
-							android:background="@drawable/uc_ico_dfh"
+							android:background="@drawable/icon_fast_match"
 							android:layout_width="29dp"
 							android:layout_height="35dp"
 	    		            android:layout_centerInParent="true"

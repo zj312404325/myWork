@@ -17,7 +17,7 @@
 
 			<LinearLayout
 				android:orientation="vertical"
-				android:id="@+id/step1"
+				android:id="@+id/ll_step1"
 				android:layout_weight="1"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -36,8 +36,7 @@
 					android:layout_marginTop="5dp"
 					android:layout_width="fill_parent"
 					android:layout_height="1dp"
-					android:background="#c6c6c6"
-					/>
+					android:background="#c6c6c6" />
 
 				<TextView
 					style="@style/match_parent"
@@ -48,26 +47,36 @@
 				<ImageView
 					android:layout_marginTop="5dp"
 					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:background="@drawable/index_mymatch"/>
+					android:layout_height="30dp"
+					android:background="@drawable/strip_step"/>
 
 				<ImageView
 					android:layout_marginTop="5dp"
 					android:layout_gravity="center"
 					android:layout_width="200dp"
-					android:layout_height="200dp"
+					android:layout_height="180dp"
 					android:background="@drawable/supply_step1"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:gravity="center"
+					android:text="尚未申请信用支付"
+					android:textSize="14dp"/>
+
+				<Button
+					style="@style/btndarkblue"
+					android:id="@+id/submitbtn"
+					android:layout_marginTop="5dp"
+					android:text="点击申请"
+					android:layout_gravity="center"
+					android:layout_weight="1"/>
+
 			</LinearLayout>
 
 			<LinearLayout
-				android:layout_marginTop="5dp"
-				android:layout_width="fill_parent"
-				android:layout_height="10dp"
-				android:background="#d0d0d0" />
-
-			<LinearLayout
 				android:orientation="vertical"
-				android:id="@+id/step3"
+				android:id="@+id/ll_step2"
 				android:layout_weight="1"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -75,92 +84,169 @@
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
 
-				<TextView
-					style="@style/match_parent"
-					android:text="联系我们"
-					android:textColor="#000000"
-					android:textSize="16dp"
-					android:layout_marginTop="5dp"/>
-
-				<TextView
+				<ImageView
 					android:layout_marginTop="5dp"
-					android:layout_width="fill_parent"
-					android:layout_height="1dp"
-					android:background="#c6c6c6" />
+					android:layout_gravity="center"
+					android:layout_width="200dp"
+					android:layout_height="180dp"
+					android:background="@drawable/supply_step2"/>
 
-				<TextView
-					style="@style/match_parent"
+				<Button
+					style="@style/btndarkblue"
+					android:id="@+id/submit"
 					android:layout_marginTop="5dp"
-					android:text="电		话：0512-52686666" />
-				<TextView
-					style="@style/match_parent"
-					android:layout_marginTop="5dp"
-					android:text="地		址：江苏省常熟市东南开发区东南大道333号" />
-				<TextView
-					style="@style/match_parent"
-					android:layout_marginTop="5dp"
-					android:text="传		真：0512-52686666" />
-				<TextView
-					style="@style/match_parent"
-					android:layout_marginTop="5dp"
-					android:text="邮		箱：kf@jinying365.com" />
-
-				<LinearLayout
-					android:layout_width="fill_parent"
-					android:layout_height="0.5dp"
-					android:background="#d0d0d0"
-					android:layout_marginTop="5dp"/>
-
-				<LinearLayout
-					android:layout_marginTop="10dp"
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:layout_marginLeft="10dp"
-					android:layout_marginRight="10dp">
-
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/code_wechat"
-							android:layout_width="100dp"
-							android:layout_height="100dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/code_sina"
-							android:layout_width="100dp"
-							android:layout_height="100dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
-
-				<LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<TextView
-							android:layout_width="100dp"
-							android:text="金赢网官方微信"
-							android:layout_height="30dp"
-							android:layout_centerInParent="true"
-							android:gravity="center" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<TextView
-							android:layout_width="100dp"
-							android:text="金赢网官方微博"
-							android:layout_height="30dp"
-							android:layout_centerInParent="true"
-							android:gravity="center"/>
-					</RelativeLayout>
-				</LinearLayout>
+					android:text="提交"
+					android:layout_gravity="center"
+					android:layout_weight="1"/>
 
 			</LinearLayout>
 
+			<LinearLayout
+				android:orientation="vertical"
+				android:id="@+id/ll_step3"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
 
+				<ImageView
+					android:layout_marginTop="5dp"
+					android:layout_gravity="center"
+					android:layout_width="200dp"
+					android:layout_height="180dp"
+					android:background="@drawable/supply_step2"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:gravity="center"
+					android:text="您的申请已提交，工作人员会在1~2个
+工作日内审核，请耐心等待"
+					android:textSize="14dp"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:id="@+id/ll_step4"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_marginTop="5dp"
+					android:layout_gravity="center"
+					android:layout_width="200dp"
+					android:layout_height="180dp"
+					android:background="@drawable/supply_step2"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:gravity="center"
+					android:text="恭喜，您的申请已通过，请签订以下协议。"
+					android:textSize="14dp"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginTop="5dp"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="5"/>
+					<Button
+						style="@style/btndarkblue"
+						android:id="@+id/doSeal"
+						android:text="盖章"
+						android:layout_width="100dp"
+						android:layout_weight="1"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="5"/>
+
+					<Button
+						android:id="@+id/sub"
+						style="@style/btndarkblue"
+						android:layout_width="100dp"
+						android:layout_weight="1"
+						android:text="提交" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="5"/>
+				</LinearLayout>
+			</LinearLayout>
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:id="@+id/ll_step_ok"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_marginTop="5dp"
+					android:layout_gravity="center"
+					android:layout_width="180dp"
+					android:layout_height="120dp"
+					android:background="@drawable/supply_ok"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:gravity="center"
+					android:text="恭喜，您的申请已通过，请签订以下协议。"
+					android:textSize="14dp"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:id="@+id/ll_step_refuse"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_marginTop="5dp"
+					android:layout_gravity="center"
+					android:layout_width="150dp"
+					android:layout_height="180dp"
+					android:background="@drawable/supply_refuse"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:gravity="center"
+					android:text="对不起，您的申请未通过，
+请待条件符合后重新申请。"
+					android:textSize="14dp"/>
+
+				<Button
+					style="@style/btndarkblue"
+					android:id="@+id/resubmitbtn"
+					android:layout_marginTop="5dp"
+					android:text="点击申请"
+					android:layout_gravity="center"
+					android:layout_weight="1"/>
+			</LinearLayout>
 
 		</LinearLayout>
 	</ScrollView>

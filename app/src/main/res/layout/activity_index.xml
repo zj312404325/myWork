@@ -48,8 +48,14 @@ tools:context=".IndexActivity" >
 
         <LinearLayout  android:layout_width="match_parent"  android:layout_height="120dp" >
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <ImageButton android:id="@+id/index_p4" android:background="@drawable/index_pro4" android:tag="3396"
-                    android:layout_width="100dp" android:layout_height="100dp" android:scaleType="center" android:layout_centerInParent="true" />
+                <ImageButton
+                    android:id="@+id/index_p4"
+                    android:background="@drawable/index_pro4"
+                    android:tag="3396"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
                 <ImageButton android:id="@+id/index_p5" android:background="@drawable/index_pro5" android:tag="1227"
