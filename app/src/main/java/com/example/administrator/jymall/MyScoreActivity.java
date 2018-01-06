@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -186,6 +187,12 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
             }
 
             return super.getView(position, convertView, parent);
+        }
+
+        @Override
+        public int getCount() {
+            Log.i("这尼玛", "getCount:"+this.myMaps.size());
+            return this.myMaps.size();
         }
     }
 

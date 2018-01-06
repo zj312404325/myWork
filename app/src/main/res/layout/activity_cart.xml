@@ -29,7 +29,6 @@
 			android:text="删除"
 			android:textColor="#ffffff" />
 	</RelativeLayout>
-	
 
 	<!-- 底部菜单 -->
 	<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
@@ -81,14 +80,13 @@
 		android:layout_height="wrap_content"
 	    android:layout_above="@id/bottom_js"
 		android:orientation="vertical">
-		<ScrollView android:layout_width="match_parent" android:layout_height="match_parent" >
-			<com.example.administrator.jymall.view.MyListView
-				android:id="@+id/xListView"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:cacheColorHint="#00000000">
-			</com.example.administrator.jymall.view.MyListView>
-		</ScrollView>
+
+		<com.example.administrator.jymall.view.XListView
+			android:id="@+id/xListView"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:cacheColorHint="#00000000">
+		</com.example.administrator.jymall.view.XListView>
 
 		<TextView
 			style="@style/wrap_content"
@@ -97,6 +95,7 @@
 			android:textColor="#939393"
 			android:layout_centerInParent="true" />
 	</LinearLayout>
-	
+
+
 
 </RelativeLayout>

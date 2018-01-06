@@ -8,12 +8,12 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -26,12 +26,15 @@ import android.widget.TextView;
 import com.example.administrator.jymall.common.ButtomTapActivity;
 import com.example.administrator.jymall.util.BigDecimalUtil;
 import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.DateStyle;
+import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.PricesUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.AmountView;
-import com.example.administrator.jymall.view.MyListView;
+import com.example.administrator.jymall.view.XListView;
+import com.example.administrator.jymall.view.XListView.IXListViewListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,12 +46,13 @@ import org.xutils.x;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @ContentView(R.layout.activity_cart)
-public class CartActivity extends  ButtomTapActivity{
+public class CartActivity extends  ButtomTapActivity implements IXListViewListener{
 	
 	@ViewInject(R.id.tab1)
 	private RelativeLayout tab1;
@@ -75,9 +79,11 @@ public class CartActivity extends  ButtomTapActivity{
 	private TextView top_del;
 	
 	private String isfuture = "0";
-	
+	private Handler mHandler;
+	private int start = 1;
+
 	@ViewInject(R.id.xListView)
-	public MyListView listViewAll = null ;
+	public XListView listViewAll = null ;
 	@ViewInject(R.id.listtv)
 	private TextView listtv;
 	@ViewInject(R.id.ck_all)
@@ -94,38 +100,32 @@ public class CartActivity extends  ButtomTapActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
-		Intent intent = this.getIntent();
-		isfuture = intent.getIntExtra("type", 0)+"";
 		super.progressDialog.hide();
 		parentControl();
-		sap = new ProSimpleAdapter(CartActivity.this, dateMaps, 
-				R.layout.listview_cart, 
-				new String[]{"owner"}, 
-				new int[]{R.id.tv_owner});
+		changeDiv();
+		sap = new InfoSimpleAdapter(CartActivity.this, dateMaps,
+				R.layout.listview_cartinfo,
+				new String[]{"proName"},
+				new int[]{R.id.tv_proName});
 		listViewAll.setAdapter(sap);
-		changeDiv();	
+		listViewAll.setPullLoadEnable(true);
+		listViewAll.setXListViewListener(this);
 		ck_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				// TOakDO Auto-generated method stub
-
 				allCheck(arg1);
-			
 			}
 		});
+		mHandler = new Handler();
 	}
-	
-	
-	
-	
-	
+
 	private void getData(){
 		progressDialog.show();
 		listtv.setVisibility(View.GONE);
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
-		maps.put("isfuture", isfuture);
 		dateMaps.clear();
 		XUtilsHelper.getInstance().post("app/showMallBuyCartList.htm", maps,new XUtilsHelper.XCallBack(){
 
@@ -143,217 +143,132 @@ public class CartActivity extends  ButtomTapActivity{
 						listtv.setVisibility(View.VISIBLE);
 					}
 
-					//JSONArray buyCartList = resjarr.getJSONObject(i).getJSONArray("buyCartList");
-					Map<String, Object> dateMap = new HashMap<String, Object>();
-					//dateMap.put("owner", resjarr.getJSONObject(i).get("owner"));
-					//dateMap.put("ownerId", resjarr.getJSONObject(i).get("ownerId"));
-					//dateMap.put("saleId", resjarr.getJSONObject(i).get("saleId"));
-					//dateMap.put("saleName", resjarr.getJSONObject(i).get("saleName"));
-					dateMap.put("isCheck", "0");
-					List<Map<String, Object>> dateMapinfo= new ArrayList<Map<String, Object>>();
 					for(int i=0;i<buyCartList.length();i++){
-						Map<String, Object> dateMap1 = new HashMap<String, Object>();
-						dateMap1.put("ID", buyCartList.getJSONObject(i).get("id"));
-						dateMap1.put("proName", buyCartList.getJSONObject(i).get("proName"));
-						dateMap1.put("proImgPaht", buyCartList.getJSONObject(i).get("proImgPath"));
-						dateMap1.put("money", buyCartList.getJSONObject(i).get("money"));
-						dateMap1.put("salePrice", buyCartList.getJSONObject(i).get("salePrice"));
-						dateMap1.put("quantity", buyCartList.getJSONObject(i).get("quantity"));
-						dateMap1.put("proUnitWerghtSuffix", buyCartList.getJSONObject(i).get("proUnit"));
-						dateMap1.put("isCheck", "0");
-						dateMap1.put("index", i);
-						dateMap1.put("proID", buyCartList.getJSONObject(i).get("proID"));
-						dateMap1.put("propID", buyCartList.getJSONObject(i).get("propID"));
-						//dateMap1.put("productPrices", buyCartList.getJSONObject(i).getJSONArray("productPrices").toString());
-						dateMapinfo.add(dateMap1);
-						dateMap.put("buyCartList", dateMapinfo);
+						Map<String, Object> dateMap = new HashMap<String, Object>();
+						dateMap.put("id", buyCartList.getJSONObject(i).get("id"));
+						dateMap.put("proName", buyCartList.getJSONObject(i).get("proName"));
+						dateMap.put("proImgPath", buyCartList.getJSONObject(i).get("proImgPath"));
+						dateMap.put("money", buyCartList.getJSONObject(i).get("money"));
+						dateMap.put("salePrice", buyCartList.getJSONObject(i).get("salePrice"));
+						dateMap.put("quantity", buyCartList.getJSONObject(i).get("quantity"));
+						dateMap.put("isCheck", "0");
+						dateMap.put("index", i);
+						dateMap.put("createDate", buyCartList.getJSONObject(i).get("createDate"));
+						dateMap.put("proID", buyCartList.getJSONObject(i).get("proID"));
+						dateMap.put("propID", buyCartList.getJSONObject(i).get("propID"));
+						dateMaps.add(dateMap);
 					}
-					dateMaps.add(dateMap);
 					sap.notifyDataSetChanged();
 					getAllMoney();
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
 			
 		});
-		
 	}
-	
-	public class ProSimpleAdapter  extends SimpleAdapter {
-		
-		private LayoutInflater mInflater;
-		
-		public ProSimpleAdapter(Context context,
-				List<? extends Map<String, ?>> data, int resource, String[] from,
-				int[] to) {
-			super(context, data, resource, from, to);
-			mInflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		}
-		
-		@SuppressLint("NewApi")
-		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
-			try{
-				if(convertView==null){ 
-					convertView=mInflater.inflate(R.layout.listview_cart, null); 
-				} 
-				//LinearLayout ll_company = (LinearLayout)convertView.findViewById(R.id.ll_company);
-				TextView tv_owner = (TextView)convertView.findViewById(R.id.tv_owner);
-				//CheckBox ck_check = (CheckBox)convertView.findViewById(R.id.ck_check);
-				MyListView lv_infolist = (MyListView)convertView.findViewById(R.id.lv_infolist);
-				/*if(dateMaps.get(position).get("isCheck").toString().equals("1")){
-					ck_check.setChecked(true);
-				}
-				else
-					ck_check.setChecked(false);*/
-				
-				
-				final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(position).get("buyCartList");
-				final SimpleAdapter sapinfo = new InfoSimpleAdapter(CartActivity.this, dateMapinfo, 
-						R.layout.listview_cartinfo, 
-						new String[]{"proName"}, 
-						new int[]{R.id.tv_proName});
-				lv_infolist.setAdapter(sapinfo);
-				lv_infolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-						System.out.println("in");
-					}
-				});
-				
-				/*ck_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					
-					@Override
-					public void onCheckedChanged(CompoundButton arg0, boolean arg1) {	
-						try{
-							allCheckInfo(dateMapinfo,arg1);
-							sapinfo.notifyDataSetChanged();
-						}
-						catch(Exception ep){ep.printStackTrace();}
-					}
-				});*/
-				/*ll_company.setOnTouchListener(new View.OnTouchListener() {
-					
-					@Override
-					public boolean onTouch(View arg0, MotionEvent event) {
-						// TODO Auto-generated method stub
-						if (event.getAction() == event.ACTION_UP) {
-							Intent i = new Intent(getApplicationContext(),CompanyInfoActivity.class);
-							i.putExtra("id", dateMaps.get(position).get("ownerId").toString());
-							startActivity(i);
-							return false;
-						}
-						return true;
-					}
-				});*/
-			}
-			catch(Exception e){
-				Log.v("PRO", e.getMessage());
-			}
-			return super.getView(position, convertView, parent);
-		}
-	}
-	
-	public class InfoSimpleAdapter  extends SimpleAdapter {
-		private LayoutInflater mInflater;
-		private List<Map<String, Object>> mdata;
-		
-		public InfoSimpleAdapter(Context context,
-				List<? extends Map<String, ?>> data, int resource, String[] from,
-				int[] to) {
-			super(context, data, resource, from, to);
-			mInflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			mdata = (List<Map<String, Object>>) data;
-		}
-		
-		@SuppressLint("NewApi")
-		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
-			try{
-				if(convertView==null){ 
-					convertView=mInflater.inflate(R.layout.listview_cartinfo, null); 
-				} 
-				ImageView img_proImgPaht = (ImageView)convertView.findViewById(R.id.img_proImgPaht);
-				TextView tv_proName = (TextView)convertView.findViewById(R.id.tv_proName);
-				TextView tv_salePrice = (TextView)convertView.findViewById(R.id.tv_salePrice);
-				TextView tv_quantity = (TextView)convertView.findViewById(R.id.tv_quantity);
-				AmountView av_quantity = (AmountView)convertView.findViewById(R.id.av_quantity);
-				CheckBox ck_checkinfo = (CheckBox)convertView.findViewById(R.id.ck_checkinfo);
-				
-				if(mdata.get(position).get("isCheck").toString().equals("1")){
-					ck_checkinfo.setChecked(true);
-				}
-				else
-					ck_checkinfo.setChecked(false);
-				
-				XUtilsHelper.getInstance().bindCommonImage(img_proImgPaht, mdata.get(position).get("proImgPaht").toString(), true);
-				tv_proName.setText(mdata.get(position).get("proName").toString());
-				
-				double salePricetemp = FormatUtil.toDoubleSmp(mdata.get(position).get("salePrice"));
-				if(salePricetemp == 0)
-					tv_salePrice.setText("面议");
-				else
-					tv_salePrice.setText("￥"+FormatUtil.toString(salePricetemp));
-				
-				
-				final JSONArray productPrices = FormatUtil.toJSONArray(mdata.get(position).get("productPrices").toString());
-				
-				av_quantity.setGoods_storage(999999999);
-				av_quantity.setGoods_min(PricesUtil.getMinQuantity(productPrices));
-				av_quantity.setAmount(FormatUtil.toDouble( mdata.get(position).get("quantity").toString()));
-				
-				ck_checkinfo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					
-					@Override
-					public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-						if(arg0.getId() == R.id.ck_checkinfo){
-							String isCheck = arg1?"1":"0";
-							mdata.get(position).put("isCheck", isCheck);
-							sap.notifyDataSetChanged();
-							getAllMoney();
-						}
-					}
-				});
-				av_quantity.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
-		            @Override
-		            public void onAmountChange(View view, double amount) {	
-		            	mdata.get(position).put("quantity", amount);
-		            	double salePrice = PricesUtil.getMinPrice(amount, productPrices);
-		            	//tv_salePrice.setText("￥"+FormatUtil.toString(salePrice));
-		            	mdata.get(position).put("salePrice", salePrice);		            	
-		            	getAllMoney();
-		            }
 
-					@Override
-					public void onAmountChange1(View view, double amount) {
-						// TODO Auto-generated method stub
-		            	mdata.get(position).put("quantity", amount);
-		            	double salePrice = PricesUtil.getMinPrice(amount, productPrices);
-		            	//tv_salePrice.setText("￥"+FormatUtil.toString(salePrice));
-		            	mdata.get(position).put("salePrice", salePrice);
-		            	getAllMoney();
-					}
-		        });
-				img_proImgPaht.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View arg0) {
-						Intent i = new Intent(getApplicationContext(),ProductInfoActivity.class);
-						i.putExtra("id", mdata.get(position).get("proID").toString());
-						startActivity(i);						
-					}
-				});
+
+	public class InfoSimpleAdapter  extends SimpleAdapter {
+		public ViewHolder holder;
+		private LayoutInflater mInflater;
+		private List<Map<String, Object>> myMaps;
+
+		public InfoSimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+			super(context, data, resource, from, to);
+			mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			myMaps = (List<Map<String, Object>>) data;
+		}
+		
+		@SuppressLint("NewApi")
+		@Override
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			Log.i("这尼玛", "进去了");
+			holder=null;
+			if(convertView==null){
+				convertView=mInflater.inflate(R.layout.listview_cartinfo, null);
+				holder=new ViewHolder();
+				x.view().inject(holder,convertView);
+				convertView.setTag(holder);
 			}
-			catch(Exception e){
-				//Log.v("PRO", e.getMessage());
+			else{
+				holder=(ViewHolder) convertView.getTag();
 			}
-			return super.getView(position, convertView, parent);
-		}		
+
+			if(myMaps.get(position).get("isCheck").toString().equals("1")){
+				holder.ck_checkinfo.setChecked(true);
+			}
+			else {
+				holder.ck_checkinfo.setChecked(false);
+			}
+
+			XUtilsHelper.getInstance().bindCommonImage(holder.img_proImgpath, myMaps.get(position).get("proImgPath").toString(), true);
+			holder.tv_proName.setText(myMaps.get(position).get("proName").toString());
+
+			double salePricetemp = FormatUtil.toDoubleSmp(myMaps.get(position).get("salePrice"));
+			if(salePricetemp == 0) {
+				holder.tv_salePrice.setText("面议");
+			}
+			else {
+				holder.tv_salePrice.setText("￥" + FormatUtil.toString(salePricetemp));
+			}
+
+			//final JSONArray productPrices = FormatUtil.toJSONArray(myMaps.get(position).get("productPrices").toString());
+
+			holder.av_quantity.setGoods_storage(999999999);
+			holder.av_quantity.setGoods_min(1);
+			holder.av_quantity.setAmount(FormatUtil.toDouble( myMaps.get(position).get("quantity").toString()));
+
+			holder.ck_checkinfo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+				@Override
+				public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+					if(arg0.getId() == R.id.ck_checkinfo){
+						String isCheck = arg1?"1":"0";
+						myMaps.get(position).put("isCheck", isCheck);
+						sap.notifyDataSetChanged();
+						getAllMoney();
+					}
+				}
+			});
+
+			holder.av_quantity.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
+				@Override
+				public void onAmountChange(View view, double amount) {
+					myMaps.get(position).put("quantity", amount);
+					double salePrice = PricesUtil.getMinPrice(amount, productPrices);
+					myMaps.get(position).put("salePrice", salePrice);
+					getAllMoney();
+				}
+
+				@Override
+				public void onAmountChange1(View view, double amount) {
+					// TODO Auto-generated method stub
+					myMaps.get(position).put("quantity", amount);
+					double salePrice = PricesUtil.getMinPrice(amount, productPrices);
+					myMaps.get(position).put("salePrice", salePrice);
+					getAllMoney();
+				}
+			});
+			holder.img_proImgpath.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					Intent i = new Intent(getApplicationContext(),ProductInfoActivity.class);
+					i.putExtra("id", myMaps.get(position).get("proID").toString());
+					startActivity(i);
+				}
+			});
+			//return super.getView(position, convertView, parent);
+			return convertView;
+		}
+
+		@Override
+		public int getCount() {
+			Log.i("这尼玛", "getCount:"+this.myMaps.size());
+			return this.myMaps.size();
+		}
 	}
 	
 	private void getAllMoney(){
@@ -361,17 +276,13 @@ public class CartActivity extends  ButtomTapActivity{
 			double tem = 0;
 			int count = 0;
 			for(int i=0;i<dateMaps.size();i++){
-				List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(i).get("buyCartList"); 
-				
-				for(int j=0;j< dateMaps.size();j++){
-					if(dateMapinfo.get(j).get("isCheck").toString().equals("1")){
-						tem = BigDecimalUtil.add(tem,
-								BigDecimalUtil.mul(
-										FormatUtil.toDouble(dateMapinfo.get(j).get("salePrice").toString()),
-										FormatUtil.toDouble(dateMapinfo.get(j).get("quantity").toString())	
-								));
-						count++;
-					}
+				if(dateMaps.get(i).get("isCheck").toString().equals("1")){
+					tem = BigDecimalUtil.add(tem,
+							BigDecimalUtil.mul(
+									FormatUtil.toDouble(dateMaps.get(i).get("salePrice").toString()),
+									FormatUtil.toDouble(dateMaps.get(i).get("quantity").toString())
+							));
+					count++;
 				}
 			}
 			tv_allmoney.setText("￥"+FormatUtil.toString(tem));
@@ -392,17 +303,11 @@ public class CartActivity extends  ButtomTapActivity{
 		String isCheck = f?"1":"0";
 		for(int i=0;i<dateMaps.size();i++){
 			dateMaps.get(i).put("isCheck", isCheck);
-			List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(i).get("buyCartList");
-			for(int j=0;j<dateMapinfo.size();j++){
-				dateMapinfo.get(j).put("isCheck", isCheck);
-			}
 		}
 		sap.notifyDataSetChanged();
 		getAllMoney();
 	}
-	
-	
-	
+
 	@SuppressLint("NewApi")
 	@Event(value={R.id.tab1,R.id.tab2,R.id.tab3},type=View.OnTouchListener.class)
 	private boolean tabTouch(View v, MotionEvent e){
@@ -427,16 +332,7 @@ public class CartActivity extends  ButtomTapActivity{
 		RelativeLayout.LayoutParams lp2 =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(1));
 		lp2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);	
 		if(isfuture.equals("0") ){
-			/*tab_txt1.setTextColor(Color.parseColor("#0083c8"));
-			tab_line1.setBackground(CommonUtil.getDrawable(R.drawable.tab_s3));
-			tab_line1.setLayoutParams(lp1);
-			tab_txt2.setTextColor(Color.parseColor("#000000"));
-			tab_line2.setBackgroundColor(0xFFb5b6b9);				
-			tab_line2.setLayoutParams(lp2);
-			tab_txt3.setTextColor(Color.parseColor("#000000"));
-			tab_line3.setBackgroundColor(0xFFb5b6b9);
-			tab_line3.setLayoutParams(lp2);*/
-			
+
 		}else if(isfuture.equals("1") ){
 			tab_txt2.setTextColor(Color.parseColor("#0083c8"));
 			tab_line2.setBackground(CommonUtil.getDrawable(R.drawable.tab_s3));
@@ -543,6 +439,48 @@ public class CartActivity extends  ButtomTapActivity{
 		
 	}
 
+	class ViewHolder{
+		@ViewInject(R.id.ck_checkinfo)
+		private CheckBox ck_checkinfo;
+		@ViewInject(R.id.img_proImgpath)
+		private ImageView img_proImgpath;
+		@ViewInject(R.id.tv_proName)
+		private TextView tv_proName;
+		@ViewInject(R.id.av_quantity)
+		private AmountView av_quantity;
+		@ViewInject(R.id.tv_salePrice)
+		private TextView tv_salePrice;
+	}
+
+	private void onLoad() {
+		listViewAll.stopRefresh();
+		listViewAll.stopLoadMore();
+		listViewAll.setRefreshTime(DateUtil.DateToString(new Date(), DateStyle.HH_MM_SS));
+	}
+
+	public void onRefresh() {
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				start = 1;
+				getData();
+				onLoad();
+			}
+		}, 1);
+
+	}
+
+	public void onLoadMore() {
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				start++;
+				getData();
+				onLoad();
+			}
+		}, 1);
+
+	}
 
 	/**
 	 * 初始化控件
