@@ -9,7 +9,7 @@
 	   android:id="@+id/top_title"
 	   android:layout_width="fill_parent"
 	   android:layout_height="45dp"
-	   android:background="#0083c8">
+	   android:background="@color/login_back_blue">
 
       <ImageButton
 		  android:id="@+id/top_back"
@@ -18,13 +18,33 @@
           android:layout_height="22dp"
 		  android:layout_centerVertical="true"
 		  android:layout_marginLeft="10dp"/>
+
    		<TextView
 			style="@style/wrap_content"
    		    android:id="@+id/title"
-   		    android:layout_centerInParent="true"
+			android:layout_centerInParent="true"
    		    android:textSize="16dp"
-   		    android:text="商品详情"
+   		    android:text="商品"
    		    android:textColor="#ffffff" />
+
+	   <TextView
+		   style="@style/wrap_content"
+		   android:id="@+id/blank"
+		   android:layout_toRightOf="@id/title"
+		   android:layout_centerInParent="true"
+		   android:width="20dp"
+		   android:textSize="16dp"
+		   android:text=""
+		   android:textColor="#ffffff" />
+
+	   <TextView
+		   style="@style/wrap_content"
+		   android:layout_toRightOf="@id/blank"
+		   android:id="@+id/detail"
+		   android:layout_centerInParent="true"
+		   android:textSize="16dp"
+		   android:text="详情"
+		   android:textColor="#ffffff" />
 	</RelativeLayout>
 
 	<LinearLayout

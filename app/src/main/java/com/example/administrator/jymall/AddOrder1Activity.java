@@ -1,21 +1,17 @@
 package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -106,20 +102,14 @@ public class AddOrder1Activity extends TopActivity {
 	
 	@ViewInject(R.id.tv_totalPrice)
 	private TextView tv_totalPrice;
-	@ViewInject(R.id.tv_totalPrice1)
-	private TextView tv_totalPrice1;
-	
-	@ViewInject(R.id.et_outType)
-	private EditText et_outType;  //运输方式
+
 	@ViewInject(R.id.et_buyMemo)
 	private EditText et_buyMemo; //买家备注
 	
 	String bId = "";
 	String pId = "";
 	String count = "";
-	
-	private String annex;
-	@ViewInject(R.id.iv_annex)
+
 	private ImageView iv_annex;
 	private String TEMP_IMAGE_PATH;  	
 	private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png"; 
@@ -143,23 +133,6 @@ public class AddOrder1Activity extends TopActivity {
 				new int[]{R.id.tv_proName});
 		mlv_prolist.setAdapter(sap);		
 		getDate();
-		et_outType.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(AddOrder1Activity.this);
-				final String[] units ={"委托金赢物流","自提","卖家代运"};
-				final String[] units1 ={"2","1","3"};
-                builder.setItems(units, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                    	et_outType.setText(units[which].toString());
-                    	et_outType.setTag(units1[which].toString());
-                    }
-                });
-                builder.show();	
-			}
-		});
 	}
 	
 	@Event(R.id.btn_tj)
@@ -177,10 +150,6 @@ public class AddOrder1Activity extends TopActivity {
 				Toast.makeText(getApplicationContext(), "开票资料请先设置！！",Toast.LENGTH_LONG).show();
 				return;
 			}
-			if(!FormatUtil.isNoEmpty(et_outType.getTag())){
-				Toast.makeText(getApplicationContext(), "请选择运输方式！！",Toast.LENGTH_LONG).show();
-				return;
-			}
 			progressDialog.show();
 			Map<String, String> maps= new HashMap<String, String>();
 			maps.put("serverKey", super.serverKey);
@@ -188,9 +157,7 @@ public class AddOrder1Activity extends TopActivity {
 			maps.put("pickbankid", bankAccount.getString("id"));
 			maps.put("addressId", address.getString("id"));
 			maps.put("invoiceId", Invoice.getString("id"));
-			maps.put("outType", et_outType.getTag().toString());
 			maps.put("buyMemo", et_buyMemo.getText().toString());
-			maps.put("annex", annex);
 			XUtilsHelper.getInstance().post("app/doOrder.htm", maps,new XUtilsHelper.XCallBack(){
 
 				@SuppressLint("NewApi")
@@ -260,7 +227,6 @@ public class AddOrder1Activity extends TopActivity {
 						
 						JSONArray prolistjson = res.getJSONArray("productList");
 						tv_totalPrice.setText(res.getString("totalPrice"));
-						tv_totalPrice1.setText(res.getString("totalPrice"));
 						for(int i=0;i<prolistjson.length();i++){
 							Map<String,Object> maptemp = new HashMap<String, Object>();
 							JSONObject jsontemp1 = prolistjson.getJSONObject(i);
@@ -525,7 +491,7 @@ public class AddOrder1Activity extends TopActivity {
 										CommonUtil.alter("图片上传失败");
 									}
 									else{
-										annex=res.getString("fileUrl");	
+
 									}
 								}
 							}
@@ -557,7 +523,7 @@ public class AddOrder1Activity extends TopActivity {
 										CommonUtil.alter("图片上传失败");
 									}
 									else{
-										annex=res.getString("fileUrl");
+										//annex=res.getString("fileUrl");
 									}
 								}
 							}
@@ -568,7 +534,7 @@ public class AddOrder1Activity extends TopActivity {
 		}
 	}
 	
-	@Event(value=R.id.iv_annex,type=View.OnTouchListener.class)
+	/*@Event(value=R.id.iv_annex,type=View.OnTouchListener.class)
 	private boolean businesslicenseclick(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
 			if(mcd1==null){			
@@ -587,7 +553,7 @@ public class AddOrder1Activity extends TopActivity {
 	
 					    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
 					    intent.addCategory(Intent.CATEGORY_OPENABLE);
-					    intent.setType("image/*");
+					    intent.setType("image*//*");
 					    startActivityForResult(intent, 101);
 					}
 				});
@@ -596,6 +562,6 @@ public class AddOrder1Activity extends TopActivity {
 			return false;
 		}
 		return true;
-	}
+	}*/
 
 }

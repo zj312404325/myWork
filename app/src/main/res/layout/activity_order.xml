@@ -1,0 +1,185 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".MyOrderActivity" >
+
+     <include  android:id="@+id/top"  layout="@layout/top" />
+     <LinearLayout
+		 android:layout_width="fill_parent"
+		 android:layout_height="0px"
+	     android:layout_alignParentBottom="true"
+		 android:id="@+id/bottom_tap"
+		 android:orientation="horizontal" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:orientation="horizontal"
+		android:layout_below="@id/top"
+		android:id="@+id/topsearch"
+		android:focusable="true"
+   		android:focusableInTouchMode="true"
+		android:background="#ffffff">
+	    <EditText
+			style="@style/EditText"
+			android:hint="请输入订单编号、合同编号、卖家/公司"
+			android:layout_gravity="center_vertical"
+	        android:layout_weight="1"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:id="@+id/et_searchvar" >
+	    </EditText>
+	    
+	    <Button
+			style="@style/btnblue"
+			android:text="搜索"
+			android:id="@+id/btn_search"
+			android:layout_width="60dp"
+			android:layout_height="30dp"
+			android:layout_gravity="center_vertical"
+			android:layout_marginRight="16dp"   />
+	</LinearLayout>
+
+   	
+	 <LinearLayout
+		 android:layout_width="match_parent"
+		 android:layout_height="40dp"
+		 android:orientation="horizontal"
+		 android:background="#ffffff"
+		 android:layout_below="@id/topsearch"
+		 android:id="@+id/tab" >
+		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1">
+		            <TextView
+						style="@style/wrap_content"
+						android:text="全部"
+						android:id="@+id/tab_txt1"
+		                android:layout_centerInParent="true"
+						android:textColor="#0083c8"/>
+	
+		             <LinearLayout
+						 android:id="@+id/tab_line1"
+						 android:layout_width="fill_parent"
+						 android:layout_height="8dp"
+						 android:background="@drawable/tab_s"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
+		            
+		            <LinearLayout
+						android:layout_width="1dp"
+						android:layout_height="16dp"
+		    	        android:background="#b5b6b9"
+						android:layout_alignParentRight="true"
+		    	        android:layout_centerVertical="true" />
+		        </RelativeLayout>
+
+		        <RelativeLayout
+					style="@style/fill"
+					android:id="@+id/tab2"
+					android:layout_weight="1">
+		            <TextView
+						style="@style/wrap_content"
+						android:text="待付款"
+						android:id="@+id/tab_txt2"
+		                android:layout_centerInParent="true"/>
+		           
+		             <LinearLayout
+						 android:id="@+id/tab_line2"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+						 android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
+		            
+		            <LinearLayout
+						android:layout_width="1dp"
+						android:layout_height="16dp"
+		    	        android:background="#b5b6b9"
+						android:layout_alignParentRight="true"
+		    	        android:layout_centerVertical="true" />
+		        </RelativeLayout>
+
+		        <RelativeLayout
+					style="@style/fill"
+					android:id="@+id/tab3"
+					android:layout_weight="1">
+		            <TextView
+						style="@style/wrap_content"
+						android:text="待发货"
+						android:id="@+id/tab_txt3"
+		                android:layout_centerInParent="true"/>
+		         
+		             <LinearLayout
+						 android:id="@+id/tab_line3"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+		    	         android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
+		            
+		            <LinearLayout
+						android:layout_width="1dp"
+						android:layout_height="16dp"
+		    	        android:background="#b5b6b9"
+						android:layout_alignParentRight="true"
+		    	        android:layout_centerVertical="true" />
+		            
+		        </RelativeLayout>
+		        <RelativeLayout style="@style/fill" android:id="@+id/tab4" android:layout_weight="1">
+		             <TextView
+						 style="@style/wrap_content"
+						 android:text="待收货"
+						 android:id="@+id/tab_txt4"
+		                 android:layout_centerInParent="true"/>
+		            
+		             <LinearLayout
+						 android:id="@+id/tab_line4"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+		    	         android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
+		           <LinearLayout
+					   android:layout_width="1dp"
+					   android:layout_height="16dp"
+					   android:background="#b5b6b9"
+					   android:layout_alignParentRight="true"
+					   android:layout_centerVertical="true" />
+		        </RelativeLayout>
+
+		         <RelativeLayout style="@style/fill" android:id="@+id/tab5" android:layout_weight="1">
+		             <TextView
+						 style="@style/wrap_content"
+						 android:text="待评价"
+						 android:id="@+id/tab_txt5"
+		                 android:layout_centerInParent="true"/>
+		             <LinearLayout
+						 android:id="@+id/tab_line5"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+		    	         android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
+		        </RelativeLayout>
+		    </LinearLayout>
+	
+	
+		<RelativeLayout
+			style="@style/fill"
+			android:layout_below="@id/tab"
+			android:layout_above="@id/bottom_tap">
+			<com.example.administrator.jymall.view.XListView
+				android:id="@+id/xListView"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:cacheColorHint="#00000000">
+			</com.example.administrator.jymall.view.XListView>
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/listtv"
+				android:text="暂无数据"
+				android:textColor="#939393"
+			    android:layout_centerInParent="true" />
+		</RelativeLayout>
+</RelativeLayout>

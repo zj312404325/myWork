@@ -1,18 +1,26 @@
 package com.example.administrator.jymall;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.jymall.common.MyApplication;
 import com.example.administrator.jymall.common.TopActivity;
@@ -23,30 +31,19 @@ import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.MyConfirmDialog;
 import com.example.administrator.jymall.view.MyListView;
 
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_add_order)
 public class AddOrderActivity extends TopActivity {
@@ -107,18 +104,15 @@ public class AddOrderActivity extends TopActivity {
 	
 	@ViewInject(R.id.tv_totalPrice)
 	private TextView tv_totalPrice;
-	@ViewInject(R.id.tv_totalPrice1)
-	private TextView tv_totalPrice1;
-	
-	@ViewInject(R.id.et_outType)
-	private EditText et_outType;  //运输方式
+
 	@ViewInject(R.id.et_buyMemo)
 	private EditText et_buyMemo; //买家备注
+
+	@ViewInject(R.id.cb_agree)
+	private CheckBox cb_agree;
 	
 	private String annex;
-	
-	@ViewInject(R.id.iv_annex)
-	private ImageView iv_annex;
+
 	private String TEMP_IMAGE_PATH;  	
 	private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png"; 
 	private Bitmap bitmap1 = null;
@@ -126,8 +120,6 @@ public class AddOrderActivity extends TopActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.i("这尼玛", "Create基老陈 ");
-
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
 		progressDialog.hide();
@@ -135,60 +127,45 @@ public class AddOrderActivity extends TopActivity {
 		
 		dateMaps = (List<Map<String, Object>>) getIntent().getSerializableExtra("data"); 
 		for(int i=0;i<dateMaps.size();i++){
-			List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(i).get("buyCartList");
-			for(int j=0;j<dateMapinfo.size();j++){
-				if(dateMapinfo.get(j).get("isCheck").toString().equals("1")){
-					ids += dateMapinfo.get(j).get("ID").toString()+",";
-					Map<String,String> temp = new HashMap<String, String>();
-					temp.put("k", "pro_Num"+dateMapinfo.get(j).get("ID").toString());
-					temp.put("v", dateMapinfo.get(j).get("quantity").toString());
-					proNum.add(temp);
-				}
+			if(dateMaps.get(i).get("isCheck").toString().equals("1")){
+				ids += dateMaps.get(i).get("id").toString()+",";
+				Map<String,String> temp = new HashMap<String, String>();
+				temp.put("k", "pro_Num"+dateMaps.get(i).get("id").toString());
+				temp.put("v", dateMaps.get(i).get("quantity").toString());
+				proNum.add(temp);
 			}
 		}
 		if(ids.equals("")){
 			CommonUtil.alter("请选择购买产品！");
 			finish();
 		}
-		else
-			ids = ids.substring(0, ids.length()-1);
+		else {
+			ids = ids.substring(0, ids.length() - 1);
+		}
 		sap = new ProSimpleAdapter(this, prolist, R.layout.listview_doorderinfo, 
 				new String[]{"proName"}, 
 				new int[]{R.id.tv_proName});
 		mlv_prolist.setAdapter(sap);		
 		getDate();
-		et_outType.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(AddOrderActivity.this);
-				final String[] units ={"委托金赢物流","自提","卖家代运"};
-				final String[] units1 ={"2","1","3"};
-                builder.setItems(units, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                    	et_outType.setText(units[which].toString());
-                    	et_outType.setTag(units1[which].toString());
-                    }
-                });
-                builder.show();	
-			}
-		});
 	}
 	
 	@Event(R.id.btn_tj)
 	private void btn_tjclick(View v){
 		try{
 			if(bankAccount== null){
-				Toast.makeText(getApplicationContext(), "请先设置银行账号！！",Toast.LENGTH_LONG*10000).show();
+				Toast.makeText(getApplicationContext(), "请先设置银行账号！",Toast.LENGTH_LONG*10000).show();
 				return;
 			}
 			if(address== null){
-				Toast.makeText(getApplicationContext(), "请先设置收货地址！！",Toast.LENGTH_LONG*10000).show();
+				Toast.makeText(getApplicationContext(), "请先设置收货地址！",Toast.LENGTH_LONG*10000).show();
 				return;
 			}
 			if(Invoice== null){
-				Toast.makeText(getApplicationContext(), "请先设置开票资料！！",Toast.LENGTH_LONG*10000).show();
+				Toast.makeText(getApplicationContext(), "请先设置开票资料！",Toast.LENGTH_LONG*10000).show();
+				return;
+			}
+			if(!cb_agree.isChecked()){
+				Toast.makeText(getApplicationContext(), "请阅读并同意金赢网交易条款!",Toast.LENGTH_LONG*10000).show();
 				return;
 			}
 
@@ -196,13 +173,12 @@ public class AddOrderActivity extends TopActivity {
 			Map<String, String> maps= new HashMap<String, String>();
 			maps.put("serverKey", super.serverKey);
 			maps.put("ids", ids);
-			maps.put("pickbankid", bankAccount.getString("id"));
-			maps.put("addressId", address.getString("id"));
-			maps.put("invoiceId", Invoice.getString("id"));
-			maps.put("outType", et_outType.getTag().toString());
+			maps.put("orderType", "order");
+			maps.put("subBankId", bankAccount.getString("id"));
+			maps.put("subAddressId", address.getString("id"));
+			maps.put("subInvoiceId", Invoice.getString("id"));
 			maps.put("buyMemo", et_buyMemo.getText().toString());
-			maps.put("annex", annex);
-			XUtilsHelper.getInstance().post("app/doOrder.htm", maps,new XUtilsHelper.XCallBack(){
+			XUtilsHelper.getInstance().post("app/doMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
 
 				@SuppressLint("NewApi")
 				@Override
@@ -210,9 +186,7 @@ public class AddOrderActivity extends TopActivity {
 					progressDialog.hide();
 					JSONObject res;
 					try {
-
 						res = new JSONObject(result);
-						
 						setServerKey(res.get("serverKey").toString());
 						if(res.get("d").equals("n")){
 							CommonUtil.alter(res.get("msg").toString());
@@ -243,11 +217,12 @@ public class AddOrderActivity extends TopActivity {
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("ids", ids);
+		maps.put("orderType", "order");
 		for(Map m:proNum){
 			maps.put(m.get("k").toString(), m.get("v").toString());
 		}
 		dateMaps.clear();
-		XUtilsHelper.getInstance().post("app/prepareDoOrder.htm", maps,new XUtilsHelper.XCallBack(){
+		XUtilsHelper.getInstance().post("app/prepareMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
 
 			@SuppressLint("NewApi")
 			@Override
@@ -255,9 +230,7 @@ public class AddOrderActivity extends TopActivity {
 				progressDialog.hide();
 				JSONObject res;
 				try {
-
 					res = new JSONObject(result);
-					
 					setServerKey(res.get("serverKey").toString());
 					if(res.get("d").equals("n")){
 						CommonUtil.alter(res.get("msg").toString());
@@ -266,51 +239,27 @@ public class AddOrderActivity extends TopActivity {
 					else{
 						address = FormatUtil.toJSONObject(res.getString("address"));
 						setAddress();
-						Invoice =  FormatUtil.toJSONObject(res.getString("Invoice"));
+						Invoice =  FormatUtil.toJSONObject(res.getString("invoice"));
 						setInvoice();
-						bankAccount =  FormatUtil.toJSONObject(res.getString("bankAccount"));
+						bankAccount =  FormatUtil.toJSONObject(res.getString("bankaccount"));
 						setBank();
 						
 						JSONArray prolistjson = res.getJSONArray("productList");
 						tv_totalPrice.setText(FormatUtil.toString(res.getDouble("totalPrice")));
-						tv_totalPrice1.setText(FormatUtil.toString(res.getDouble("totalPrice")));
 						for(int i=0;i<prolistjson.length();i++){
 							Map<String,Object> maptemp = new HashMap<String, Object>();
-							JSONObject jsontemp1 = prolistjson.getJSONObject(i);
-							JSONObject jsontemp = jsontemp1.getJSONObject("product");							
-							maptemp.put("proName", jsontemp.get("proName"));
-							maptemp.put("isFutures", jsontemp.get("isFutures"));
-							if(jsontemp.getString("templateid").equals("0")){
-								maptemp.put("specifno", "规格："+jsontemp1.getString("var1")+" "
-										+" 材质："+jsontemp1.getString("proquality"));
-							}
-							else if(jsontemp.getString("templateid").equals("1")){
-								maptemp.put("specifno", "规格："+jsontemp1.getString("var1")+" "
-										+" 锌层："+jsontemp1.getString("var2")
-										+" 包装方式："+jsontemp1.getString("var3"));
-							}
-							else if(jsontemp.getString("templateid").equals("2")){
-								maptemp.put("specifno", "规格："+jsontemp1.getString("var1")+" "
-										+" 颜色："+jsontemp1.getString("var4")
-										+" 漆膜厚度："+jsontemp1.getString("var5"));
-							}
-							else if(jsontemp.getString("templateid").equals("3")){
-								maptemp.put("specifno", "厚度："+jsontemp1.getString("var6")+" "
-										+" 口径："+jsontemp1.getString("var7"));
-							}
-							else if(jsontemp.getString("templateid").equals("4") ||
-									jsontemp.getString("templateid").equals("5")){
-								maptemp.put("specifno", "规格："+jsontemp1.getString("var1")+" "
-										+" 包装方式："+jsontemp1.getString("var3"));
-							}
-							maptemp.put("salePrice",FormatUtil.toString( jsontemp1.getDouble("saleprice")));
-							maptemp.put("picUrl", jsontemp.get("picUrl"));
-							maptemp.put("stockQty",FormatUtil.toString( jsontemp1.getDouble("quantity")));
-							maptemp.put("unit", jsontemp.get("unit"));
+							JSONObject product = prolistjson.getJSONObject(i);
+							JSONObject prop = product.getJSONObject("mallProductProp");
+							JSONObject attr = product.getJSONObject("mallProductAttr");
+							maptemp.put("proName", product.get("proname"));
+							maptemp.put("specifno", "规格："+prop.getString("var1")+" "+" 品牌："+attr.getString("var1"));
+							maptemp.put("salePrice",FormatUtil.toString( product.getDouble("saleprice")));
+							maptemp.put("picUrl", product.get("picUrl"));
+							maptemp.put("stockQty",FormatUtil.toString( product.getDouble("stockqty")));
+							maptemp.put("unit", product.get("unit"));
 							prolist.add(maptemp);
 						}
 						sap.notifyDataSetChanged();
-						
 					}
 					
 				} catch (JSONException e) {
@@ -347,16 +296,15 @@ public class AddOrderActivity extends TopActivity {
 				TextView pro_salePrice = (TextView)convertView.findViewById(R.id.pro_salePrice);
 				TextView pro_stockQty = (TextView)convertView.findViewById(R.id.pro_stockQty);
 				
-				XUtilsHelper.getInstance().bindCommonImage(img_picUrl, 
-						prolist.get(position).get("picUrl").toString(), true);
+				XUtilsHelper.getInstance().bindCommonImage(img_picUrl,prolist.get(position).get("picUrl").toString(), true);
 				tv_proName.setText(prolist.get(position).get("proName").toString());
 				pro_specifno.setText(prolist.get(position).get("specifno").toString());
 				if(FormatUtil.toDouble( prolist.get(position).get("salePrice").toString())==0){
 					pro_salePrice.setText("面议");
 				}
-				else
-					pro_salePrice.setText("￥"+prolist.get(position).get("salePrice").toString()+"/"
-						+prolist.get(position).get("unit").toString());
+				else{
+					pro_salePrice.setText("￥" + prolist.get(position).get("salePrice").toString() + "/" + prolist.get(position).get("unit").toString());
+				}
 				pro_stockQty.setText("X "+prolist.get(position).get("stockQty").toString());				
 			}
 			catch(Exception e){
@@ -519,7 +467,7 @@ public class AddOrderActivity extends TopActivity {
 	               TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
 	               ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
 	               bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
-	               iv_annex.setImageBitmap(bitmap1);
+	               //iv_annex.setImageBitmap(bitmap1);
 
 	               Map<String, String> maps = new HashMap<String, String>();
 	               maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
@@ -552,7 +500,7 @@ public class AddOrderActivity extends TopActivity {
                 	   bitmap1.recycle(); 
 	        	   ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
 	               bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);  
-	               iv_annex.setImageBitmap(bitmap1);
+	               //iv_annex.setImageBitmap(bitmap1);
 	               Map<String, String> maps = new HashMap<String, String>();
 	               maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
 	               maps.put("pathType","company");
@@ -580,7 +528,7 @@ public class AddOrderActivity extends TopActivity {
 		}
 	}
 	
-	@Event(value=R.id.iv_annex,type=View.OnTouchListener.class)
+	/*@Event(value=R.id.iv_annex,type=View.OnTouchListener.class)
 	private boolean businesslicenseclick(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
 			if(mcd1==null){			
@@ -599,7 +547,7 @@ public class AddOrderActivity extends TopActivity {
 	
 					    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
 					    intent.addCategory(Intent.CATEGORY_OPENABLE);
-					    intent.setType("image/*");
+					    intent.setType("image*//*");
 					    startActivityForResult(intent, 101);
 					}
 				});
@@ -608,7 +556,7 @@ public class AddOrderActivity extends TopActivity {
 			return false;
 		}
 		return true;
-	}
+	}*/
 	
 
 

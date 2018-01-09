@@ -80,7 +80,7 @@ public class UserCenterActivity extends ButtomTapActivity {
 		try{
 			Map<String, String> maps= new HashMap<String, String>();
 			maps.put("serverKey", super.serverKey);
-			XUtilsHelper.getInstance().post("app/initUserCenter.htm", maps,new XUtilsHelper.XCallBack(){
+			XUtilsHelper.getInstance().post("app/initMallUserCenter.htm", maps,new XUtilsHelper.XCallBack(){
 	
 				@SuppressLint("NewApi")
 				@Override
@@ -96,29 +96,29 @@ public class UserCenterActivity extends ButtomTapActivity {
 							MyApplication.getInstance().finishActivity();
 						}
 						else{
-							if(res.getString("buyPayNum").equals("0")){
+							if(res.getString("countAll").equals("0")){
 								tv_xh1.setVisibility(View.GONE);
 							}
 							else{
-								tv_xh1.setText(res.getString("buyPayNum"));
+								tv_xh1.setText(res.getString("countAll"));
 							}
-							if(res.getString("buyRecNum").equals("0")){
+							if(res.getString("countFast").equals("0")){
 								tv_xh2.setVisibility(View.GONE);
 							}
 							else{
-								tv_xh2.setText(res.getString("buyRecNum"));
+								tv_xh2.setText(res.getString("countFast"));
 							}
-							if(res.getString("buyEndNum").equals("0")){
+							if(res.getString("countOrder").equals("0")){
 								tv_xh3.setVisibility(View.GONE);
 							}
 							else{
-								tv_xh3.setText(res.getString("buyEndNum"));
+								tv_xh3.setText(res.getString("countOrder"));
 							}
-							if(res.getString("buyPermitNum").equals("0")){
+							if(res.getString("countCommon").equals("0")){
 								tv_xh4.setVisibility(View.GONE);
 							}
 							else{
-								tv_xh4.setText(res.getString("buyPermitNum"));
+								tv_xh4.setText(res.getString("countCommon"));
 							}
 
 						}

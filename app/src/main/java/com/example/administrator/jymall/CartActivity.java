@@ -30,7 +30,6 @@ import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
-import com.example.administrator.jymall.util.PricesUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.AmountView;
 import com.example.administrator.jymall.view.XListView;
@@ -237,8 +236,8 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 				@Override
 				public void onAmountChange(View view, double amount) {
 					myMaps.get(position).put("quantity", amount);
-					double salePrice = PricesUtil.getMinPrice(amount, productPrices);
-					myMaps.get(position).put("salePrice", salePrice);
+					//double salePrice = PricesUtil.getMinPrice(amount, productPrices);
+					//myMaps.get(position).put("salePrice", salePrice);
 					getAllMoney();
 				}
 
@@ -246,8 +245,8 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 				public void onAmountChange1(View view, double amount) {
 					// TODO Auto-generated method stub
 					myMaps.get(position).put("quantity", amount);
-					double salePrice = PricesUtil.getMinPrice(amount, productPrices);
-					myMaps.get(position).put("salePrice", salePrice);
+					//double salePrice = PricesUtil.getMinPrice(amount, productPrices);
+					//myMaps.get(position).put("salePrice", salePrice);
 					getAllMoney();
 				}
 			});

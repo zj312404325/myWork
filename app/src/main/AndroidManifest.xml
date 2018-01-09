@@ -357,6 +357,16 @@
             android:label="CreditStreamActivity" >
         </activity>
 
+        <activity
+            android:name=".MyOrderActivity"
+            android:label="MyOrderActivity" >
+        </activity>
+
+        <activity
+            android:name=".MyOrderInfoActivity"
+            android:label="MyOrderInfoActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />
