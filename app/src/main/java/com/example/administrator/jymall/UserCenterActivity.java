@@ -134,6 +134,34 @@ public class UserCenterActivity extends ButtomTapActivity {
 		}
 		catch(Exception e){e.printStackTrace();}
 	}
+
+	@Event(value={R.id.rl_allOrder,R.id.rl_fastMatch,R.id.rl_orderMatch,R.id.rl_commonOrder},type=View.OnTouchListener.class)
+	private boolean orderxhTouch(View v, MotionEvent event){
+		if (event.getAction() == event.ACTION_UP) {
+			if(v.getId() == R.id.rl_allOrder){
+				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
+				i.putExtra("orderStatus", "");
+				startActivity(i);
+			}
+			else if(v.getId() == R.id.rl_fastMatch){
+				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
+				i.putExtra("orderStatus", "fastMatch");
+				startActivity(i);
+			}
+			else if(v.getId() == R.id.rl_orderMatch){
+				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
+				i.putExtra("orderStatus", "orderMatch");
+				startActivity(i);
+			}
+			else if(v.getId() == R.id.rl_commonOrder){
+				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
+				i.putExtra("orderStatus", "product");
+				startActivity(i);
+			}
+			return false;
+		}
+		return true;
+	}
 	
 
 	@Event(value=R.id.rl_myMatch,type=View.OnTouchListener.class)

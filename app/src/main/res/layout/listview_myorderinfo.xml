@@ -36,7 +36,7 @@
 								android:text=""
 								android:id="@+id/tv_info"
 			            	   	android:textSize="11dp"
-								android:maxLines="2"
+								android:maxLines="3"
 			            	    android:lineSpacingExtra="4dp"
 								android:textColor="@color/gray"  />
 			        </LinearLayout>

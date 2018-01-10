@@ -28,7 +28,6 @@ import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.MyConfirmDialog;
 import com.example.administrator.jymall.view.MyListView;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
@@ -196,6 +195,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             for(int j=0;j<orderDtls.length();j++){
                                 Map<String, Object> dateMap1 = new HashMap<String, Object>();
                                 dateMap1.put("id", orderDtls.getJSONObject(j).get("iD"));
+                                dateMap1.put("orderDtl", orderDtls.getJSONObject(j).toString());
                                 dateMap1.put("proName", orderDtls.getJSONObject(j).get("proName"));
                                 dateMap1.put("salePrice", orderDtls.getJSONObject(j).get("salePrice"));
                                 count += FormatUtil.toDouble(orderDtls.getJSONObject(j).get("quantity"));
@@ -204,6 +204,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                                 dateMap1.put("proSpec", orderDtls.getJSONObject(j).get("proSpec"));
                                 dateMap1.put("refundStatus", orderDtls.getJSONObject(j).get("refundStatus"));
                                 dateMap1.put("refundType", orderDtls.getJSONObject(j).get("refundType"));
+                                dateMap1.put("proImgPath", orderDtls.getJSONObject(j).get("proImgPath").toString());
                                 dateMapinfo.add(dateMap1);
                             }
                             dateMap.put("orderDtls", dateMapinfo);
@@ -281,11 +282,16 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
 
                 JSONObject order =FormatUtil.toJSONObject(dateMaps.get(position).get("order").toString());
                 final String id = dateMaps.get(position).get("id").toString();
+                final String count = dateMaps.get(position).get("count").toString();
+                final String money = dateMaps.get(position).get("money").toString();
+                final String initMoney = dateMaps.get(position).get("initMoney").toString();
+                final String feeMoney = dateMaps.get(position).get("feeMoney").toString();
 
                 TextView tv_orderNo = (TextView)convertView.findViewById(R.id.tv_orderNo);
                 TextView tv_orderStatus = (TextView)convertView.findViewById(R.id.tv_orderStatus);
                 TextView tv_count = (TextView)convertView.findViewById(R.id.tv_count);
                 TextView tv_money = (TextView)convertView.findViewById(R.id.tv_money);
+                TextView tv_transFee = (TextView)convertView.findViewById(R.id.tv_transFee);
 
                 LinearLayout orderinfo = (LinearLayout)convertView.findViewById(R.id.orderinfo);
 
@@ -307,20 +313,25 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
 
                 Button btn_cancel = (Button)convertView.findViewById(R.id.btn_cancel);
                 Button btn_pay = (Button)convertView.findViewById(R.id.btn_pay);
-                Button btn_sh = (Button)convertView.findViewById(R.id.btn_sh);
-                Button btn_th = (Button)convertView.findViewById(R.id.btn_th);
-                Button btn_tk = (Button)convertView.findViewById(R.id.btn_tk);
-                Button btn_thfh = (Button)convertView.findViewById(R.id.btn_thfh);
+                Button btn_payFirst = (Button)convertView.findViewById(R.id.btn_payFirst);
+                Button btn_payLast = (Button)convertView.findViewById(R.id.btn_payLast);
+                Button btn_confirmProduct = (Button)convertView.findViewById(R.id.btn_confirmProduct);
+                Button btn_appraise = (Button)convertView.findViewById(R.id.btn_appraise);
+                TextView tv_isAppraised = (TextView)convertView.findViewById(R.id.tv_isAppraised);
 
-                final int ispartner = order.getInt("ispartner");
                 final int orderStatus = order.getInt("orderStatus");
+                final String orderType = order.getString("orderType");
+                final int isAppraised = order.getInt("isAppraised");
+
+                final String ownerID = order.getString("ownerID");
                 final int isOnline = order.getInt("isOnline");
                 final int refundstatus = order.getInt("refundstatus");
                 final int refundtype = order.getInt("refundtype");
-                final String orderType = order.getString("orderType");
-                final String ownerID = order.getString("ownerID");
 
-                tv_orderNo.setText(order.getString(orderNo));
+                tv_orderNo.setText(order.getString("orderNo"));
+                tv_count.setText("共"+count+"件商品");
+                tv_money.setText("合计：¥"+money+"元");
+                tv_transFee.setText("（含运费：¥"+feeMoney+"）");
 
                 /*tv_owner.setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -337,36 +348,25 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
 
                 if(!orderType.equals("orderMatch")) {
                     if (orderStatus == 0) {
-                        tv_orderStatus.setText("待设置定金");
-                    } else if (orderStatus == 1) {
-                        tv_orderStatus.setText("待支付定金");
-                    } else if (orderStatus == 2 ) {
-                        tv_orderStatus.setText("待确认定金");
-                    } else if (orderStatus == 3) {
-                        tv_orderStatus.setText("待生产完成");
-                    } else if (orderStatus == 4) {
-                        tv_orderStatus.setText("待付尾款");
-                    } else if (orderStatus == 5) {
-                        tv_orderStatus.setText("待确认尾款");
-                    } else if (orderStatus == 6) {
-                        tv_orderStatus.setText("待发货");
-                    } else if (orderStatus == 7) {
-                        tv_orderStatus.setText("等待收货");
-                    } else if (orderStatus == 8) {
-                        tv_orderStatus.setText("订单完成");
-                    } else if (orderStatus == 9) {
-                        tv_orderStatus.setText("订单取消");
-                    }
-                }
-                else{
-                    if (orderStatus == 0) {
                         tv_orderStatus.setText("未支付");
+                        btn_pay.setVisibility(View.VISIBLE);
+                        btn_pay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                Intent i = new Intent(getApplicationContext(),PreparePayActivity.class);
+                                i.putExtra("id", id);
+                                startActivity(i);
+                            }
+                        });
+                        btn_cancel.setVisibility(View.VISIBLE);
+
                     } else if (orderStatus == 1) {
-                        tv_orderStatus.setText("等待付款");
+                        tv_orderStatus.setText("等待收款");
                     } else if (orderStatus == 2 ) {
                         tv_orderStatus.setText("等待发货");
                     } else if (orderStatus == 3) {
                         tv_orderStatus.setText("等待收货");
+                        btn_confirmProduct.setVisibility(View.VISIBLE);
                     } else if (orderStatus == 4) {
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 5) {
@@ -375,152 +375,47 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         tv_orderStatus.setText("订单结束");
                     }
                 }
-
-                //取消订单
-                if(orderStatus < 1){
-                    btn_cancel.setVisibility(View.VISIBLE);
-                    btn_cancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View arg0) {
-                            // 交易取消开始
-                            final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "你确认要取消这个订单吗?", "确定取消", "否");
-                            mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
-                                @Override
-                                public void doConfirm() {
-                                    mcd.dismiss();
-                                    progressDialog.show();
-                                    Map<String, String> maps= new HashMap<String, String>();
-                                    maps.put("serverKey", skey);
-                                    maps.put("id", id);
-                                    XUtilsHelper.getInstance().post("app/cancelOrder.htm", maps,new XUtilsHelper.XCallBack(){
-
-                                        @SuppressLint("NewApi")
-                                        @Override
-                                        public void onResponse(String result)  {
-                                            progressDialog.hide();
-                                            JSONObject res;
-                                            try {
-                                                res = new JSONObject(result);
-                                                setServerKey(res.get("serverKey").toString());
-                                                skey = res.get("serverKey").toString();
-                                                if(res.get("d").equals("n")){
-                                                    CommonUtil.alter(res.get("msg").toString());
-                                                }
-                                                else{
-                                                    CommonUtil.alter("取消成功！！！！");
-                                                    getDate(true,true);
-                                                }
-                                            } catch (JSONException e) {
-                                                // TODO Auto-generated catch block
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    });
-                                }
-                                @Override
-                                public void doCancel() {
-                                    mcd.dismiss();
-                                }
-                            });
-                            mcd.show();
-                            //交易开始结束
-
-                        }
-                    });
-                }
                 else{
-                    btn_cancel.setVisibility(View.GONE);
+                    if (orderStatus == 0) {
+                        tv_orderStatus.setText("待设置定金");
+                        btn_cancel.setVisibility(View.VISIBLE);
+                    } else if (orderStatus == 1) {
+                        tv_orderStatus.setText("待支付定金");
+                        btn_payFirst.setVisibility(View.VISIBLE);
+                        btn_cancel.setVisibility(View.VISIBLE);
+                    } else if (orderStatus == 2 ) {
+                        tv_orderStatus.setText("待确认定金");
+                    } else if (orderStatus == 3) {
+                        tv_orderStatus.setText("待生产完成");
+                    } else if (orderStatus == 4) {
+                        tv_orderStatus.setText("待付尾款");
+                        btn_payLast.setVisibility(View.VISIBLE);
+                    } else if (orderStatus == 5) {
+                        tv_orderStatus.setText("待确认尾款");
+                    } else if (orderStatus == 6) {
+                        tv_orderStatus.setText("待发货");
+                    } else if (orderStatus == 7) {
+                        tv_orderStatus.setText("等待收货");
+                        btn_confirmProduct.setVisibility(View.VISIBLE);
+                    } else if (orderStatus == 8) {
+                        tv_orderStatus.setText("订单完成");
+                    } else if (orderStatus == 9) {
+                        tv_orderStatus.setText("订单取消");
+                    }
                 }
-                //支付
-                if(orderStatus == 1){
-                    btn_pay.setVisibility(View.VISIBLE);
-                    btn_pay.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View arg0) {
-                            Intent i = new Intent(getApplicationContext(),PreparePayActivity.class);
-                            i.putExtra("id", id);
-                            startActivity(i);
-                        }
-                    });
-                }
-                else{
-                    btn_pay.setVisibility(View.GONE);
-                }
-                //退款
-                if((orderStatus ==2 || orderStatus ==3) && (refundtype != 2 || (refundtype == 2 &&  refundstatus == -1))){
-                    btn_tk.setVisibility(View.VISIBLE);
-                    btn_tk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View arg0) {
-                            final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "没收到货，我要退款", "全部退款", "部分退款");
-                            mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
-                                @Override
-                                public void doConfirm() {
-                                    mcd.dismiss();
-                                    Intent intent = new Intent(getApplicationContext(), RefundActivity.class);
-                                    intent.putExtra("refundtype", 1);
-                                    intent.putExtra("id", id);
-                                    startActivityForResult(intent, BaseConst.RCODE_REFOUND);
-                                }
-                                @Override
-                                public void doCancel() {
-                                    mcd.dismiss();
-                                    Intent intent = new Intent(getApplicationContext(), RefundActivity.class);
-                                    intent.putExtra("refundtype", 3);
-                                    intent.putExtra("id", id);
-                                    startActivityForResult(intent, BaseConst.RCODE_REFOUND);
-                                }
-                            });
-                            mcd.show();
-                        }
-                    });
-                }
-                else{
-                    btn_tk.setVisibility(View.GONE);
-                }
-                //退货
-                if(orderStatus == 4 && (refundtype != 4 || (refundtype == 4 &&  refundstatus == -1))){
-                    btn_th.setVisibility(View.VISIBLE);
-                    btn_th.setOnClickListener(new View.OnClickListener() {
 
-                        @Override
-                        public void onClick(View arg0) {
-                            final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "我要退货", "全部退货", "部分退货");
-                            mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
-                                @Override
-                                public void doConfirm() {
-                                    mcd.dismiss();
-                                    Intent intent = new Intent(getApplicationContext(), RefundActivity.class);
-                                    intent.putExtra("refundtype", 4);
-                                    intent.putExtra("id", id);
-                                    startActivityForResult(intent,BaseConst.RCODE_REFOUND);
-                                }
-                                @Override
-                                public void doCancel() {
-                                    mcd.dismiss();
-                                    Intent intent = new Intent(getApplicationContext(), RefundActivity.class);
-                                    intent.putExtra("refundtype", 2);
-                                    intent.putExtra("id", id);
-                                    startActivityForResult(intent,BaseConst.RCODE_REFOUND);
-                                }
-                            });
-                            mcd.show();
-                        }
-                    });
+                //评价状态
+                if(isAppraised !=1) {
+                    if(orderStatus ==3 && orderType.equals("product")) {
+                        btn_appraise.setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    tv_isAppraised.setVisibility(View.VISIBLE);
                 }
-                else{
-                    btn_th.setVisibility(View.GONE);
-
-                }
-                btn_thfh.setVisibility(View.GONE);
-                btn_sh.setVisibility(View.GONE);
-
-                tv_money.setText(order.getString("money")+"元");
-                tv_count.setText("数量："+dateMaps.get(position).get("count").toString());
 
                 final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(position).get("orderDtls");
                 final SimpleAdapter sapinfo = new InfoSimpleAdapter(MyOrderActivity.this, dateMapinfo,
-                        R.layout.listview_orderxhinfo,
+                        R.layout.listview_myorderinfo,
                         new String[]{"proName"},
                         new int[]{R.id.tv_proName});
                 list_orderinfo.setAdapter(sapinfo);
@@ -550,7 +445,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         public View getView(int position, View convertView, ViewGroup parent) {
             try{
                 if(convertView==null){
-                    convertView=mInflater.inflate(R.layout.listview_orderxhinfo, null);
+                    convertView=mInflater.inflate(R.layout.listview_myorderinfo, null);
                 }
                 ImageView img_proImgPath = (ImageView)convertView.findViewById(R.id.img_proImgPath);
                 TextView tv_proName = (TextView)convertView.findViewById(R.id.tv_proName);
@@ -559,39 +454,26 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 TextView tv_quantity = (TextView)convertView.findViewById(R.id.tv_quantity);
                 ImageView img_tui = (ImageView)convertView.findViewById(R.id.img_tui);
 
-                JSONObject temp  =FormatUtil.toJSONObject( mdata.get(position).get("orderInfo").toString());
-                XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
+                JSONObject orderdtl  =FormatUtil.toJSONObject( mdata.get(position).get("orderDtl").toString());
+                XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
 
-                int templateid = temp.getInt("templateid");
-                String salePrice = temp.getString("salePrice");
-                int payMethod = temp.getInt("payMethod");
-                int isrefund = temp.getInt("isrefund");
-                if(isrefund == 1){
-                    img_tui.setVisibility(View.VISIBLE);
-                }
-                else{
-                    img_tui.setVisibility(View.GONE);
-                }
-                String info = "";
-                if(templateid == 0){
-                    info = "规格："+temp.getString("proSpec")+"   "
-                            +"材质："+temp.getString("proQuality")+"   "
-                            +"编号："+temp.getString("proCode");
-                }
+                String salePrice = orderdtl.getString("salePrice");
+                String proName = orderdtl.getString("proName");
+
+                String info ;
+                info = "品牌："+orderdtl.getString("brand")+"\n"+"材质："+orderdtl.getString("proQuality")+"\n" +"规格："+orderdtl.getString("proSpec");
+
                 tv_info.setText(info);
+                tv_proName.setText(proName);
+
                 if(salePrice.equals("0")){
                     salePrice = "面议";
                 }
                 else{
-                    if(payMethod == 0){
-                        salePrice += "元/"+temp.getString("unit");
-                    }
-                    else{
-                        salePrice += "积分/"+temp.getString("unit");
-                    }
+                    salePrice ="¥"+salePrice+"元/"+orderdtl.getString("unit");
                 }
                 tv_salePrice.setText(salePrice);
-                tv_quantity.setText(temp.getString("quantity")+temp.getString("unit"));
+                tv_quantity.setText("×"+orderdtl.getString("quantity")+orderdtl.getString("unit"));
 
             }
             catch(Exception e){

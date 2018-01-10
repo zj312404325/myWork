@@ -16,6 +16,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.administrator.jymall.common.TopActivity;
+import com.example.administrator.jymall.util.BigDecimalUtil;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
@@ -149,7 +150,7 @@ public class MyOrderInfoActivity extends TopActivity {
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("id", id);
-        XUtilsHelper.getInstance().post("app/myBuyOrderDetail.htm", maps,new XUtilsHelper.XCallBack(){
+        XUtilsHelper.getInstance().post("app/mallOrderDetail.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")
             @Override
@@ -161,99 +162,69 @@ public class MyOrderInfoActivity extends TopActivity {
                     setServerKey(res.get("serverKey").toString());
                     order = res.getJSONObject("order");
                     int orderStatus = order.getInt("orderStatus");
-                    int isOnline = order.getInt("isOnline");
+                    String orderType = order.getString("orderType");
                     int refundstatus = order.getInt("refundstatus");
                     int refundtype = order.getInt("refundtype");
 
-                    if(isOnline == 2){
-                        tv_isOnline.setText("线下支付");
+                    if(!orderType.equals("orderMatch")) {
+                        if (orderStatus == 0) {
+                            tv_orderStatus.setText("未支付");
+                        } else if (orderStatus == 1) {
+                            tv_orderStatus.setText("等待收款");
+                        } else if (orderStatus == 2 ) {
+                            tv_orderStatus.setText("等待发货");
+                        } else if (orderStatus == 3) {
+                            tv_orderStatus.setText("等待收货");
+                        } else if (orderStatus == 4) {
+                            tv_orderStatus.setText("订单完成");
+                        } else if (orderStatus == 5) {
+                            tv_orderStatus.setText("订单取消");
+                        } else if (orderStatus == 6) {
+                            tv_orderStatus.setText("订单结束");
+                        }
                     }
                     else{
-                        tv_isOnline.setText("线上支付");
-                    }
-                    if(orderStatus == 0){
-                        tv_orderStatus.setText("等待卖家审核");
-                        rl_paytype.setVisibility(View.GONE);
-                    }
-                    else if(orderStatus == 1){
-                        tv_orderStatus.setText("等待付款");
-                        btn_topay.setVisibility(View.VISIBLE);
-                        rl_paytype.setVisibility(View.GONE);
-                    }
-                    else if(orderStatus == 2 && isOnline ==2 && refundstatus == 0){
-                        tv_orderStatus.setText("已线下付款");
-                    }
-                    else if(orderStatus == 2 && isOnline !=2 && refundstatus == 0){
-                        tv_orderStatus.setText("买家已付款");
-                    }
-                    else if(orderStatus == 3){
-                        tv_orderStatus.setText("卖家已收款");
-                    }
-                    else if(orderStatus == 4){
-                        tv_orderStatus.setText("等待买家收货");
-                        btn_tosh.setVisibility(View.VISIBLE);
-                    }
-                    else if(orderStatus == 5){
-                        tv_orderStatus.setText("买家已收货");
-                    }
-                    else if(orderStatus == 6){
-                        tv_orderStatus.setText("交易成功");
-                    }
-                    else if(orderStatus == 7){
-                        tv_orderStatus.setText("交易取消");
-                    }
-                    if(refundstatus == 1){
-                        if(refundtype==0){
-                            tv_orderStatus.setText("退货确认中");
-                        }
-                        else if(refundtype==1){
-                            tv_orderStatus.setText("退款确认中");
+                        if (orderStatus == 0) {
+                            tv_orderStatus.setText("待设置定金");
+                        } else if (orderStatus == 1) {
+                            tv_orderStatus.setText("待支付定金");
+                        } else if (orderStatus == 2 ) {
+                            tv_orderStatus.setText("待确认定金");
+                        } else if (orderStatus == 3) {
+                            tv_orderStatus.setText("待生产完成");
+                        } else if (orderStatus == 4) {
+                            tv_orderStatus.setText("待付尾款");
+                        } else if (orderStatus == 5) {
+                            tv_orderStatus.setText("待确认尾款");
+                        } else if (orderStatus == 6) {
+                            tv_orderStatus.setText("待发货");
+                        } else if (orderStatus == 7) {
+                            tv_orderStatus.setText("等待收货");
+                        } else if (orderStatus == 8) {
+                            tv_orderStatus.setText("订单完成");
+                        } else if (orderStatus == 9) {
+                            tv_orderStatus.setText("订单取消");
                         }
                     }
-                    else if(refundstatus == 2){
-                        if(refundtype==0){
-                            tv_orderStatus.setText("卖家同意退货");
-                        }
-                        else if(refundtype==1){
-                            tv_orderStatus.setText("卖家同意退款");
-                        }
-                    }
-                    else if(refundstatus == 4){
-                        tv_orderStatus.setText("等待卖家收货");
-                    }
+
                     tv_orderNo.setText(order.getString("orderNo"));
                     tv_createDate.setText(order.getString("createDate"));
                     tv_contact.setText(order.getString("contact"));
                     tv_mobilePhone.setText(order.getString("mobilePhone"));
                     tv_buyAddr.setText(order.getString("buyAddr"));
-                    tv_postCode.setText(order.getString("postCode"));
-                    tv_owner.setText(order.getString("owner"));
 
                     String invoiceType = order.getString("invoiceType");
                     String invoiceContent = invoiceType.equals("VAT")?order.getString("invoiceContent"):"明细";
                     if(invoiceType.equals("COMMON")){
                         tv_invoiceType.setText("普通发票");
-                        ll_invoiceTypeCOMMON.setVisibility(View.VISIBLE);
-                        ll_invoiceTypeVAT.setVisibility(View.GONE);
-                        tv_title.setText("抬头："+order.getString("title"));
-                        tv_invoiceContent.setText("发票内容："+invoiceContent);
+                        tv_title.setText(order.getString("title"));
                     }
                     else{
                         tv_invoiceType.setText("增值税发票");
-                        ll_invoiceTypeCOMMON.setVisibility(View.GONE);
-                        ll_invoiceTypeVAT.setVisibility(View.VISIBLE);
-                        tv_companyName.setText("单位名称："+order.getString("companyName"));
-                        tv_taxNo.setText("纳税人识别号："+order.getString("taxNo"));
-                        tv_registerAddress.setText("注册地址："+order.getString("registerAddress"));
-                        tv_registerPhone.setText("注册电话："+order.getString("registerPhone"));
-                        tv_bankName.setText("开户银行："+order.getString("bankName"));
-                        tv_bankNo.setText("银行账户："+order.getString("bankNo"));
-                        tv_invoiceContent1.setText("发票内容："+invoiceContent);
+                        tv_title.setText(order.getString("companyName"));
                     }
-                    tv_productMoney.setText("￥"+FormatUtil.toString(order.getDouble("productMoney")));
+                    tv_productMoney.setText("￥"+FormatUtil.toString(BigDecimalUtil.sub(FormatUtil.toDouble(order.getString("money")),FormatUtil.toDouble(order.getString("feeMoney")),2)));
                     tv_feeMoney.setText("￥"+order.getString("feeMoney"));
-                    tv_machiningMoney.setText("￥"+order.getString("machiningMoney"));
-                    tv_dealsMoney.setText("￥"+order.getString("dealsMoney"));
                     tv_money.setText("￥"+FormatUtil.toString( order.getDouble("money")));
 
 
@@ -266,7 +237,7 @@ public class MyOrderInfoActivity extends TopActivity {
                         dateMaps.add(dateMap1);
                     }
                     SimpleAdapter sapinfo = new InfoSimpleAdapter(MyOrderInfoActivity.this, dateMaps,
-                            R.layout.listview_orderxhinfo,
+                            R.layout.listview_myorderinfo,
                             new String[]{"proName"},
                             new int[]{R.id.tv_proName});
                     list_orderinfo.setAdapter(sapinfo);
@@ -299,7 +270,7 @@ public class MyOrderInfoActivity extends TopActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             try{
                 if(convertView==null){
-                    convertView=mInflater.inflate(R.layout.listview_orderxhinfo, null);
+                    convertView=mInflater.inflate(R.layout.listview_myorderinfo, null);
                 }
                 ImageView img_proImgPath = (ImageView)convertView.findViewById(R.id.img_proImgPath);
                 TextView tv_proName = (TextView)convertView.findViewById(R.id.tv_proName);
@@ -310,30 +281,19 @@ public class MyOrderInfoActivity extends TopActivity {
                 JSONObject temp  =FormatUtil.toJSONObject( mdata.get(position).get("orderInfo").toString());
                 XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
 
-                int templateid = temp.getInt("templateid");
                 String salePrice = temp.getString("salePrice");
                 int payMethod = temp.getInt("payMethod");
                 String info = "";
-                if(templateid == 0){
-                    info = "规格："+temp.getString("proSpec")+"   "
-                            +"材质："+temp.getString("proQuality")+"   "
-                            +"编号："+temp.getString("proCode");
-                }
+                info = "品牌："+temp.getString("brand")+"\n"+"材质："+temp.getString("proQuality")+"\n" +"规格："+temp.getString("proSpec");
                 tv_info.setText(info);
                 if(salePrice.equals("0")){
                     salePrice = "面议";
                 }
                 else{
-                    if(payMethod == 0){
-                        salePrice += "元/"+temp.getString("unit");
-                    }
-                    else{
-                        salePrice += "积分/"+temp.getString("unit");
-                    }
+                    salePrice += "元/"+temp.getString("unit");
                 }
                 tv_salePrice.setText(salePrice);
-                tv_quantity.setText(temp.getString("quantity")+temp.getString("unit"));
-
+                tv_quantity.setText("×"+temp.getString("quantity")+temp.getString("unit"));
             }
             catch(Exception e){
                 Log.v("PRO", e.getMessage());

@@ -71,14 +71,14 @@
 	    		    <RelativeLayout
 						style="@style/fill"
 						android:layout_weight="1"
-						android:id="@+id/rl_xh1">
+						android:id="@+id/rl_allOrder">
 
 						<ImageView
 							android:background="@drawable/icon_all_order"
 							android:layout_width="29dp"
 							android:layout_height="35dp"
 							android:layout_centerInParent="true"
-							android:id="@+id/uc_xh1"/>
+							android:id="@+id/iv_allOrder"/>
 
 						<TextView
 							android:id="@+id/tv_xh1"
@@ -99,7 +99,7 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:layout_centerHorizontal="true"
-							android:layout_below="@+id/uc_xh1"
+							android:layout_below="@+id/iv_allOrder"
 							android:text="全部订单"
 							android:id="@+id/textView" />
 
@@ -107,19 +107,19 @@
 	    		    <RelativeLayout
 						style="@style/fill"
 						android:layout_weight="1"
-						android:id="@+id/rl_xh2">
+						android:id="@+id/rl_fastMatch">
 	    		        <ImageView
 							android:background="@drawable/icon_fast_match"
 							android:layout_width="29dp"
 							android:layout_height="35dp"
 	    		            android:layout_centerInParent="true"
-							android:id="@+id/uc_xh2"/>
+							android:id="@+id/iv_fastMatch"/>
 
 						<TextView
 							android:id="@+id/tv_xh2"
 							android:layout_width="17dp"
 							android:layout_height="17dp"
-							android:layout_alignEnd="@+id/uc_xh2"
+							android:layout_alignEnd="@+id/iv_fastMatch"
 							android:layout_alignParentTop="true"
 							android:layout_marginTop="10dp"
 							android:background="@drawable/uc_topred"
@@ -133,26 +133,26 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:layout_centerHorizontal="true"
-							android:layout_below="@+id/uc_xh2"
+							android:layout_below="@+id/iv_fastMatch"
 							android:text="快速配订单"
 							android:id="@+id/textView2" />
 	    		    </RelativeLayout>
 	    		    <RelativeLayout
 						style="@style/fill"
 						android:layout_weight="1"
-						android:id="@+id/rl_xh3">
+						android:id="@+id/rl_orderMatch">
 	    		        <ImageView
 							android:background="@drawable/icon_order_match"
 							android:layout_width="29dp"
 							android:layout_height="35dp"
 	    		            android:layout_centerInParent="true"
-							android:id="@+id/uc_xh3"/>
+							android:id="@+id/iv_orderMatch"/>
 
 						<TextView
 							android:id="@+id/tv_xh3"
 							android:layout_width="17dp"
 							android:layout_height="17dp"
-							android:layout_alignEnd="@+id/uc_xh3"
+							android:layout_alignEnd="@+id/iv_orderMatch"
 							android:layout_alignParentTop="true"
 							android:layout_marginTop="10dp"
 							android:background="@drawable/uc_topred"
@@ -165,20 +165,20 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:layout_centerHorizontal="true"
-							android:layout_below="@+id/uc_xh3"
+							android:layout_below="@+id/iv_orderMatch"
 							android:text="定制配订单"
 							android:id="@+id/textView3" />
 	    		    </RelativeLayout>
 	    		    <RelativeLayout
 						style="@style/fill"
 						android:layout_weight="1"
-						android:id="@+id/rl_xh4">
+						android:id="@+id/rl_commonOrder">
 	    		        <ImageView
 							android:background="@drawable/icon_common_order"
 							android:layout_width="29dp"
 							android:layout_height="35dp"
 	    		            android:layout_centerInParent="true"
-							android:id="@+id/uc_xh4"/>
+							android:id="@+id/iv_commonOrder"/>
 
 						<TextView
 							android:id="@+id/tv_xh4"
@@ -198,7 +198,7 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:layout_centerHorizontal="true"
-							android:layout_below="@+id/uc_xh4"
+							android:layout_below="@+id/iv_commonOrder"
 							android:text="普通订单"
 							android:id="@+id/textView4" />
 	    		    </RelativeLayout>
