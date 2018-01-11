@@ -245,7 +245,7 @@
         </activity>
         <activity
             android:name=".PreparePayActivity"
-            android:label="@string/title_activity_prepare_pay" >
+            android:label="PreparePayActivity" >
         </activity>
         <activity
             android:name=".PayPasswordActivity"

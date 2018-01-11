@@ -396,7 +396,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         tv_orderStatus.setText("待发货");
                     } else if (orderStatus == 7) {
                         tv_orderStatus.setText("等待收货");
-                        btn_confirmProduct.setVisibility(View.VISIBLE);
+                            btn_confirmProduct.setVisibility(View.VISIBLE);
                     } else if (orderStatus == 8) {
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 9) {

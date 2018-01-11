@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,21 +52,32 @@ public class PreparePayActivity extends TopActivity {
 	@ViewInject(R.id.tv_umoney)
 	private TextView tv_umoney;
 	
-	@ViewInject(R.id.tv_umoneysy)
-	private TextView tv_umoneysy;
+	@ViewInject(R.id.tv_leftUmoney)
+	private TextView tv_leftUmoney;
 	
 	@ViewInject(R.id.et_password)
 	private EditText et_password;
 	
-	@ViewInject(R.id.btn_pay)
-	private Button btn_pay;
+	@ViewInject(R.id.btn_offlinePay)
+	private Button btn_offlinePay;
+
+	@ViewInject(R.id.btn_umoneyPay)
+	private Button btn_umoneyPay;
 	
-	@ViewInject(R.id.rl_downpay)
-	private RelativeLayout rl_downpay;
-	
-	@ViewInject(R.id.rl_recharge)
-	private RelativeLayout rl_recharge;
-	
+	@ViewInject(R.id.bt_recharge)
+	private Button bt_recharge;
+
+	@ViewInject(R.id.cb_selectUmoney)
+	private CheckBox cb_selectUmoney;
+
+	@ViewInject(R.id.ll_leftUmoney)
+	private LinearLayout ll_leftUmoney;
+
+	@ViewInject(R.id.ll_umoneyPwd)
+	private LinearLayout ll_umoneyPwd;
+
+	@ViewInject(R.id.ll_payMethod)
+	private LinearLayout ll_payMethod;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +93,7 @@ public class PreparePayActivity extends TopActivity {
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("id", id);
-		XUtilsHelper.getInstance().post("app/preparePay.htm", maps,new XUtilsHelper.XCallBack(){
+		XUtilsHelper.getInstance().post("app/prepareMallPay.htm", maps,new XUtilsHelper.XCallBack(){
 
 			@SuppressLint("NewApi")
 			@Override
@@ -97,32 +111,50 @@ public class PreparePayActivity extends TopActivity {
 						orderNo = res.getJSONObject("order").getString("orderNo");
 						String haspwd = res.getString("haspwd");
 						if(haspwd.equals("1")){
-							tv_haspwd.setText("如需修改密码？点击此处设置");
+							tv_haspwd.setText("如需修改密码,点击此处设置");
 						}
 						else{
-							tv_haspwd.setText("你还没有支付密码？点击此处设置");
+							tv_haspwd.setText("你还没有支付密码,点击此处设置");
 						}
-						umoney = res.getDouble("umoney");
-						money = res.getJSONObject("order").getDouble("money");
-						umoneysy = BigDecimalUtil.sub(umoney, money);
+						umoney = FormatUtil.toDouble(res.getString("umoney"));
+						money = FormatUtil.toDouble(res.getJSONObject("order").getString("money"));
+						umoneysy = BigDecimalUtil.sub(umoney, money,2);
+						if(umoneysy<0){
+							umoneysy=0d;
+						}
 						
 						tv_money.setText(FormatUtil.toStringWithDecimal(money));
 						tv_umoney.setText(FormatUtil.toStringWithDecimal(umoney));
-						tv_umoneysy.setText(FormatUtil.toStringWithDecimal(umoneysy));
+						tv_leftUmoney.setText(FormatUtil.toStringWithDecimal(umoneysy));
 					}
+
+					//给CheckBox设置事件监听
+					cb_selectUmoney.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+						@Override
+						public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+							// TODO Auto-generated method stub
+							if(isChecked){//选中
+								ll_leftUmoney.setVisibility(View.VISIBLE);
+								ll_umoneyPwd.setVisibility(View.VISIBLE);
+								ll_payMethod.setVisibility(View.GONE);
+							}else{//取消选中
+								ll_leftUmoney.setVisibility(View.GONE);
+								ll_umoneyPwd.setVisibility(View.GONE);
+								ll_payMethod.setVisibility(View.VISIBLE);
+							}
+						}
+					});
 					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
-			
 		});
 	}
 
-	@Event(R.id.btn_pay)
-	private void btntopay(View v){
+	@Event(R.id.btn_umoneyPay)
+	private void umoneyPay(View v){
 		if(umoneysy <= 0){
 			CommonUtil.alter("你的余额不足，请先充值！");return ;
 		}
@@ -134,9 +166,10 @@ public class PreparePayActivity extends TopActivity {
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("orderNo", orderNo);
-		maps.put("id", id);
+		maps.put("orderType", "mall");
+		maps.put("orderId", id);
 		maps.put("password", et_password.getText().toString());
-		XUtilsHelper.getInstance().post("app/doPayCurrent.htm", maps,new XUtilsHelper.XCallBack(){
+		XUtilsHelper.getInstance().post("app/doUmoneyPay.htm", maps,new XUtilsHelper.XCallBack(){
 
 			@SuppressLint("NewApi")
 			@Override
@@ -152,7 +185,7 @@ public class PreparePayActivity extends TopActivity {
 					}
 					else{
 						CommonUtil.alter("支付成功");
-						Intent intent = new Intent(getApplicationContext(),Order_Xh_Info_Activity.class);
+						Intent intent = new Intent(getApplicationContext(),MyOrderInfoActivity.class);
 						intent.putExtra("id", id);
 						startActivity(intent);
 						finish();
@@ -192,8 +225,7 @@ public class PreparePayActivity extends TopActivity {
 	
 	@Override  
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {    
-		if(resultCode==RESULT_OK){ 
-			
+		if(resultCode==RESULT_OK){
 			if(requestCode == CommonUtil.getInt(R.string.RECODE_RECHARGE) ){
 				
 			}

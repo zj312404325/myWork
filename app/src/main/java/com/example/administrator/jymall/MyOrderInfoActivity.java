@@ -40,10 +40,14 @@ import java.util.Map;
 public class MyOrderInfoActivity extends TopActivity {
 
     private String id; //订单ID
-    @ViewInject(R.id.btn_topay)
-    private Button btn_topay;
-    @ViewInject(R.id.btn_tosh)
-    private Button btn_tosh;
+    @ViewInject(R.id.btn_pay)
+    private Button btn_pay;
+    @ViewInject(R.id.btn_payFirst)
+    private Button btn_payFirst;
+    @ViewInject(R.id.btn_payLast)
+    private Button btn_payLast;
+    @ViewInject(R.id.btn_confirmProduct)
+    private Button btn_confirmProduct;
 
     private JSONObject order;
 
@@ -64,12 +68,6 @@ public class MyOrderInfoActivity extends TopActivity {
 
     @ViewInject(R.id.tv_buyAddr)
     private TextView tv_buyAddr;
-
-    @ViewInject(R.id.tv_postCode)
-    private TextView tv_postCode;
-
-    @ViewInject(R.id.tv_owner)
-    private TextView tv_owner;
 
     @ViewInject(R.id.list_orderinfo)
     private MyListView list_orderinfo;
@@ -169,12 +167,22 @@ public class MyOrderInfoActivity extends TopActivity {
                     if(!orderType.equals("orderMatch")) {
                         if (orderStatus == 0) {
                             tv_orderStatus.setText("未支付");
+                            btn_pay.setVisibility(View.VISIBLE);
+                            btn_pay.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View arg0) {
+                                    Intent i = new Intent(getApplicationContext(),PreparePayActivity.class);
+                                    i.putExtra("id", id);
+                                    startActivity(i);
+                                }
+                            });
                         } else if (orderStatus == 1) {
                             tv_orderStatus.setText("等待收款");
                         } else if (orderStatus == 2 ) {
                             tv_orderStatus.setText("等待发货");
                         } else if (orderStatus == 3) {
                             tv_orderStatus.setText("等待收货");
+                            btn_confirmProduct.setVisibility(View.VISIBLE);
                         } else if (orderStatus == 4) {
                             tv_orderStatus.setText("订单完成");
                         } else if (orderStatus == 5) {
@@ -188,18 +196,21 @@ public class MyOrderInfoActivity extends TopActivity {
                             tv_orderStatus.setText("待设置定金");
                         } else if (orderStatus == 1) {
                             tv_orderStatus.setText("待支付定金");
+                            btn_payFirst.setVisibility(View.VISIBLE);
                         } else if (orderStatus == 2 ) {
                             tv_orderStatus.setText("待确认定金");
                         } else if (orderStatus == 3) {
                             tv_orderStatus.setText("待生产完成");
                         } else if (orderStatus == 4) {
                             tv_orderStatus.setText("待付尾款");
+                            btn_payLast.setVisibility(View.VISIBLE);
                         } else if (orderStatus == 5) {
                             tv_orderStatus.setText("待确认尾款");
                         } else if (orderStatus == 6) {
                             tv_orderStatus.setText("待发货");
                         } else if (orderStatus == 7) {
                             tv_orderStatus.setText("等待收货");
+                            btn_confirmProduct.setVisibility(View.VISIBLE);
                         } else if (orderStatus == 8) {
                             tv_orderStatus.setText("订单完成");
                         } else if (orderStatus == 9) {
@@ -302,14 +313,14 @@ public class MyOrderInfoActivity extends TopActivity {
         }
     }
 
-    @Event(value={R.id.btn_topay,R.id.btn_tosh})
+    @Event(value={R.id.btn_pay,R.id.btn_payFirst,R.id.btn_payLast,R.id.btn_confirmProduct})
     private void btnClick(View v){
-        if(v.getId() == R.id.btn_topay){
+        if(v.getId() == R.id.btn_pay || v.getId() == R.id.btn_payFirst  || v.getId() == R.id.btn_payLast ){
             Intent i = new Intent(getApplicationContext(),PreparePayActivity.class);
             i.putExtra("id", id);
             startActivity(i);
         }
-        else if(v.getId() == R.id.btn_tosh){
+        else if(v.getId() == R.id.btn_confirmProduct){
             final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderInfoActivity.this, "你确认已经收到货物?", "确定收货", "否");
             final String serverkey1 = super.serverKey;
             mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {

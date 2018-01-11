@@ -288,18 +288,38 @@
 			</LinearLayout>
 			
 			<Button
-				style="@style/btnblue"
-				android:id="@+id/btn_topay"
-				android:text="去支付"
+				style="@style/btndarkblue"
+				android:id="@+id/btn_pay"
+				android:text="支付"
 				android:layout_width="match_parent"
 				android:layout_marginBottom="20dp"
             	android:layout_marginLeft="40dp"
 				android:layout_marginRight="40dp"
 				android:visibility="gone"/>
+
+			<Button
+				style="@style/btndarkblue"
+				android:id="@+id/btn_payFirst"
+				android:text="支付定金"
+				android:layout_width="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="40dp"
+				android:visibility="gone"/>
+
+			<Button
+				style="@style/btndarkblue"
+				android:id="@+id/btn_payLast"
+				android:text="支付尾款"
+				android:layout_width="match_parent"
+				android:layout_marginBottom="20dp"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="40dp"
+				android:visibility="gone"/>
 			
 			<Button
-				style="@style/btnblue"
-				android:id="@+id/btn_tosh"
+				style="@style/btndarkblue"
+				android:id="@+id/btn_confirmProduct"
             	android:text="确认收货"
 				android:layout_width="match_parent"
 				android:layout_marginBottom="20dp"
