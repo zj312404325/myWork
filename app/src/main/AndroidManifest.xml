@@ -367,6 +367,11 @@
             android:label="MyOrderInfoActivity" >
         </activity>
 
+        <activity
+            android:name=".OfflinePayActivity"
+            android:label="OfflinePayActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

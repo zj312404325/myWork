@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-@ContentView(R.layout.activity_pay_xx)
+@ContentView(R.layout.activity_offline_pay)
 public class PayXxActivity extends TopActivity {
 	
 	@ViewInject(R.id.et_password)

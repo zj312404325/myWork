@@ -17,6 +17,61 @@
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
 		    	android:background="#ffffff" >
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="30dp"
+					android:background="#ececec"
+					android:layout_gravity="center_horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:layout_marginLeft="10dp"
+						android:text="订单编号:"
+						android:layout_gravity="center_vertical"   />
+					<TextView
+						style="@style/wrap_content"
+						android:text="JY111111111111"
+						android:layout_gravity="center_vertical"
+						android:textSize="15sp"
+						android:textColor="#bb3144"
+						android:id="@+id/tv_orderNo" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="50dp"
+					android:layout_gravity="center_horizontal">
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="50dp"
+						android:gravity="center_horizontal"
+						android:layout_weight="1">
+						<TextView
+							style="@style/wrap_content"
+							android:text="交易金额:¥2000"
+							android:layout_gravity="center_vertical"
+							android:textSize="15sp"
+							android:textColor="#bb3144"
+							android:id="@+id/tv_orderMoney" />
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="50dp"
+						android:layout_weight="1"
+						android:gravity="center_horizontal"
+						android:layout_gravity="right">
+						<TextView
+							style="@style/wrap_content"
+							android:text="已付金额:¥2000"
+							android:layout_gravity="center_vertical"
+							android:textSize="15sp"
+							android:textColor="#bb3144"
+							android:id="@+id/tv_paidMoney" />
+					</LinearLayout>
+
+				</LinearLayout>
+
 			    <LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="50dp"
@@ -86,7 +141,7 @@
 
 				<Button
 					style="@style/btndarkblue"
-					android:id="@+id/bt_recharge"
+					android:id="@+id/btn_recharge"
 					android:layout_marginBottom="10dp"
 					android:layout_gravity="center_horizontal"
 					android:text="余额充值"
@@ -99,18 +154,102 @@
 				android:orientation="vertical"
 		    	android:background="#ffffff"
 				android:layout_marginTop="16dp" >
+
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
-					android:id="@+id/ll_umoneyPwd">
+					android:id="@+id/ll_payMethod">
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp"
+						android:id="@+id/rl_onlinePay">
+						<TextView
+							style="@style/wrap_content"
+							android:text="在线支付"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"  />
+						<ImageView
+							android:layout_width="9dp"
+							android:layout_height="16dp"
+							android:background="@drawable/right"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"/>
+					</RelativeLayout>
+
+					<TextView
+						android:layout_marginTop="5dp"
+						android:layout_width="fill_parent"
+						android:layout_height="10dp"
+						android:background="#ececec" />
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp"
+						android:id="@+id/rl_offlinePay">
+						<TextView
+							style="@style/wrap_content"
+							android:text="线下支付"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"  />
+						<ImageView
+							android:layout_width="9dp"
+							android:layout_height="16dp"
+							android:background="@drawable/right"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"/>
+					</RelativeLayout>
+
+					<TextView
+						android:layout_marginTop="5dp"
+						android:layout_width="fill_parent"
+						android:layout_height="10dp"
+						android:background="#ececec" />
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp"
+						android:id="@+id/rl_creditPay">
+						<TextView
+							style="@style/wrap_content"
+							android:text="信用支付"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"  />
+						<ImageView
+							android:layout_width="9dp"
+							android:layout_height="16dp"
+							android:background="@drawable/right"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"/>
+					</RelativeLayout>
+
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="0.5dp"
+						android:background="#d0d0d0" />
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:id="@+id/ll_umoneyPwd"
+					android:visibility="gone">
 					<RelativeLayout
 						android:layout_width="match_parent"
 						android:layout_height="50dp"
 						android:layout_marginLeft="10dp"
 						android:layout_marginRight="10dp"
 						android:focusable="true"
-						android:focusableInTouchMode="true">
+						android:focusableInTouchMode="true"
+						android:id="@+id/rl_payPwd">
 
 						<TextView
 							style="@style/wrap_content"
@@ -165,102 +304,8 @@
 							android:layout_centerVertical="true"
 							android:layout_alignParentRight="true"/>
 					</RelativeLayout>
-
-				
-					<LinearLayout
-						android:layout_width="fill_parent"
-						android:layout_height="0.5dp"
-						android:background="#d0d0d0"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp" />
-
-					<LinearLayout
-						android:layout_width="fill_parent"
-						android:layout_height="0.5dp"
-						android:background="#d0d0d0"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp" />
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="vertical"
-					android:id="@+id/ll_payMethod">
-					<RelativeLayout
-						android:layout_width="match_parent"
-						android:layout_height="50dp"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp"
-						android:id="@+id/rl_onlinePay">
-						<TextView
-							style="@style/wrap_content"
-							android:text="线上支付"
-							android:layout_alignParentLeft="true"
-							android:layout_centerVertical="true"  />
-						<ImageView
-							android:layout_width="9dp"
-							android:layout_height="16dp"
-							android:background="@drawable/right"
-							android:layout_centerVertical="true"
-							android:layout_alignParentRight="true"/>
-					</RelativeLayout>
-
-					<RelativeLayout
-						android:layout_width="match_parent"
-						android:layout_height="50dp"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp"
-						android:id="@+id/rl_offlinePay">
-						<TextView
-							style="@style/wrap_content"
-							android:text="线下支付"
-							android:layout_alignParentLeft="true"
-							android:layout_centerVertical="true"  />
-						<ImageView
-							android:layout_width="9dp"
-							android:layout_height="16dp"
-							android:background="@drawable/right"
-							android:layout_centerVertical="true"
-							android:layout_alignParentRight="true"/>
-					</RelativeLayout>
-
-					<RelativeLayout
-						android:layout_width="match_parent"
-						android:layout_height="50dp"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp"
-						android:id="@+id/rl_creditPay">
-						<TextView
-							style="@style/wrap_content"
-							android:text="信用支付"
-							android:layout_alignParentLeft="true"
-							android:layout_centerVertical="true"  />
-						<ImageView
-							android:layout_width="9dp"
-							android:layout_height="16dp"
-							android:background="@drawable/right"
-							android:layout_centerVertical="true"
-							android:layout_alignParentRight="true"/>
-					</RelativeLayout>
-
-					<LinearLayout
-						android:layout_width="fill_parent"
-						android:layout_height="0.5dp"
-						android:background="#d0d0d0" />
-
 				</LinearLayout>
 		    </LinearLayout>
-		    
-		    <Button
-				android:id="@+id/btn_offlinePay"
-				style="@style/btndarkblue"
-            	android:text="支付"
-				android:layout_width="match_parent"
-				android:layout_marginTop="20dp"
-				android:layout_marginBottom="20dp"
-            	android:layout_marginLeft="40dp"
-				android:layout_marginRight="40dp"/>
 
 			<Button
 				android:id="@+id/btn_umoneyPay"
@@ -270,7 +315,8 @@
 				android:layout_marginTop="20dp"
 				android:layout_marginBottom="20dp"
 				android:layout_marginLeft="40dp"
-				android:layout_marginRight="40dp"/>
+				android:layout_marginRight="40dp"
+				android:visibility="gone"/>
 		</LinearLayout>
 	</ScrollView>
 </RelativeLayout>

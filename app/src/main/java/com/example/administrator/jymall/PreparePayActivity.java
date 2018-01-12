@@ -43,9 +43,11 @@ public class PreparePayActivity extends TopActivity {
 	private TextView tv_haspwd;
 	
 	private double umoney=0; //余额
-	private double money=0; //支付金额
-	private double umoneysy=0; //剩余金额
-	
+	private double umoneysy=0; //剩余余额
+	private double money=0; //非定制配支付金额
+	private double orderPayMoney=0; //定制配支付金额
+	private double paidMoney=0; //已付金额
+
 	@ViewInject(R.id.tv_money)
 	private TextView tv_money;
 	
@@ -54,18 +56,24 @@ public class PreparePayActivity extends TopActivity {
 	
 	@ViewInject(R.id.tv_leftUmoney)
 	private TextView tv_leftUmoney;
+
+	@ViewInject(R.id.tv_orderNo)
+	private TextView tv_orderNo;
+
+	@ViewInject(R.id.tv_orderMoney)
+	private TextView tv_orderMoney;
+
+	@ViewInject(R.id.tv_paidMoney)
+	private TextView tv_paidMoney;
 	
 	@ViewInject(R.id.et_password)
 	private EditText et_password;
-	
-	@ViewInject(R.id.btn_offlinePay)
-	private Button btn_offlinePay;
 
 	@ViewInject(R.id.btn_umoneyPay)
 	private Button btn_umoneyPay;
 	
-	@ViewInject(R.id.bt_recharge)
-	private Button bt_recharge;
+	@ViewInject(R.id.btn_recharge)
+	private Button btn_recharge;
 
 	@ViewInject(R.id.cb_selectUmoney)
 	private CheckBox cb_selectUmoney;
@@ -78,6 +86,10 @@ public class PreparePayActivity extends TopActivity {
 
 	@ViewInject(R.id.ll_payMethod)
 	private LinearLayout ll_payMethod;
+
+	@ViewInject(R.id.rl_payPwd)
+	private RelativeLayout rl_payPwd;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +111,7 @@ public class PreparePayActivity extends TopActivity {
 			@Override
 			public void onResponse(String result)  {
 				progressDialog.hide();
-				JSONObject res;
+				final JSONObject res;
 				try {
 					res = new JSONObject(result);
 					setServerKey(res.get("serverKey").toString());
@@ -109,23 +121,38 @@ public class PreparePayActivity extends TopActivity {
 					else{
 						adminmobile = res.getString("adminmobile");
 						orderNo = res.getJSONObject("order").getString("orderNo");
+						id = res.getJSONObject("order").getString("iD");
 						String haspwd = res.getString("haspwd");
 						if(haspwd.equals("1")){
 							tv_haspwd.setText("如需修改密码,点击此处设置");
+							rl_payPwd.setVisibility(View.VISIBLE);
 						}
 						else{
 							tv_haspwd.setText("你还没有支付密码,点击此处设置");
+							rl_payPwd.setVisibility(View.GONE);
 						}
 						umoney = FormatUtil.toDouble(res.getString("umoney"));
 						money = FormatUtil.toDouble(res.getJSONObject("order").getString("money"));
+						orderPayMoney = FormatUtil.toDouble(res.getJSONObject("order").getString("orderPayMoney"));
+						paidMoney=FormatUtil.toDouble(res.getJSONObject("order").getString("getMoney"));
 						umoneysy = BigDecimalUtil.sub(umoney, money,2);
 						if(umoneysy<0){
 							umoneysy=0d;
 						}
-						
-						tv_money.setText(FormatUtil.toStringWithDecimal(money));
-						tv_umoney.setText(FormatUtil.toStringWithDecimal(umoney));
-						tv_leftUmoney.setText(FormatUtil.toStringWithDecimal(umoneysy));
+						tv_orderNo.setText(FormatUtil.toString(orderNo));
+						tv_umoney.setText(FormatUtil.toString(umoney));
+						tv_leftUmoney.setText(FormatUtil.toString(umoneysy));
+						tv_paidMoney.setText("已付金额：¥"+FormatUtil.toString(paidMoney));
+
+						if(res.getJSONObject("order").getString("orderType").equals("orderMatch")){
+							tv_orderMoney.setText("交易金额：¥"+FormatUtil.toString(orderPayMoney));
+							tv_money.setText(FormatUtil.toString(orderPayMoney));
+						}
+						else{
+							tv_orderMoney.setText("交易金额：¥"+FormatUtil.toString(money));
+							tv_money.setText(FormatUtil.toString(money));
+						}
+						hideUmoneyInfo();
 					}
 
 					//给CheckBox设置事件监听
@@ -134,13 +161,46 @@ public class PreparePayActivity extends TopActivity {
 						public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 							// TODO Auto-generated method stub
 							if(isChecked){//选中
-								ll_leftUmoney.setVisibility(View.VISIBLE);
-								ll_umoneyPwd.setVisibility(View.VISIBLE);
-								ll_payMethod.setVisibility(View.GONE);
+								try{
+									showUmoneyInfo();
+									if(res.getJSONObject("order").getString("orderType").equals("orderMatch")){
+										if(umoney>=orderPayMoney){
+											tv_money.setText("0.00");
+										}
+										else{
+											tv_money.setText(FormatUtil.toString(BigDecimalUtil.sub(orderPayMoney,umoney,2)));
+											tv_leftUmoney.setText("0.00");
+											hideAll();
+										}
+									}
+									else{
+										if(umoney>=money){
+											tv_money.setText("0.00");
+										}
+										else{
+											tv_money.setText(FormatUtil.toString(BigDecimalUtil.sub(money,umoney,2)));
+											tv_leftUmoney.setText("0.00");
+											hideAll();
+										}
+									}
+								}
+								catch (JSONException e){
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 							}else{//取消选中
-								ll_leftUmoney.setVisibility(View.GONE);
-								ll_umoneyPwd.setVisibility(View.GONE);
-								ll_payMethod.setVisibility(View.VISIBLE);
+								try {
+									if (res.getJSONObject("order").getString("orderType").equals("orderMatch")) {
+										tv_money.setText(FormatUtil.toString(orderPayMoney));
+									} else {
+										tv_money.setText(FormatUtil.toString(money));
+									}
+									hideUmoneyInfo();
+								}
+								catch (JSONException e){
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 							}
 						}
 					});
@@ -195,9 +255,7 @@ public class PreparePayActivity extends TopActivity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
-			
 		});
 	}
 	
@@ -209,15 +267,15 @@ public class PreparePayActivity extends TopActivity {
 		startActivity(i);
 	}
 	
-	@Event(R.id.rl_downpay)
-	private void downpayClick(View v){
-		Intent i =  new Intent(getApplicationContext(), PayXxActivity.class);
+	@Event(R.id.rl_offlinePay)
+	private void offlinePayClick(View v){
+		Intent i =  new Intent(getApplicationContext(), OfflinePayActivity.class);
 		i.putExtra("orderNo", orderNo);
 		i.putExtra("id", id);
 		startActivityForResult(i,CommonUtil.getInt(R.string.RECODE_DOWNPAY));
 	}
 
-	@Event(R.id.rl_recharge)
+	@Event(R.id.btn_recharge)
 	private void rechargeClick(View v){
 		Intent i =  new Intent(getApplicationContext(), RechargeActivity.class);
 		startActivityForResult(i, CommonUtil.getInt(R.string.RECODE_RECHARGE));
@@ -230,12 +288,30 @@ public class PreparePayActivity extends TopActivity {
 				
 			}
 			else if(requestCode == CommonUtil.getInt(R.string.RECODE_DOWNPAY)){
-				Intent intent = new Intent(getApplicationContext(),Order_Xh_Info_Activity.class);
+				Intent intent = new Intent(getApplicationContext(),MyOrderInfoActivity.class);
 				intent.putExtra("id", id);
 				startActivity(intent);
 				finish();
 			}
 		}
 	}
-	
+
+	private void showUmoneyInfo(){
+		hideAll();
+		ll_leftUmoney.setVisibility(View.VISIBLE);
+		ll_umoneyPwd.setVisibility(View.VISIBLE);
+		btn_umoneyPay.setVisibility(View.VISIBLE);
+	}
+
+	private void hideUmoneyInfo(){
+		hideAll();
+		ll_payMethod.setVisibility(View.VISIBLE);
+	}
+
+	private void hideAll(){
+		ll_leftUmoney.setVisibility(View.GONE);
+		ll_umoneyPwd.setVisibility(View.GONE);
+		ll_payMethod.setVisibility(View.GONE);
+		btn_umoneyPay.setVisibility(View.GONE);
+	}
 }

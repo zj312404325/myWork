@@ -130,6 +130,7 @@ public class MyOrderInfoActivity extends TopActivity {
     @ViewInject(R.id.tv_isOnline)
     private TextView tv_isOnline;
 
+    SimpleAdapter sapinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +146,15 @@ public class MyOrderInfoActivity extends TopActivity {
 
     private void datainit(){
         progressDialog.show();
+        hideAll();
+
+        dateMaps.clear();
+        sapinfo = new InfoSimpleAdapter(MyOrderInfoActivity.this, dateMaps,
+                R.layout.listview_myorderinfo,
+                new String[]{"proName"},
+                new int[]{R.id.tv_proName});
+        sapinfo.notifyDataSetChanged();
+
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("id", id);
@@ -247,7 +257,7 @@ public class MyOrderInfoActivity extends TopActivity {
                         dateMap1.put("orderInfo", orderDtls.getJSONObject(j).toString());
                         dateMaps.add(dateMap1);
                     }
-                    SimpleAdapter sapinfo = new InfoSimpleAdapter(MyOrderInfoActivity.this, dateMaps,
+                    sapinfo = new InfoSimpleAdapter(MyOrderInfoActivity.this, dateMaps,
                             R.layout.listview_myorderinfo,
                             new String[]{"proName"},
                             new int[]{R.id.tv_proName});
@@ -321,7 +331,7 @@ public class MyOrderInfoActivity extends TopActivity {
             startActivity(i);
         }
         else if(v.getId() == R.id.btn_confirmProduct){
-            final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderInfoActivity.this, "你确认已经收到货物?", "确定收货", "否");
+            final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderInfoActivity.this, "你确认已经收到货物?", "确认收货", "取消");
             final String serverkey1 = super.serverKey;
             mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
 
@@ -332,7 +342,7 @@ public class MyOrderInfoActivity extends TopActivity {
                     Map<String, String> maps= new HashMap<String, String>();
                     maps.put("serverKey", serverkey1);
                     maps.put("id", id);
-                    XUtilsHelper.getInstance().post("app/inOrder.htm", maps,new XUtilsHelper.XCallBack(){
+                    XUtilsHelper.getInstance().post("app/inMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
 
                         @SuppressLint("NewApi")
                         @Override
@@ -346,15 +356,13 @@ public class MyOrderInfoActivity extends TopActivity {
                                     CommonUtil.alter(res.get("msg").toString());
                                 }
                                 else{
-                                    CommonUtil.alter("收货成功！！！！");
+                                    CommonUtil.alter("收货成功!");
                                     datainit();
                                 }
-
                             } catch (JSONException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
-
                         }
 
                     });
@@ -367,6 +375,13 @@ public class MyOrderInfoActivity extends TopActivity {
             mcd.show();
         }
 
+    }
+
+    private void hideAll(){
+        btn_pay.setVisibility(View.GONE);
+        btn_payFirst.setVisibility(View.GONE);
+        btn_payLast.setVisibility(View.GONE);
+        btn_confirmProduct.setVisibility(View.GONE);
     }
 
 }
