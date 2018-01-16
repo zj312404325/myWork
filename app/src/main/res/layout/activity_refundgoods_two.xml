@@ -1,0 +1,694 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#ececec">
+
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+	<LinearLayout
+		style="@style/fill"
+		android:orientation="vertical"
+		android:layout_below="@id/top_title"  >
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:background="#ffffff"
+			android:layout_height="86dp"
+			android:orientation="horizontal" >
+			<RelativeLayout
+				android:layout_width="76dp"
+				android:layout_height="86dp"
+				android:layout_marginLeft="10dp">
+				<ImageView
+					android:layout_width="66dp"
+					android:layout_height="66dp"
+					android:id="@+id/img_proImgPath"
+					android:background="@drawable/test"
+					android:layout_centerVertical="true"/>
+			</RelativeLayout>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<TextView
+					style="@style/wrap_content"
+					android:text="产品名称名称名称"
+					android:layout_marginTop="10dp"
+					android:maxLines="2"
+					android:textSize="11dp"
+					android:lineSpacingExtra="4dp"
+					android:id="@+id/tv_proName"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text=""
+					android:id="@+id/tv_info"
+					android:textSize="11dp"
+					android:maxLines="3"
+					android:lineSpacingExtra="4dp"
+					android:textColor="@color/gray"  />
+			</LinearLayout>
+			<LinearLayout
+				android:layout_width="80dp"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:layout_marginRight="30dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="¥100/件"
+					android:layout_gravity="right"
+					android:textColor="#b53144"
+					android:textSize="12dp"
+					android:layout_marginTop="10dp"
+					android:id="@+id/tv_salePrice"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text="2件"
+					android:layout_gravity="right"
+					android:textColor="@color/gray"
+					android:textSize="12dp"
+					android:layout_marginTop="10dp"
+					android:id="@+id/tv_quantity"/>
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/ll_refundWait"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp"
+			android:visibility="gone">
+
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_width="60dp"
+					android:layout_height="60dp"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/refund_wait"
+					android:layout_gravity="center_horizontal"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="请您等待商家处理"
+					android:layout_gravity="center_horizontal"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="- 如果商家同意，请按照给出的退货地址退货。"
+					android:textSize="12sp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text="- 如果商家拒绝，您可以修改退货申请，商家会重新处理"
+					android:textSize="12sp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text="- 如有人以“卡里、系统有问题”为由给您发送退款相关链接，请勿相信，以免钱款被骗。"
+					android:textSize="12sp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="80dp"
+				android:orientation="vertical"
+				android:layout_marginBottom="10dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="您还可以"
+					android:textSize="12sp"
+					android:layout_marginTop="10dp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="40dp"
+					android:orientation="horizontal"
+					android:layout_marginTop="10dp"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp">
+
+					<Button
+						style="@style/btndarkblue"
+						android:layout_weight="1"
+						android:id="@+id/btn_editRefund_wait"
+						android:layout_marginBottom="10dp"
+						android:layout_gravity="center_horizontal"
+						android:text="修改退款申请"
+						android:layout_width="150dp"/>
+
+					<Button
+						style="null"
+						android:layout_weight="8"
+						android:layout_marginBottom="10dp"
+						android:layout_gravity="center_horizontal"
+						android:layout_width="150dp"/>
+
+					<Button
+						style="@style/btndarkblue"
+						android:layout_weight="1"
+						android:id="@+id/btn_cancelRefund_wait"
+						android:layout_marginBottom="10dp"
+						android:layout_gravity="center_horizontal"
+						android:text="取消退款申请"
+						android:layout_width="150dp"/>
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/ll_refundRefuse"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp"
+			android:visibility="gone">
+
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:id="@+id/rl_goodsState"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_width="60dp"
+					android:layout_height="60dp"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/refund_refuse"
+					android:layout_gravity="center_horizontal"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="商家已拒绝，请修改退货/退款申请"
+					android:layout_gravity="center_horizontal"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/tv_refuseReason"
+					android:text="- 拒绝原因：213123"
+					android:textSize="12sp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text="- 您修改退货/退款申请后，商家会重新处理"
+					android:textSize="12sp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+			</LinearLayout>
+
+			<Button
+				style="@style/btndarkblue"
+				android:layout_weight="1"
+				android:id="@+id/btn_editRefund_refuse"
+				android:layout_marginBottom="10dp"
+				android:layout_gravity="center_horizontal"
+				android:text="修改退款申请"
+				android:layout_width="150dp"/>
+
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="80dp"
+				android:orientation="vertical"
+				android:layout_marginBottom="10dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="您还可以"
+					android:textSize="12sp"
+					android:layout_marginTop="10dp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+				<Button
+					style="@style/btndarkblue"
+					android:layout_weight="1"
+					android:id="@+id/btn_cancelRefund_refuse"
+					android:layout_marginBottom="10dp"
+					android:layout_gravity="center_horizontal"
+					android:text="取消退款申请"
+					android:layout_width="150dp"/>
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/ll_refundCommitLogistic"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp"
+			android:visibility="visible">
+
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_width="60dp"
+					android:layout_height="60dp"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/refund_edit"
+					android:layout_gravity="center_horizontal"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="请退货并填写物流信息"
+					android:layout_gravity="center_horizontal"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_marginBottom="10dp">
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:background="#ececec">
+					<TextView
+						style="@style/wrap_content"
+						android:text="请退货"
+						android:textSize="12sp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_marginBottom="10dp"
+						android:layout_gravity="left"
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:background="#ffffff">
+					<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+					<TextView
+						style="@style/wrap_content"
+						android:text="未经商家同意，请不要使用到付货平邮"
+						android:layout_marginLeft="10dp"
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"/>
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:id="@+id/rl_selectAddress"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp">
+						<TextView
+							style="@style/wrap_content"
+							android:text="请选择区域服务中心"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"/>
+
+						<ImageView
+							android:layout_width="9dp"
+							android:layout_height="16dp"
+							android:background="@drawable/right"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"/>
+
+					</RelativeLayout>
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="0.5dp"
+						android:background="#d0d0d0" />
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:background="#ececec">
+					<TextView
+						style="@style/wrap_content"
+						android:text="请填写退货物流信息"
+						android:textSize="12sp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_marginBottom="10dp"
+						android:layout_gravity="left"
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"/>
+				</LinearLayout>
+
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="50dp"
+					android:id="@+id/rl_selectLogistic"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp">
+					<TextView
+						style="@style/wrap_content"
+						android:text="请选择物流公司"
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"/>
+
+					<ImageView
+						android:layout_width="9dp"
+						android:layout_height="16dp"
+						android:background="@drawable/right"
+						android:layout_centerVertical="true"
+						android:layout_alignParentRight="true"/>
+
+				</RelativeLayout>
+
+				<LinearLayout
+					android:layout_width="fill_parent"
+					android:layout_height="5dp"
+					android:background="#d0d0d0" />
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:background="#ffffff">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp">
+						<TextView
+							style="@style/wrap_content"
+							android:text="* 运单号码："
+							android:layout_gravity="center_vertical"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"/>
+
+						<TextView
+							style="@style/wrap_content"
+							android:text=""
+							android:id="@+id/tv_refundLogisticNo"
+							android:layout_gravity="center_vertical"
+							android:layout_alignParentRight="true"
+							android:layout_centerVertical="true"/>
+
+					</LinearLayout>
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="5dp"
+						android:background="#d0d0d0" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:background="#ffffff"
+					android:layout_marginTop="10dp">
+
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp">
+						<TextView
+							style="@style/wrap_content"
+							android:text="运费说明："
+							android:layout_gravity="center_vertical"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"/>
+
+						<TextView
+							style="@style/wrap_content"
+							android:text=""
+							android:hint="选填"
+							android:id="@+id/tv_refundFeeRemark"
+							android:layout_gravity="center_vertical"
+							android:layout_alignParentRight="true"
+							android:layout_centerVertical="true"/>
+
+					</LinearLayout>
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="5dp"
+						android:background="#d0d0d0" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:background="#ffffff"
+					android:layout_marginTop="10dp">
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="120dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp"
+						android:orientation="vertical">
+						<TextView
+							style="@style/wrap_content"
+							android:text="上传凭证"
+							android:layout_marginTop="10dp"
+							android:layout_gravity="center_vertical"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"/>
+
+						<ImageView
+							android:layout_width="80dp"
+							android:layout_height="80dp"
+							android:layout_marginBottom="10dp"
+							android:background="@drawable/mall_file_upload"/>
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="0.5dp"
+						android:background="#d0d0d0" />
+				</LinearLayout>
+
+				<Button
+					style="@style/btndarkblue"
+					android:id="@+id/btn_submit"
+					android:layout_marginBottom="10dp"
+					android:layout_gravity="center_horizontal"
+					android:text="提交"
+					android:layout_width="150dp"/>
+
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/ll_refundSendGoods"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp"
+			android:visibility="gone">
+
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_width="60dp"
+					android:layout_height="60dp"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/refund_wait"
+					android:layout_gravity="center_horizontal"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="- 如果商家收到货并检验无误，将操作退款给您。"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="80dp"
+				android:orientation="vertical"
+				android:layout_marginBottom="10dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="您还可以"
+					android:textSize="12sp"
+					android:layout_marginTop="10dp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+				<Button
+					style="@style/btndarkblue"
+					android:layout_weight="1"
+					android:id="@+id/btn_logisticInfo"
+					android:layout_marginBottom="10dp"
+					android:layout_gravity="center_horizontal"
+					android:text="查看物流信息"
+					android:layout_width="150dp"/>
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/ll_refundOk"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp"
+			android:visibility="gone">
+
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<ImageView
+					android:layout_width="60dp"
+					android:layout_height="60dp"
+					android:layout_marginTop="10dp"
+					android:background="@drawable/refund_ok"
+					android:layout_gravity="center_horizontal"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="退货成功"
+					android:layout_gravity="center_horizontal"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:orientation="vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/tv_refundOkDate"
+					android:text="- 退款时间：2018-01-16 14:54:01"
+					android:textSize="12sp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/tv_refundMoney"
+					android:text="- 退款金额：24.0 元"
+					android:textSize="12sp"
+					android:layout_gravity="left"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+			</LinearLayout>
+		</LinearLayout>
+
+	</LinearLayout>
+	</ScrollView>
+</RelativeLayout>

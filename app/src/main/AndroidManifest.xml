@@ -387,6 +387,21 @@
             android:label="RefundIndexActivity" >
         </activity>
 
+        <activity
+            android:name=".RefundMoneyOneActivity"
+            android:label="RefundMoneyOneActivity" >
+        </activity>
+
+        <activity
+            android:name=".RefundMoneyTwoActivity"
+            android:label="RefundMoneyTwoActivity" >
+        </activity>
+
+        <activity
+            android:name=".RefundMoneyCancelActivity"
+            android:label="RefundMoneyCancelActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />
