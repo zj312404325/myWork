@@ -372,6 +372,21 @@
             android:label="OfflinePayActivity" >
         </activity>
 
+        <activity
+            android:name=".OnlinePayActivity"
+            android:label="OnlinePayActivity" >
+        </activity>
+
+        <activity
+            android:name=".CreditPayActivity"
+            android:label="CreditPayActivity" >
+        </activity>
+
+        <activity
+            android:name=".RefundIndexActivity"
+            android:label="RefundIndexActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

@@ -50,6 +50,7 @@ public class MyOrderInfoActivity extends TopActivity {
     private Button btn_confirmProduct;
 
     private JSONObject order;
+    private int orderStatus;
 
     @ViewInject(R.id.tv_orderStatus)
     private TextView tv_orderStatus;
@@ -298,12 +299,14 @@ public class MyOrderInfoActivity extends TopActivity {
                 TextView tv_info = (TextView)convertView.findViewById(R.id.tv_info);
                 TextView tv_salePrice = (TextView)convertView.findViewById(R.id.tv_salePrice);
                 TextView tv_quantity = (TextView)convertView.findViewById(R.id.tv_quantity);
+                Button btn_refundIndex = (Button)convertView.findViewById(R.id.btn_refundIndex);
 
                 JSONObject temp  =FormatUtil.toJSONObject( mdata.get(position).get("orderInfo").toString());
                 XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
 
                 String salePrice = temp.getString("salePrice");
-                int payMethod = temp.getInt("payMethod");
+                final String orderdtlid = temp.getString("iD");
+
                 String info = "";
                 info = "品牌："+temp.getString("brand")+"\n"+"材质："+temp.getString("proQuality")+"\n" +"规格："+temp.getString("proSpec");
                 tv_info.setText(info);
@@ -315,6 +318,21 @@ public class MyOrderInfoActivity extends TopActivity {
                 }
                 tv_salePrice.setText(salePrice);
                 tv_quantity.setText("×"+temp.getString("quantity")+temp.getString("unit"));
+
+                orderStatus=FormatUtil.toInteger(order.getString("orderStatus"));
+                int refundStatus=FormatUtil.toInteger(temp.getString("refundStatus"));
+                if( orderStatus>= 1 && orderStatus <= 3 && refundStatus==0) {
+                    btn_refundIndex.setVisibility(View.VISIBLE);
+                    btn_refundIndex.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            Intent i = new Intent(getApplicationContext(), RefundIndexActivity.class);
+                            i.putExtra("orderId", id);
+                            i.putExtra("orderDtlId", orderdtlid);
+                            startActivity(i);
+                        }
+                    });
+                }
             }
             catch(Exception e){
                 Log.v("PRO", e.getMessage());
@@ -331,7 +349,7 @@ public class MyOrderInfoActivity extends TopActivity {
             startActivity(i);
         }
         else if(v.getId() == R.id.btn_confirmProduct){
-            final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderInfoActivity.this, "你确认已经收到货物?", "确认收货", "取消");
+            final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderInfoActivity.this, "您确认已经收到货物?", "确认收货", "取消");
             final String serverkey1 = super.serverKey;
             mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
 
@@ -374,7 +392,6 @@ public class MyOrderInfoActivity extends TopActivity {
             });
             mcd.show();
         }
-
     }
 
     private void hideAll(){

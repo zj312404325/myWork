@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 
 import org.json.JSONException;
@@ -21,32 +23,48 @@ import org.xutils.x;
 import java.util.HashMap;
 import java.util.Map;
 
-@ContentView(R.layout.activity_offline_pay)
-public class OfflinePayActivity extends TopActivity {
+@ContentView(R.layout.activity_credit_pay)
+public class CreditPayActivity extends TopActivity {
 
     @ViewInject(R.id.et_password)
     private EditText et_password;
 
-    @ViewInject(R.id.btn_offlinePay)
-    private Button btn_offlinePay;
+    @ViewInject(R.id.btn_supplyCredit)
+    private Button btn_supplyCredit;
+
+    @ViewInject(R.id.btn_creditPay)
+    private Button btn_creditPay;
+
+    @ViewInject(R.id.ll_supplyCredit)
+    private LinearLayout ll_supplyCredit;
+
+    @ViewInject(R.id.ll_payCredit)
+    private LinearLayout ll_payCredit;
 
     String orderNo = "";
+    String hascredit = "";
     String id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
-        super.title.setText("线下支付");
+        super.title.setText("信用支付");
         super.progressDialog.hide();
-
         Intent i = this.getIntent();
+        hascredit= i.getStringExtra("hascredit");
         orderNo = i.getStringExtra("orderNo");
         id = i.getStringExtra("id");
+        init();
     }
 
+    @Event(R.id.btn_supplyCredit)
+    private void supplyCreditClick(View v){
+        Intent i =  new Intent(getApplicationContext(), MyCreditActivity.class);
+        startActivity(i);
+    }
 
-    @Event(R.id.btn_offlinePay)
+    @Event(R.id.btn_creditPay)
     private void offlinePay(View v){
         if(et_password.getText().length()<1){
             CommonUtil.alter("密码不能为空！");
@@ -58,6 +76,7 @@ public class OfflinePayActivity extends TopActivity {
         maps.put("orderId", id);
         maps.put("orderNo", orderNo);
         maps.put("orderType", "mall");
+        maps.put("creditType", "credit");
         maps.put("password", et_password.getText().toString());
         XUtilsHelper.getInstance().post("app/doOfflinePay.htm", maps,new XUtilsHelper.XCallBack(){
 
@@ -88,5 +107,32 @@ public class OfflinePayActivity extends TopActivity {
         });
     }
 
+    private void init(){
+        if(FormatUtil.isNoEmpty(hascredit)){
+            if(hascredit.equals("1")){
+                showPay();
+            }
+            else{
+                showSupply();
+            }
+        }
+        else{
+            showSupply();
+        }
+    }
 
+    private void showPay(){
+        hideAll();
+        ll_payCredit.setVisibility(View.VISIBLE);
+    }
+
+    private void showSupply(){
+        hideAll();
+        ll_supplyCredit.setVisibility(View.VISIBLE);
+    }
+
+    private void hideAll(){
+        ll_payCredit.setVisibility(View.GONE);
+        ll_supplyCredit.setVisibility(View.GONE);
+    }
 }

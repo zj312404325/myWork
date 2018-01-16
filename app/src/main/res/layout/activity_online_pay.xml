@@ -1,0 +1,174 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".PreparePayActivity" >
+
+    <include  android:id="@+id/top_title"  layout="@layout/top" />
+    <ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+		    
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+		    	android:background="#ffffff" >
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="30dp"
+					android:background="#ececec"
+					android:layout_gravity="center_horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:layout_marginLeft="10dp"
+						android:text="金赢网合作银行（企业）"
+						android:layout_gravity="center_vertical"   />
+				</LinearLayout>
+
+				<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<LinearLayout
+						android:layout_width="60dp"
+						android:layout_height="150dp"
+						android:layout_gravity="center_horizontal"
+						android:orientation="vertical"
+						android:id="@+id/ll_rg">
+
+						<RadioGroup
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_marginTop="5dp"
+							android:id="@+id/rg_payMethod">
+							<RadioButton
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="20dp"
+								android:layout_marginTop="20dp"
+								android:id="@+id/rb_wechatpay" />
+
+							<RadioButton
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginLeft="20dp"
+								android:layout_marginTop="40dp"
+								android:id="@+id/rb_alipay" />
+						</RadioGroup>
+					</LinearLayout>
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="150dp"
+						android:layout_gravity="center_horizontal"
+						android:orientation="vertical"
+						android:layout_toRightOf="@id/ll_rg">
+						<ImageView
+							android:layout_width="250dp"
+							android:layout_height="75dp"
+							android:background="@drawable/pay_union"/>
+						<ImageView
+							android:layout_width="200dp"
+							android:layout_height="75dp"
+							android:background="@drawable/pay_ali"/>
+					</LinearLayout>
+				</RelativeLayout>
+
+
+
+			</LinearLayout>
+			
+		    <LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+		    	android:background="#ffffff"
+				android:layout_marginTop="16dp" >
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:id="@+id/ll_umoneyPwd">
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp"
+						android:focusable="true"
+						android:focusableInTouchMode="true"
+						android:id="@+id/rl_payPwd">
+
+						<TextView
+							style="@style/wrap_content"
+							android:text="支付密码："
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"
+							android:textColor="#939393"
+							android:layout_width="80dp"
+							android:maxLines="1" />
+
+						<EditText
+							style="@style/wrap_content"
+							android:layout_width="match_parent"
+							android:text=""
+							android:hint="请输入支付密码"
+							android:textSize="14sp"
+							android:layout_marginLeft="80dp"
+							android:layout_centerVertical="true"
+							android:background="@null"
+							android:inputType="textPassword"
+							android:id="@+id/et_password"/>
+					</RelativeLayout>
+
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="0.5dp"
+						android:background="#d0d0d0"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp" />
+
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="0.5dp"
+						android:background="#d0d0d0"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp" />
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:layout_marginLeft="10dp"
+						android:layout_marginRight="10dp"
+						android:id="@+id/rl_paypwdedit">
+						<TextView
+							style="@style/wrap_content"
+							android:text="如需修改密码？点击此处设置"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"
+							android:id="@+id/tv_haspwd"  />
+						<ImageView
+							android:layout_width="9dp"
+							android:layout_height="16dp"
+							android:background="@drawable/right"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"/>
+					</RelativeLayout>
+				</LinearLayout>
+		    </LinearLayout>
+
+			<Button
+				android:id="@+id/btn_onlinePay"
+				style="@style/btndarkblue"
+				android:text="支付"
+				android:layout_width="match_parent"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="20dp"
+				android:layout_marginLeft="40dp"
+				android:layout_marginRight="40dp"/>
+		</LinearLayout>
+	</ScrollView>
+</RelativeLayout>

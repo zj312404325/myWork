@@ -28,6 +28,7 @@ import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyConfirmDialog;
 import com.example.administrator.jymall.view.MyListView;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
@@ -359,7 +360,53 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             }
                         });
                         btn_cancel.setVisibility(View.VISIBLE);
+                        btn_cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                // 交易取消开始
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认取消此订单吗?", "确定取消", "否");
+                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                    @Override
+                                    public void doConfirm() {
+                                        mcd.dismiss();
+                                        progressDialog.show();
+                                        Map<String, String> maps= new HashMap<String, String>();
+                                        maps.put("serverKey", skey);
+                                        maps.put("id", id);
+                                        XUtilsHelper.getInstance().post("app/cancelMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
 
+                                            @SuppressLint("NewApi")
+                                            @Override
+                                            public void onResponse(String result)  {
+                                                progressDialog.hide();
+                                                JSONObject res;
+                                                try {
+                                                    res = new JSONObject(result);
+                                                    setServerKey(res.get("serverKey").toString());
+                                                    skey = res.get("serverKey").toString();
+                                                    if(res.get("d").equals("n")){
+                                                        CommonUtil.alter(res.get("msg").toString());
+                                                    }
+                                                    else{
+                                                        CommonUtil.alter("取消成功！");
+                                                        getDate(true,true);
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    // TODO Auto-generated catch block
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    @Override
+                                    public void doCancel() {
+                                        mcd.dismiss();
+                                    }
+                                });
+                                mcd.show();
+                            }
+                        });
                     } else if (orderStatus == 1) {
                         tv_orderStatus.setText("等待收款");
                     } else if (orderStatus == 2 ) {
@@ -367,6 +414,53 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 3) {
                         tv_orderStatus.setText("等待收货");
                         btn_confirmProduct.setVisibility(View.VISIBLE);
+                        btn_confirmProduct.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                // 确认收货开始
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确定收货", "否");
+                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                    @Override
+                                    public void doConfirm() {
+                                        mcd.dismiss();
+                                        progressDialog.show();
+                                        Map<String, String> maps= new HashMap<String, String>();
+                                        maps.put("serverKey", skey);
+                                        maps.put("id", id);
+                                        XUtilsHelper.getInstance().post("app/inMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
+
+                                            @SuppressLint("NewApi")
+                                            @Override
+                                            public void onResponse(String result)  {
+                                                progressDialog.hide();
+                                                JSONObject res;
+                                                try {
+                                                    res = new JSONObject(result);
+                                                    setServerKey(res.get("serverKey").toString());
+                                                    skey = res.get("serverKey").toString();
+                                                    if(res.get("d").equals("n")){
+                                                        CommonUtil.alter(res.get("msg").toString());
+                                                    }
+                                                    else{
+                                                        CommonUtil.alter("收货成功！");
+                                                        getDate(true,true);
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    // TODO Auto-generated catch block
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    @Override
+                                    public void doCancel() {
+                                        mcd.dismiss();
+                                    }
+                                });
+                                mcd.show();
+                            }
+                        });
                     } else if (orderStatus == 4) {
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 5) {
@@ -383,6 +477,53 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         tv_orderStatus.setText("待支付定金");
                         btn_payFirst.setVisibility(View.VISIBLE);
                         btn_cancel.setVisibility(View.VISIBLE);
+                        btn_cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                // 交易取消开始
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认取消此订单吗?", "确定取消", "否");
+                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                    @Override
+                                    public void doConfirm() {
+                                        mcd.dismiss();
+                                        progressDialog.show();
+                                        Map<String, String> maps= new HashMap<String, String>();
+                                        maps.put("serverKey", skey);
+                                        maps.put("id", id);
+                                        XUtilsHelper.getInstance().post("app/cancelMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
+
+                                            @SuppressLint("NewApi")
+                                            @Override
+                                            public void onResponse(String result)  {
+                                                progressDialog.hide();
+                                                JSONObject res;
+                                                try {
+                                                    res = new JSONObject(result);
+                                                    setServerKey(res.get("serverKey").toString());
+                                                    skey = res.get("serverKey").toString();
+                                                    if(res.get("d").equals("n")){
+                                                        CommonUtil.alter(res.get("msg").toString());
+                                                    }
+                                                    else{
+                                                        CommonUtil.alter("取消成功！");
+                                                        getDate(true,true);
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    // TODO Auto-generated catch block
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    @Override
+                                    public void doCancel() {
+                                        mcd.dismiss();
+                                    }
+                                });
+                                mcd.show();
+                            }
+                        });
                     } else if (orderStatus == 2 ) {
                         tv_orderStatus.setText("待确认定金");
                     } else if (orderStatus == 3) {
@@ -396,7 +537,54 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         tv_orderStatus.setText("待发货");
                     } else if (orderStatus == 7) {
                         tv_orderStatus.setText("等待收货");
-                            btn_confirmProduct.setVisibility(View.VISIBLE);
+                        btn_confirmProduct.setVisibility(View.VISIBLE);
+                        btn_confirmProduct.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                // 确认收货开始
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确定收货", "否");
+                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                    @Override
+                                    public void doConfirm() {
+                                        mcd.dismiss();
+                                        progressDialog.show();
+                                        Map<String, String> maps= new HashMap<String, String>();
+                                        maps.put("serverKey", skey);
+                                        maps.put("id", id);
+                                        XUtilsHelper.getInstance().post("app/inMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
+
+                                            @SuppressLint("NewApi")
+                                            @Override
+                                            public void onResponse(String result)  {
+                                                progressDialog.hide();
+                                                JSONObject res;
+                                                try {
+                                                    res = new JSONObject(result);
+                                                    setServerKey(res.get("serverKey").toString());
+                                                    skey = res.get("serverKey").toString();
+                                                    if(res.get("d").equals("n")){
+                                                        CommonUtil.alter(res.get("msg").toString());
+                                                    }
+                                                    else{
+                                                        CommonUtil.alter("收货成功！");
+                                                        getDate(true,true);
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    // TODO Auto-generated catch block
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    @Override
+                                    public void doCancel() {
+                                        mcd.dismiss();
+                                    }
+                                });
+                                mcd.show();
+                            }
+                        });
                     } else if (orderStatus == 8) {
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 9) {

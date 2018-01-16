@@ -21,8 +21,8 @@ import org.xutils.x;
 import java.util.HashMap;
 import java.util.Map;
 
-@ContentView(R.layout.activity_offline_pay)
-public class OfflinePayActivity extends TopActivity {
+@ContentView(R.layout.activity_refundmoney_one)
+public class RefundMoneyOneActivity extends TopActivity {
 
     @ViewInject(R.id.et_password)
     private EditText et_password;

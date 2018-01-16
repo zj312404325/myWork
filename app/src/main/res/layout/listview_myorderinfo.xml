@@ -63,11 +63,7 @@
 			        </LinearLayout>
 		</LinearLayout>
 
-	  	<LinearLayout
-			style="@style/line"
-			android:layout_marginLeft="16dp"
-			android:layout_marginRight="16dp"
-			android:layout_alignParentBottom="true" />
+
 	  	<ImageView
 			android:layout_width="60dp"
 			android:layout_height="60dp"
@@ -78,4 +74,21 @@
 	  	    android:layout_centerVertical="true"
 			android:visibility="gone"/>
   	</RelativeLayout>
+
+	<Button
+		style="@style/btndarkblue"
+		android:background="@color/login_back_blue"
+		android:id="@+id/btn_refundIndex"
+		android:layout_marginRight="16dp"
+		android:layout_gravity="right"
+		android:text="退款/退货"
+		android:textColor="#ffffff"
+		android:layout_width="150dp"
+		android:visibility="gone"/>
+	<LinearLayout
+		style="@style/line"
+		android:layout_marginTop="5dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_alignParentBottom="true" />
 </LinearLayout>

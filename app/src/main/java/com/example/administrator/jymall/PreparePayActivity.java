@@ -38,6 +38,8 @@ public class PreparePayActivity extends TopActivity {
 	private String id;
 	private String adminmobile;
 	private String orderNo;
+	private String hascredit;
+	private String orderdtlProcId;
 	
 	@ViewInject(R.id.tv_haspwd)
 	private TextView tv_haspwd;
@@ -120,6 +122,8 @@ public class PreparePayActivity extends TopActivity {
 					}
 					else{
 						adminmobile = res.getString("adminmobile");
+						hascredit= res.getString("hascredit");
+						orderdtlProcId= res.getString("orderdtlProcId");
 						orderNo = res.getJSONObject("order").getString("orderNo");
 						id = res.getJSONObject("order").getString("iD");
 						String haspwd = res.getString("haspwd");
@@ -266,11 +270,30 @@ public class PreparePayActivity extends TopActivity {
 		i.putExtra("adminmobile", adminmobile);
 		startActivity(i);
 	}
-	
+
+	@Event(R.id.rl_onlinePay)
+	private void onlinePayClick(View v){
+		Intent i =  new Intent(getApplicationContext(), OnlinePayActivity.class);
+		i.putExtra("orderNo", orderNo);
+		i.putExtra("id", id);
+		i.putExtra("totalMoney",tv_money.getText().toString());
+		i.putExtra("orderdtlProcId",orderdtlProcId);
+		startActivityForResult(i,CommonUtil.getInt(R.string.RECODE_DOWNPAY));
+	}
+
 	@Event(R.id.rl_offlinePay)
 	private void offlinePayClick(View v){
 		Intent i =  new Intent(getApplicationContext(), OfflinePayActivity.class);
 		i.putExtra("orderNo", orderNo);
+		i.putExtra("id", id);
+		startActivityForResult(i,CommonUtil.getInt(R.string.RECODE_DOWNPAY));
+	}
+
+	@Event(R.id.rl_creditPay)
+	private void creditPayClick(View v){
+		Intent i =  new Intent(getApplicationContext(), CreditPayActivity.class);
+		i.putExtra("orderNo", orderNo);
+		i.putExtra("hascredit", hascredit);
 		i.putExtra("id", id);
 		startActivityForResult(i,CommonUtil.getInt(R.string.RECODE_DOWNPAY));
 	}

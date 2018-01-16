@@ -1,0 +1,138 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#ececec">
+
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
+	<LinearLayout
+		style="@style/fill"
+		android:orientation="vertical"
+		android:layout_below="@id/top_title"  >
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:background="#ffffff"
+			android:layout_height="86dp"
+			android:orientation="horizontal" >
+			<RelativeLayout
+				android:layout_width="76dp"
+				android:layout_height="86dp"
+				android:layout_marginLeft="10dp">
+				<ImageView
+					android:layout_width="66dp"
+					android:layout_height="66dp"
+					android:id="@+id/img_proImgPath"
+					android:background="@drawable/test"
+					android:layout_centerVertical="true"/>
+			</RelativeLayout>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<TextView
+					style="@style/wrap_content"
+					android:text="产品名称名称名称"
+					android:layout_marginTop="10dp"
+					android:maxLines="2"
+					android:textSize="11dp"
+					android:lineSpacingExtra="4dp"
+					android:id="@+id/tv_proName"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text=""
+					android:id="@+id/tv_info"
+					android:textSize="11dp"
+					android:maxLines="3"
+					android:lineSpacingExtra="4dp"
+					android:textColor="@color/gray"  />
+			</LinearLayout>
+			<LinearLayout
+				android:layout_width="80dp"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:layout_marginRight="30dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="¥100/件"
+					android:layout_gravity="right"
+					android:textColor="#b53144"
+					android:textSize="12dp"
+					android:layout_marginTop="10dp"
+					android:id="@+id/tv_salePrice"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text="2件"
+					android:layout_gravity="right"
+					android:textColor="@color/gray"
+					android:textSize="12dp"
+					android:layout_marginTop="10dp"
+					android:id="@+id/tv_quantity"/>
+			</LinearLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp">
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:id="@+id/rl_refundMoney"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="仅退款"
+					android:id="@+id/tv_refundMoney"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+				<ImageView
+					android:layout_width="9dp"
+					android:layout_height="16dp"
+					android:background="@drawable/right"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+			</RelativeLayout>
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:id="@+id/rl_refundGoods"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="退货退款"
+					android:id="@+id/tv_refundGoods"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+				<ImageView
+					android:layout_width="9dp"
+					android:layout_height="16dp"
+					android:background="@drawable/right"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+			</RelativeLayout>
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="1dp"
+				android:background="#d0d0d0" />
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>
