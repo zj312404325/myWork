@@ -385,14 +385,14 @@
 								android:layout_centerVertical="true"
 								android:maxLines="1" />
 
-							<EditText
+							<TextView
 								style="@style/wrap_content"
 								android:layout_width="match_parent"
 								android:text="3"
 								android:textSize="14sp"
 								android:layout_gravity="right"
 								android:background="@null"
-								android:id="@+id/et_goodsCount"  />
+								android:id="@+id/tv_goodsCount"  />
 						</LinearLayout>
 
 						<LinearLayout
@@ -406,14 +406,14 @@
 								android:layout_centerVertical="true"
 								android:maxLines="1" />
 
-							<EditText
+							<TextView
 								style="@style/wrap_content"
 								android:layout_width="match_parent"
 								android:text="¥300"
 								android:textSize="14sp"
 								android:layout_gravity="right"
 								android:background="@null"
-								android:id="@+id/et_goodsMoney"  />
+								android:id="@+id/tv_goodsMoney"  />
 						</LinearLayout>
 
 						<LinearLayout
@@ -423,19 +423,19 @@
 							android:layout_marginBottom="5dp">
 							<TextView
 								style="@style/wrap_content"
-								android:text="商品金额："
+								android:text="运		      费："
 								android:layout_alignParentLeft="true"
 								android:layout_centerVertical="true"
 								android:maxLines="1" />
 
-							<EditText
+							<TextView
 								style="@style/wrap_content"
 								android:layout_width="match_parent"
-								android:text="¥8"
+								android:text="¥0.00"
 								android:textSize="14sp"
 								android:layout_gravity="right"
 								android:background="@null"
-								android:id="@+id/et_transFee"  />
+								android:id="@+id/tv_transFee"  />
 						</LinearLayout>
 					</LinearLayout>
 				    <View style="@style/line" />

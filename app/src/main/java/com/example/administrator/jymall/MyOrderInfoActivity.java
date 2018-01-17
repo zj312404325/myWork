@@ -300,6 +300,13 @@ public class MyOrderInfoActivity extends TopActivity {
                 TextView tv_salePrice = (TextView)convertView.findViewById(R.id.tv_salePrice);
                 TextView tv_quantity = (TextView)convertView.findViewById(R.id.tv_quantity);
                 Button btn_refundIndex = (Button)convertView.findViewById(R.id.btn_refundIndex);
+                TextView tv_refundMoneySupply = (TextView)convertView.findViewById(R.id.tv_refundMoneySupply);
+                TextView tv_refundMoneyOk = (TextView)convertView.findViewById(R.id.tv_refundMoneyOk);
+                TextView tv_refundGoodsSupply = (TextView)convertView.findViewById(R.id.tv_refundGoodsSupply);
+                TextView tv_refundGoodsBuyerSend = (TextView)convertView.findViewById(R.id.tv_refundGoodsBuyerSend);
+                TextView tv_refundGoodsSellerSend = (TextView)convertView.findViewById(R.id.tv_refundGoodsSellerSend);
+                TextView tv_refundGoodsOk = (TextView)convertView.findViewById(R.id.tv_refundGoodsOk);
+
 
                 JSONObject temp  =FormatUtil.toJSONObject( mdata.get(position).get("orderInfo").toString());
                 XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
@@ -321,12 +328,128 @@ public class MyOrderInfoActivity extends TopActivity {
 
                 orderStatus=FormatUtil.toInteger(order.getString("orderStatus"));
                 int refundStatus=FormatUtil.toInteger(temp.getString("refundStatus"));
+                int refundType=FormatUtil.toInteger(temp.getString("refundType"));
                 if( orderStatus>= 1 && orderStatus <= 3 && refundStatus==0) {
+                    tv_refundMoneySupply.setVisibility(View.GONE);
+                    tv_refundMoneyOk.setVisibility(View.GONE);
+                    tv_refundGoodsSupply.setVisibility(View.GONE);
+                    tv_refundGoodsBuyerSend.setVisibility(View.GONE);
+                    tv_refundGoodsSellerSend.setVisibility(View.GONE);
+                    tv_refundGoodsOk.setVisibility(View.GONE);
                     btn_refundIndex.setVisibility(View.VISIBLE);
                     btn_refundIndex.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View arg0) {
                             Intent i = new Intent(getApplicationContext(), RefundIndexActivity.class);
+                            i.putExtra("orderId", id);
+                            i.putExtra("orderDtlId", orderdtlid);
+                            startActivity(i);
+                        }
+                    });
+                }
+                if( orderStatus>= 1 && orderStatus <= 3 && (refundStatus==1 || refundStatus==-1) && refundType==1) {
+
+                    tv_refundMoneyOk.setVisibility(View.GONE);
+                    tv_refundGoodsSupply.setVisibility(View.GONE);
+                    tv_refundGoodsBuyerSend.setVisibility(View.GONE);
+                    tv_refundGoodsSellerSend.setVisibility(View.GONE);
+                    tv_refundGoodsOk.setVisibility(View.GONE);
+                    btn_refundIndex.setVisibility(View.GONE);
+                    tv_refundMoneySupply.setVisibility(View.VISIBLE);
+                    tv_refundMoneySupply.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            Intent i = new Intent(getApplicationContext(), RefundMoneyTwoActivity.class);
+                            i.putExtra("orderId", id);
+                            i.putExtra("orderDtlId", orderdtlid);
+                            startActivity(i);
+                        }
+                    });
+                }
+                if( orderStatus>= 1 && orderStatus <= 3 && (refundStatus==1 || refundStatus==-1) && refundType==0) {
+                    tv_refundMoneyOk.setVisibility(View.GONE);
+                    tv_refundMoneySupply.setVisibility(View.GONE);
+                    tv_refundGoodsBuyerSend.setVisibility(View.GONE);
+                    tv_refundGoodsSellerSend.setVisibility(View.GONE);
+                    tv_refundGoodsOk.setVisibility(View.GONE);
+                    btn_refundIndex.setVisibility(View.GONE);
+                    tv_refundGoodsSupply.setVisibility(View.VISIBLE);
+                    tv_refundGoodsSupply.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            Intent i = new Intent(getApplicationContext(), RefundGoodsTwoActivity.class);
+                            i.putExtra("orderId", id);
+                            i.putExtra("orderDtlId", orderdtlid);
+                            startActivity(i);
+                        }
+                    });
+                }
+                if( orderStatus>= 1 && (orderStatus <= 4 || orderStatus==6) && refundStatus==2 && refundType==1) {
+                    tv_refundMoneySupply.setVisibility(View.GONE);
+                    tv_refundGoodsSupply.setVisibility(View.GONE);
+                    tv_refundGoodsBuyerSend.setVisibility(View.GONE);
+                    tv_refundGoodsSellerSend.setVisibility(View.GONE);
+                    tv_refundGoodsOk.setVisibility(View.GONE);
+                    btn_refundIndex.setVisibility(View.GONE);
+                    tv_refundMoneyOk.setVisibility(View.VISIBLE);
+                    tv_refundMoneyOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            Intent i = new Intent(getApplicationContext(), RefundMoneyTwoActivity.class);
+                            i.putExtra("orderId", id);
+                            i.putExtra("orderDtlId", orderdtlid);
+                            startActivity(i);
+                        }
+                    });
+                }
+                if( orderStatus>= 1 && orderStatus <= 3 && refundStatus==2 && refundType==0) {
+                    tv_refundMoneyOk.setVisibility(View.GONE);
+                    tv_refundMoneySupply.setVisibility(View.GONE);
+                    tv_refundGoodsSupply.setVisibility(View.GONE);
+                    tv_refundGoodsSellerSend.setVisibility(View.GONE);
+                    tv_refundGoodsOk.setVisibility(View.GONE);
+                    btn_refundIndex.setVisibility(View.GONE);
+                    tv_refundGoodsBuyerSend.setVisibility(View.VISIBLE);
+                    tv_refundGoodsBuyerSend.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            Intent i = new Intent(getApplicationContext(), RefundGoodsTwoActivity.class);
+                            i.putExtra("orderId", id);
+                            i.putExtra("orderDtlId", orderdtlid);
+                            startActivity(i);
+                        }
+                    });
+                }
+                if( orderStatus>= 1 && orderStatus <= 3 && refundStatus==3 && refundType==0) {
+                    tv_refundMoneyOk.setVisibility(View.GONE);
+                    tv_refundMoneySupply.setVisibility(View.GONE);
+                    tv_refundGoodsSupply.setVisibility(View.GONE);
+                    tv_refundGoodsBuyerSend.setVisibility(View.GONE);
+                    tv_refundGoodsOk.setVisibility(View.GONE);
+                    btn_refundIndex.setVisibility(View.GONE);
+                    tv_refundGoodsSellerSend.setVisibility(View.VISIBLE);
+                    tv_refundGoodsSellerSend.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            Intent i = new Intent(getApplicationContext(), RefundGoodsTwoActivity.class);
+                            i.putExtra("orderId", id);
+                            i.putExtra("orderDtlId", orderdtlid);
+                            startActivity(i);
+                        }
+                    });
+                }
+                if( orderStatus>= 1 && (orderStatus <= 4 || orderStatus==6) && refundStatus==4 && refundType==0) {
+                    tv_refundMoneyOk.setVisibility(View.GONE);
+                    tv_refundMoneySupply.setVisibility(View.GONE);
+                    tv_refundGoodsSupply.setVisibility(View.GONE);
+                    tv_refundGoodsBuyerSend.setVisibility(View.GONE);
+                    tv_refundGoodsSellerSend.setVisibility(View.GONE);
+                    btn_refundIndex.setVisibility(View.GONE);
+                    tv_refundGoodsOk.setVisibility(View.VISIBLE);
+                    tv_refundGoodsOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            Intent i = new Intent(getApplicationContext(), RefundGoodsTwoActivity.class);
                             i.putExtra("orderId", id);
                             i.putExtra("orderDtlId", orderdtlid);
                             startActivity(i);

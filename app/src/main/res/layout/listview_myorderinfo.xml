@@ -85,6 +85,73 @@
 		android:textColor="#ffffff"
 		android:layout_width="150dp"
 		android:visibility="gone"/>
+
+	<TextView
+		style="@style/btndarkblue"
+		android:background="@color/login_back_blue"
+		android:id="@+id/tv_refundMoneySupply"
+		android:layout_marginRight="16dp"
+		android:layout_gravity="right"
+		android:text="退款申请中"
+		android:textColor="#ffffff"
+		android:layout_width="150dp"
+		android:visibility="gone"/>
+
+	<TextView
+		style="@style/btndarkblue"
+		android:background="@color/login_back_blue"
+		android:id="@+id/tv_refundMoneyOk"
+		android:layout_marginRight="16dp"
+		android:layout_gravity="right"
+		android:text="退款已完成"
+		android:textColor="#ffffff"
+		android:layout_width="150dp"
+		android:visibility="gone"/>
+
+	<TextView
+		style="@style/btndarkblue"
+		android:background="@color/login_back_blue"
+		android:id="@+id/tv_refundGoodsSupply"
+		android:layout_marginRight="16dp"
+		android:layout_gravity="right"
+		android:text="退货申请中"
+		android:textColor="#ffffff"
+		android:layout_width="150dp"
+		android:visibility="gone"/>
+
+	<TextView
+		style="@style/btndarkblue"
+		android:background="@color/login_back_blue"
+		android:id="@+id/tv_refundGoodsBuyerSend"
+		android:layout_marginRight="16dp"
+		android:layout_gravity="right"
+		android:text="等待买家发货"
+		android:textColor="#ffffff"
+		android:layout_width="150dp"
+		android:visibility="gone"/>
+
+	<TextView
+		style="@style/btndarkblue"
+		android:background="@color/login_back_blue"
+		android:id="@+id/tv_refundGoodsSellerSend"
+		android:layout_marginRight="16dp"
+		android:layout_gravity="right"
+		android:text="等待卖家发货"
+		android:textColor="#ffffff"
+		android:layout_width="150dp"
+		android:visibility="gone"/>
+
+	<TextView
+		style="@style/btndarkblue"
+		android:background="@color/login_back_blue"
+		android:id="@+id/tv_refundGoodsOk"
+		android:layout_marginRight="16dp"
+		android:layout_gravity="right"
+		android:text="退货已完成"
+		android:textColor="#ffffff"
+		android:layout_width="150dp"
+		android:visibility="gone"/>
+
 	<LinearLayout
 		style="@style/line"
 		android:layout_marginTop="5dp"

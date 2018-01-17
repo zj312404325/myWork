@@ -402,6 +402,21 @@
             android:label="RefundMoneyCancelActivity" >
         </activity>
 
+        <activity
+            android:name=".RefundGoodsOneOneActivity"
+            android:label="RefundGoodsOneOneActivity" >
+        </activity>
+
+        <activity
+            android:name=".RefundGoodsTwoActivity"
+            android:label="RefundGoodsTwoActivity" >
+        </activity>
+
+        <activity
+            android:name=".RefundGoodsCancelActivity"
+            android:label="RefundGoodsCancelActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

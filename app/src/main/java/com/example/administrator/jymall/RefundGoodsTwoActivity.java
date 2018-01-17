@@ -44,6 +44,9 @@ public class RefundGoodsTwoActivity extends TopActivity {
     @ViewInject(R.id.ll_refundRefuse)
     private LinearLayout ll_refundRefuse;
 
+    @ViewInject(R.id.ll_refundCommitLogistic)
+    private LinearLayout ll_refundCommitLogistic;
+
     @ViewInject(R.id.ll_refundSendGoods)
     private LinearLayout ll_refundSendGoods;
 
@@ -65,16 +68,21 @@ public class RefundGoodsTwoActivity extends TopActivity {
     private Button btn_submit;
 
     private String skey;
-    private String refundid;
     private String orderid;
     private String orderdtlid;
     private String reason;
     private String remark;
     private String money;
     private String dtlmoney;
-    private String fileurl;
     private String isReceived;
     private String refundStatus;
+
+    private String refundid;
+    private String fileurl;
+    private String serviceid;
+    private String logistic;
+    private String logisticno;
+    private String logisticremark;
 
     private JSONObject order;
     private JSONObject orderdtl;
@@ -137,7 +145,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
                         showRefundRefuse();
                     }
                     else if(refundStatus.equals("2")){
-                        showRefundOk();
+                        showRefundCommitLogistic();
                     }
                     else if(refundStatus.equals("3")){
                         showRefundSendGoods();
@@ -209,6 +217,61 @@ public class RefundGoodsTwoActivity extends TopActivity {
         mcd.show();
     }
 
+    @Event(R.id.btn_submit)
+    private void submitClick(View v){
+        progressDialog.show();
+        final MyConfirmDialog mcd = new MyConfirmDialog(RefundGoodsTwoActivity.this, "取消退货申请后，本次退款将关闭，您还可以再次发起退款/退货申请。确认取消?", "确认取消", "否");
+        mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+            @Override
+            public void doConfirm() {
+                mcd.dismiss();
+                progressDialog.show();
+                Map<String, String> maps= new HashMap<String, String>();
+                maps.put("serverKey", skey);
+                maps.put("refundid", refundid);
+                maps.put("logisticno", logisticno);
+                maps.put("logistic", logistic);
+                maps.put("logisticremark", logisticremark);
+                maps.put("fileurl", fileurl);
+                maps.put("serviceid", serviceid);
+
+                XUtilsHelper.getInstance().post("app/addRefundLogistic.htm", maps,new XUtilsHelper.XCallBack(){
+
+                    @SuppressLint("NewApi")
+                    @Override
+                    public void onResponse(String result)  {
+                        progressDialog.hide();
+                        JSONObject res;
+                        try {
+                            res = new JSONObject(result);
+                            setServerKey(res.get("serverKey").toString());
+                            skey = res.get("serverKey").toString();
+                            if(res.get("d").equals("n")){
+                                CommonUtil.alter(res.get("msg").toString());
+                            }
+                            else{
+                                CommonUtil.alter("取消成功！");
+                                finish();
+                                Intent i =  new Intent(getApplicationContext(), RefundMoneyCancelActivity.class);
+                                i.putExtra("refundId", refundid);
+                                i.putExtra("cancelDate", res.get("canceldate").toString());
+                                startActivity(i);
+                            }
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+            @Override
+            public void doCancel() {
+                mcd.dismiss();
+            }
+        });
+        mcd.show();
+    }
+
     private void showRefundWait(){
         hideAll();
         ll_refundWait.setVisibility(View.VISIBLE);
@@ -217,6 +280,11 @@ public class RefundGoodsTwoActivity extends TopActivity {
     private void showRefundRefuse(){
         hideAll();
         ll_refundRefuse.setVisibility(View.VISIBLE);
+    }
+
+    private void showRefundCommitLogistic(){
+        hideAll();
+        ll_refundCommitLogistic.setVisibility(View.VISIBLE);
     }
 
     private void showRefundSendGoods(){
@@ -232,6 +300,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
     private void hideAll(){
         ll_refundWait.setVisibility(View.GONE);
         ll_refundRefuse.setVisibility(View.GONE);
+        ll_refundCommitLogistic.setVisibility(View.GONE);
         ll_refundSendGoods.setVisibility(View.GONE);
         ll_refundOk.setVisibility(View.GONE);
     }

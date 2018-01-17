@@ -80,6 +80,8 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 	private String isfuture = "0";
 	private Handler mHandler;
 	private int start = 1;
+	private String goodsMoney;
+	private int goodsCount = 0;
 
 	@ViewInject(R.id.xListView)
 	public XListView listViewAll = null ;
@@ -265,7 +267,6 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 
 		@Override
 		public int getCount() {
-			Log.i("这尼玛", "getCount:"+this.myMaps.size());
 			return this.myMaps.size();
 		}
 	}
@@ -286,6 +287,8 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 			}
 			tv_allmoney.setText("￥"+FormatUtil.toString(tem));
 			btn_js.setText("去结算（"+count+"）");
+			goodsMoney=FormatUtil.toString(tem);
+			goodsCount=count;
 		}
 		catch(Exception ep){ep.printStackTrace();}
 	}
@@ -364,6 +367,8 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 	private void btnjsClick(View v){
 		Intent i = new Intent(getApplicationContext(), AddOrderActivity.class);
 		i.putExtra("data", (Serializable)dateMaps);
+		i.putExtra("goodsMoney", goodsMoney);
+		i.putExtra("goodsCount", FormatUtil.toString(goodsCount));
 		startActivity(i);
 	}
 	

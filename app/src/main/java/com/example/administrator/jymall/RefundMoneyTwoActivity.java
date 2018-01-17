@@ -81,10 +81,12 @@ public class RefundMoneyTwoActivity extends TopActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
-        super.title.setText("申请退款");
+        //super.title.setText("申请退款");
         super.progressDialog.hide();
         Intent i = this.getIntent();
         refundid = i.getStringExtra("refundId");
+        orderid = i.getStringExtra("orderId");
+        orderdtlid = i.getStringExtra("orderDtlId");
         initData();
     }
 
@@ -94,6 +96,8 @@ public class RefundMoneyTwoActivity extends TopActivity {
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("refundId", refundid);
+        maps.put("orderId", orderid);
+        maps.put("orderDtlId", orderdtlid);
 
         XUtilsHelper.getInstance().post("app/refundMoneyTwo.htm", maps,new XUtilsHelper.XCallBack(){
 

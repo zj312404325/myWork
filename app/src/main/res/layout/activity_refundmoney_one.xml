@@ -154,17 +154,27 @@
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>
 
-				<TextView
+
+
+				<EditText
 					style="@style/wrap_content"
-					android:text="¥200"
+					android:text="加载中..."
 					android:id="@+id/tv_refundMoney"
+					android:inputType="number"
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentRight="true"
 					android:layout_centerVertical="true"/>
 
 				<TextView
 					style="@style/wrap_content"
-					android:text="（最多¥200）"
+					android:text="元"
+					android:layout_gravity="center_vertical"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="（加载中...）"
 					android:id="@+id/tv_totalMoney"
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentRight="true"

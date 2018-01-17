@@ -95,6 +95,13 @@ public class AddOrderActivity extends TopActivity {
 	private TextView tv_bk_bankAdd;
 	@ViewInject(R.id.tv_bk_bankNo)
 	private TextView tv_bk_bankNo;
+
+	@ViewInject(R.id.tv_goodsCount)
+	private TextView tv_goodsCount;
+	@ViewInject(R.id.tv_goodsMoney)
+	private TextView tv_goodsMoney;
+	@ViewInject(R.id.tv_transFee)
+	private TextView tv_transFee;
 	
 	
 	private List<Map<String,Object>> prolist = new ArrayList<Map<String,Object>>();
@@ -112,6 +119,8 @@ public class AddOrderActivity extends TopActivity {
 	private CheckBox cb_agree;
 	
 	private String annex;
+	private String goodsMoney;
+	private String goodsCount;
 
 	private String TEMP_IMAGE_PATH;  	
 	private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png"; 
@@ -124,8 +133,11 @@ public class AddOrderActivity extends TopActivity {
 		x.view().inject(this);
 		progressDialog.hide();
 		super.title.setText("确认订单");
-		
-		dateMaps = (List<Map<String, Object>>) getIntent().getSerializableExtra("data"); 
+
+		Intent intent = this.getIntent();
+		dateMaps = (List<Map<String, Object>>) intent.getSerializableExtra("data");
+		goodsMoney =intent.getStringExtra("goodsMoney");
+		goodsCount =intent.getStringExtra("goodsCount");
 		for(int i=0;i<dateMaps.size();i++){
 			if(dateMaps.get(i).get("isCheck").toString().equals("1")){
 				ids += dateMaps.get(i).get("id").toString()+",";
@@ -245,6 +257,8 @@ public class AddOrderActivity extends TopActivity {
 						setBank();
 						
 						JSONArray prolistjson = res.getJSONArray("productList");
+						tv_goodsCount.setText(goodsCount);
+						tv_goodsMoney.setText(goodsMoney);
 						tv_totalPrice.setText(FormatUtil.toString(res.getDouble("totalPrice")));
 						for(int i=0;i<prolistjson.length();i++){
 							Map<String,Object> maptemp = new HashMap<String, Object>();
