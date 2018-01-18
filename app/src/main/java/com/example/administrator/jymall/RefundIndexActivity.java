@@ -66,7 +66,7 @@ public class RefundIndexActivity extends TopActivity {
     @Event(value=R.id.rl_refundGoods,type=View.OnTouchListener.class)
     private boolean refundGoodsTouch(View v, MotionEvent event){
         if (event.getAction() == event.ACTION_UP) {
-            Intent i =  new Intent(getApplicationContext(), RefundMoneyOneActivity.class);
+            Intent i =  new Intent(getApplicationContext(), RefundGoodsOneActivity.class);
             i.putExtra("orderId", orderid);
             i.putExtra("orderDtlId", orderdtlid);
             startActivity(i);

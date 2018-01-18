@@ -2,14 +2,17 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="#ececec">
+	android:background="#ececec"
+	tools:context=".RefundGoodsTwoActivity">
 
 	<include  android:id="@+id/top_title"  layout="@layout/top" />
-	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
-	<LinearLayout
+	<ScrollView
 		style="@style/fill"
-		android:orientation="vertical"
-		android:layout_below="@id/top_title"  >
+		android:layout_below="@id/top_title" >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -183,7 +186,8 @@
 						android:layout_weight="8"
 						android:layout_marginBottom="10dp"
 						android:layout_gravity="center_horizontal"
-						android:layout_width="150dp"/>
+						android:layout_width="150dp"
+						android:layout_height="wrap_content"/>
 
 					<Button
 						style="@style/btndarkblue"
@@ -192,7 +196,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_gravity="center_horizontal"
 						android:text="取消退款申请"
-						android:layout_width="150dp"/>
+						android:layout_width="150dp" />
 				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>
@@ -306,7 +310,7 @@
 			android:orientation="vertical"
 			android:background="#ffffff"
 			android:layout_marginTop="10dp"
-			android:visibility="visible">
+			android:visibility="gone">
 
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
 
@@ -688,7 +692,6 @@
 					android:layout_centerVertical="true"/>
 			</LinearLayout>
 		</LinearLayout>
-
 	</LinearLayout>
 	</ScrollView>
 </RelativeLayout>

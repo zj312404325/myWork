@@ -78,31 +78,10 @@
 			android:orientation="vertical"
 			android:background="#ffffff"
 			android:layout_marginTop="10dp">
-			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
 
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="50dp"
-				android:id="@+id/rl_goodsState"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp">
-				<TextView
-					style="@style/wrap_content"
-					android:text="货物状态"
-					android:layout_alignParentLeft="true"
-					android:layout_centerVertical="true"/>
-
-				<ImageView
-					android:layout_width="9dp"
-					android:layout_height="16dp"
-					android:background="@drawable/right"
-					android:layout_centerVertical="true"
-					android:layout_alignParentRight="true"/>
-
-			</RelativeLayout>
 			<LinearLayout
 				android:layout_width="fill_parent"
-				android:layout_height="0.5dp"
+				android:layout_height="1dp"
 				android:background="#d0d0d0" />
 
 			<RelativeLayout
@@ -113,7 +92,7 @@
 				android:layout_marginRight="10dp">
 				<TextView
 					style="@style/wrap_content"
-					android:text="退款原因"
+					android:text="退货原因"
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>
 
@@ -154,9 +133,9 @@
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>
 
-				<TextView
+				<EditText
 					style="@style/wrap_content"
-					android:text="¥200"
+					android:text="加载中..."
 					android:id="@+id/tv_refundMoney"
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentRight="true"
@@ -164,8 +143,16 @@
 
 				<TextView
 					style="@style/wrap_content"
-					android:text="（最多¥200）"
+					android:text="元"
+					android:layout_gravity="center_vertical"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true"/>
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="（加载中...）"
 					android:id="@+id/tv_totalMoney"
+					android:layout_marginLeft="20dp"
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentRight="true"
 					android:layout_centerVertical="true"/>
@@ -193,7 +180,7 @@
 				android:layout_marginRight="10dp">
 				<TextView
 					style="@style/wrap_content"
-					android:text="退款说明："
+					android:text="退货说明："
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>

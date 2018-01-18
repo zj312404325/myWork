@@ -309,6 +309,7 @@ public class MyOrderInfoActivity extends TopActivity {
 
 
                 JSONObject temp  =FormatUtil.toJSONObject( mdata.get(position).get("orderInfo").toString());
+                img_proImgPath.setBackgroundResource(0);
                 XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
 
                 String salePrice = temp.getString("salePrice");

@@ -403,8 +403,8 @@
         </activity>
 
         <activity
-            android:name=".RefundGoodsOneOneActivity"
-            android:label="RefundGoodsOneOneActivity" >
+            android:name=".RefundGoodsOneActivity"
+            android:label="RefundGoodsOneActivity" >
         </activity>
 
         <activity

@@ -168,14 +168,15 @@
 						android:layout_marginBottom="10dp"
 						android:layout_gravity="center_horizontal"
 						android:text="修改退款申请"
-						android:layout_width="150dp"/>
+						android:layout_width="150dp" />
 
 					<Button
-						style="null"
+						android:background="@color/transparent"
 						android:layout_weight="8"
 						android:layout_marginBottom="10dp"
 						android:layout_gravity="center_horizontal"
-						android:layout_width="150dp"/>
+						android:layout_width="150dp"
+						android:layout_height="wrap_content"/>
 
 					<Button
 						style="@style/btndarkblue"
@@ -184,7 +185,7 @@
 						android:layout_marginBottom="10dp"
 						android:layout_gravity="center_horizontal"
 						android:text="取消退款申请"
-						android:layout_width="150dp"/>
+						android:layout_width="150dp" />
 				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>

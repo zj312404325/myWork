@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -62,10 +63,11 @@ public class RefundGoodsTwoActivity extends TopActivity {
     @ViewInject(R.id.tv_refundMoney)
     private TextView tv_refundMoney;
 
-
-
     @ViewInject(R.id.btn_submit)
     private Button btn_submit;
+
+    @ViewInject(R.id.img_proImgPath)
+    private ImageView img_proImgPath;
 
     private String skey;
     private String orderid;
@@ -92,10 +94,13 @@ public class RefundGoodsTwoActivity extends TopActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
+        setContentView(R.layout.activity_refundgoods_two);
         super.title.setText("申请退货");
         super.progressDialog.hide();
         Intent i = this.getIntent();
         refundid = i.getStringExtra("refundId");
+        orderid = i.getStringExtra("orderId");
+        orderdtlid = i.getStringExtra("orderDtlId");
         initData();
     }
 
@@ -105,6 +110,8 @@ public class RefundGoodsTwoActivity extends TopActivity {
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("refundId", refundid);
+        maps.put("orderId", orderid);
+        maps.put("orderDtlId", orderdtlid);
 
         XUtilsHelper.getInstance().post("app/refundGoodsTwo.htm", maps,new XUtilsHelper.XCallBack(){
 
@@ -128,6 +135,8 @@ public class RefundGoodsTwoActivity extends TopActivity {
                     info = "品牌："+orderdtl.getString("brand")+"\n"+"材质："+orderdtl.getString("proQuality")+"\n" +"规格："+orderdtl.getString("proSpec");
                     tv_info.setText(info);
                     tv_proName.setText(orderdtl.getString("proName"));
+                    img_proImgPath.setBackgroundResource(0);
+                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
                     if(salePrice.equals("0")){
                         salePrice = "面议";
                     }

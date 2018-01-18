@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.jymall.common.CommonDialog;
@@ -43,10 +45,13 @@ public class RefundMoneyOneActivity extends TopActivity {
     private TextView tv_totalMoney;
 
     @ViewInject(R.id.tv_refundMoney)
-    private TextView tv_refundMoney;
+    private EditText tv_refundMoney;
 
     @ViewInject(R.id.btn_submit)
     private Button btn_submit;
+
+    @ViewInject(R.id.img_proImgPath)
+    private ImageView img_proImgPath;
 
     private String orderid;
     private String orderdtlid;
@@ -101,6 +106,8 @@ public class RefundMoneyOneActivity extends TopActivity {
                     info = "品牌："+orderdtl.getString("brand")+"\n"+"材质："+orderdtl.getString("proQuality")+"\n" +"规格："+orderdtl.getString("proSpec");
                     tv_info.setText(info);
                     tv_proName.setText(orderdtl.getString("proName"));
+                    img_proImgPath.setBackgroundResource(0);
+                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
                     if(salePrice.equals("0")){
                         salePrice = "面议";
                     }

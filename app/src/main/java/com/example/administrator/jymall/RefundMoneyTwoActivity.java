@@ -1,17 +1,19 @@
 package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.administrator.jymall.common.CommonDialog;
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.MyConfirmDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,10 +58,14 @@ public class RefundMoneyTwoActivity extends TopActivity {
     @ViewInject(R.id.tv_refundMoney)
     private TextView tv_refundMoney;
 
-
-
     @ViewInject(R.id.btn_submit)
     private Button btn_submit;
+
+    @ViewInject(R.id.btn_cancelRefund_refuse)
+    private Button btn_cancelRefund_refuse;
+
+    @ViewInject(R.id.img_proImgPath)
+    private ImageView img_proImgPath;
 
     private String skey;
     private String refundid;
@@ -80,8 +86,9 @@ public class RefundMoneyTwoActivity extends TopActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_refundmoney_two);
         x.view().inject(this);
-        //super.title.setText("申请退款");
+        super.title.setText("申请退款");
         super.progressDialog.hide();
         Intent i = this.getIntent();
         refundid = i.getStringExtra("refundId");
@@ -113,6 +120,7 @@ public class RefundMoneyTwoActivity extends TopActivity {
                     order = res.getJSONObject("order");
                     orderdtl= res.getJSONObject("orderdtl");
                     refund = res.getJSONObject("refund");
+                    refundid=refund.getString("id");
                     dtlmoney=orderdtl.getString("money");
                     refundStatus=orderdtl.getString("refundStatus");
 
@@ -121,6 +129,8 @@ public class RefundMoneyTwoActivity extends TopActivity {
                     info = "品牌："+orderdtl.getString("brand")+"\n"+"材质："+orderdtl.getString("proQuality")+"\n" +"规格："+orderdtl.getString("proSpec");
                     tv_info.setText(info);
                     tv_proName.setText(orderdtl.getString("proName"));
+                    img_proImgPath.setBackgroundResource(0);
+                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
                     if(salePrice.equals("0")){
                         salePrice = "面议";
                     }
@@ -153,55 +163,94 @@ public class RefundMoneyTwoActivity extends TopActivity {
         });
     }
 
+    @Event(R.id.btn_cancelRefund_wait)
+    private void cancelWaitClick(View v){
+        new CommonDialog(RefundMoneyTwoActivity.this, R.style.dialog, "取消退款申请后，本次退款将关闭，您还可以再次发起退款/退货申请，确认取消？", new CommonDialog.OnCloseListener() {
+            @Override
+            public void onClick(Dialog dialog, boolean confirm) {
+                if(confirm){
+                    progressDialog.show();
+                    Map<String, String> maps= new HashMap<String, String>();
+                    maps.put("serverKey", skey);
+                    maps.put("id", refundid);
+                    maps.put("type", "1");
+                    XUtilsHelper.getInstance().post("app/cancelRefund.htm", maps,new XUtilsHelper.XCallBack(){
+
+                        @SuppressLint("NewApi")
+                        @Override
+                        public void onResponse(String result)  {
+                            progressDialog.hide();
+                            JSONObject res;
+                            try {
+                                res = new JSONObject(result);
+                                setServerKey(res.get("serverKey").toString());
+                                skey = res.get("serverKey").toString();
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter(res.get("msg").toString());
+                                }
+                                else{
+                                    CommonUtil.alter("取消成功！");
+                                    finish();
+                                    Intent i =  new Intent(getApplicationContext(), RefundMoneyCancelActivity.class);
+                                    i.putExtra("refundId", refundid);
+                                    i.putExtra("cancelDate", res.get("canceldate").toString());
+                                    startActivity(i);
+                                }
+                            } catch (JSONException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    dialog.dismiss();
+                }
+            }
+        }).setTitle("提示").show();
+    }
+
     @Event(R.id.btn_cancelRefund_refuse)
     private void cancelRefuseClick(View v){
-        progressDialog.show();
-        // 交易取消开始
-        final MyConfirmDialog mcd = new MyConfirmDialog(RefundMoneyTwoActivity.this, "取消退款申请后，本次退款将关闭，您还可以再次发起退款/退货申请。确认取消?", "确认取消", "否");
-        mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+        new CommonDialog(RefundMoneyTwoActivity.this, R.style.dialog, "取消退款申请后，本次退款将关闭，您还可以再次发起退款/退货申请，确认取消？", new CommonDialog.OnCloseListener() {
             @Override
-            public void doConfirm() {
-                mcd.dismiss();
-                progressDialog.show();
-                Map<String, String> maps= new HashMap<String, String>();
-                maps.put("serverKey", skey);
-                maps.put("id", refundid);
-                maps.put("type", "1");
-                XUtilsHelper.getInstance().post("app/cancelRefund.htm", maps,new XUtilsHelper.XCallBack(){
+            public void onClick(Dialog dialog, boolean confirm) {
+                if(confirm){
+                    progressDialog.show();
+                    Map<String, String> maps= new HashMap<String, String>();
+                    maps.put("serverKey", skey);
+                    maps.put("id", refundid);
+                    maps.put("type", "1");
+                    XUtilsHelper.getInstance().post("app/cancelRefund.htm", maps,new XUtilsHelper.XCallBack(){
 
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onResponse(String result)  {
-                        progressDialog.hide();
-                        JSONObject res;
-                        try {
-                            res = new JSONObject(result);
-                            setServerKey(res.get("serverKey").toString());
-                            skey = res.get("serverKey").toString();
-                            if(res.get("d").equals("n")){
-                                CommonUtil.alter(res.get("msg").toString());
+                        @SuppressLint("NewApi")
+                        @Override
+                        public void onResponse(String result)  {
+                            progressDialog.hide();
+                            JSONObject res;
+                            try {
+                                res = new JSONObject(result);
+                                setServerKey(res.get("serverKey").toString());
+                                skey = res.get("serverKey").toString();
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter(res.get("msg").toString());
+                                }
+                                else{
+                                    CommonUtil.alter("取消成功！");
+                                    finish();
+                                    Intent i =  new Intent(getApplicationContext(), RefundMoneyCancelActivity.class);
+                                    i.putExtra("refundId", refundid);
+                                    i.putExtra("cancelDate", res.get("canceldate").toString());
+                                    startActivity(i);
+                                }
+                            } catch (JSONException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
                             }
-                            else{
-                                CommonUtil.alter("取消成功！");
-                                finish();
-                                Intent i =  new Intent(getApplicationContext(), RefundMoneyCancelActivity.class);
-                                i.putExtra("refundId", refundid);
-                                i.putExtra("cancelDate", res.get("canceldate").toString());
-                                startActivity(i);
-                            }
-                        } catch (JSONException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
                         }
-                    }
-                });
+                    });
+                    dialog.dismiss();
+                }
             }
-            @Override
-            public void doCancel() {
-                mcd.dismiss();
-            }
-        });
-        mcd.show();
+        }).setTitle("提示").show();
     }
 
     private void showRefundWait(){
@@ -216,7 +265,7 @@ public class RefundMoneyTwoActivity extends TopActivity {
 
     private void showRefundOk(){
         hideAll();
-        ll_refundRefuse.setVisibility(View.VISIBLE);
+        ll_refundOk.setVisibility(View.VISIBLE);
     }
 
     private void hideAll(){

@@ -176,6 +176,7 @@
 					style="@style/wrap_content"
 					android:text="（加载中...）"
 					android:id="@+id/tv_totalMoney"
+					android:layout_marginLeft="20dp"
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentRight="true"
 					android:layout_centerVertical="true"/>
