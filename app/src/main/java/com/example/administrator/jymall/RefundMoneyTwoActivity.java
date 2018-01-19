@@ -253,6 +253,23 @@ public class RefundMoneyTwoActivity extends TopActivity {
         }).setTitle("提示").show();
     }
 
+    @Event(R.id.btn_editRefund_wait)
+    private void editRefundWaitClick(View v){
+        Intent i =  new Intent(getApplicationContext(), RefundMoneyOneEditActivity.class);
+        i.putExtra("orderId", orderid);
+        i.putExtra("orderDtlId", orderdtlid);
+        startActivity(i);
+    }
+
+    @Event(R.id.btn_editRefund_refuse)
+    private void editRefundRefuseClick(View v){
+        Intent i =  new Intent(getApplicationContext(), RefundMoneyOneEditActivity.class);
+        i.putExtra("orderId", orderid);
+        i.putExtra("orderDtlId", orderdtlid);
+        startActivity(i);
+    }
+
+
     private void showRefundWait(){
         hideAll();
         ll_refundWait.setVisibility(View.VISIBLE);

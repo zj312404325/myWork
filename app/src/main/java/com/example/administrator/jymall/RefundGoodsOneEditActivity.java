@@ -38,8 +38,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-@ContentView(R.layout.activity_refundgoods_one)
-public class RefundGoodsOneActivity extends TopActivity {
+@ContentView(R.layout.activity_refundgoods_one_edit)
+public class RefundGoodsOneEditActivity extends TopActivity {
 
     @ViewInject(R.id.tv_proName)
     private TextView tv_proName;
@@ -79,6 +79,7 @@ public class RefundGoodsOneActivity extends TopActivity {
 
     private String orderid;
     private String orderdtlid;
+    private String refundid;
     private String reason;
     private String remark;
     private String money;
@@ -89,6 +90,7 @@ public class RefundGoodsOneActivity extends TopActivity {
 
     private JSONObject order;
     private JSONObject orderdtl;
+    private JSONObject refund;
 
     private String TEMP_IMAGE_PATH;
     private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
@@ -98,7 +100,7 @@ public class RefundGoodsOneActivity extends TopActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_refundgoods_one);
+        setContentView(R.layout.activity_refundgoods_one_edit);
         x.view().inject(this);
         super.title.setText("申请退货");
         super.progressDialog.hide();
@@ -117,7 +119,7 @@ public class RefundGoodsOneActivity extends TopActivity {
         maps.put("orderId", orderid);
         maps.put("orderDtlId", orderdtlid);
 
-        XUtilsHelper.getInstance().post("app/refundGoods.htm", maps,new XUtilsHelper.XCallBack(){
+        XUtilsHelper.getInstance().post("app/refundGoodsTwo.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")
             @Override
@@ -129,6 +131,8 @@ public class RefundGoodsOneActivity extends TopActivity {
                     setServerKey(res.get("serverKey").toString());
                     order = res.getJSONObject("order");
                     orderdtl= res.getJSONObject("orderdtl");
+                    refund= res.getJSONObject("refund");
+                    refundid=refund.getString("id");
                     dtlmoney=orderdtl.getString("money");
 
                     String info = "";
@@ -150,6 +154,8 @@ public class RefundGoodsOneActivity extends TopActivity {
                     tv_refundMoney.setText(dtlmoney);
                     tv_totalMoney.setText("最多"+dtlmoney+"元");
 
+                    initRefundInfo();
+
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -164,7 +170,7 @@ public class RefundGoodsOneActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsOneActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsOneEditActivity.this);
                 builder.setIcon(R.drawable.ic_launcher);
                 builder.setTitle("退货原因");
                 final String[] refundReason = {"7天无理由退换货", "退运费", "做工问题", "质量问题", "大小/尺寸与商品描述不符", "颜色/图案/款式与商品描述不符", "材质面料与商品描述不符", "少件/漏发", "卖家发错货", "包装/商品损坏/污渍", "假冒品牌", "未按约定时间发货", "发票问题"};
@@ -238,13 +244,14 @@ public class RefundGoodsOneActivity extends TopActivity {
             }
         }
 
-        new CommonDialog(RefundGoodsOneActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
+        new CommonDialog(RefundGoodsOneEditActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
             @Override
             public void onClick(Dialog dialog, boolean confirm) {
                 if(confirm){
                     progressDialog.show();
                     Map<String, String> maps= new HashMap<String, String>();
                     maps.put("serverKey", skey);
+                    maps.put("refundid", refundid);
                     maps.put("orderId", orderid);
                     maps.put("orderDtlId", orderdtlid);
                     maps.put("flag", "0");
@@ -252,7 +259,7 @@ public class RefundGoodsOneActivity extends TopActivity {
                     maps.put("reason", reason);
                     maps.put("fileurl", fileurl);
                     maps.put("mymoney", money);
-                    XUtilsHelper.getInstance().post("app/submitRefund.htm", maps,new XUtilsHelper.XCallBack(){
+                    XUtilsHelper.getInstance().post("app/modifyRefund.htm", maps,new XUtilsHelper.XCallBack(){
 
                         @SuppressLint("NewApi")
                         @Override
@@ -268,8 +275,9 @@ public class RefundGoodsOneActivity extends TopActivity {
                                 }
                                 else{
                                     CommonUtil.alter(res.get("msg").toString());
-                                    finish();
                                     Intent i =  new Intent(getApplicationContext(), RefundGoodsTwoActivity.class);
+                                    i.putExtra("orderId", orderid);
+                                    i.putExtra("orderDtlId", orderdtlid);
                                     i.putExtra("refundId", refundid);
                                     startActivity(i);
                                 }
@@ -289,7 +297,7 @@ public class RefundGoodsOneActivity extends TopActivity {
     private boolean uploadImg(View v, MotionEvent event){
         if (event.getAction() == event.ACTION_UP) {
             if(mcd==null){
-                mcd=new MyConfirmDialog(RefundGoodsOneActivity.this, "上传图片", "拍照上传", "本地上传");
+                mcd=new MyConfirmDialog(RefundGoodsOneEditActivity.this, "上传图片", "拍照上传", "本地上传");
                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                     @Override
                     public void doConfirm() {
@@ -391,6 +399,29 @@ public class RefundGoodsOneActivity extends TopActivity {
                     }
                 });
             }
+        }
+    }
+
+    private void initRefundInfo(){
+        try {
+            reason= refund.getString("reason");
+            tv_showReason.setText(reason);
+            money=refund.getString("money");
+            tv_refundMoney.setText(money);
+            remark=refund.getString("memo");
+            et_refundMark.setText(remark);
+            fileurl=refund.getString("fileurl");
+            if(FormatUtil.isNoEmpty(fileurl)){
+                iv_uploadImg.setBackgroundResource(0);
+                XUtilsHelper.getInstance().bindCommonImage(iv_uploadImg, fileurl, true);
+            }
+            else{
+                iv_uploadImg.setBackgroundResource(0);
+                iv_uploadImg.setBackgroundResource(R.drawable.mall_file_upload);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

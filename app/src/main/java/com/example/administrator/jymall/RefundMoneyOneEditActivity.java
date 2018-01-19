@@ -38,8 +38,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-@ContentView(R.layout.activity_refundgoods_one)
-public class RefundGoodsOneActivity extends TopActivity {
+@ContentView(R.layout.activity_refundmoney_one_edit)
+public class RefundMoneyOneEditActivity extends TopActivity {
 
     @ViewInject(R.id.tv_proName)
     private TextView tv_proName;
@@ -53,42 +53,50 @@ public class RefundGoodsOneActivity extends TopActivity {
     @ViewInject(R.id.tv_info)
     private TextView tv_info;
 
-    @ViewInject(R.id.btn_submit)
-    private Button btn_submit;
-
-    @ViewInject(R.id.img_proImgPath)
-    private ImageView img_proImgPath;
-
     @ViewInject(R.id.tv_totalMoney)
     private TextView tv_totalMoney;
 
     @ViewInject(R.id.tv_refundMoney)
     private EditText tv_refundMoney;
 
-    @ViewInject(R.id.et_refundMark)
-    private EditText et_refundMark;
+    @ViewInject(R.id.btn_submit)
+    private Button btn_submit;
 
-    @ViewInject(R.id.iv_uploadImg)
-    private ImageView iv_uploadImg;
+    @ViewInject(R.id.img_proImgPath)
+    private ImageView img_proImgPath;
+
+    @ViewInject(R.id.rl_goodsState)
+    private RelativeLayout rl_goodsState;
 
     @ViewInject(R.id.rl_refundReason)
     private RelativeLayout rl_refundReason;
 
+    @ViewInject(R.id.tv_showState)
+    private TextView tv_showState;
+
     @ViewInject(R.id.tv_showReason)
     private TextView tv_showReason;
 
+    @ViewInject(R.id.iv_uploadImg)
+    private ImageView iv_uploadImg;
+
+    @ViewInject(R.id.et_refundMark)
+    private EditText et_refundMark;
+
     private String orderid;
     private String orderdtlid;
+    private String refundid;
     private String reason;
     private String remark;
     private String money;
     private String dtlmoney;
     private String fileurl;
     private String isReceived;
-    private String skey;
 
+    private String skey;
     private JSONObject order;
     private JSONObject orderdtl;
+    private JSONObject refund;
 
     private String TEMP_IMAGE_PATH;
     private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
@@ -98,14 +106,13 @@ public class RefundGoodsOneActivity extends TopActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_refundgoods_one);
         x.view().inject(this);
-        super.title.setText("申请退货");
+        super.title.setText("修改退款申请");
         super.progressDialog.hide();
-        skey=super.serverKey;
         Intent i = this.getIntent();
         orderid = i.getStringExtra("orderId");
         orderdtlid = i.getStringExtra("orderDtlId");
+        skey=super.serverKey;
         initData();
     }
 
@@ -117,7 +124,7 @@ public class RefundGoodsOneActivity extends TopActivity {
         maps.put("orderId", orderid);
         maps.put("orderDtlId", orderdtlid);
 
-        XUtilsHelper.getInstance().post("app/refundGoods.htm", maps,new XUtilsHelper.XCallBack(){
+        XUtilsHelper.getInstance().post("app/refundMoneyTwo.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")
             @Override
@@ -129,6 +136,8 @@ public class RefundGoodsOneActivity extends TopActivity {
                     setServerKey(res.get("serverKey").toString());
                     order = res.getJSONObject("order");
                     orderdtl= res.getJSONObject("orderdtl");
+                    refund = res.getJSONObject("refund");
+                    refundid=refund.getString("id");
                     dtlmoney=orderdtl.getString("money");
 
                     String info = "";
@@ -150,12 +159,75 @@ public class RefundGoodsOneActivity extends TopActivity {
                     tv_refundMoney.setText(dtlmoney);
                     tv_totalMoney.setText("最多"+dtlmoney+"元");
 
+                    initRefundInfo();
+
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+
             }
 
+        });
+
+        //设置监听
+        rl_goodsState.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneEditActivity.this);
+                builder.setIcon(R.drawable.ic_launcher);
+                builder.setTitle("货物状态");
+                final String[] receiveState = {"未收到货", "已收到货"};
+                //    设置一个单项选择下拉框
+                /**
+                 * 第一个参数指定我们要显示的一组下拉单选框的数据集合
+                 * 第二个参数代表索引，指定默认哪一个单选框被勾选上，1表示默认'女' 会被勾选上
+                 * 第三个参数给每一个单选项绑定一个监听器
+                 */
+                builder.setSingleChoiceItems(receiveState, 1, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        if(which == 0){
+                            tv_showState.setText(receiveState[which]);
+                            isReceived="0";
+                        }
+                        else if(which == 1){
+                            tv_showState.setText(receiveState[which]);
+                            isReceived="1";
+                        }
+                        //Toast.makeText(RefundMoneyOneActivity.this, "状态为：" + receiveState[which], Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        if(which == 0){
+                            tv_showState.setText(receiveState[which]);
+                            isReceived="0";
+                        }
+                        else if(which == 1){
+                            tv_showState.setText(receiveState[which]);
+                            isReceived="1";
+                        }
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        tv_showState.setText("");
+                        isReceived="";
+                    }
+                });
+                builder.show();
+            }
         });
 
         //设置监听
@@ -164,9 +236,9 @@ public class RefundGoodsOneActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsOneActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneEditActivity.this);
                 builder.setIcon(R.drawable.ic_launcher);
-                builder.setTitle("退货原因");
+                builder.setTitle("退款原因");
                 final String[] refundReason = {"7天无理由退换货", "退运费", "做工问题", "质量问题", "大小/尺寸与商品描述不符", "颜色/图案/款式与商品描述不符", "材质面料与商品描述不符", "少件/漏发", "卖家发错货", "包装/商品损坏/污渍", "假冒品牌", "未按约定时间发货", "发票问题"};
                 //    设置一个单项选择下拉框
                 /**
@@ -223,6 +295,10 @@ public class RefundGoodsOneActivity extends TopActivity {
             CommonUtil.alter("退款金额不能为空！");
             return ;
         }
+        else if(!FormatUtil.isNoEmpty(isReceived)){
+            CommonUtil.alter("请选择收货状态！");
+            return ;
+        }
         else if(!FormatUtil.isNoEmpty(reason)){
             CommonUtil.alter("退款原因不能为空！");
             return ;
@@ -238,21 +314,23 @@ public class RefundGoodsOneActivity extends TopActivity {
             }
         }
 
-        new CommonDialog(RefundGoodsOneActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
+        new CommonDialog(RefundMoneyOneEditActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
             @Override
             public void onClick(Dialog dialog, boolean confirm) {
                 if(confirm){
                     progressDialog.show();
                     Map<String, String> maps= new HashMap<String, String>();
                     maps.put("serverKey", skey);
+                    maps.put("refundid", refundid);
                     maps.put("orderId", orderid);
                     maps.put("orderDtlId", orderdtlid);
-                    maps.put("flag", "0");
+                    maps.put("flag", "1");
                     maps.put("refundmemo", remark);
                     maps.put("reason", reason);
+                    maps.put("isreceived", isReceived);
                     maps.put("fileurl", fileurl);
                     maps.put("mymoney", money);
-                    XUtilsHelper.getInstance().post("app/submitRefund.htm", maps,new XUtilsHelper.XCallBack(){
+                    XUtilsHelper.getInstance().post("app/modifyRefund.htm", maps,new XUtilsHelper.XCallBack(){
 
                         @SuppressLint("NewApi")
                         @Override
@@ -268,8 +346,9 @@ public class RefundGoodsOneActivity extends TopActivity {
                                 }
                                 else{
                                     CommonUtil.alter(res.get("msg").toString());
-                                    finish();
-                                    Intent i =  new Intent(getApplicationContext(), RefundGoodsTwoActivity.class);
+                                    Intent i =  new Intent(getApplicationContext(), RefundMoneyTwoActivity.class);
+                                    i.putExtra("orderId", orderid);
+                                    i.putExtra("orderDtlId", orderdtlid);
                                     i.putExtra("refundId", refundid);
                                     startActivity(i);
                                 }
@@ -289,7 +368,7 @@ public class RefundGoodsOneActivity extends TopActivity {
     private boolean uploadImg(View v, MotionEvent event){
         if (event.getAction() == event.ACTION_UP) {
             if(mcd==null){
-                mcd=new MyConfirmDialog(RefundGoodsOneActivity.this, "上传图片", "拍照上传", "本地上传");
+                mcd=new MyConfirmDialog(RefundMoneyOneEditActivity.this, "上传图片", "拍照上传", "本地上传");
                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                     @Override
                     public void doConfirm() {
@@ -363,7 +442,7 @@ public class RefundGoodsOneActivity extends TopActivity {
                 if(bitmap != null)//如果不释放的话，不断取图片，将会内存不够
                     bitmap.recycle();
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
-                bitmap = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmap =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
                 iv_uploadImg.setImageBitmap(bitmap);
                 Map<String, String> maps = new HashMap<String, String>();
                 maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
@@ -391,6 +470,36 @@ public class RefundGoodsOneActivity extends TopActivity {
                     }
                 });
             }
+        }
+    }
+
+    private void initRefundInfo(){
+        try {
+            isReceived = refund.getString("isreceived");
+            if(isReceived.equals("1")) {
+                tv_showState.setText("已收到货");
+            }
+            else{
+                tv_showState.setText("未收到货");
+            }
+            reason= refund.getString("reason");
+            tv_showReason.setText(reason);
+            money=refund.getString("money");
+            tv_refundMoney.setText(money);
+            remark=refund.getString("memo");
+            et_refundMark.setText(remark);
+            fileurl=refund.getString("fileurl");
+            if(FormatUtil.isNoEmpty(fileurl)){
+                iv_uploadImg.setBackgroundResource(0);
+                XUtilsHelper.getInstance().bindCommonImage(iv_uploadImg, fileurl, true);
+            }
+            else{
+                iv_uploadImg.setBackgroundResource(0);
+                iv_uploadImg.setBackgroundResource(R.drawable.mall_file_upload);
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 }

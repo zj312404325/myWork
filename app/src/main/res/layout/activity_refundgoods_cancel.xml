@@ -101,7 +101,7 @@
 
 				<TextView
 					style="@style/wrap_content"
-					android:text="退款取消成功"
+					android:text="退货取消成功"
 					android:layout_gravity="center_horizontal"
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>

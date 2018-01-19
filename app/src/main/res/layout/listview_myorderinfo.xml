@@ -136,7 +136,7 @@
 		android:id="@+id/tv_refundGoodsSellerSend"
 		android:layout_marginRight="16dp"
 		android:layout_gravity="right"
-		android:text="等待卖家发货"
+		android:text="等待卖家收货"
 		android:textColor="#ffffff"
 		android:layout_width="150dp"
 		android:visibility="gone"/>

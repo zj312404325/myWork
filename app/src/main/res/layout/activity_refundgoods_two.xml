@@ -8,16 +8,17 @@
 	<include  android:id="@+id/top_title"  layout="@layout/top" />
 	<ScrollView
 		style="@style/fill"
-		android:layout_below="@id/top_title" >
+		android:layout_below="@id/top_title">
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:layout_below="@id/top_title">
 
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:background="#ffffff"
-			android:layout_height="86dp"
+			android:layout_height="100dp"
 			android:orientation="horizontal" >
 			<RelativeLayout
 				android:layout_width="76dp"
@@ -114,7 +115,7 @@
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="40dp"
+				android:layout_height="80dp"
 				android:orientation="vertical"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
@@ -122,6 +123,7 @@
 					style="@style/wrap_content"
 					android:text="- 如果商家同意，请按照给出的退货地址退货。"
 					android:textSize="12sp"
+					android:layout_marginTop="5dp"
 					android:layout_gravity="left"
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>
@@ -178,11 +180,11 @@
 						android:id="@+id/btn_editRefund_wait"
 						android:layout_marginBottom="10dp"
 						android:layout_gravity="center_horizontal"
-						android:text="修改退款申请"
+						android:text="修改退货申请"
 						android:layout_width="150dp"/>
 
 					<Button
-						style="null"
+						android:background="@color/transparent"
 						android:layout_weight="8"
 						android:layout_marginBottom="10dp"
 						android:layout_gravity="center_horizontal"
@@ -268,7 +270,7 @@
 				android:id="@+id/btn_editRefund_refuse"
 				android:layout_marginBottom="10dp"
 				android:layout_gravity="center_horizontal"
-				android:text="修改退款申请"
+				android:text="修改退货申请"
 				android:layout_width="150dp"/>
 
 			<LinearLayout
@@ -310,7 +312,7 @@
 			android:orientation="vertical"
 			android:background="#ffffff"
 			android:layout_marginTop="10dp"
-			android:visibility="gone">
+			android:visibility="visible">
 
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
 
@@ -382,22 +384,41 @@
 
 					<RelativeLayout
 						android:layout_width="match_parent"
-						android:layout_height="50dp"
+						android:layout_height="70dp"
 						android:id="@+id/rl_selectAddress"
 						android:layout_marginLeft="10dp"
 						android:layout_marginRight="10dp">
+
 						<TextView
+							android:id="@+id/serviceInfo"
 							style="@style/wrap_content"
-							android:text="请选择区域服务中心"
-							android:layout_alignParentLeft="true"
-							android:layout_centerVertical="true"/>
+							android:layout_marginTop="10dp"
+							android:layout_alignParentStart="true"
+							android:text="* 请选择区域服务中心" />
 
 						<ImageView
 							android:layout_width="9dp"
 							android:layout_height="16dp"
+							android:layout_marginTop="10dp"
 							android:background="@drawable/right"
-							android:layout_centerVertical="true"
-							android:layout_alignParentRight="true"/>
+							android:layout_alignParentRight="true"
+							android:id="@+id/imageView" />
+
+						<TextView
+							style="@style/wrap_content"
+							android:id="@+id/refundAddress"
+							android:text="退货地址："
+							android:layout_marginRight="20dp"
+							android:layout_below="@id/serviceInfo"
+							android:layout_centerVertical="true"/>
+
+						<TextView
+							android:id="@+id/tv_showAddress"
+							style="@style/wrap_content"
+							android:text=""
+							android:layout_toRightOf="@+id/refundAddress"
+							android:layout_below="@id/serviceInfo"
+							android:layout_centerVertical="true"/>
 
 					</RelativeLayout>
 					<LinearLayout
@@ -432,16 +453,25 @@
 					android:layout_marginRight="10dp">
 					<TextView
 						style="@style/wrap_content"
-						android:text="请选择物流公司"
+						android:text="* 请选择物流公司"
 						android:layout_alignParentLeft="true"
 						android:layout_centerVertical="true"/>
 
 					<ImageView
+						android:id="@+id/imgComp"
 						android:layout_width="9dp"
 						android:layout_height="16dp"
 						android:background="@drawable/right"
 						android:layout_centerVertical="true"
 						android:layout_alignParentRight="true"/>
+
+					<TextView
+						android:id="@+id/tv_showComp"
+						style="@style/wrap_content"
+						android:text=""
+						android:layout_marginRight="20dp"
+						android:layout_toStartOf="@id/imgComp"
+						android:layout_centerVertical="true"/>
 
 				</RelativeLayout>
 
@@ -468,10 +498,10 @@
 							android:layout_alignParentLeft="true"
 							android:layout_centerVertical="true"/>
 
-						<TextView
+						<EditText
 							style="@style/wrap_content"
 							android:text=""
-							android:id="@+id/tv_refundLogisticNo"
+							android:id="@+id/et_refundLogisticNo"
 							android:layout_gravity="center_vertical"
 							android:layout_alignParentRight="true"
 							android:layout_centerVertical="true"/>
@@ -503,11 +533,11 @@
 							android:layout_alignParentLeft="true"
 							android:layout_centerVertical="true"/>
 
-						<TextView
+						<EditText
 							style="@style/wrap_content"
 							android:text=""
 							android:hint="选填"
-							android:id="@+id/tv_refundFeeRemark"
+							android:id="@+id/et_refundFeeRemark"
 							android:layout_gravity="center_vertical"
 							android:layout_alignParentRight="true"
 							android:layout_centerVertical="true"/>
@@ -541,6 +571,7 @@
 							android:layout_centerVertical="true"/>
 
 						<ImageView
+							android:id="@+id/iv_uploadImg"
 							android:layout_width="80dp"
 							android:layout_height="80dp"
 							android:layout_marginBottom="10dp"

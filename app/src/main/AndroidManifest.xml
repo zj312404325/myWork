@@ -393,6 +393,11 @@
         </activity>
 
         <activity
+            android:name=".RefundMoneyOneEditActivity"
+            android:label="RefundMoneyOneEditActivity" >
+        </activity>
+
+        <activity
             android:name=".RefundMoneyTwoActivity"
             android:label="RefundMoneyTwoActivity" >
         </activity>
@@ -405,6 +410,11 @@
         <activity
             android:name=".RefundGoodsOneActivity"
             android:label="RefundGoodsOneActivity" >
+        </activity>
+
+        <activity
+            android:name=".RefundGoodsOneEditActivity"
+            android:label="RefundGoodsOneEditActivity" >
         </activity>
 
         <activity
