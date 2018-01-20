@@ -65,6 +65,8 @@ public class ProductInfoActivity extends UserActivity {
 	private JSONArray sellProductProps; //所有产品
 	private JSONObject selectPro; //选中的产品
 
+	private JSONArray appraiseList;
+
 	@ViewInject(R.id.tv_proName)
 	private TextView tv_proName;//产品标题
 	@ViewInject(R.id.tv_brand)
@@ -122,6 +124,7 @@ public class ProductInfoActivity extends UserActivity {
 						info = resdata.getJSONObject("info");
 						defaultProp=resdata.getJSONObject("defaultProp");
 						sellProductProps = resdata.getJSONArray("propsArr");
+						appraiseList= resdata.getJSONArray("appraiselist");
 						Log.i("这尼玛", "sellProductProps:"+sellProductProps);
 						if(sellProductProps.length()>0){
 							selectPro = sellProductProps.getJSONObject(0);
@@ -209,6 +212,8 @@ public class ProductInfoActivity extends UserActivity {
 			else if(arg0.getId() == R.id.toinfo){
 				Intent i = new Intent(getApplicationContext(),ProductInfoCActivity.class);
 				i.putExtra("info",info.toString());
+				i.putExtra("defaultProp",defaultProp.toString());
+				i.putExtra("appraiseList",appraiseList.toString());
 				startActivity(i);
 			}
 			return false;

@@ -16,7 +16,7 @@
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1">
 		            <TextView
 						style="@style/wrap_content"
-						android:text="图文详情"
+						android:text="商品介绍"
 						android:id="@+id/tab_txt1"
 		                android:textColor="#0083c8"
 		                android:layout_centerInParent="true"/>
@@ -33,7 +33,7 @@
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab2" android:layout_weight="1">
 		            <TextView
 						style="@style/wrap_content"
-						android:text="产品参数"
+						android:text="规格参数"
 						android:id="@+id/tab_txt2"
 		                android:layout_centerInParent="true"
 						android:textColor="#000000"/>
@@ -51,7 +51,7 @@
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab3" android:layout_weight="1">
 		            <TextView
 						style="@style/wrap_content"
-						android:text="店铺推荐"
+						android:text="买家评价"
 						android:id="@+id/tab_txt3"
 		                android:layout_centerInParent="true"
 						android:textColor="#000000"/>
@@ -70,7 +70,10 @@
 		 </LinearLayout>
     
 	<ScrollView style="@style/fill" android:layout_below="@id/tab" >
-	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical">
+	    <LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -107,28 +110,6 @@
 					android:layout_marginRight="16dp">
 					    <TextView
 							style="@style/wrap_content"
-							android:text="产地："
-							android:layout_alignParentLeft="true"
-					        android:layout_centerVertical="true"
-							android:textColor="#939393"
-							android:layout_width="80dp"
-							android:maxLines="1" />
-					    
-					   	 <TextView
-							 style="@style/wrap_content"
-							 android:text="23234234234234234234"
-							 android:layout_marginLeft="80dp"
-					         android:layout_centerVertical="true"
-							 android:id="@+id/tv_proArea" />
-					   			    
-					</RelativeLayout>
-					<LinearLayout style="@style/line"/>
-					<RelativeLayout
-						android:layout_width="match_parent"
-						android:layout_height="50dp"
-					    android:layout_marginLeft="16dp"
-						android:layout_marginRight="16dp">
-					    <TextView style="@style/wrap_content"
 							android:text="品牌："
 							android:layout_alignParentLeft="true"
 					        android:layout_centerVertical="true"
@@ -138,21 +119,20 @@
 					    
 					   	 <TextView
 							 style="@style/wrap_content"
-							 android:text="2016-09-12 21:12:23"
+							 android:text="好得家"
 							 android:layout_marginLeft="80dp"
-							 android:layout_centerVertical="true"
+					         android:layout_centerVertical="true"
 							 android:id="@+id/tv_brand" />
 					   			    
 					</RelativeLayout>
-					<LinearLayout style="@style/line" />
+					<LinearLayout style="@style/line"/>
 					<RelativeLayout
 						android:layout_width="match_parent"
 						android:layout_height="50dp"
 					    android:layout_marginLeft="16dp"
 						android:layout_marginRight="16dp">
-					    <TextView
-							style="@style/wrap_content"
-							android:text="产品分类："
+					    <TextView style="@style/wrap_content"
+							android:text="材质："
 							android:layout_alignParentLeft="true"
 					        android:layout_centerVertical="true"
 							android:textColor="#939393"
@@ -161,10 +141,10 @@
 					    
 					   	 <TextView
 							 style="@style/wrap_content"
-							 android:text="2016-09-12 21:12:23"
+							 android:text="真皮"
 							 android:layout_marginLeft="80dp"
-					         android:layout_centerVertical="true"
-							 android:id="@+id/tv_categoryName" />
+							 android:layout_centerVertical="true"
+							 android:id="@+id/tv_quality" />
 					   			    
 					</RelativeLayout>
 					<LinearLayout style="@style/line" />
@@ -175,7 +155,7 @@
 						android:layout_marginRight="16dp">
 					    <TextView
 							style="@style/wrap_content"
-							android:text="所在仓库："
+							android:text="尺寸："
 							android:layout_alignParentLeft="true"
 					        android:layout_centerVertical="true"
 							android:textColor="#939393"
@@ -184,10 +164,10 @@
 					    
 					   	 <TextView
 							 style="@style/wrap_content"
-							 android:text="2016-09-12 21:12:23"
+							 android:text="XXXL"
 							 android:layout_marginLeft="80dp"
 					         android:layout_centerVertical="true"
-							 android:id="@+id/tv_storename" />
+							 android:id="@+id/tv_size" />
 					   			    
 					</RelativeLayout>
 					<LinearLayout style="@style/line" />
@@ -198,7 +178,7 @@
 						android:layout_marginRight="16dp">
 					    <TextView
 							style="@style/wrap_content"
-							android:text="库位："
+							android:text="型号："
 							android:layout_alignParentLeft="true"
 					        android:layout_centerVertical="true"
 							android:textColor="#939393"
@@ -207,11 +187,56 @@
 					    
 					   	 <TextView
 							 style="@style/wrap_content"
-							 android:text="2016-09-12 21:12:23"
+							 android:text="1*1"
 							 android:layout_marginLeft="80dp"
 					         android:layout_centerVertical="true"
-							 android:id="@+id/tv_storekw" />"
+							 android:id="@+id/tv_model" />
+					   			    
 					</RelativeLayout>
+					<LinearLayout style="@style/line" />
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+					    android:layout_marginLeft="16dp"
+						android:layout_marginRight="16dp">
+					    <TextView
+							style="@style/wrap_content"
+							android:text="颜色："
+							android:layout_alignParentLeft="true"
+					        android:layout_centerVertical="true"
+							android:textColor="#939393"
+							android:layout_width="80dp"
+							android:maxLines="1" />
+					    
+					   	 <TextView
+							 style="@style/wrap_content"
+							 android:text="红色"
+							 android:layout_marginLeft="80dp"
+					         android:layout_centerVertical="true"
+							 android:id="@+id/tv_color" />"
+					</RelativeLayout>
+				<LinearLayout style="@style/line" />
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="50dp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp">
+					<TextView
+						style="@style/wrap_content"
+						android:text="重量："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+
+					<TextView
+						style="@style/wrap_content"
+						android:text="1吨"
+						android:layout_marginLeft="80dp"
+						android:layout_centerVertical="true"
+						android:id="@+id/tv_weight" />"
+				</RelativeLayout>
 			</LinearLayout>
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -220,12 +245,12 @@
 				android:layout_marginTop="10dp"
 				android:visibility="gone"
 			    android:id="@+id/proinfo3">
-				<com.jinying.jyapp.view.MyGridView
+				<com.example.administrator.jymall.view.MyGridView
 					android:numColumns="2"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 				    android:id="@+id/gv">
-				</com.jinying.jyapp.view.MyGridView>
+				</com.example.administrator.jymall.view.MyGridView>
 				
 			</LinearLayout>
 		</LinearLayout>

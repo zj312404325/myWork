@@ -68,55 +68,66 @@ public class ProductInfoCActivity extends TopActivity {
 	@ViewInject(R.id.gv)
 	private MyGridView gv;
 	
-	
 
 	public List<Map<String, Object>> data_list= new ArrayList<Map<String, Object>>();
 	private SimpleAdapter sap;
 	
 	private JSONObject info;
+	private JSONObject defaultProp;
+	private JSONArray appraiseList;
+
 	@ViewInject(R.id.tv_proDesc)
 	private TextView tv_proDesc;
-	@ViewInject(R.id.tv_proArea)
-	private TextView tv_proArea;
 	@ViewInject(R.id.tv_brand)
 	private TextView tv_brand;
-	@ViewInject(R.id.tv_categoryName)
-	private TextView tv_categoryName;
-	@ViewInject(R.id.tv_storename)
-	private TextView tv_storename;
-	@ViewInject(R.id.tv_storekw)
-	private TextView tv_storekw;
+	@ViewInject(R.id.tv_quality)
+	private TextView tv_quality;
+	@ViewInject(R.id.tv_size)
+	private TextView tv_size;
+	@ViewInject(R.id.tv_model)
+	private TextView tv_model;
+	@ViewInject(R.id.tv_color)
+	private TextView tv_color;
+	@ViewInject(R.id.tv_weight)
+	private TextView tv_weight;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_product_info_c);
 		x.view().inject(this);
-		//super.title.setText("产品详情");
+		super.title.setText("产品详情");
 		Intent i = this.getIntent();
 		try {
 			info = new JSONObject(i.getStringExtra("info"));
+			defaultProp = new JSONObject(i.getStringExtra("defaultProp"));
+			appraiseList = new JSONArray(i.getStringExtra("appraiseList"));
 			URLImageParser p = new URLImageParser(tv_proDesc, ProductInfoCActivity.this);
 			String html = info.getString("prodesc");
 			Spanned htmlSpan = Html.fromHtml(html, p, null);
 			tv_proDesc.setText(htmlSpan.toString());
 			tv_brand.setText(info.getJSONObject("mallProductAttr").get("var1").toString());
-			tv_categoryName.setText(info.getString("categorymame"));
+			tv_quality.setText(info.getJSONObject("mallProductAttr").get("var1").toString());
+			tv_size.setText(info.getJSONObject("mallProductAttr").get("var4").toString());
+			tv_model.setText(info.getJSONObject("mallProductAttr").get("var5").toString());
+			tv_color.setText(info.getJSONObject("mallProductAttr").get("var6").toString());
+			tv_weight.setText(info.getJSONObject("mallProductAttr").get("var7").toString());
 
 			String [] from ={"proName"};
 			int [] to = {R.id.protitle};
 			sap = new ProSimpleAdapter(this, data_list, R.layout.list_indexprolist, from, to);
 			gv.setAdapter(sap);
-			getDate();
+			getData();
 		} catch (JSONException e) {
 			e.printStackTrace();
 			progressDialog.hide();
 		}
 	}
 
-	private void getDate() throws JSONException{
+	private void getData() throws JSONException{
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
-		maps.put("comId", info.getString("ownerID"));
+		maps.put("comId", info.getString("ownerid"));
 		XUtilsHelper.getInstance().post("app/getProductListTJ.htm", maps,new XUtilsHelper.XCallBack(){
 
 			@SuppressLint("NewApi")
