@@ -14,51 +14,59 @@
 			android:layout_marginRight="10dp">
 
 			<LinearLayout
-				android:orientation="horizontal"
-				android:layout_weight="1"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical"
-				android:layout_marginRight="10dp">
-				<ImageView
-					android:id="@+id/iv_heador"
-					android:layout_width="40dp"
-					android:layout_height="40dp"
-					android:background="@drawable/icon_common_order"
-					android:layout_gravity="center_vertical"
-					/>
+				android:background="#ffffff"
+				android:layout_height="86dp"
+				android:orientation="horizontal" >
 				<RelativeLayout
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="5dp">
+					android:layout_width="76dp"
+					android:layout_height="86dp"
+					android:layout_marginLeft="10dp">
+					<ImageView
+						android:layout_width="66dp"
+						android:layout_height="66dp"
+						android:id="@+id/img_proImgPath"
+						android:background="@drawable/test"
+						android:layout_centerVertical="true"/>
+				</RelativeLayout>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:orientation="vertical">
+					<TextView
+						style="@style/wrap_content"
+						android:text="产品名称名称名称"
+						android:layout_marginTop="10dp"
+						android:maxLines="2"
+						android:textSize="11dp"
+						android:lineSpacingExtra="4dp"
+						android:id="@+id/tv_proName"/>
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:id="@+id/tv_userName"
-						android:text="131****22"
-						android:textColor="#000000"
-						android:textSize="16dp"
-						android:layout_gravity="center_vertical"/>
-					<ImageView
-						android:id="@+id/iv_orderStar"
-						android:layout_width="wrap_content"
+						android:layout_gravity="center_horizontal"
+						android:text="商品满意度"/>
+
+					<!-- 星级评分条 -->
+					<RatingBar
+						android:id="@+id/ratingBar1"
+						style="@style/myRatingBar"
+						android:layout_width="100dp"
 						android:layout_height="20dp"
-						android:background="@drawable/refund_refuse"
-						android:layout_below="@+id/tv_userName"/>
+						android:layout_gravity="center_horizontal"
+						android:layout_centerHorizontal="true"
+						android:numStars="5"
+						android:rating="5"
+						android:stepSize="1" />
+				</LinearLayout>
+				<LinearLayout
+					android:layout_width="80dp"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					android:layout_marginRight="30dp">
 
-				</RelativeLayout>
-
-				<TextView
-					android:id="@+id/tv_orderTime"
-					android:layout_width="wrap_content"
-					android:layout_height="20dp"
-					android:layout_gravity="center_vertical"
-					android:layout_toEndOf="@id/tv_userName"
-					android:gravity="right"
-					android:layout_marginRight="5dp"
-					android:layout_weight="1"
-					android:text="2018-01-01"
-					android:textSize="16dp" />
+				</LinearLayout>
 			</LinearLayout>
 
 			<TextView
@@ -74,7 +82,9 @@
 					style="@style/wrap_content"
 					android:id="@+id/tv_remark"
 					android:layout_marginTop="5dp"
+					android:layout_marginBottom="5dp"
 					android:maxLines="8"
+					android:hint="商品是否给力？快分享你的购物心得吧！"
 					android:text="撒大声地发顺丰的士大夫士大夫暗示法士大夫撒地方是的范德萨士大夫士大夫撒地方撒范德萨的范德萨范德萨发水电费水电费水电费水电费第三方士大夫撒地方"/>
 
 				<LinearLayout
@@ -86,19 +96,19 @@
 						android:layout_weight="1"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:background="@drawable/refund_refuse"/>
+						android:background="@drawable/mall_file_upload"/>
 					<ImageView
 						android:id="@+id/iv_pic2"
 						android:layout_weight="1"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:background="@drawable/refund_refuse"/>
+						android:background="@drawable/mall_file_upload"/>
 					<ImageView
 						android:id="@+id/iv_pic3"
 						android:layout_weight="1"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:background="@drawable/refund_refuse"/>
+						android:background="@drawable/mall_file_upload"/>
 				</LinearLayout>
 				<LinearLayout
 					android:layout_width="wrap_content"
@@ -109,22 +119,26 @@
 						android:layout_weight="1"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:background="@drawable/refund_refuse"/>
+						android:background="@drawable/mall_file_upload"/>
 					<ImageView
 						android:id="@+id/iv_pic5"
 						android:layout_weight="1"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:background="@drawable/refund_refuse"/>
+						android:background="@drawable/mall_file_upload"/>
 					<ImageView
 						android:layout_weight="1"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:background="@drawable/refund_refuse"
+						android:background="@drawable/mall_file_upload"
 						android:visibility="invisible"/>
 
 				</LinearLayout>
-
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="10dp"
+					android:background="#c6c6c6" />
 		</LinearLayout>
-	</LinearLayout>
+</LinearLayout>
 </LinearLayout>

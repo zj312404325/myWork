@@ -125,7 +125,6 @@ public class ProductInfoActivity extends UserActivity {
 						defaultProp=resdata.getJSONObject("defaultProp");
 						sellProductProps = resdata.getJSONArray("propsArr");
 						appraiseList= resdata.getJSONArray("appraiselist");
-						Log.i("这尼玛", "sellProductProps:"+sellProductProps);
 						if(sellProductProps.length()>0){
 							selectPro = sellProductProps.getJSONObject(0);
 						}
@@ -210,10 +209,14 @@ public class ProductInfoActivity extends UserActivity {
 				startActivity(i);
 			}
 			else if(arg0.getId() == R.id.toinfo){
+				Log.i("这尼玛", "ch_pro: gotoinfo");
 				Intent i = new Intent(getApplicationContext(),ProductInfoCActivity.class);
 				i.putExtra("info",info.toString());
 				i.putExtra("defaultProp",defaultProp.toString());
 				i.putExtra("appraiseList",appraiseList.toString());
+				Log.i("这尼玛", "info:"+info.toString());
+				Log.i("这尼玛", "defaultProp:"+defaultProp.toString());
+				Log.i("这尼玛", "appraiseList:"+appraiseList.toString());
 				startActivity(i);
 			}
 			return false;

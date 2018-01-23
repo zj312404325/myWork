@@ -21,9 +21,11 @@ import android.widget.TextView;
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.DensityUtil;
+import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.URLImageParser;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.MyGridView;
+import com.example.administrator.jymall.view.MyListView;
+import com.example.administrator.jymall.view.XListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +41,7 @@ import java.util.List;
 import java.util.Map;
 
 @ContentView(R.layout.activity_product_info_c)
-public class ProductInfoCActivity extends TopActivity {
+public class ProductInfoCActivity extends TopActivity{
 	
 	@ViewInject(R.id.tab1)
 	private RelativeLayout tab1;
@@ -65,9 +67,10 @@ public class ProductInfoCActivity extends TopActivity {
 	private LinearLayout proinfo2;
 	@ViewInject(R.id.proinfo3)
 	private LinearLayout proinfo3;
-	@ViewInject(R.id.gv)
-	private MyGridView gv;
-	
+	@ViewInject(R.id.xListView)
+	private XListView listViewAll=null;
+	@ViewInject(R.id.lv_list)
+	private MyListView lv_list;
 
 	public List<Map<String, Object>> data_list= new ArrayList<Map<String, Object>>();
 	private SimpleAdapter sap;
@@ -102,62 +105,62 @@ public class ProductInfoCActivity extends TopActivity {
 			info = new JSONObject(i.getStringExtra("info"));
 			defaultProp = new JSONObject(i.getStringExtra("defaultProp"));
 			appraiseList = new JSONArray(i.getStringExtra("appraiseList"));
-			URLImageParser p = new URLImageParser(tv_proDesc, ProductInfoCActivity.this);
-			String html = info.getString("prodesc");
-			Spanned htmlSpan = Html.fromHtml(html, p, null);
-			tv_proDesc.setText(htmlSpan.toString());
-			tv_brand.setText(info.getJSONObject("mallProductAttr").get("var1").toString());
-			tv_quality.setText(info.getJSONObject("mallProductAttr").get("var1").toString());
-			tv_size.setText(info.getJSONObject("mallProductAttr").get("var4").toString());
-			tv_model.setText(info.getJSONObject("mallProductAttr").get("var5").toString());
-			tv_color.setText(info.getJSONObject("mallProductAttr").get("var6").toString());
-			tv_weight.setText(info.getJSONObject("mallProductAttr").get("var7").toString());
 
-			String [] from ={"proName"};
-			int [] to = {R.id.protitle};
-			sap = new ProSimpleAdapter(this, data_list, R.layout.list_indexprolist, from, to);
-			gv.setAdapter(sap);
 			getData();
+			sap = new ProSimpleAdapter(ProductInfoCActivity.this, data_list,
+					R.layout.listview_appraise,
+					new String[]{"userName"},
+					new int[]{R.id.tv_userName});
+			lv_list.setAdapter(sap);
+			Log.i("这尼玛", "onCreate: finish");
+			//listViewAll.setPullLoadEnable(true);
+			//listViewAll.setXListViewListener(this);
+
 		} catch (JSONException e) {
+			Log.i("这尼玛", "exception");
 			e.printStackTrace();
 			progressDialog.hide();
 		}
 	}
 
-	private void getData() throws JSONException{
-		Map<String, String> maps= new HashMap<String, String>();
-		maps.put("serverKey", super.serverKey);
-		maps.put("comId", info.getString("ownerid"));
-		XUtilsHelper.getInstance().post("app/getProductListTJ.htm", maps,new XUtilsHelper.XCallBack(){
-
-			@SuppressLint("NewApi")
-			@Override
-			public void onResponse(String result)  {
-				JSONObject res;
-				try {
-					res = new JSONObject(result);
-					setServerKey(res.get("serverKey").toString());
-					JSONArray resjarr = (JSONArray)res.get("data");
-					for(int i=0;i<resjarr.length();i++){
-						Map<String, Object> dateMap = new HashMap<String, Object>();
-						dateMap.put("isfutures", resjarr.getJSONObject(i).get("isfuture"));
-						dateMap.put("picUrl", resjarr.getJSONObject(i).get("proImage"));
-						dateMap.put("proName", resjarr.getJSONObject(i).get("proName"));
-						dateMap.put("salePrice", resjarr.getJSONObject(i).get("salePrice"));
-						dateMap.put("iD", resjarr.getJSONObject(i).get("id"));
-						data_list.add(dateMap);
-						
-					}
-					sap.notifyDataSetChanged();
-					progressDialog.hide();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+	private void getData(){
+		try {
+			setServerKey(super.serverKey);
+			for (int i = 0; i < appraiseList.length(); i++) {
+				Map<String, Object> dateMap = new HashMap<String, Object>();
+				dateMap.put("createuser", appraiseList.getJSONObject(i).get("createuser"));
+				dateMap.put("createdate", appraiseList.getJSONObject(i).get("createdate"));
+				dateMap.put("orderno", appraiseList.getJSONObject(i).get("orderno"));
+				dateMap.put("productLevel", appraiseList.getJSONObject(i).get("productLevel"));
+				dateMap.put("remark", appraiseList.getJSONObject(i).get("remark"));
+				dateMap.put("pic1", appraiseList.getJSONObject(i).get("pic1"));
+				dateMap.put("pic2", appraiseList.getJSONObject(i).get("pic2"));
+				dateMap.put("pic3", appraiseList.getJSONObject(i).get("pic3"));
+				dateMap.put("pic4", appraiseList.getJSONObject(i).get("pic4"));
+				dateMap.put("pic5", appraiseList.getJSONObject(i).get("pic5"));
+				dateMap.put("id", appraiseList.getJSONObject(i).get("id"));
+				data_list.add(dateMap);
 			}
-			
-		});
+
+			URLImageParser p = new URLImageParser(tv_proDesc, ProductInfoCActivity.this);
+			String html = info.getString("prodesc");
+			Spanned htmlSpan = Html.fromHtml(html, p, null);
+			tv_proDesc.setText(htmlSpan.toString());
+			tv_brand.setText(info.getJSONObject("mallProductAttr").get("var1").toString());
+			tv_quality.setText(defaultProp.get("proquality").toString());
+			tv_size.setText(info.getJSONObject("mallProductAttr").get("var4").toString());
+			tv_model.setText(info.getJSONObject("mallProductAttr").get("var5").toString());
+			tv_color.setText(info.getJSONObject("mallProductAttr").get("var6").toString());
+			tv_weight.setText(info.getJSONObject("mallProductAttr").get("var7").toString());
+
+			progressDialog.hide();
+			sap.notifyDataSetChanged();
+			Log.i("这尼玛", "init: finish");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			Log.i("这尼玛", "init: Exception");
+			e.printStackTrace();
+		}
 	}
 	
 	public class ProSimpleAdapter  extends SimpleAdapter {
@@ -169,8 +172,7 @@ public class ProductInfoCActivity extends TopActivity {
 				List<? extends Map<String, ?>> data, int resource, String[] from,
 				int[] to) {
 			super(context, data, resource, from, to);
-			mInflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
 		
 		@SuppressLint("NewApi")
@@ -179,48 +181,63 @@ public class ProductInfoCActivity extends TopActivity {
 			try{
 				holder=null;
 				if(convertView==null){ 
-					convertView=mInflater.inflate(R.layout.list_indexprolist, null); 
+					convertView=mInflater.inflate(R.layout.listview_appraise, null);
 					holder=new ViewHolder(); 
 					x.view().inject(holder,convertView); 
 					convertView.setTag(holder);
 				} 
 				else{
 					holder=(ViewHolder) convertView.getTag(); 
-				} 
-				holder.protitle.setText(data_list.get(position).get("proName").toString());
-				holder.promoney.setText("￥"+data_list.get(position).get("salePrice").toString());
-				XUtilsHelper.getInstance().bindCommonImage(holder.proimg, data_list.get(position).get("picUrl").toString(), true);
+				}
 
-				LinearLayout.LayoutParams lp1 =new LinearLayout.
-		        		LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-		        lp1.setMargins(0, 0, DensityUtil.dip2px( 2), DensityUtil.dip2px( 4));
-		        LinearLayout.LayoutParams lp2 =new LinearLayout.
-		        		LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-		        lp2.setMargins(DensityUtil.dip2px( 2), 0, 0, DensityUtil.dip2px( 4));
-		        if(position%2 == 0){
-		        	holder.pro.setLayoutParams(lp1);
-		        }
-		        else
-		        {
-		        	holder.pro.setLayoutParams(lp2);
-		        }
-				
-				
-				holder.pro.setOnTouchListener(new View.OnTouchListener() {
-						
-						@Override
-						public boolean onTouch(View arg0, MotionEvent e) {
-							if(e.getAction() == MotionEvent.ACTION_UP){
-								Intent i = new Intent(getApplicationContext(),ProductInfoActivity.class);
-								i.putExtra("id", data_list.get(position).get("iD").toString());
-								startActivity(i);
-								return false;
-							}
-							return true;
-						}
-				});
-				
-				
+				holder.tv_userName.setText(data_list.get(position).get("createuser").toString());
+				holder.tv_orderTime.setText(data_list.get(position).get("createdate").toString());
+				holder.tv_remark.setText(data_list.get(position).get("remark").toString());
+				XUtilsHelper.getInstance().bindCommonImage(holder.iv_heador, data_list.get(position).get("heador").toString(), true);
+
+				holder.iv_pic1.setVisibility(View.GONE);
+				holder.iv_pic2.setVisibility(View.GONE);
+				holder.iv_pic3.setVisibility(View.GONE);
+				holder.iv_pic4.setVisibility(View.GONE);
+				holder.iv_pic5.setVisibility(View.GONE);
+				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic1").toString())) {
+					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic1, data_list.get(position).get("pic1").toString(), true);
+					holder.iv_pic1.setVisibility(View.VISIBLE);
+				}
+				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic2").toString())) {
+					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic2, data_list.get(position).get("pic2").toString(), true);
+					holder.iv_pic2.setVisibility(View.VISIBLE);
+				}
+				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic3").toString())) {
+					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic3, data_list.get(position).get("pic3").toString(), true);
+					holder.iv_pic3.setVisibility(View.VISIBLE);
+				}
+				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic4").toString())) {
+					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic4, data_list.get(position).get("pic4").toString(), true);
+					holder.iv_pic4.setVisibility(View.VISIBLE);
+				}
+				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic5").toString())) {
+					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic5, data_list.get(position).get("pic5").toString(), true);
+					holder.iv_pic5.setVisibility(View.VISIBLE);
+				}
+
+				String level=data_list.get(position).get("productLevel").toString();
+				if(level.equals("1")){
+					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom1);
+				}
+				else if(level.equals("2")){
+					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom2);
+				}
+				else if(level.equals("3")){
+					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom3);
+				}
+				else if(level.equals("4")){
+					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom4);
+				}
+				else{
+					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom5);
+				}
+
 			}
 			catch(Exception e){
 				Log.v("PRO", e.getMessage());
@@ -231,15 +248,27 @@ public class ProductInfoCActivity extends TopActivity {
 		
 	}
 
-	class ViewHolder{ 
-		@ViewInject(R.id.proimg)
-		private ImageView proimg;
-		@ViewInject(R.id.protitle)
-		private TextView protitle;
-		@ViewInject(R.id.promoney)
-		private TextView promoney;
-		@ViewInject(R.id.pro)
-		private RelativeLayout pro;
+	class ViewHolder{
+		@ViewInject(R.id.iv_heador)
+		private ImageView iv_heador;
+		@ViewInject(R.id.iv_orderStar)
+		private ImageView iv_orderStar;
+		@ViewInject(R.id.tv_userName)
+		private TextView tv_userName;
+		@ViewInject(R.id.tv_orderTime)
+		private TextView tv_orderTime;
+		@ViewInject(R.id.tv_remark)
+		private TextView tv_remark;
+		@ViewInject(R.id.iv_pic1)
+		private ImageView iv_pic1;
+		@ViewInject(R.id.iv_pic2)
+		private ImageView iv_pic2;
+		@ViewInject(R.id.iv_pic3)
+		private ImageView iv_pic3;
+		@ViewInject(R.id.iv_pic4)
+		private ImageView iv_pic4;
+		@ViewInject(R.id.iv_pic5)
+		private ImageView iv_pic5;
 	}
 	
 	@SuppressLint("NewApi")
@@ -295,5 +324,5 @@ public class ProductInfoCActivity extends TopActivity {
 		return true;
 	}
 
-	
+
 }

@@ -201,7 +201,7 @@
         </activity>
         <activity
             android:name=".ProductInfoCActivity"
-            android:label="@string/title_activity_product_info_c" >
+            android:label="ProductInfoCActivity" >
         </activity>
         <activity
             android:name=".AddOrder1Activity"
