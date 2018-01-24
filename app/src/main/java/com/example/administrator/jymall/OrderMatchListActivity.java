@@ -36,8 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ContentView(R.layout.activity_fast_match_list)
-public class FastMatchListActivity extends TopActivity implements IXListViewListener {
+@ContentView(R.layout.activity_order_match_list)
+public class OrderMatchListActivity extends TopActivity implements IXListViewListener {
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;
@@ -56,14 +56,14 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fast_match_list);
+        setContentView(R.layout.activity_order_match_list);
         x.view().inject(this);
         super.title.setText("标准配管理");
         progressDialog.hide();
         skey=super.serverKey;
 
-        sap = new ProSimpleAdapter(FastMatchListActivity.this, dateMaps,
-                R.layout.listview_fastmatch,
+        sap = new ProSimpleAdapter(OrderMatchListActivity.this, dateMaps,
+                R.layout.listview_ordermatch,
                 new String[]{"matchNo"},
                 new int[]{R.id.tv_matchNo});
         listViewAll.setAdapter(sap);
@@ -86,7 +86,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
         maps.put("serverKey", super.serverKey);
         maps.put("currentPage", ""+start);
 
-        XUtilsHelper.getInstance().post("app/mallFastMatchList.htm", maps,new XUtilsHelper.XCallBack(){
+        XUtilsHelper.getInstance().post("app/mallOrderMatchList.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")
             @Override
@@ -151,7 +151,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
         public View getView(final int position, View convertView, ViewGroup parent) {
             holder=null;
             if(convertView==null){
-                convertView=mInflater.inflate(R.layout.listview_fastmatch, null);
+                convertView=mInflater.inflate(R.layout.listview_ordermatch, null);
                 holder=new ViewHolder();
                 x.view().inject(holder,convertView);
                 convertView.setTag(holder);
@@ -177,7 +177,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
                 holder.ll_matchInfo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
-                        Intent i = new Intent(getApplicationContext(), FastMatchDetailActivity.class);
+                        Intent i = new Intent(getApplicationContext(), OrderMatchDetailActivity.class);
                         i.putExtra("matchid", id);
                         startActivity(i);
                     }
@@ -195,7 +195,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
                 holder.ll_matchInfo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
-                        Intent i = new Intent(getApplicationContext(), FastMatchDetailActivity.class);
+                        Intent i = new Intent(getApplicationContext(), OrderMatchDetailActivity.class);
                         i.putExtra("matchid", id);
                         startActivity(i);
                     }
@@ -210,7 +210,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
                     @Override
                     public boolean onTouch(View arg0, MotionEvent e) {
                         if(e.getAction() == MotionEvent.ACTION_UP){
-                            new CommonDialog(FastMatchListActivity.this, R.style.dialog, "确定取消？", new CommonDialog.OnCloseListener() {
+                            new CommonDialog(OrderMatchListActivity.this, R.style.dialog, "确定取消？", new CommonDialog.OnCloseListener() {
                                 @Override
                                 public void onClick(Dialog dialog, boolean confirm) {
                                     if(confirm){
@@ -218,7 +218,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
                                         Map<String, String> maps= new HashMap<String, String>();
                                         maps.put("serverKey", skey);
                                         maps.put("id", id);
-                                        XUtilsHelper.getInstance().post("app/cancelFastMatch.htm", maps,new XUtilsHelper.XCallBack(){
+                                        XUtilsHelper.getInstance().post("app/cancelOrderMatch.htm", maps,new XUtilsHelper.XCallBack(){
 
                                             @SuppressLint("NewApi")
                                             @Override

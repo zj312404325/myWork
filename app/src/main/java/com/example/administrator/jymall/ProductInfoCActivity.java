@@ -93,7 +93,9 @@ public class ProductInfoCActivity extends TopActivity{
 	private TextView tv_color;
 	@ViewInject(R.id.tv_weight)
 	private TextView tv_weight;
-	
+	@ViewInject(R.id.tv_noData)
+	private TextView tv_noData;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -105,19 +107,14 @@ public class ProductInfoCActivity extends TopActivity{
 			info = new JSONObject(i.getStringExtra("info"));
 			defaultProp = new JSONObject(i.getStringExtra("defaultProp"));
 			appraiseList = new JSONArray(i.getStringExtra("appraiseList"));
-
-			getData();
 			sap = new ProSimpleAdapter(ProductInfoCActivity.this, data_list,
 					R.layout.listview_appraise,
 					new String[]{"userName"},
 					new int[]{R.id.tv_userName});
 			lv_list.setAdapter(sap);
-			Log.i("这尼玛", "onCreate: finish");
-			//listViewAll.setPullLoadEnable(true);
-			//listViewAll.setXListViewListener(this);
+			getData();
 
 		} catch (JSONException e) {
-			Log.i("这尼玛", "exception");
 			e.printStackTrace();
 			progressDialog.hide();
 		}
@@ -125,21 +122,29 @@ public class ProductInfoCActivity extends TopActivity{
 
 	private void getData(){
 		try {
-			setServerKey(super.serverKey);
-			for (int i = 0; i < appraiseList.length(); i++) {
-				Map<String, Object> dateMap = new HashMap<String, Object>();
-				dateMap.put("createuser", appraiseList.getJSONObject(i).get("createuser"));
-				dateMap.put("createdate", appraiseList.getJSONObject(i).get("createdate"));
-				dateMap.put("orderno", appraiseList.getJSONObject(i).get("orderno"));
-				dateMap.put("productLevel", appraiseList.getJSONObject(i).get("productLevel"));
-				dateMap.put("remark", appraiseList.getJSONObject(i).get("remark"));
-				dateMap.put("pic1", appraiseList.getJSONObject(i).get("pic1"));
-				dateMap.put("pic2", appraiseList.getJSONObject(i).get("pic2"));
-				dateMap.put("pic3", appraiseList.getJSONObject(i).get("pic3"));
-				dateMap.put("pic4", appraiseList.getJSONObject(i).get("pic4"));
-				dateMap.put("pic5", appraiseList.getJSONObject(i).get("pic5"));
-				dateMap.put("id", appraiseList.getJSONObject(i).get("id"));
-				data_list.add(dateMap);
+			if(FormatUtil.isNoEmpty(appraiseList)) {
+				for (int i = 0; i < appraiseList.length(); i++) {
+					Map<String, Object> dateMap = new HashMap<String, Object>();
+					dateMap.put("createuser", appraiseList.getJSONObject(i).get("createuser"));
+					dateMap.put("createdate", appraiseList.getJSONObject(i).get("createdate"));
+					dateMap.put("orderno", appraiseList.getJSONObject(i).get("orderno"));
+					dateMap.put("productLevel", appraiseList.getJSONObject(i).get("productLevel"));
+					dateMap.put("remark", appraiseList.getJSONObject(i).get("remark"));
+					dateMap.put("heador", appraiseList.getJSONObject(i).get("heador"));
+					dateMap.put("pic1", appraiseList.getJSONObject(i).get("pic1"));
+					dateMap.put("pic2", appraiseList.getJSONObject(i).get("pic2"));
+					dateMap.put("pic3", appraiseList.getJSONObject(i).get("pic3"));
+					dateMap.put("pic4", appraiseList.getJSONObject(i).get("pic4"));
+					dateMap.put("pic5", appraiseList.getJSONObject(i).get("pic5"));
+					dateMap.put("id", appraiseList.getJSONObject(i).get("id"));
+					data_list.add(dateMap);
+				}
+				if(appraiseList.length()>0) {
+					tv_noData.setVisibility(View.GONE);
+				}
+			}
+			else{
+				tv_noData.setVisibility(View.VISIBLE);
 			}
 
 			URLImageParser p = new URLImageParser(tv_proDesc, ProductInfoCActivity.this);
@@ -155,10 +160,9 @@ public class ProductInfoCActivity extends TopActivity{
 
 			progressDialog.hide();
 			sap.notifyDataSetChanged();
-			Log.i("这尼玛", "init: finish");
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			Log.i("这尼玛", "init: Exception");
 			e.printStackTrace();
 		}
 	}
@@ -223,19 +227,19 @@ public class ProductInfoCActivity extends TopActivity{
 
 				String level=data_list.get(position).get("productLevel").toString();
 				if(level.equals("1")){
-					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom1);
+					holder.iv_orderStar.setBackgroundResource(R.drawable.fivestar_red_1);
 				}
 				else if(level.equals("2")){
-					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom2);
+					holder.iv_orderStar.setBackgroundResource(R.drawable.fivestar_red_2);
 				}
 				else if(level.equals("3")){
-					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom3);
+					holder.iv_orderStar.setBackgroundResource(R.drawable.fivestar_red_3);
 				}
 				else if(level.equals("4")){
-					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom4);
+					holder.iv_orderStar.setBackgroundResource(R.drawable.fivestar_red_4);
 				}
 				else{
-					holder.iv_orderStar.setBackgroundResource(R.drawable.icon_custom5);
+					holder.iv_orderStar.setBackgroundResource(R.drawable.fivestar_red_5);
 				}
 
 			}

@@ -122,6 +122,9 @@ public class AddOrderActivity extends TopActivity {
 	private String goodsMoney;
 	private String goodsCount;
 
+	private String orderType;
+	private String customid;
+
 	private String TEMP_IMAGE_PATH;  	
 	private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png"; 
 	private Bitmap bitmap1 = null;
@@ -138,15 +141,48 @@ public class AddOrderActivity extends TopActivity {
 		dateMaps = (List<Map<String, Object>>) intent.getSerializableExtra("data");
 		goodsMoney =intent.getStringExtra("goodsMoney");
 		goodsCount =intent.getStringExtra("goodsCount");
-		for(int i=0;i<dateMaps.size();i++){
-			if(dateMaps.get(i).get("isCheck").toString().equals("1")){
-				ids += dateMaps.get(i).get("id").toString()+",";
-				Map<String,String> temp = new HashMap<String, String>();
-				temp.put("k", "pro_Num"+dateMaps.get(i).get("id").toString());
-				temp.put("v", dateMaps.get(i).get("quantity").toString());
-				proNum.add(temp);
+		orderType =intent.getStringExtra("orderType");
+
+		if(orderType.equals("order")) {
+			for (int i = 0; i < dateMaps.size(); i++) {
+				if (dateMaps.get(i).get("isCheck").toString().equals("1")) {
+					ids += dateMaps.get(i).get("id").toString() + ",";
+					Map<String, String> temp = new HashMap<String, String>();
+					temp.put("k", "pro_Num" + dateMaps.get(i).get("id").toString());
+					temp.put("v", dateMaps.get(i).get("quantity").toString());
+					proNum.add(temp);
+				}
 			}
 		}
+		else if(orderType.equals("fastMatch")){
+			customid=intent.getStringExtra("customid");
+			for (int i = 0; i < dateMaps.size(); i++) {
+				if(dateMaps.get(i).get("hasCheck").toString().equals("1")){
+					if (dateMaps.get(i).get("isCheck").toString().equals("1")) {
+						ids += dateMaps.get(i).get("id").toString() + ",";
+						Map<String, String> temp = new HashMap<String, String>();
+						temp.put("k", "pro_Num" + dateMaps.get(i).get("id").toString());
+						temp.put("v", dateMaps.get(i).get("quantity").toString());
+						proNum.add(temp);
+					}
+				}
+			}
+		}
+		else if(orderType.equals("orderMatch")){
+			customid=intent.getStringExtra("customid");
+			for (int i = 0; i < dateMaps.size(); i++) {
+				if(dateMaps.get(i).get("hasCheck").toString().equals("1")){
+					if (dateMaps.get(i).get("isCheck").toString().equals("1")) {
+						ids += dateMaps.get(i).get("id").toString() + ",";
+						Map<String, String> temp = new HashMap<String, String>();
+						temp.put("k", "pro_Num" + dateMaps.get(i).get("id").toString());
+						temp.put("v", dateMaps.get(i).get("quantity").toString());
+						proNum.add(temp);
+					}
+				}
+			}
+		}
+
 		if(ids.equals("")){
 			CommonUtil.alter("请选择购买产品！");
 			finish();
@@ -157,8 +193,14 @@ public class AddOrderActivity extends TopActivity {
 		sap = new ProSimpleAdapter(this, prolist, R.layout.listview_doorderinfo, 
 				new String[]{"proName"}, 
 				new int[]{R.id.tv_proName});
-		mlv_prolist.setAdapter(sap);		
-		getDate();
+		mlv_prolist.setAdapter(sap);
+
+		if(orderType.equals("order")) {
+			getOrderData();
+		}
+		else{
+			getMatchData();
+		}
 	}
 	
 	@Event(R.id.btn_tj)
@@ -185,7 +227,8 @@ public class AddOrderActivity extends TopActivity {
 			Map<String, String> maps= new HashMap<String, String>();
 			maps.put("serverKey", super.serverKey);
 			maps.put("ids", ids);
-			maps.put("orderType", "order");
+			maps.put("orderType", orderType);
+			maps.put("customid", customid);
 			maps.put("subBankId", bankAccount.getString("id"));
 			maps.put("subAddressId", address.getString("id"));
 			maps.put("subInvoiceId", Invoice.getString("id"));
@@ -223,13 +266,12 @@ public class AddOrderActivity extends TopActivity {
 	}
 	
 	
-	private void getDate(){
+	private void getOrderData(){
 		progressDialog.show();
 		resMaps.clear();
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("ids", ids);
-		maps.put("orderType", "order");
 		for(Map m:proNum){
 			maps.put(m.get("k").toString(), m.get("v").toString());
 		}
@@ -286,6 +328,69 @@ public class AddOrderActivity extends TopActivity {
 		});
 		
 	}
+
+	private void getMatchData(){
+		progressDialog.show();
+		resMaps.clear();
+		Map<String, String> maps= new HashMap<String, String>();
+		maps.put("serverKey", super.serverKey);
+		maps.put("ids", ids);
+		for(Map m:proNum){
+			maps.put(m.get("k").toString(), m.get("v").toString());
+		}
+		dateMaps.clear();
+		XUtilsHelper.getInstance().post("app/prepareMatchOrder.htm", maps,new XUtilsHelper.XCallBack(){
+
+			@SuppressLint("NewApi")
+			@Override
+			public void onResponse(String result)  {
+				progressDialog.hide();
+				JSONObject res;
+				try {
+					res = new JSONObject(result);
+					setServerKey(res.get("serverKey").toString());
+					if(res.get("d").equals("n")){
+						CommonUtil.alter(res.get("msg").toString());
+						MyApplication.getInstance().finishActivity();
+					}
+					else{
+						address = FormatUtil.toJSONObject(res.getString("address"));
+						setAddress();
+						Invoice =  FormatUtil.toJSONObject(res.getString("invoice"));
+						setInvoice();
+						bankAccount =  FormatUtil.toJSONObject(res.getString("bankaccount"));
+						setBank();
+
+						JSONArray detailList = res.getJSONArray("detailList");
+
+						tv_goodsCount.setText(goodsCount);
+						tv_goodsMoney.setText(goodsMoney);
+						tv_totalPrice.setText(FormatUtil.toString(res.getDouble("totalPrice")));
+						for(int i=0;i<detailList.length();i++){
+							Map<String,Object> maptemp = new HashMap<String, Object>();
+							maptemp.put("proName", detailList.getJSONObject(i).get("proName"));
+							maptemp.put("specifno", "规格："+detailList.getJSONObject(i).get("proSpec")+" "+" 品牌："+detailList.getJSONObject(i).get("brand"));
+							maptemp.put("proSpec", detailList.getJSONObject(i).get("proSpec"));
+							maptemp.put("brand",detailList.getJSONObject(i).get("brand"));
+							maptemp.put("salePrice", detailList.getJSONObject(i).get("salePrice"));
+							maptemp.put("stockQty",detailList.getJSONObject(i).get("quantity"));
+							maptemp.put("unit", detailList.getJSONObject(i).get("unit"));
+							maptemp.put("money", detailList.getJSONObject(i).get("money"));
+							prolist.add(maptemp);
+						}
+						sap.notifyDataSetChanged();
+					}
+
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		});
+
+	}
 	
 	public class ProSimpleAdapter  extends SimpleAdapter {		
 		private LayoutInflater mInflater;		
@@ -309,8 +414,15 @@ public class AddOrderActivity extends TopActivity {
 				TextView pro_specifno = (TextView)convertView.findViewById(R.id.pro_specifno);
 				TextView pro_salePrice = (TextView)convertView.findViewById(R.id.pro_salePrice);
 				TextView pro_stockQty = (TextView)convertView.findViewById(R.id.pro_stockQty);
-				
-				XUtilsHelper.getInstance().bindCommonImage(img_picUrl,prolist.get(position).get("picUrl").toString(), true);
+				if(orderType.equals("order")) {
+					XUtilsHelper.getInstance().bindCommonImage(img_picUrl, prolist.get(position).get("picUrl").toString(), true);
+				}
+				else if(orderType.equals("fastMatch")){
+					img_picUrl.setBackgroundResource(R.drawable.pro_fast_match);
+				}
+				else if(orderType.equals("orderMatch")){
+					img_picUrl.setBackgroundResource(R.drawable.pro_order_match);
+				}
 				tv_proName.setText(prolist.get(position).get("proName").toString());
 				pro_specifno.setText(prolist.get(position).get("specifno").toString());
 				if(FormatUtil.toDouble( prolist.get(position).get("salePrice").toString())==0){

@@ -427,6 +427,28 @@
             android:label="RefundGoodsCancelActivity" >
         </activity>
 
+        <activity
+            android:name=".MyMatchIndexActivity"
+            android:label="MyMatchIndexActivity" >
+        </activity>
+        <activity
+            android:name=".FastMatchListActivity"
+            android:label="FastMatchListActivity" >
+        </activity>
+        <activity
+            android:name=".FastMatchDetailActivity"
+            android:label="FastMatchDetailActivity" >
+        </activity>
+
+        <activity
+            android:name=".OrderMatchListActivity"
+            android:label="OrderMatchListActivity" >
+        </activity>
+        <activity
+            android:name=".OrderMatchDetailActivity"
+            android:label="OrderMatchDetailActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

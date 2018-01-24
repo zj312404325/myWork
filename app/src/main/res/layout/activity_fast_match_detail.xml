@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    tools:context=".FastMatchDetailActivity" >
+
+    <include  android:id="@+id/top"  layout="@layout/top" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_below="@id/top">
+
+			<com.example.administrator.jymall.view.XListView
+				android:id="@+id/xListView"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:cacheColorHint="#00000000">
+			</com.example.administrator.jymall.view.XListView>
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/listtv"
+				android:text="暂无数据"
+				android:textColor="#939393"
+				android:layout_centerInParent="true" />
+
+		</LinearLayout>
+
+	<LinearLayout
+		android:layout_alignParentBottom="true"
+		android:layout_width="match_parent"
+		android:layout_height="60dp"
+		android:background="#ffffff"
+		android:orientation="horizontal" >
+		<CheckBox
+			android:id="@+id/cb_selectAll"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"/>
+		<TextView
+			android:text="全选"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"/>
+
+		<TextView
+			android:text="删除"
+			android:id="@+id/tv_delSelect"
+			android:layout_marginLeft="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"/>
+
+		<TextView
+			android:text="合计："
+			android:layout_marginLeft="20dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"/>
+		<TextView
+			android:id="@+id/tv_totalMoney"
+			android:text="¥0.00"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"/>
+
+		<Button
+			style="@style/loginbtnlongoff"
+			android:id="@+id/btn_submit"
+			android:layout_width="100dp"
+			android:layout_height="40dp"
+			android:layout_gravity="center"
+			android:layout_marginLeft="30dp"
+			android:text="确认生成订单"
+			android:textSize="14dp"
+			android:enabled="false"/>
+	</LinearLayout>
+</RelativeLayout>

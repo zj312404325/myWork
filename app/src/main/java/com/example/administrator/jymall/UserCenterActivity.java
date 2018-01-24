@@ -167,7 +167,7 @@ public class UserCenterActivity extends ButtomTapActivity {
 	@Event(value=R.id.rl_myMatch,type=View.OnTouchListener.class)
 	private boolean myMatchTouch(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			startActivity(new Intent(getApplicationContext(),MyMatchActivity.class));
+			startActivity(new Intent(getApplicationContext(),MyMatchIndexActivity.class));
 			return false;
 		}
 		return true;

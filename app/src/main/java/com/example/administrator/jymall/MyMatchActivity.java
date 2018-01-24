@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ContentView(R.layout.activity_myscore)
+@ContentView(R.layout.activity_mymatch_index)
 public class MyMatchActivity extends TopActivity implements IXListViewListener {
 
     @ViewInject(R.id.xListView)

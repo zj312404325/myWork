@@ -106,8 +106,8 @@
 					 <RatingBar
 						 android:id="@+id/ratingBar1"
 						 style="@style/myRatingBar"
-						 android:layout_width="100dp"
-						 android:layout_height="20dp"
+						 android:layout_width="200dp"
+						 android:layout_height="80dp"
 						 android:layout_alignParentEnd="true"
 						 android:layout_centerHorizontal="true"
 						 android:numStars="5"

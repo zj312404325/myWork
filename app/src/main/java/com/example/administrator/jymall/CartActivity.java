@@ -369,6 +369,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		i.putExtra("data", (Serializable)dateMaps);
 		i.putExtra("goodsMoney", goodsMoney);
 		i.putExtra("goodsCount", FormatUtil.toString(goodsCount));
+		i.putExtra("orderType", "order");
 		startActivity(i);
 	}
 	

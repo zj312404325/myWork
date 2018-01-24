@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+	<LinearLayout
+		android:id="@+id/ll_matchInfo"
+		android:orientation="vertical"
+		android:layout_weight="1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:layout_marginTop="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp">
+
+		<LinearLayout
+			style="@style/match_parent"
+			android:orientation="horizontal">
+
+			<CheckBox
+				android:id="@+id/cb_selectDtl"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:visibility="invisible"/>
+
+			<LinearLayout
+				style="@style/match_parent"
+				android:layout_marginLeft="10dp"
+				android:orientation="vertical">
+
+				<LinearLayout
+					style="@style/wrap_content"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:textSize="18sp"
+						android:text="商		品		名："/>
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/tv_proName"
+						android:textSize="18sp"
+						android:text="加载中..."/>
+				</LinearLayout>
+
+				<LinearLayout
+					style="@style/wrap_content"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:textSize="18sp"
+						android:text="品						牌："/>
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/tv_brand"
+						android:textSize="18sp"
+						android:text="加载中..."/>
+				</LinearLayout>
+
+				<LinearLayout
+					style="@style/wrap_content"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:textSize="18sp"
+						android:text="规						格："/>
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/tv_spec"
+						android:textSize="18sp"
+						android:text="加载中..."/>
+				</LinearLayout>
+
+				<LinearLayout
+					style="@style/wrap_content"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:textSize="18sp"
+						android:text="数						量："/>
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/tv_quantity"
+						android:textSize="18sp"
+						android:text="加载中..."/>
+				</LinearLayout>
+
+				<LinearLayout
+					style="@style/wrap_content"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:textSize="18sp"
+						android:text="单						价："/>
+
+					<TextView
+						android:id="@+id/tv_unitPrice"
+						style="@style/wrap_content"
+						android:layout_height="match_parent"
+						android:text="加载中..."
+						android:textSize="18sp" />
+				</LinearLayout>
+
+				<LinearLayout
+					style="@style/wrap_content"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:textSize="18sp"
+						android:text="总						价："/>
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/tv_money"
+						android:textSize="18sp"
+						android:text="加载中..."/>
+				</LinearLayout>
+
+				<LinearLayout
+					style="@style/wrap_content"
+					android:layout_marginTop="5dp"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:textSize="18sp"
+						android:text="订单状态："/>
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/tv_orderStatus"
+						android:textSize="18sp"
+						android:text="加载中..."/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:id="@+id/ll_cancel"
+					style="@style/wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_gravity="center"
+					android:orientation="horizontal">
+					<TextView
+						style="@style/wrap_content"
+						android:text="取消"
+						android:drawableLeft="@drawable/icon_del"
+						android:id="@+id/btn_cancel"
+						android:layout_gravity="center_horizontal"
+						android:visibility="gone"/>
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

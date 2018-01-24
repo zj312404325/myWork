@@ -19,6 +19,7 @@
 				android:orientation="horizontal"
 				android:id="@+id/orderinfo" >
   			    <ImageView
+					android:id="@+id/iv_orderTypeIcon"
 					android:background="@drawable/logo_jinjin"
 					android:layout_width="17dp"
 					android:layout_height="18dp"

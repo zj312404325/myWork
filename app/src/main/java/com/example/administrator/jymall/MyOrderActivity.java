@@ -196,6 +196,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             for(int j=0;j<orderDtls.length();j++){
                                 Map<String, Object> dateMap1 = new HashMap<String, Object>();
                                 dateMap1.put("id", orderDtls.getJSONObject(j).get("iD"));
+                                dateMap1.put("orderType", resjarr.getJSONObject(i).get("orderType"));
                                 dateMap1.put("orderDtl", orderDtls.getJSONObject(j).toString());
                                 dateMap1.put("proName", orderDtls.getJSONObject(j).get("proName"));
                                 dateMap1.put("salePrice", orderDtls.getJSONObject(j).get("salePrice"));
@@ -319,6 +320,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 Button btn_confirmProduct = (Button)convertView.findViewById(R.id.btn_confirmProduct);
                 Button btn_appraise = (Button)convertView.findViewById(R.id.btn_appraise);
                 TextView tv_isAppraised = (TextView)convertView.findViewById(R.id.tv_isAppraised);
+                ImageView iv_orderTypeIcon = (ImageView)convertView.findViewById(R.id.iv_orderTypeIcon);
 
                 final int orderStatus = order.getInt("orderStatus");
                 final String orderType = order.getString("orderType");
@@ -334,6 +336,15 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 tv_money.setText("合计：¥"+money+"元");
                 tv_transFee.setText("（含运费：¥"+feeMoney+"）");
 
+                if(orderType.equals("fastMatch")){
+                    iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_fast_match);
+                }
+                else if(orderType.equals("orderMatch")){
+                    iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_order_match);
+                }
+                if(orderType.equals("product")){
+                    iv_orderTypeIcon.setBackgroundResource(R.drawable.logo_jinjin);
+                }
                 /*tv_owner.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View arg0, MotionEvent event) {
@@ -465,6 +476,8 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 5) {
                         tv_orderStatus.setText("订单取消");
+                        btn_pay.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 6) {
                         tv_orderStatus.setText("订单结束");
                     }
@@ -643,8 +656,19 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 ImageView img_tui = (ImageView)convertView.findViewById(R.id.img_tui);
 
                 JSONObject orderdtl  =FormatUtil.toJSONObject( mdata.get(position).get("orderDtl").toString());
-                XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
-
+                String orderType=mdata.get(position).get("orderType").toString();
+                if(orderType.equals("product")) {
+                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+                }
+                else if(orderType.equals("fastMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_fast_match);
+                }
+                else if(orderType.equals("orderMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_order_match);
+                }
+                else{
+                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+                }
                 String salePrice = orderdtl.getString("salePrice");
                 String proName = orderdtl.getString("proName");
 
