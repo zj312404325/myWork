@@ -430,6 +430,7 @@ public class RefundMoneyOneEditActivity extends TopActivity {
                                 }
                                 else{
                                     fileurl=res.getString("fileUrl");
+                                    progressDialog.hide();
                                 }
                             }
                         }

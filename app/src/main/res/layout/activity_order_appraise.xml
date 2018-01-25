@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ececec"
-    tools:context=".MyOrderInfoActivity" >
+    tools:context=".OrderAppraiseActivity" >
 
     <include  android:id="@+id/top_title"  layout="@layout/top" />
-	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical" >
+			android:orientation="vertical"
+			android:layout_below="@id/top_title"
+			android:layout_above="@+id/ll_commentInfo">
 
 		    <LinearLayout
 				android:layout_width="match_parent"
@@ -38,14 +40,29 @@
 				style="@style/line"
 				android:layout_marginLeft="16dp"
 				android:layout_marginRight="16dp"  />
-				<com.example.administrator.jymall.view.MyListView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:id="@+id/list_productInfo">
-				</com.example.administrator.jymall.view.MyListView>
 
+			<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<com.example.administrator.jymall.view.XListView
+						android:id="@+id/xListView"
+						android:layout_width="fill_parent"
+						android:layout_height="fill_parent"
+						android:cacheColorHint="#00000000">
+					</com.example.administrator.jymall.view.XListView>
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/listtv"
+						android:text="暂无数据"
+						android:textColor="#939393"
+						android:layout_centerInParent="true" />
+				</LinearLayout>
+		</LinearLayout>
 
-		     <LinearLayout
+		<LinearLayout
+				 android:id="@+id/ll_commentInfo"
+				 android:layout_alignParentBottom="true"
 				 android:layout_width="match_parent"
 				 android:layout_height="wrap_content"
 				 android:orientation="vertical"
@@ -104,10 +121,10 @@
 
 					 <!-- 星级评分条 -->
 					 <RatingBar
-						 android:id="@+id/ratingBar1"
+						 android:id="@+id/rb_package"
 						 style="@style/myRatingBar"
-						 android:layout_width="200dp"
-						 android:layout_height="80dp"
+						 android:layout_width="76dp"
+						 android:layout_height="20dp"
 						 android:layout_alignParentEnd="true"
 						 android:layout_centerHorizontal="true"
 						 android:numStars="5"
@@ -130,21 +147,43 @@
 						 android:layout_width="80dp"
 						 android:maxLines="1" />
 
-					 <ImageView
-						 android:layout_width="100dp"
+					 <!-- 星级评分条 -->
+					 <RatingBar
+						 android:id="@+id/rb_sendGoods"
+						 style="@style/myRatingBar"
+						 android:layout_width="76dp"
 						 android:layout_height="20dp"
-						 android:layout_alignParentRight="true"
-						 android:id="@+id/iv_goodsSpeed"
-						 android:background="@drawable/star_red_0"
-						 android:layout_centerVertical="true"/>
+						 android:layout_alignParentEnd="true"
+						 android:layout_centerHorizontal="true"
+						 android:numStars="5"
+						 android:rating="5"
+						 android:stepSize="1" />
 				 </RelativeLayout>
 
 				<LinearLayout style="@style/line" />
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:background="#ffffff"
+				android:layout_marginTop="16dp">
+
+				<CheckBox
+					android:id="@+id/cb_hideName"
+					android:layout_marginLeft="10dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="匿名评价"/>
 			</LinearLayout>
 			
 			<Button
 				style="@style/btndarkblue"
-				android:id="@+id/btn_commit"
+				android:id="@+id/btn_submit"
 				android:layout_marginTop="10dp"
 				android:text="评价"
 				android:layout_width="match_parent"
@@ -152,7 +191,7 @@
             	android:layout_marginLeft="40dp"
 				android:layout_marginRight="40dp"
 				android:visibility="visible"/>
-	    </LinearLayout>
-	</ScrollView>
+
+		 </LinearLayout>
 
 </RelativeLayout>

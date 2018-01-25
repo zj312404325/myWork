@@ -43,6 +43,7 @@
 						android:lineSpacingExtra="4dp"
 						android:id="@+id/tv_proName"/>
 					<TextView
+						android:layout_marginTop="10dp"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center_horizontal"
@@ -50,11 +51,11 @@
 
 					<!-- 星级评分条 -->
 					<RatingBar
-						android:id="@+id/ratingBar1"
+						android:id="@+id/rb_productLevel"
 						style="@style/myRatingBar"
-						android:layout_width="100dp"
+						android:layout_width="76dp"
 						android:layout_height="20dp"
-						android:layout_gravity="center_horizontal"
+						android:layout_gravity="center"
 						android:layout_centerHorizontal="true"
 						android:numStars="5"
 						android:rating="5"
@@ -78,14 +79,14 @@
 			<LinearLayout
 				style="@style/wrap_content"
 				android:orientation="vertical">
-				<TextView
+				<EditText
 					style="@style/wrap_content"
-					android:id="@+id/tv_remark"
+					android:id="@+id/et_remark"
 					android:layout_marginTop="5dp"
 					android:layout_marginBottom="5dp"
 					android:maxLines="8"
 					android:hint="商品是否给力？快分享你的购物心得吧！"
-					android:text="撒大声地发顺丰的士大夫士大夫暗示法士大夫撒地方是的范德萨士大夫士大夫撒地方撒范德萨的范德萨范德萨发水电费水电费水电费水电费第三方士大夫撒地方"/>
+					android:text=""/>
 
 				<LinearLayout
 					android:layout_width="wrap_content"
@@ -110,7 +111,7 @@
 						android:layout_height="wrap_content"
 						android:background="@drawable/mall_file_upload"/>
 				</LinearLayout>
-				<LinearLayout
+				<!--<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="110dp"
 					android:orientation="horizontal">
@@ -133,7 +134,7 @@
 						android:background="@drawable/mall_file_upload"
 						android:visibility="invisible"/>
 
-				</LinearLayout>
+				</LinearLayout>-->
 				<TextView
 					android:layout_marginTop="5dp"
 					android:layout_width="fill_parent"

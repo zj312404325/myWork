@@ -361,6 +361,8 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 if(!orderType.equals("orderMatch")) {
                     if (orderStatus == 0) {
                         tv_orderStatus.setText("未支付");
+                        btn_cancel.setVisibility(View.GONE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_pay.setVisibility(View.VISIBLE);
                         btn_pay.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -420,10 +422,18 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         });
                     } else if (orderStatus == 1) {
                         tv_orderStatus.setText("等待收款");
+                        btn_pay.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                     } else if (orderStatus == 2 ) {
                         tv_orderStatus.setText("等待发货");
+                        btn_pay.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                     } else if (orderStatus == 3) {
                         tv_orderStatus.setText("等待收货");
+                        btn_pay.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.VISIBLE);
                         btn_confirmProduct.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -474,12 +484,19 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         });
                     } else if (orderStatus == 4) {
                         tv_orderStatus.setText("订单完成");
+                        btn_pay.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                     } else if (orderStatus == 5) {
                         tv_orderStatus.setText("订单取消");
                         btn_pay.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                     } else if (orderStatus == 6) {
                         tv_orderStatus.setText("订单结束");
+                        btn_pay.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                     }
                 }
                 else{
@@ -606,12 +623,23 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 }
 
                 //评价状态
-                if(isAppraised !=1) {
-                    if(orderStatus ==3 && orderType.equals("product")) {
-                        btn_appraise.setVisibility(View.VISIBLE);
+                if(orderType.equals("product")) {
+                    if (isAppraised != 1) {
+                        if (orderStatus == 4 && orderType.equals("product")) {
+                            btn_appraise.setVisibility(View.VISIBLE);
+                            btn_appraise.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View arg0) {
+                                    // 评价开始
+                                    Intent intent = new Intent(getApplicationContext(), OrderAppraiseActivity.class);
+                                    intent.putExtra("id", id);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    } else {
+                        tv_isAppraised.setVisibility(View.VISIBLE);
                     }
-                }else{
-                    tv_isAppraised.setVisibility(View.VISIBLE);
                 }
 
                 final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(position).get("orderDtls");
