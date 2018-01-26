@@ -459,6 +459,16 @@
             android:label="AppraiseOkActivity" >
         </activity>
 
+        <activity
+            android:name=".CommitFastMatchActivity"
+            android:label="CommitFastMatchActivity" >
+        </activity>
+
+        <activity
+            android:name=".CommitFastMatchOkActivity"
+            android:label="CommitFastMatchOkActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />
