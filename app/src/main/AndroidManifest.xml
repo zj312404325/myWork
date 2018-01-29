@@ -469,6 +469,16 @@
             android:label="CommitFastMatchOkActivity" >
         </activity>
 
+        <activity
+            android:name=".CommitOrderMatchActivity"
+            android:label="CommitOrderMatchActivity" >
+        </activity>
+
+        <activity
+            android:name=".CommitOrderMatchOkActivity"
+            android:label="CommitOrderMatchOkActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

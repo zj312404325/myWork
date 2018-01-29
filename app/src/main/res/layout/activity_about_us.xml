@@ -25,7 +25,6 @@
 				android:layout_marginRight="10dp">
 
 				<TextView
-
 					style="@style/match_parent"
 					android:text="金赢智能工业超市"
 					android:id="@+id/tv_b_bankName"

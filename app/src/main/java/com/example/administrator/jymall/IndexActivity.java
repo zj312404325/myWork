@@ -120,6 +120,18 @@ public class IndexActivity extends TopSearchActivity  {
         startActivity(i);
     }
 
+    @Event(value=R.id.index_fast_btn)
+    private void fastMatchClick(View v){
+        Intent i = new Intent(getApplicationContext(), CommitFastMatchActivity.class);
+        startActivity(i);
+    }
+
+    @Event(value=R.id.index_order_btn)
+    private void orderMatchClick(View v){
+        Intent i = new Intent(getApplicationContext(), CommitOrderMatchActivity.class);
+        startActivity(i);
+    }
+
     public void getImgData(){
         progressDialog.show();
         Map<String, String> maps= new HashMap<String, String>();

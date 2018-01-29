@@ -29,10 +29,10 @@ import org.xutils.x;
 import java.util.HashMap;
 import java.util.Map;
 
-@ContentView(R.layout.activity_commit_fastmatch)
-public class CommitFastMatchActivity extends TopActivity {
+@ContentView(R.layout.activity_commit_ordermatch)
+public class CommitOrderMatchActivity extends TopActivity {
 
-    private String fastMatchJsonArray;
+    private String orderMatchJsonArray;
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;
@@ -51,9 +51,9 @@ public class CommitFastMatchActivity extends TopActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_commit_fastmatch);
+        setContentView(R.layout.activity_commit_ordermatch);
         x.view().inject(this);
-        super.title.setText("标准件快速配");
+        super.title.setText("定制件一键配");
         top_add.setVisibility(View.VISIBLE);
         progressDialog.hide();
         skey=super.serverKey;
@@ -64,10 +64,10 @@ public class CommitFastMatchActivity extends TopActivity {
     @Event(value=R.id.btn_submit)
     private void submitClick(View v){
         try {
-            type = "0";
+            type = "1";
             getFastMatchJson();
 
-            new CommonDialog(CommitFastMatchActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
+            new CommonDialog(CommitOrderMatchActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
                 @Override
                 public void onClick(Dialog dialog, boolean confirm) {
                     if (confirm) {
@@ -75,8 +75,8 @@ public class CommitFastMatchActivity extends TopActivity {
                         Map<String, String> maps = new HashMap<String, String>();
                         maps.put("serverKey", skey);
                         maps.put("type", type);
-                        maps.put("fastMatchJsonArray", fastMatchJsonArray);
-                        XUtilsHelper.getInstance().post("app/saveFastMatch.htm", maps, new XUtilsHelper.XCallBack() {
+                        maps.put("orderMatchJsonArray", orderMatchJsonArray);
+                        XUtilsHelper.getInstance().post("app/saveOrderMatch.htm", maps, new XUtilsHelper.XCallBack() {
 
                             @SuppressLint("NewApi")
                             @Override
@@ -89,7 +89,7 @@ public class CommitFastMatchActivity extends TopActivity {
                                     if (res.get("d").equals("n")) {
                                         CommonUtil.alter(res.get("msg").toString());
                                     } else {
-                                        Intent i = new Intent(getApplicationContext(), CommitFastMatchOkActivity.class);
+                                        Intent i = new Intent(getApplicationContext(), CommitOrderMatchOkActivity.class);
                                         startActivity(i);
                                     }
                                 } catch (JSONException e) {
@@ -143,29 +143,28 @@ public class CommitFastMatchActivity extends TopActivity {
     //添加ViewItem
     private void addViewItem(View view) {
         if (ll_addView.getChildCount() == 0) {//如果一个都没有，就添加一个
-            View newView = View.inflate(this, R.layout.item_fastmatch, null);
+            View newView = View.inflate(this, R.layout.item_ordermatch, null);
             top_add.setTag("add");
             ll_addView.addView(newView);
         }
         else{//如果有一个以上的Item,点击为添加的Item则添加
-            View newView = View.inflate(this, R.layout.item_fastmatch, null);
+            View newView = View.inflate(this, R.layout.item_ordermatch, null);
             ll_addView.addView(newView);
             sortViewItem();
         }
     }
 
     private void getFastMatchJson(){
-        fastMatchJsonArray="[";
+        orderMatchJsonArray="[";
         for(int i=0; i<ll_addView.getChildCount();i++){
             String proName="";
             String brand="";
             String proquantity="";
-            String model="";
             String spec="";
             String quantity="";
             String unit="";
-            String proDesc="";
-            String require="";
+            String functionReq="";
+            String parameter="";
 
             String pic1="";
             String pic2="";
@@ -177,12 +176,11 @@ public class CommitFastMatchActivity extends TopActivity {
             EditText et_proName=layout.findViewById(R.id.et_proName);
             EditText et_brand=layout.findViewById(R.id.et_brand);
             EditText et_proQuality=layout.findViewById(R.id.et_proQuality);
-            EditText et_model=layout.findViewById(R.id.et_model);
             EditText et_spec=layout.findViewById(R.id.et_spec);
             EditText et_quantity=layout.findViewById(R.id.et_quantity);
             EditText et_unit=layout.findViewById(R.id.et_unit);
-            EditText et_proDesc=layout.findViewById(R.id.et_proDesc);
-            EditText et_require=layout.findViewById(R.id.et_require);
+            EditText et_functionReq=layout.findViewById(R.id.et_functionReq);
+            EditText et_parameter=layout.findViewById(R.id.et_parameter);
             ImageView iv_pic1=layout.findViewById(R.id.iv_pic1);
             ImageView iv_pic2=layout.findViewById(R.id.iv_pic2);
             ImageView iv_pic3=layout.findViewById(R.id.iv_pic3);
@@ -190,21 +188,20 @@ public class CommitFastMatchActivity extends TopActivity {
             proName=et_proName.getText().toString();
             brand=et_brand.getText().toString();
             proquantity=et_proQuality.getText().toString();
-            model=et_model.getText().toString();
             spec=et_spec.getText().toString();
             quantity=et_quantity.getText().toString();
             unit=et_unit.getText().toString();
-            proDesc=et_proDesc.getText().toString();
-            require=et_require.getText().toString();
+            functionReq=et_functionReq.getText().toString();
+            parameter=et_parameter.getText().toString();
 
             if(i==ll_addView.getChildCount()-1){
-                fastMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"model\":\""+ model +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"proDesc\":\""+ proDesc +"\",\"require\":\""+ require +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"}";
+                orderMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"functionReq\":\""+ functionReq +"\",\"parameter\":\""+ parameter +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"}";
             }
             else{
-                fastMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"model\":\""+ model +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"proDesc\":\""+ proDesc +"\",\"require\":\""+ require +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"},";
+                orderMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"functionReq\":\""+ functionReq +"\",\"parameter\":\""+ parameter +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"},";
             }
         }
-        fastMatchJsonArray+="]";
+        orderMatchJsonArray+="]";
     }
 
 }

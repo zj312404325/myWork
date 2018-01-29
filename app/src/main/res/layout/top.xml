@@ -23,4 +23,14 @@
 			android:paddingRight="60dp"
    		    android:text="账户管理"
    		    android:textColor="#ffffff" />
+
+		<ImageButton
+			android:id="@+id/top_add"
+			android:background="@drawable/icon_plus"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:layout_alignParentEnd="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="10dp"
+			android:visibility="gone"/>
 </RelativeLayout>

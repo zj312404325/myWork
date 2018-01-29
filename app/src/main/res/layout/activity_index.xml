@@ -11,12 +11,15 @@ tools:context=".IndexActivity" >
 <!-- 底部菜单 -->
 <include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
 <ScrollView style="@style/fill" android:layout_below="@id/top" android:layout_above="@id/bottom_tap" >
-    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <com.example.administrator.jymall.view.ShufflingView
             android:id="@+id/shufflingView" android:layout_width="match_parent"
-            android:layout_height="170dp" > </com.example.administrator.jymall.view.ShufflingView>
+            android:layout_height="170dp" >
+        </com.example.administrator.jymall.view.ShufflingView>
 
         <LinearLayout  android:layout_width="match_parent"  android:layout_height="120dp" >
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
@@ -125,7 +128,10 @@ tools:context=".IndexActivity" >
         </RelativeLayout>
 
         <LinearLayout  android:layout_width="match_parent"  android:layout_height="80dp" >
-            <RelativeLayout style="@style/fill" android:layout_weight="1" >
+            <RelativeLayout
+                style="@style/fill"
+                android:layout_weight="1"
+                android:id="@+id/rl_fastMatch">
                 <ImageButton
                     android:id="@+id/index_fast_btn"
                     android:background="@drawable/index_fast_match"
@@ -134,9 +140,17 @@ tools:context=".IndexActivity" >
                     android:scaleType="center"
                     android:layout_centerInParent="true"  />
             </RelativeLayout>
-            <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <ImageButton android:id="@+id/index_order_btn" android:background="@drawable/index_order_match"
-                    android:layout_width="180dp" android:layout_height="80dp"  android:scaleType="center" android:layout_centerInParent="true" />
+            <RelativeLayout
+                style="@style/fill"
+                android:layout_weight="1"
+                android:id="@+id/rl_orderMatch">
+                <ImageButton
+                    android:id="@+id/index_order_btn"
+                    android:background="@drawable/index_order_match"
+                    android:layout_width="180dp"
+                    android:layout_height="80dp"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
 
         </LinearLayout>
