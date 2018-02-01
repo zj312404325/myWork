@@ -89,8 +89,13 @@ public class CommitOrderMatchActivity extends TopActivity {
                                     if (res.get("d").equals("n")) {
                                         CommonUtil.alter(res.get("msg").toString());
                                     } else {
-                                        Intent i = new Intent(getApplicationContext(), CommitOrderMatchOkActivity.class);
-                                        startActivity(i);
+                                        if(res.get("import_status").equals("n")){
+                                            CommonUtil.alter(res.get("import_info").toString());
+                                        }
+                                        else {
+                                            Intent i = new Intent(getApplicationContext(), CommitOrderMatchOkActivity.class);
+                                            startActivity(i);
+                                        }
                                     }
                                 } catch (JSONException e) {
                                     // TODO Auto-generated catch block

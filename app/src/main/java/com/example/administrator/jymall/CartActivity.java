@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -185,7 +184,6 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		@SuppressLint("NewApi")
 		@Override
 		public View getView(final int position, View convertView, ViewGroup parent) {
-			Log.i("这尼玛", "进去了");
 			holder=null;
 			if(convertView==null){
 				convertView=mInflater.inflate(R.layout.listview_cartinfo, null);

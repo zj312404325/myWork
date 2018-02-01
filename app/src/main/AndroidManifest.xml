@@ -479,6 +479,11 @@
             android:label="CommitOrderMatchOkActivity" >
         </activity>
 
+        <activity
+            android:name=".MallCategoryActivity"
+            android:label="MallCategoryActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

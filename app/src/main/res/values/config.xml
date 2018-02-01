@@ -2,10 +2,7 @@
 <resources>
   	<string name="site_url">http://172.19.3.114:8088/</string>
     <string name="img_url">http://172.19.10.229:8098/fileUpload/</string>
-    
-   
-    
-    
+
   <!--<string name="site_url">http://www.jinying365.com/</string>
   <string name="img_url">http://img.jinying365.com:9000/</string>-->
    

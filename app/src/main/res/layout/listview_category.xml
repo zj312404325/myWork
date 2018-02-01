@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+	android:id="@+id/ll_listview_category">
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp">
+
+			<TextView
+				android:layout_marginTop="5dp"
+				android:layout_width="50dp"
+				android:layout_height="1dp"
+				android:layout_gravity="center_vertical"
+				android:background="#c6c6c6" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/tv_secondCategory"
+				android:text=""
+				android:textColor="#000000"
+				android:textSize="16dp"
+				android:layout_marginTop="5dp"/>
+
+			<TextView
+				android:layout_marginTop="5dp"
+				android:layout_width="50dp"
+				android:layout_height="1dp"
+				android:layout_gravity="center_vertical"
+				android:background="#c6c6c6" />
+		</LinearLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="#eaeaeb">
+			<TextView
+				android:id="@+id/listtv"
+				style="@style/wrap_content"
+				android:text="数据加载中……"
+				android:textColor="#939393"
+				android:layout_centerInParent="true"
+				android:layout_marginTop="10dp"/>
+			<com.example.administrator.jymall.view.MyGridView
+				android:numColumns="2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/mygw">
+			</com.example.administrator.jymall.view.MyGridView>
+		</RelativeLayout>
+
+</LinearLayout>

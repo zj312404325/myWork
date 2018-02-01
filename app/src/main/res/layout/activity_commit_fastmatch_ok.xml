@@ -12,6 +12,7 @@
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
 		android:background="#ffffff"
+		android:layout_below="@id/top_title"
 		android:layout_marginTop="10dp"
 		android:visibility="visible">
 

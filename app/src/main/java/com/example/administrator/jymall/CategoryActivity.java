@@ -1,26 +1,9 @@
 package com.example.administrator.jymall;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.jymall.common.TopSearchActivity;
-import com.example.administrator.jymall.util.CommonUtil;
-import com.example.administrator.jymall.util.FormatUtil;
-import com.example.administrator.jymall.util.XUtilsHelper;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,6 +14,23 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.example.administrator.jymall.common.TopSearchActivity;
+import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.FormatUtil;
+import com.example.administrator.jymall.util.XUtilsHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_category)
 public class CategoryActivity extends TopSearchActivity {
@@ -111,11 +111,9 @@ public class CategoryActivity extends TopSearchActivity {
 		private LayoutInflater mInflater;
 		
 		public Cadapter(Context context,
-				List<? extends Map<String, ?>> data, int resource, String[] from,
-				int[] to) {
+				List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
 			super(context, data, resource, from, to);
-			mInflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
 		
 		@SuppressLint({ "NewApi", "ResourceAsColor" })

@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.jymall.CartActivity;
-import com.example.administrator.jymall.CategoryActivity;
 import com.example.administrator.jymall.DiscoveryActivity;
 import com.example.administrator.jymall.IndexActivity;
+import com.example.administrator.jymall.MallCategoryActivity;
 import com.example.administrator.jymall.R;
 import com.example.administrator.jymall.UserCenterActivity;
 
@@ -68,7 +68,7 @@ public class ButtomTapActivity extends UserActivity {
 	@Event(value=R.id.buttom_tap_2,type=OnTouchListener.class)
 	private boolean btn2(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
-			startActivity(new Intent(getApplicationContext(),CategoryActivity.class));
+			startActivity(new Intent(getApplicationContext(), MallCategoryActivity.class));
 			return false;
 		}
 		return true;

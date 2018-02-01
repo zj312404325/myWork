@@ -1,0 +1,168 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+	android:background="#ffffff">
+    
+    <include  android:id="@+id/top"  layout="@layout/top_search_product" />
+
+	<!-- 底部菜单 -->
+	<include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />
+
+	<LinearLayout style="@style/match_parent"
+		android:layout_below="@id/top"
+		android:background="#ffffff"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<ImageView
+					android:id="@+id/iv_img1"
+					android:tag="1524"
+					android:layout_width="wrap_content"
+					android:layout_height="100dp"
+					android:background="@drawable/icon_category1"/>
+
+				<ImageView
+					android:id="@+id/iv_select1"
+					android:layout_width="wrap_content"
+					android:layout_height="10dp"
+					android:layout_alignBottom="@+id/iv_img1"
+					android:layout_alignParentStart="true"
+					android:background="@drawable/icon_line_selected"
+					android:visibility="gone"/>
+			</RelativeLayout>
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<ImageView
+					android:id="@+id/iv_img2"
+					android:tag="1528"
+					android:layout_width="wrap_content"
+					android:layout_height="100dp"
+					android:background="@drawable/icon_category2"/>
+
+				<ImageView
+					android:id="@+id/iv_select2"
+					android:layout_width="wrap_content"
+					android:layout_height="10dp"
+					android:layout_alignBottom="@+id/iv_img2"
+					android:layout_alignParentStart="true"
+					android:background="@drawable/icon_line_selected"
+					android:visibility="gone"/>
+			</RelativeLayout>
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<ImageView
+					android:id="@+id/iv_img3"
+					android:tag="1520"
+					android:layout_width="wrap_content"
+					android:layout_height="100dp"
+					android:background="@drawable/icon_category3"/>
+
+				<ImageView
+					android:id="@+id/iv_select3"
+					android:layout_width="wrap_content"
+					android:layout_height="10dp"
+					android:layout_alignBottom="@+id/iv_img3"
+					android:layout_alignParentStart="true"
+					android:background="@drawable/icon_line_selected"
+					android:visibility="gone"/>
+			</RelativeLayout>
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<ImageView
+					android:id="@+id/iv_img4"
+					android:tag="1526"
+					android:layout_width="wrap_content"
+					android:layout_height="100dp"
+					android:background="@drawable/icon_category4"/>
+
+				<ImageView
+					android:id="@+id/iv_select4"
+					android:layout_width="wrap_content"
+					android:layout_height="10dp"
+					android:layout_alignBottom="@+id/iv_img4"
+					android:layout_alignParentStart="true"
+					android:background="@drawable/icon_line_selected"
+					android:visibility="gone"/>
+			</RelativeLayout>
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<ImageView
+					android:id="@+id/iv_img5"
+					android:tag="1530"
+					android:layout_width="wrap_content"
+					android:layout_height="100dp"
+					android:background="@drawable/icon_category5"/>
+
+				<ImageView
+					android:id="@+id/iv_select5"
+					android:layout_width="wrap_content"
+					android:layout_height="10dp"
+					android:layout_alignBottom="@+id/iv_img5"
+					android:layout_alignParentStart="true"
+					android:background="@drawable/icon_line_selected"
+					android:visibility="gone"/>
+			</RelativeLayout>
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="vertical">
+				<ImageView
+					android:id="@+id/iv_img6"
+					android:tag="1522"
+					android:layout_width="wrap_content"
+					android:layout_height="100dp"
+					android:background="@drawable/icon_category6"/>
+
+				<ImageView
+					android:id="@+id/iv_select6"
+					android:layout_width="wrap_content"
+					android:layout_height="10dp"
+					android:layout_alignBottom="@+id/iv_img6"
+					android:layout_alignParentStart="true"
+					android:background="@drawable/icon_line_selected"
+					android:visibility="gone"/>
+			</RelativeLayout>
+
+		</LinearLayout>
+
+		<View style="@style/line"/>
+
+		<com.example.administrator.jymall.view.XListView
+			android:id="@+id/xListView"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:cacheColorHint="#00000000">
+		</com.example.administrator.jymall.view.XListView>
+
+		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/listtv"
+			android:text="暂无数据"
+			android:textColor="#939393"
+			android:layout_gravity="center_horizontal"
+			android:layout_centerInParent="true" />
+	</LinearLayout>
+</RelativeLayout>
