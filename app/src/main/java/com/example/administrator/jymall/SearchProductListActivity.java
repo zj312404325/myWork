@@ -45,7 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ContentView(R.layout.activity_product)
+@ContentView(R.layout.activity_search_product)
 public class SearchProductListActivity extends TopSearch2Activity implements IXListViewListener {
 
     @ViewInject(R.id.xListView)
@@ -63,7 +63,6 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
     private String isfuture = "";
     private String zone = "";
 
-
     @ViewInject(R.id.listtv)
     private TextView listtv;
 
@@ -75,19 +74,20 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
     private RelativeLayout tab3;
     @ViewInject(R.id.tab4)
     private RelativeLayout tab4;
+    @ViewInject(R.id.tab5)
+    private RelativeLayout tab5;
 
     @ViewInject(R.id.future)
     private LinearLayout future;
     @ViewInject(R.id.searech)
     private LinearLayout searech;
 
-    @ViewInject(R.id.tab_img1)
-    private ImageButton tab_img1;
+    @ViewInject(R.id.tab_img2)
+    private ImageButton tab_img2;
     @ViewInject(R.id.tab_img3)
     private ImageButton tab_img3;
     @ViewInject(R.id.tab_img4)
     private ImageButton tab_img4;
-
 
     @ViewInject(R.id.tab_txt1)
     private TextView tab_txt1;
@@ -97,6 +97,8 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
     private TextView tab_txt3;
     @ViewInject(R.id.tab_txt4)
     private TextView tab_txt4;
+    @ViewInject(R.id.tab_txt5)
+    private TextView tab_txt5;
     @ViewInject(R.id.txt_priceStart)
     private TextView txt_priceStart;
     @ViewInject(R.id.txt_priceEnd)
@@ -148,7 +150,6 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
                 f4.setBackgroundResource(R.color.bg_selectvlaue_blue);
             }
             future.setVisibility(View.GONE);
-            tab_img1.setBackgroundResource(R.drawable.searchdown);
             tab_txt1.setTextColor(Color.parseColor("#939393"));
             tab1.setTag("1");
             getDate(true,true);
@@ -177,11 +178,29 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
         }
     }
 
+    @Event(value=R.id.tab1)
+    private void btn_tab1(View v){
+        css("2");
+        tab_txt1.setTextColor(Color.parseColor("#2192cd"));
+        orderString = "";
+        getDate(true,true);
+    }
+
     @Event(value=R.id.tab2)
     private void btn_tab2(View v){
-        css("2");
+        css("3");
+
         tab_txt2.setTextColor(Color.parseColor("#2192cd"));
-        orderString = "";
+        if(v.getTag().equals("1")){
+            tab_img2.setBackgroundResource(R.drawable.tab_s2);
+            v.setTag("2");
+            orderString = "salePriceAsc";
+        }
+        else{
+            tab_img2.setBackgroundResource(R.drawable.tab_s1);
+            v.setTag("1");
+            orderString = "salePriceDesc";
+        }
         getDate(true,true);
     }
 
@@ -193,12 +212,12 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
         if(v.getTag().equals("1")){
             tab_img3.setBackgroundResource(R.drawable.tab_s2);
             v.setTag("2");
-            orderString = "salePriceAsc";
+            orderString = "saleQuantityAsc";
         }
         else{
             tab_img3.setBackgroundResource(R.drawable.tab_s1);
             v.setTag("1");
-            orderString = "salePriceDesc";
+            orderString = "saleQuantityDesc";
         }
         getDate(true,true);
     }
@@ -210,16 +229,11 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
             if(v.getId() == R.id.tab1){
                 css("1");
                 if(v.getTag().equals("1")){
-                    future.setVisibility(View.VISIBLE);
-                    tab_img1.setBackgroundResource(R.drawable.searchup);
                     tab_txt1.setTextColor(Color.parseColor("#2192cd"));
                     v.setTag("2");
                 }
                 else{
-                    future.setVisibility(View.GONE);
-                    tab_img1.setBackgroundResource(R.drawable.searchdown);
                     tab_txt1.setTextColor(Color.parseColor("#939393"));
-
                     v.setTag("1");
                 }
             }
@@ -250,8 +264,6 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
 
         if(!f.equals("1")){
             tab_txt1.setTextColor(Color.parseColor("#939393"));
-            future.setVisibility(View.GONE);
-            tab_img1.setBackgroundResource(R.drawable.searchdown);
             tab1.setTag("1");
         }
         if(!f.equals("2")){
@@ -301,11 +313,10 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
         x.view().inject(this);
         progressDialog.hide();
         Intent i = this.getIntent();
-        cId = i.getStringExtra("cId");
-        keyword = i.getStringExtra("keyword");
+        cId = i.getStringExtra("categoryid");
 
         sap = new ProSimpleAdapter(SearchProductListActivity.this, dateMaps,
-                R.layout.product_listview,
+                R.layout.listview_search_product,
                 new String[]{"proName"},
                 new int[]{R.id.proName});
         listViewAll.setAdapter(sap);
@@ -346,39 +357,49 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
     }
 
     private void getDate(final boolean isShow,final boolean flag){
-        if(isShow){progressDialog.show();};
-        if(flag){start = 1;}
+        if(isShow){
+            progressDialog.show();
+        }
+        if(flag){
+            start = 1;
+        }
         listtv.setVisibility(View.GONE);
         listViewAll.setPullLoadEnable(false);
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("currentPage", ""+start);
-        maps.put("cId", cId);
+        maps.put("categoryid", cId);
         maps.put("keyword", keyword);
         maps.put("orderString", orderString);
         maps.put("zone", zone);
-        maps.put("isfuture", isfuture);
+        maps.put("brand", zone);
         maps.put("priceStart", ""+priceStart);
         maps.put("priceEnd", ""+priceEnd);
 
 
-        XUtilsHelper.getInstance().post("app/getProductList.htm", maps,new XUtilsHelper.XCallBack(){
+        XUtilsHelper.getInstance().post("app/getMallProductCenterData.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")
             @Override
             public void onResponse(String result)  {
                 listtv.setVisibility(View.GONE);
-                if(flag){ dateMaps.clear();}
-                if(isShow){progressDialog.hide();};
+                if(flag){
+                    dateMaps.clear();
+                }
+                if(isShow){
+                    progressDialog.hide();
+                }
                 JSONObject res;
                 try {
                     res = new JSONObject(result);
                     setServerKey(res.get("serverKey").toString());
-                    JSONArray resjarr = (JSONArray)res.get("data");
-                    if(resjarr.length()==0 && start == 1)
+                    JSONArray resjarr = (JSONArray)res.get("rows");
+                    if(resjarr.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);
-                    else if(resjarr.length() ==  10 )
+                    }
+                    else if(resjarr.length() ==  10 ) {
                         listViewAll.setPullLoadEnable(true);
+                    }
 
                     for(int i=0;i<resjarr.length();i++){
                         Map<String, Object> dateMap = new HashMap<String, Object>();
@@ -387,8 +408,10 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
                         dateMap.put("prospec", resjarr.getJSONObject(i).get("prospec"));
                         dateMap.put("proImage", resjarr.getJSONObject(i).get("proImage"));
                         dateMap.put("proName", resjarr.getJSONObject(i).get("proName"));
+                        dateMap.put("brand", resjarr.getJSONObject(i).get("brand"));
                         dateMap.put("ownerID", resjarr.getJSONObject(i).get("ownerID"));
                         dateMap.put("salePrice", resjarr.getJSONObject(i).get("salePrice"));
+                        dateMap.put("unit", resjarr.getJSONObject(i).get("unit"));
                         dateMap.put("id", resjarr.getJSONObject(i).get("id"));
                         dateMaps.add(dateMap);
 
@@ -465,31 +488,24 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
         public View getView(final int position, View convertView, ViewGroup parent) {
             try{
                 if(convertView==null){
-                    convertView=mInflater.inflate(R.layout.product_listview, null);
+                    convertView=mInflater.inflate(R.layout.listview_search_product, null);
                 }
                 ImageView proImage = (ImageView) convertView.findViewById(R.id.proImage);
                 LinearLayout ll_proInfo= (LinearLayout) convertView.findViewById(R.id.ll_proInfo);
                 TextView proName= (TextView) convertView.findViewById(R.id.proName);
                 TextView prospec= (TextView) convertView.findViewById(R.id.prospec);
                 TextView salePrice= (TextView) convertView.findViewById(R.id.salePrice);
-                ImageView img_isfuture= (ImageView) convertView.findViewById(R.id.isfuture);
+                TextView tv_stockQuantity= (TextView) convertView.findViewById(R.id.tv_stockQuantity);
+                TextView tv_brand= (TextView) convertView.findViewById(R.id.tv_brand);
 
-                //Log.v("PRO",dateMaps.get(position).get("pic").toString());
                 x.image().bind(proImage, dateMaps.get(position).get("proImage").toString());
                 proName.setText(dateMaps.get(position).get("proName").toString());
-                prospec.setText(dateMaps.get(position).get("prospec").toString());
+                String brand= dateMaps.get(position).get("brand").toString();
+                tv_brand.setText(dateMaps.get(position).get("brand").toString());
+                //prospec.setText(dateMaps.get(position).get("prospec").toString());
                 String salePricestr= dateMaps.get(position).get("salePrice").toString();
-                salePrice.setText(salePricestr.equals("0")?"面议":"￥"+salePricestr);
-                String isfuture = dateMaps.get(position).get("isfuture").toString();
-                if(isfuture.equals("2")){
-                    img_isfuture.setBackgroundResource(R.drawable.jiagong1);
-                }
-                else if(isfuture.equals("1")){
-                    img_isfuture.setBackgroundResource(R.drawable.qihuo1);
-                }
-                else{
-                    img_isfuture.setBackgroundResource(R.drawable.xianhuo1);
-                }
+                salePrice.setText(salePricestr.equals("0")?"面议":"￥"+salePricestr+"/"+dateMaps.get(position).get("unit").toString());
+                tv_stockQuantity.setText(dateMaps.get(position).get("proQuality").toString()+dateMaps.get(position).get("unit").toString());
 
                 ll_proInfo.setOnTouchListener(new View.OnTouchListener() {
 

@@ -3,7 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProductActivity" android:background="#ffffff">
+    tools:context=".ProductActivity"
+	android:background="#ffffff">
 
 	<include  android:id="@+id/top"  layout="@layout/top_search_product1" />
 
@@ -25,17 +26,10 @@
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1" android:tag="1">
 		            <TextView
 						style="@style/wrap_content"
-						android:text="品类"
+						android:text="默认"
 						android:id="@+id/tab_txt1"
-						android:textColor="#939393"
+						android:textColor="#2192cd"
 		                android:layout_centerInParent="true"/>
-		            <ImageButton
-						android:id="@+id/tab_img1"
-						android:layout_width="14dp"
-						android:layout_height="7dp"
-						android:background="@drawable/searchdown"
-		                android:layout_toRightOf="@id/tab_txt1" 
-		                android:layout_centerVertical="true"/>
 		             <LinearLayout
 						 android:id="@+id/tab_line1"
 						 android:layout_width="fill_parent"
@@ -57,10 +51,18 @@
 					android:layout_weight="1">
 		            <TextView
 						style="@style/wrap_content"
-						android:text="默认"
+						android:text="价格"
 						android:id="@+id/tab_txt2"
-						android:textColor="#2192cd"
+						android:textColor="#939393"
 		                android:layout_centerInParent="true"/>
+
+					<ImageButton
+						android:id="@+id/tab_img2"
+						android:layout_width="6dp"
+						android:layout_height="10dp"
+						android:background="@drawable/tab_s1"
+						android:layout_toRightOf="@id/tab_txt2"
+						android:layout_centerVertical="true"/>
 
 		             <LinearLayout
 						 android:id="@+id/tab_line2"
@@ -85,7 +87,7 @@
 					android:tag="2">
 		            <TextView
 						style="@style/wrap_content"
-						android:text="价格"
+						android:text="销量"
 						android:id="@+id/tab_txt3"
 						android:textColor="#939393"
 		                android:layout_centerInParent="true"/>
@@ -112,6 +114,7 @@
 		    	        android:layout_centerVertical="true" />
 		            
 		        </RelativeLayout>
+
 		        <RelativeLayout
 					style="@style/fill"
 					android:id="@+id/tab4"
@@ -211,7 +214,7 @@
 		android:id="@+id/searech"
 		android:layout_below="@id/tab"
 		android:orientation="vertical"
-		android:background="#ededed"
+		android:background="#ffffff"
 		android:visibility="gone"
 		android:clickable="true">
 	    <LinearLayout
@@ -225,7 +228,7 @@
 	        <EditText
 				android:layout_width="80dp"
 				android:layout_height="25dp"
-				android:background="#ffffff"
+				android:background="@drawable/bg_edittext"
 				android:hint=""
 	            android:layout_gravity="center_vertical"
 				android:textSize="14dp"
@@ -240,7 +243,7 @@
 	        <EditText
 				android:layout_width="80dp"
 				android:layout_height="25dp"
-				android:background="#ffffff"
+				android:background="@drawable/bg_edittext"
 				android:hint=""
 	            android:layout_gravity="center_vertical"
 				android:textSize="14dp"
@@ -251,20 +254,35 @@
 	   <LinearLayout style="@style/match_parent" android:layout_margin="10dp">
 	        <TextView
 				style="@style/wrap_content"
-				android:text="区域选择："
+				android:text="品牌选择："
 				android:layout_marginRight="10dp"
 	            android:layout_gravity="center_vertical"/>
 	        <EditText
-				android:layout_width="195dp"
+				android:layout_width="180dp"
 				android:layout_height="25dp"
-				android:background="#ffffff"
-				android:hint=" 选择区域"
+				android:background="@drawable/bg_edittext"
+				android:hint="请输入或选择品牌"
 	            android:layout_gravity="center_vertical"
 				android:textSize="14dp"
 				android:id="@+id/txt_zone"
 				android:focusable="false" />
+		   <TextView
+			   style="@style/wrap_content"
+			   android:layout_marginLeft="5dp"
+			   android:text="全部品牌"
+			   android:textColor="@color/login_back_blue"
+			   android:layout_gravity="center_vertical"/>
+
+		   <ImageView
+			   android:layout_marginLeft="5dp"
+			   android:layout_width="9dp"
+			   android:layout_height="16dp"
+			   android:background="@drawable/right"
+			   android:layout_gravity="center_vertical"/>
 	    </LinearLayout>
+		<View style="@style/line"/>
 	    <LinearLayout style="@style/match_parent">
+
 	        <Button
 				android:id="@+id/chongzhi"
 				android:text="重置"
@@ -281,7 +299,7 @@
 				android:layout_width="match_parent"
 	            android:layout_height="30dp"
 				android:layout_weight="1"
-				android:background="#0083c8"
+				android:background="@color/login_back_blue"
 				android:textColor="#ffffff"
 	            android:textSize="14dp"/>
 	    </LinearLayout>

@@ -484,6 +484,11 @@
             android:label="MallCategoryActivity" >
         </activity>
 
+        <activity
+            android:name=".SearchProductListActivity"
+            android:label="SearchProductListActivity" >
+        </activity>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />

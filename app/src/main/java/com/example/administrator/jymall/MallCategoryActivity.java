@@ -5,7 +5,6 @@ package com.example.administrator.jymall;
  */
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -276,10 +275,10 @@ public class MallCategoryActivity extends TopSearchActivity implements IXListVie
             tv_secondCategory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                /*Intent i = new Intent(getApplicationContext(),MapInfoActivity.class);
-                i.putExtra("contact", id);
-                i.putExtra("city", levels);
-                startActivity(i);*/
+                    Intent i = new Intent(getApplicationContext(),SearchProductListActivity.class);
+                    i.putExtra("categoryid", id);
+                    i.putExtra("levels", levels);
+                    startActivity(i);
                 }
             });
             return super.getView(position, convertView, parent);

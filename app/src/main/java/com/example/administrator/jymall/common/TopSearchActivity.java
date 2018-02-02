@@ -1,12 +1,5 @@
 package com.example.administrator.jymall.common;
 
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.jymall.CategoryActivity;
-import com.example.administrator.jymall.ProductActivity;
-import com.example.administrator.jymall.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,6 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import com.example.administrator.jymall.MallCategoryActivity;
+import com.example.administrator.jymall.ProductActivity;
+import com.example.administrator.jymall.R;
+import com.example.administrator.jymall.SearchProductListActivity;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
 
 public class TopSearchActivity  extends ButtomTapActivity{
 
@@ -36,12 +37,12 @@ public class TopSearchActivity  extends ButtomTapActivity{
 	
 	@Event(value=R.id.top_fl)
 	private void Click1(View v){
-		startActivity(new Intent(getApplicationContext(),CategoryActivity.class));
+		startActivity(new Intent(getApplicationContext(),MallCategoryActivity.class));
 	}
 	
 	@Event(value={R.id.top_searchbar_input_img})
 	private void Click2(View v){
-		Intent i = new Intent(getApplicationContext(),ProductActivity.class);
+		Intent i = new Intent(getApplicationContext(), SearchProductListActivity.class);
 		i.putExtra("keyword", top_searchbar_input_txt.getText().toString());
 		startActivity(i);
 	}

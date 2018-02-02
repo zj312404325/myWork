@@ -2,11 +2,11 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-	android:layout_height="87dp"
+	android:layout_height="100dp"
 	android:orientation="vertical"  >
   				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="86dp"
+					android:layout_height="100dp"
 			    	android:orientation="horizontal"
 					android:id="@+id/ll_proInfo">
 			        <RelativeLayout
@@ -21,7 +21,7 @@
 			        </RelativeLayout>
 			        <LinearLayout
 						android:layout_width="match_parent"
-						android:layout_height="86dp"
+						android:layout_height="100dp"
 						android:layout_weight="1"
 			            android:orientation="vertical">
 			            <TextView
@@ -34,32 +34,51 @@
 							android:textColor="#0083c8"
 							android:id="@+id/proName"
 							android:layout_height="30dp"/>
-			            <TextView
-							style="@style/wrap_content"
-							android:text="规格："
-							android:maxLines="1"
-							android:id="@+id/prospec"
-							android:textSize="11dp"
-							android:lineSpacingExtra="5dp"/>
 			       
 				         <RelativeLayout
 							 android:layout_width="match_parent"
-							 android:layout_height="20dp"  >
+							 android:layout_height="80dp"  >
+							 <LinearLayout
+								 android:id="@+id/ll_brand"
+								 android:layout_width="wrap_content"
+								 android:layout_height="20dp"
+								 android:orientation="horizontal">
+								 <ImageView
+									 android:layout_width="50dp"
+									 android:layout_height="wrap_content"
+									 android:background="@drawable/icon_brand"/>
+								 <TextView
+									 android:id="@+id/tv_brand"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"
+									 android:text="加载中..." />
+							 </LinearLayout>
+							 <LinearLayout
+								 android:id="@+id/ll_stock"
+								 android:layout_below="@id/ll_brand"
+								 android:layout_width="wrap_content"
+								 android:layout_height="20dp"
+								 android:orientation="horizontal">
+								 <ImageView
+									 android:layout_width="50dp"
+									 android:layout_height="wrap_content"
+									 android:background="@drawable/icon_stock_quantity"/>
+								 <TextView
+									 android:id="@+id/tv_stockQuantity"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"
+									 android:text="100箱" />
+							 </LinearLayout>
 				            	
 				            <TextView
 								style="@style/wrap_content"
-								android:text="￥1234.00"
+								android:text="￥1234.00/箱"
 								android:id="@+id/salePrice"
 			                	android:textColor="#b53144"
-								android:textSize="12dp"
+								android:textSize="14dp"
 								android:layout_alignParentLeft="true"
-			                	android:layout_centerVertical="true"/>
-				            <ImageView
-								android:background="@drawable/xianhuo1"
-								android:layout_width="54dp"
-								android:layout_height="20dp"
-				                android:layout_alignParentRight="true"
-								android:id="@+id/isfuture"/>
+			                	android:layout_centerVertical="true"
+								android:layout_below="@id/ll_stock"/>
 				        </RelativeLayout>   
 				        <View style="@style/line"/> 	
 			            	
