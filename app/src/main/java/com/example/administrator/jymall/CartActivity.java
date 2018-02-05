@@ -219,7 +219,9 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 			holder.av_quantity.setGoods_min(1);
 			holder.av_quantity.setAmount(FormatUtil.toDouble( myMaps.get(position).get("quantity").toString()));
 
-			holder.ck_checkinfo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			holder.ck_checkinfo.setOnCheckedChangeListener(null);
+
+			/*holder.ck_checkinfo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 				@Override
 				public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
@@ -229,6 +231,23 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 						sap.notifyDataSetChanged();
 						getAllMoney();
 					}
+				}
+			});*/
+
+			holder.ck_checkinfo.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					CheckBox cb = (CheckBox)v;
+					String isCheck=myMaps.get(position).get("isCheck").toString();
+					myMaps.get(position).put("isCheck", isCheck);
+					if(isCheck=="1"){
+						cb.setChecked(true);
+					}
+					else{
+						cb.setChecked(false);
+					}
+					sap.notifyDataSetChanged();
+					getAllMoney();
 				}
 			});
 
@@ -259,8 +278,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 					startActivity(i);
 				}
 			});
-			//return super.getView(position, convertView, parent);
-			return convertView;
+			return super.getView(position, convertView, parent);
 		}
 
 		@Override

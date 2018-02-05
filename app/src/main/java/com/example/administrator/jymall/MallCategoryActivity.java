@@ -373,7 +373,7 @@ public class MallCategoryActivity extends TopSearchActivity implements IXListVie
      * 初始化控件
      */
     private void parentControl(){
-        super.imageView4.setImageResource(R.drawable.buttom_tap_2s);
+        super.imageView2.setImageResource(R.drawable.buttom_tap_2s);
     }
 
 

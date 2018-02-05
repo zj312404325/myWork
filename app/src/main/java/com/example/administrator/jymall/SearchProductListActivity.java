@@ -13,21 +13,21 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.administrator.jymall.common.TopSearch2Activity;
-import com.example.administrator.jymall.util.ComputeCallBack;
 import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.WheelCascade;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
 
@@ -62,6 +62,10 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
     private String keyword = "";
     private String isfuture = "";
     private String zone = "";
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
+
+    ArrayList<String> list = new ArrayList<String>();
 
     @ViewInject(R.id.listtv)
     private TextView listtv;
@@ -120,6 +124,26 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
     @ViewInject(R.id.queding)
     private Button queding;
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        x.view().inject(this);
+        progressDialog.hide();
+        Intent i = this.getIntent();
+        cId = i.getStringExtra("categoryid");
+
+        sap = new ProSimpleAdapter(SearchProductListActivity.this, dateMaps,
+                R.layout.listview_search_product,
+                new String[]{"proName"},
+                new int[]{R.id.proName});
+        listViewAll.setAdapter(sap);
+        listViewAll.setPullLoadEnable(true);
+        listViewAll.setXListViewListener(this);
+        getDate(true,true);
+        mHandler = new Handler();
+
+    }
 
     @SuppressLint("ResourceAsColor")
     @Event(value={R.id.f1,R.id.f2,R.id.f3,R.id.f4},type=View.OnTouchListener.class)
@@ -188,7 +212,7 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
 
     @Event(value=R.id.tab2)
     private void btn_tab2(View v){
-        css("3");
+        css("2");
 
         tab_txt2.setTextColor(Color.parseColor("#2192cd"));
         if(v.getTag().equals("1")){
@@ -261,24 +285,22 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
 
 
     public void css(String f){
-
         if(!f.equals("1")){
             tab_txt1.setTextColor(Color.parseColor("#939393"));
             tab1.setTag("1");
         }
         if(!f.equals("2")){
             tab_txt2.setTextColor(Color.parseColor("#939393"));
-            tab2.setTag("1");
+            tab_img2.setBackgroundResource(R.drawable.tab_s1);
+            tab2.setTag("2");
         }
         if(!f.equals("3")){
             tab_txt3.setTextColor(Color.parseColor("#939393"));
-
             tab_img3.setBackgroundResource(R.drawable.tab_s1);
             tab3.setTag("2");
         }
         if(!f.equals("4")){
             tab_txt4.setTextColor(Color.parseColor("#939393"));
-
             searech.setVisibility(View.GONE);
             tab_img4.setBackgroundResource(R.drawable.searchdown);
             tab4.setTag("1");
@@ -286,45 +308,36 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
 
     }
 
-    @Event(value={R.id.txt_zone},type=View.OnTouchListener.class)
-    private boolean txt_zoneTouch(View v, MotionEvent arg1) {
+    @Event(value={R.id.tv_selectBrand},type=View.OnTouchListener.class)
+    private boolean selectBrandTouch(View v, MotionEvent arg1) {
         if(arg1.getAction() == KeyEvent.ACTION_UP){
-            final AlertDialog alertDialog = new AlertDialog.Builder(SearchProductListActivity.this).create();
-            alertDialog.show();
-            Window window = alertDialog.getWindow();
-            window.setContentView(R.layout.activity_cascade);
+            Context context = SearchProductListActivity.this;
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.form_common_list, null);
+            ListView myListView = (ListView) layout.findViewById(R.id.formcustomspinner_list);
+            MyAdapter adapter = new MyAdapter(context, list);
+            myListView.setAdapter(adapter);
+            myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            new WheelCascade(window,txt_zone.getText().toString(),new ComputeCallBack(){
                 @Override
-                public void onComputeEnd(String str) {
-                    alertDialog.cancel();
-                    txt_zone.setText(str);
+                public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
+                    //在这里面就是执行点击后要进行的操作,这里只是做一个显示
+                    //Toast.makeText(SearchProductListActivity.this, "您点击的是"+list.get(position).toString(), Toast.LENGTH_LONG).show();
+                    txt_zone.setText(list.get(position).toString());
+                    if (alertDialog != null) {
+                        alertDialog.dismiss();
+                    }
                 }
             });
+
+            builder = new AlertDialog.Builder(context);
+            builder.setView(layout);
+            alertDialog = builder.create();
+            alertDialog.show();
+
             return false;
         }
         return true;
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        x.view().inject(this);
-        progressDialog.hide();
-        Intent i = this.getIntent();
-        cId = i.getStringExtra("categoryid");
-
-        sap = new ProSimpleAdapter(SearchProductListActivity.this, dateMaps,
-                R.layout.listview_search_product,
-                new String[]{"proName"},
-                new int[]{R.id.proName});
-        listViewAll.setAdapter(sap);
-        listViewAll.setPullLoadEnable(true);
-        listViewAll.setXListViewListener(this);
-        getDate(true,true);
-        mHandler = new Handler();
-
     }
 
     @Event(value={R.id.chongzhi,R.id.queding})
@@ -385,6 +398,7 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
                 listtv.setVisibility(View.GONE);
                 if(flag){
                     dateMaps.clear();
+                    list.clear();
                 }
                 if(isShow){
                     progressDialog.hide();
@@ -394,6 +408,7 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
                     res = new JSONObject(result);
                     setServerKey(res.get("serverKey").toString());
                     JSONArray resjarr = (JSONArray)res.get("rows");
+                    JSONArray brandjarr = (JSONArray)res.get("brandList");
                     if(resjarr.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);
                     }
@@ -414,7 +429,10 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
                         dateMap.put("unit", resjarr.getJSONObject(i).get("unit"));
                         dateMap.put("id", resjarr.getJSONObject(i).get("id"));
                         dateMaps.add(dateMap);
+                    }
 
+                    for(int i=0;i<brandjarr.length();i++){
+                        list.add(brandjarr.getString(i));
                     }
                     sap.notifyDataSetChanged();
                 } catch (JSONException e) {
@@ -526,8 +544,52 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
             }
             return super.getView(position, convertView, parent);
         }
+    }
 
+    //自定义的适配器
+    class MyAdapter extends BaseAdapter {
+        private List<String> mlist;
+        private Context mContext;
 
+        public MyAdapter(Context context, List<String> list) {
+            this.mContext = context;
+            mlist = new ArrayList<String>();
+            this.mlist = list;
+        }
+
+        @Override
+        public int getCount() {
+            return mlist.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mlist.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            Person person = null;
+            if (convertView == null) {
+                LayoutInflater inflater = LayoutInflater.from(mContext);
+                convertView = inflater.inflate(R.layout.form_dialog_item,null);
+                person = new Person();
+                person.name = (TextView)convertView.findViewById(R.id.tv_name);
+                convertView.setTag(person);
+            }else{
+                person = (Person)convertView.getTag();
+            }
+            person.name.setText(list.get(position).toString());
+            return convertView;
+        }
+        class Person{
+            TextView name;
+        }
     }
 
 
