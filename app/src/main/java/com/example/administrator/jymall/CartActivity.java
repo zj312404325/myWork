@@ -219,8 +219,14 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 			holder.av_quantity.setGoods_min(1);
 			holder.av_quantity.setAmount(FormatUtil.toDouble( myMaps.get(position).get("quantity").toString()));
 
-			holder.ck_checkinfo.setOnCheckedChangeListener(null);
-
+			String isCheck=myMaps.get(position).get("isCheck").toString();
+			if(isCheck.equals("1")){
+				holder.ck_checkinfo.setChecked(true);
+			}
+			else{
+				holder.ck_checkinfo.setChecked(false);
+			}
+			holder.ck_checkinfo.setTag(position);
 			/*holder.ck_checkinfo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 				@Override
@@ -239,12 +245,10 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 				public void onClick(View v) {
 					CheckBox cb = (CheckBox)v;
 					String isCheck=myMaps.get(position).get("isCheck").toString();
-					myMaps.get(position).put("isCheck", isCheck);
-					if(isCheck=="1"){
-						cb.setChecked(true);
-					}
-					else{
-						cb.setChecked(false);
+					if(isCheck.equals("0")){
+						myMaps.get(position).put("isCheck", "1");
+					}else{
+						myMaps.get(position).put("isCheck", "0");
 					}
 					sap.notifyDataSetChanged();
 					getAllMoney();
@@ -393,11 +397,8 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 	private void top_del(View v){
 		String ids = "";
 		for(int i=0;i<dateMaps.size();i++){
-			List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(i).get("buyCartList");
-			for(int j=0;j<dateMapinfo.size();j++){
-				if(dateMapinfo.get(j).get("isCheck").toString().equals("1")){
-					ids += dateMapinfo.get(j).get("ID").toString()+",";
-				}
+			if(dateMaps.get(i).get("isCheck").toString().equals("1")){
+				ids += dateMaps.get(i).get("id").toString()+",";
 			}
 		}
 		if(ids.equals("")){

@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.administrator.jymall.MallCategoryActivity;
-import com.example.administrator.jymall.ProductActivity;
 import com.example.administrator.jymall.R;
 import com.example.administrator.jymall.SearchProductListActivity;
 
@@ -50,7 +49,7 @@ public class TopSearchActivity  extends ButtomTapActivity{
 	@Event(value={R.id.top_searchbar_input_txt},type=View.OnKeyListener.class )
 	private  boolean searchonKey(View v, int keyCode, KeyEvent event) { 
 		 if(keyCode == KeyEvent.KEYCODE_ENTER){    
-			 Intent i = new Intent(getApplicationContext(),ProductActivity.class);
+			 Intent i = new Intent(getApplicationContext(),SearchProductListActivity.class);
 			 i.putExtra("keyword", top_searchbar_input_txt.getText().toString());
 			 startActivity(i);
 			 return false;

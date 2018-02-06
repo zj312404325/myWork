@@ -1,15 +1,18 @@
 package com.example.administrator.jymall.common;
 
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.jymall.R;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import com.example.administrator.jymall.R;
+import com.example.administrator.jymall.SearchProductListActivity;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
 
 public class TopSearch2Activity  extends BaseActivity{
 
@@ -39,5 +42,16 @@ public class TopSearch2Activity  extends BaseActivity{
 	@Event(value=R.id.top_fx)
 	private void Click3(View v){
 		//CommonUtil.alter("我点击了分享");
+	}
+
+	@Event(value={R.id.top_searchbar_input_txt},type=View.OnKeyListener.class )
+	private  boolean searchonKey(View v, int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_ENTER){
+			Intent i = new Intent(getApplicationContext(),SearchProductListActivity.class);
+			i.putExtra("keyword", top_searchbar_input_txt.getText().toString());
+			startActivity(i);
+			return false;
+		}
+		return false;
 	}
 }

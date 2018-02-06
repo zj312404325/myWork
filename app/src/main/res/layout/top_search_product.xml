@@ -3,7 +3,7 @@
 	android:id="@+id/top_title"
 	android:layout_width="fill_parent"
     android:layout_height="45dp"
-	android:background="#0083c8">
+	android:background="@color/login_back_blue">
     <ImageButton
 		android:id="@+id/top_fl"
 		android:background="@drawable/fl"

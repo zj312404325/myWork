@@ -24,7 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.example.administrator.jymall.common.TopSearch2Activity;
+import com.example.administrator.jymall.common.TopSearchActivity;
 import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Map;
 
 @ContentView(R.layout.activity_search_product)
-public class SearchProductListActivity extends TopSearch2Activity implements IXListViewListener {
+public class SearchProductListActivity extends TopSearchActivity implements IXListViewListener {
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;
@@ -132,6 +132,7 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
         progressDialog.hide();
         Intent i = this.getIntent();
         cId = i.getStringExtra("categoryid");
+        keyword= i.getStringExtra("keyword");
 
         sap = new ProSimpleAdapter(SearchProductListActivity.this, dateMaps,
                 R.layout.listview_search_product,
@@ -260,6 +261,8 @@ public class SearchProductListActivity extends TopSearch2Activity implements IXL
                     tab_txt1.setTextColor(Color.parseColor("#939393"));
                     v.setTag("1");
                 }
+                orderString = "";
+                getDate(true,true);
             }
             else if(v.getId() == R.id.tab4){
                 css("4");
