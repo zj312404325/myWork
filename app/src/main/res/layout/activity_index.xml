@@ -23,16 +23,34 @@ tools:context=".IndexActivity" >
 
         <LinearLayout  android:layout_width="match_parent"  android:layout_height="120dp" >
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <ImageButton android:id="@+id/index_p1" android:background="@drawable/index_pro1" android:tag="1226"
-                    android:layout_width="100dp" android:layout_height="100dp" android:scaleType="center" android:layout_centerInParent="true" />
+                <ImageButton
+                    android:id="@+id/index_p1"
+                    android:background="@drawable/index_pro1"
+                    android:tag="1524"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <ImageButton android:id="@+id/index_p2" android:background="@drawable/index_pro2" android:tag="1674"
-                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true"  />
+                <ImageButton
+                    android:id="@+id/index_p2"
+                    android:background="@drawable/index_pro2"
+                    android:tag="1528"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true"  />
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <ImageButton android:id="@+id/index_p3" android:background="@drawable/index_pro3" android:tag="1689"
-                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true" />
+                <ImageButton
+                    android:id="@+id/index_p3"
+                    android:background="@drawable/index_pro3"
+                    android:tag="1520"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -54,19 +72,31 @@ tools:context=".IndexActivity" >
                 <ImageButton
                     android:id="@+id/index_p4"
                     android:background="@drawable/index_pro4"
-                    android:tag="3396"
+                    android:tag="1526"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true" />
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <ImageButton android:id="@+id/index_p5" android:background="@drawable/index_pro5" android:tag="1227"
-                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true"  />
+                <ImageButton
+                    android:id="@+id/index_p5"
+                    android:background="@drawable/index_pro5"
+                    android:tag="1530"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true"  />
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <ImageButton android:id="@+id/index_p6" android:background="@drawable/index_pro6" android:tag="1229"
-                    android:layout_width="100dp" android:layout_height="100dp"  android:scaleType="center" android:layout_centerInParent="true" />
+                <ImageButton
+                    android:id="@+id/index_p6"
+                    android:background="@drawable/index_pro6"
+                    android:tag="1522"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="center"
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
         </LinearLayout>
 

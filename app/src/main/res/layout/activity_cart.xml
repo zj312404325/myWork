@@ -80,6 +80,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 	    android:layout_above="@id/bottom_js"
+		android:layout_below="@id/top"
 		android:orientation="vertical">
 
 		<com.example.administrator.jymall.view.XListView

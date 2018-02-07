@@ -44,8 +44,8 @@ public class ProductInfoActivity extends UserActivity {
 	private Button allcomment;
 	@ViewInject(R.id.addBuyCart)
 	private Button addBuyCart;
-	@ViewInject(R.id.addBuy)
-	private Button addBuy;
+	@ViewInject(R.id.myBuy)
+	private Button myBuy;
 	
 	@ViewInject(R.id.toinfo)
 	private RelativeLayout toinfo;
@@ -332,48 +332,10 @@ public class ProductInfoActivity extends UserActivity {
 		});
 	}
 	
-	@Event(R.id.addBuy)
-	private void addBuyClick(View v) throws JSONException{
-		if(pId.equals("")){
-			//CommonUtil.alter("你还没有选择产品");
-			gotoch();
-			return;
-		}
-		progressDialog.show();
-		Map<String, String> maps= new HashMap<String, String>();
-		maps.put("serverKey", super.serverKey);
-		maps.put("proId", info.getString("ID"));
-		maps.put("propId", pId);
-		maps.put("quantity", ""+count);
-		XUtilsHelper.getInstance().post("app/addBuyCart.htm", maps,new XUtilsHelper.XCallBack(){
-
-			@SuppressLint("NewApi")
-			@Override
-			public void onResponse(String result)  {
-				progressDialog.hide();
-				JSONObject res;
-				try {
-					res = new JSONObject(result);
-					setServerKey(res.get("serverKey").toString());
-					
-					if(res.get("d").equals("n")){
-						CommonUtil.alter(res.get("msg").toString());
-					}
-					else{		
-						String bId = res.getString("id");
-						Intent intent = new Intent(getApplicationContext(),AddOrder1Activity.class);					
-						intent.putExtra("bId",bId);	
-						intent.putExtra("pId",pId);	
-						intent.putExtra("count",""+count);	
-						startActivity(intent);						
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				
-			}
-			
-		});
+	@Event(R.id.myBuy)
+	private void myBuyClick(View v){
+		Intent intent = new Intent(getApplicationContext(),CartActivity.class);
+		startActivity(intent);
 	}
 	
 	

@@ -59,7 +59,7 @@
 			android:text="我的购物车"
 			android:textColor="#ffffff"
 	        android:background="#3bc4f4"
-			android:id="@+id/addBuy"/>
+			android:id="@+id/myBuy"/>
 	    <Button
 			style="@style/fill"
 			android:layout_weight="1"

@@ -104,7 +104,6 @@ public class IndexActivity extends TopSearchActivity  {
                 daDiv(indexData);
                 daHotDiv(hotData);
             }
-
             parentControl();
 
         }
@@ -115,8 +114,8 @@ public class IndexActivity extends TopSearchActivity  {
 
     @Event(value={R.id.index_p1,R.id.index_p2,R.id.index_p3,R.id.index_p4,R.id.index_p5,R.id.index_p6})
     private void imgClick(View v){
-        Intent i = new Intent(getApplicationContext(), ProductActivity.class);
-        i.putExtra("cId", v.getTag().toString());
+        Intent i = new Intent(getApplicationContext(),SearchProductListActivity.class);
+        i.putExtra("categoryid", v.getTag().toString());
         startActivity(i);
     }
 

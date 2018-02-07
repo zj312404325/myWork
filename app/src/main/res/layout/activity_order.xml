@@ -47,6 +47,7 @@
 			android:layout_weight="5">
 		</LinearLayout>
 		<LinearLayout
+			android:id="@+id/ll_allOrder"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
@@ -65,6 +66,7 @@
 				android:text="全部订单"/>
 		</LinearLayout>
 		<LinearLayout
+			android:id="@+id/ll_commonOrder"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
@@ -83,6 +85,7 @@
 				android:text="普通订单"/>
 		</LinearLayout>
 		<LinearLayout
+			android:id="@+id/ll_fastMatch"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
@@ -101,6 +104,7 @@
 				android:text="快速配订单"/>
 		</LinearLayout>
 		<LinearLayout
+			android:id="@+id/ll_orderMatch"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
@@ -140,7 +144,8 @@
 		 android:orientation="horizontal"
 		 android:background="#ffffff"
 		 android:layout_below="@id/topsearch"
-		 android:id="@+id/tab" >
+		 android:id="@+id/tab"
+		 android:visibility="visible">
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1">
 		            <TextView
 						style="@style/wrap_content"
@@ -152,7 +157,7 @@
 		             <LinearLayout
 						 android:id="@+id/tab_line1"
 						 android:layout_width="fill_parent"
-						 android:layout_height="8dp"
+						 android:layout_height="5dp"
 						 android:background="@drawable/icon_blue_bottom"
 						 android:layout_alignParentBottom="true"
 						 android:orientation="horizontal"  />
@@ -262,7 +267,8 @@
 		android:orientation="horizontal"
 		android:background="#ffffff"
 		android:layout_below="@id/topsearch"
-		android:id="@+id/tab_two" >
+		android:id="@+id/tab_two"
+		android:visibility="gone">
 		<RelativeLayout style="@style/fill" android:id="@+id/tab_two_1" android:layout_weight="1">
 			<TextView
 				style="@style/wrap_content"
@@ -274,8 +280,8 @@
 			<LinearLayout
 				android:id="@+id/tab_two_line1"
 				android:layout_width="fill_parent"
-				android:layout_height="8dp"
-				android:background="@drawable/icon_blue_bottom"
+				android:layout_height="1dp"
+				android:background="@color/login_back_blue"
 				android:layout_alignParentBottom="true"
 				android:orientation="horizontal"  />
 
@@ -293,7 +299,7 @@
 			android:layout_weight="1">
 			<TextView
 				style="@style/wrap_content"
-				android:text="待付款"
+				android:text="待付定金"
 				android:id="@+id/tab_two_txt2"
 				android:layout_centerInParent="true"/>
 
@@ -319,7 +325,7 @@
 			android:layout_weight="1">
 			<TextView
 				style="@style/wrap_content"
-				android:text="待收货"
+				android:text="待付尾款"
 				android:id="@+id/tab_two_txt3"
 				android:layout_centerInParent="true"/>
 
@@ -342,7 +348,7 @@
 		<RelativeLayout style="@style/fill" android:id="@+id/tab_two_4" android:layout_weight="1">
 			<TextView
 				style="@style/wrap_content"
-				android:text="已完成"
+				android:text="待收货"
 				android:id="@+id/tab_two_txt4"
 				android:layout_centerInParent="true"/>
 
@@ -364,11 +370,31 @@
 		<RelativeLayout style="@style/fill" android:id="@+id/tab_two_5" android:layout_weight="1">
 			<TextView
 				style="@style/wrap_content"
-				android:text="已取消"
+				android:text="已完成"
 				android:id="@+id/tab_two_txt5"
 				android:layout_centerInParent="true"/>
 			<LinearLayout
 				android:id="@+id/tab_two_line5"
+				android:layout_width="fill_parent"
+				android:layout_height="1dp"
+				android:background="#b5b6b9"
+				android:layout_alignParentBottom="true"
+				android:orientation="horizontal"  />
+			<LinearLayout
+				android:layout_width="1dp"
+				android:layout_height="16dp"
+				android:background="#b5b6b9"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true" />
+		</RelativeLayout>
+		<RelativeLayout style="@style/fill" android:id="@+id/tab_two_6" android:layout_weight="1">
+			<TextView
+				style="@style/wrap_content"
+				android:text="已取消"
+				android:id="@+id/tab_two_txt6"
+				android:layout_centerInParent="true"/>
+			<LinearLayout
+				android:id="@+id/tab_two_line6"
 				android:layout_width="fill_parent"
 				android:layout_height="1dp"
 				android:background="#b5b6b9"
@@ -379,8 +405,9 @@
 	
 	
 		<RelativeLayout
+			android:id="@+id/rl_showData"
 			style="@style/fill"
-			android:layout_below="@id/tab"
+			android:layout_below="@id/tab_two"
 			android:layout_above="@id/bottom_tap">
 			<com.example.administrator.jymall.view.XListView
 				android:id="@+id/xListView"

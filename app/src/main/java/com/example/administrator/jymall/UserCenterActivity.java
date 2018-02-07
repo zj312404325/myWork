@@ -140,22 +140,22 @@ public class UserCenterActivity extends ButtomTapActivity {
 		if (event.getAction() == event.ACTION_UP) {
 			if(v.getId() == R.id.rl_allOrder){
 				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
-				i.putExtra("orderStatus", "");
+				i.putExtra("orderType", "");
 				startActivity(i);
 			}
 			else if(v.getId() == R.id.rl_fastMatch){
 				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
-				i.putExtra("orderStatus", "fastMatch");
+				i.putExtra("orderType", "fastMatch");
 				startActivity(i);
 			}
 			else if(v.getId() == R.id.rl_orderMatch){
 				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
-				i.putExtra("orderStatus", "orderMatch");
+				i.putExtra("orderType", "orderMatch");
 				startActivity(i);
 			}
 			else if(v.getId() == R.id.rl_commonOrder){
 				Intent i = new Intent(getApplicationContext(),MyOrderActivity.class);
-				i.putExtra("orderStatus", "product");
+				i.putExtra("orderType", "product");
 				startActivity(i);
 			}
 			return false;

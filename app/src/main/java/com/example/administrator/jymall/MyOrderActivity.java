@@ -53,6 +53,11 @@ import java.util.Map;
 
 @ContentView(R.layout.activity_order)
 public class MyOrderActivity extends TopActivity implements IXListViewListener{
+
+    @ViewInject(R.id.tab)
+    private LinearLayout ll_tab;
+    @ViewInject(R.id.tab_two)
+    private LinearLayout ll_tab_two;
     @ViewInject(R.id.tab1)
     private RelativeLayout tab1;
     @ViewInject(R.id.tab2)
@@ -83,6 +88,61 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
     private LinearLayout tab_line4;
     @ViewInject(R.id.tab_line5)
     private LinearLayout tab_line5;
+
+    @ViewInject(R.id.tab_two_txt1)
+    private TextView tab_two_txt1;
+    @ViewInject(R.id.tab_two_txt2)
+    private TextView tab_two_txt2;
+    @ViewInject(R.id.tab_two_txt3)
+    private TextView tab_two_txt3;
+    @ViewInject(R.id.tab_two_txt4)
+    private TextView tab_two_txt4;
+    @ViewInject(R.id.tab_two_txt5)
+    private TextView tab_two_txt5;
+    @ViewInject(R.id.tab_two_txt6)
+    private TextView tab_two_txt6;
+    @ViewInject(R.id.tab_two_line1)
+    private LinearLayout tab_two_line1;
+    @ViewInject(R.id.tab_two_line2)
+    private LinearLayout tab_two_line2;
+    @ViewInject(R.id.tab_two_line3)
+    private LinearLayout tab_two_line3;
+    @ViewInject(R.id.tab_two_line4)
+    private LinearLayout tab_two_line4;
+    @ViewInject(R.id.tab_two_line5)
+    private LinearLayout tab_two_line5;
+    @ViewInject(R.id.tab_two_line6)
+    private LinearLayout tab_two_line6;
+
+    @ViewInject(R.id.rl_showData)
+    private RelativeLayout rl_showData;
+
+    @ViewInject(R.id.ll_allOrder)
+    private LinearLayout ll_allOrder;
+    @ViewInject(R.id.ll_commonOrder)
+    private LinearLayout ll_commonOrder;
+    @ViewInject(R.id.ll_fastMatch)
+    private LinearLayout ll_fastMatch;
+    @ViewInject(R.id.ll_orderMatch)
+    private LinearLayout ll_orderMatch;
+
+    @ViewInject(R.id.iv_allOrder)
+    private ImageView iv_allOrder;
+    @ViewInject(R.id.iv_commonOrder)
+    private ImageView iv_commonOrder;
+    @ViewInject(R.id.iv_fastMatch)
+    private ImageView iv_fastMatch;
+    @ViewInject(R.id.iv_orderMatch)
+    private ImageView iv_orderMatch;
+
+    @ViewInject(R.id.tv_allOrder)
+    private TextView tv_allOrder;
+    @ViewInject(R.id.tv_commonOrder)
+    private TextView tv_commonOrder;
+    @ViewInject(R.id.tv_fastMatch)
+    private TextView tv_fastMatch;
+    @ViewInject(R.id.tv_orderMatch)
+    private TextView tv_orderMatch;
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;
@@ -115,10 +175,12 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         skey = super.serverKey;
 
         Intent i = this.getIntent();
-        orderStatus = i.getStringExtra("orderStatus");
-        if(orderStatus== null){
-            orderStatus="";
+        orderType = i.getStringExtra("orderType");
+        if(orderType== null){
+            orderType="";
         }
+        cssInit(orderType);
+        orderTypeInit(orderType);
 
         sap = new ProSimpleAdapter(MyOrderActivity.this, dateMaps,
                 R.layout.listview_mallorder,
@@ -128,6 +190,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
         setTab();
+        setTabTwo();
         getDate(true,true);
         mHandler = new Handler();
     }
@@ -144,7 +207,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", skey);
         maps.put("currentPage", ""+start);
-        maps.put("searchvar", et_searchvar.getText().toString());
+        //maps.put("searchvar", et_searchvar.getText().toString());
         maps.put("orderNo", orderNo);
         maps.put("orderStatus", orderStatus);
         maps.put("orderType", orderType);
@@ -730,7 +793,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
 
     @SuppressLint("NewApi")
     private void setTab(){
-        RelativeLayout.LayoutParams lp1 =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(8));
+        RelativeLayout.LayoutParams lp1 =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(5));
         lp1.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         RelativeLayout.LayoutParams lp2 =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(1));
         lp2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
@@ -751,24 +814,76 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         tab_line5.setLayoutParams(lp2);
         if(orderStatus.equals("")){
             tab_txt1.setTextColor(Color.parseColor("#0083c8"));
-            tab_line1.setBackground(CommonUtil.getDrawable(R.drawable.tab_s));
+            tab_line1.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line1.setLayoutParams(lp1);
-        }else if(orderStatus.equals("1") ){
+        }else if(orderStatus.equals("0") ){
             tab_txt2.setTextColor(Color.parseColor("#0083c8"));
-            tab_line2.setBackground(CommonUtil.getDrawable(R.drawable.tab_s));
+            tab_line2.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line2.setLayoutParams(lp1);
         }else if(orderStatus.equals("3") ){
             tab_txt3.setTextColor(Color.parseColor("#0083c8"));
-            tab_line3.setBackground(CommonUtil.getDrawable(R.drawable.tab_s));
+            //tab_line3.setBackground(CommonUtil.getDrawable(R.drawable.tab_s));
+            tab_line3.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line3.setLayoutParams(lp1);
         }else if(orderStatus.equals("4") ){
             tab_txt4.setTextColor(Color.parseColor("#0083c8"));
-            tab_line4.setBackground(CommonUtil.getDrawable(R.drawable.tab_s));
+            tab_line4.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line4.setLayoutParams(lp1);
-        }else if(orderStatus.equals("6") ){
+        }else if(orderStatus.equals("5") ){
             tab_txt5.setTextColor(Color.parseColor("#0083c8"));
-            tab_line5.setBackground(CommonUtil.getDrawable(R.drawable.tab_s));
+            tab_line5.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line5.setLayoutParams(lp1);
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private void setTabTwo(){
+        RelativeLayout.LayoutParams lp1 =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(5));
+        lp1.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        RelativeLayout.LayoutParams lp2 =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(1));
+        lp2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        tab_two_txt1.setTextColor(Color.parseColor("#000000"));
+        tab_two_line1.setBackgroundColor(0xFFb5b6b9);
+        tab_two_line1.setLayoutParams(lp2);
+        tab_two_txt2.setTextColor(Color.parseColor("#000000"));
+        tab_two_line2.setBackgroundColor(0xFFb5b6b9);
+        tab_two_line2.setLayoutParams(lp2);
+        tab_two_txt3.setTextColor(Color.parseColor("#000000"));
+        tab_two_line3.setBackgroundColor(0xFFb5b6b9);
+        tab_two_line3.setLayoutParams(lp2);
+        tab_two_txt4.setTextColor(Color.parseColor("#000000"));
+        tab_two_line4.setBackgroundColor(0xFFb5b6b9);
+        tab_two_line4.setLayoutParams(lp2);
+        tab_two_txt5.setTextColor(Color.parseColor("#000000"));
+        tab_two_line5.setBackgroundColor(0xFFb5b6b9);
+        tab_two_line5.setLayoutParams(lp2);
+        tab_two_txt6.setTextColor(Color.parseColor("#000000"));
+        tab_two_line6.setBackgroundColor(0xFFb5b6b9);
+        tab_two_line6.setLayoutParams(lp2);
+        if(orderStatus.equals("")){
+            tab_two_txt1.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_line1.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
+            tab_two_line1.setLayoutParams(lp1);
+        }else if(orderStatus.equals("1") ){
+            tab_two_txt2.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_line2.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
+            tab_two_line2.setLayoutParams(lp1);
+        }else if(orderStatus.equals("4") ){
+            tab_two_txt3.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_line3.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
+            tab_two_line3.setLayoutParams(lp1);
+        }else if(orderStatus.equals("7") ){
+            tab_two_txt4.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_line4.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
+            tab_two_line4.setLayoutParams(lp1);
+        }else if(orderStatus.equals("8") ){
+            tab_two_txt5.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_line5.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
+            tab_two_line5.setLayoutParams(lp1);
+        }else if(orderStatus.equals("9") ){
+            tab_two_txt6.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_line6.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
+            tab_two_line6.setLayoutParams(lp1);
         }
     }
 
@@ -780,15 +895,63 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
             if(v.getId() ==R.id.tab1 ){
                 orderStatus="";
             }else if(v.getId() ==R.id.tab2 ){
-                orderStatus="1";
+                orderStatus="0";
             }else if(v.getId() ==R.id.tab3 ){
                 orderStatus="3";
             }else if(v.getId() ==R.id.tab4 ){
                 orderStatus="4";
             }else if(v.getId() ==R.id.tab5 ){
-                orderStatus="6";
+                orderStatus="5";
             }
             setTab();
+            getDate(true,true);
+            return false;
+        }
+        return true;
+    }
+
+    @SuppressLint("NewApi")
+    @Event(value={R.id.tab_two_1,R.id.tab_two_2,R.id.tab_two_3,R.id.tab_two_4,R.id.tab_two_5,R.id.tab_two_6},type=View.OnTouchListener.class)
+    private boolean tabTwoTouch(View v, MotionEvent e){
+        if(e.getAction() == MotionEvent.ACTION_UP){
+            if(v.getId() ==R.id.tab_two_1 ){
+                orderStatus="";
+            }else if(v.getId() ==R.id.tab_two_2 ){
+                orderStatus="1";
+            }else if(v.getId() ==R.id.tab_two_3 ){
+                orderStatus="4";
+            }else if(v.getId() ==R.id.tab_two_4 ){
+                orderStatus="7";
+            }else if(v.getId() ==R.id.tab_two_5 ){
+                orderStatus="8";
+            }else if(v.getId() ==R.id.tab_two_6 ){
+                orderStatus="9";
+            }
+            setTabTwo();
+            getDate(true,true);
+            return false;
+        }
+        return true;
+    }
+
+    @SuppressLint("NewApi")
+    @Event(value={R.id.ll_allOrder,R.id.ll_commonOrder,R.id.ll_fastMatch,R.id.ll_orderMatch},type=View.OnTouchListener.class)
+    private boolean selectTouch(View v, MotionEvent e){
+        if(e.getAction() == MotionEvent.ACTION_UP){
+            if(v.getId() ==R.id.ll_allOrder ){
+                orderType="";
+            }else if(v.getId() ==R.id.ll_commonOrder ){
+                orderType="product";
+            }else if(v.getId() ==R.id.ll_fastMatch ){
+                orderType="fastMatch";
+            }else if(v.getId() ==R.id.ll_orderMatch ){
+                orderType="orderMatch";
+            }
+            setTab();
+            setTabTwo();
+            orderStatus="";
+            cssInit(orderType);
+            orderTypeInit(orderType);
             getDate(true,true);
             return false;
         }
@@ -800,5 +963,101 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         if(requestCode == BaseConst.RCODE_REFOUND && resultCode == BaseConst.RCODE_REFOUND){
             getDate(true,true);
         }
+    }
+
+    private void orderTypeInit(String type){
+        if(FormatUtil.isNoEmpty(type)){
+            if(type.equals("orderMatch")){
+                ll_tab.setVisibility(View.GONE);
+                ll_tab_two.setVisibility(View.VISIBLE);
+                //创建RelativeLayout.LayoutParams
+                RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                params.addRule(RelativeLayout.BELOW,R.id.tab_two);
+                rl_showData.setLayoutParams(params);
+            }
+            else{
+                ll_tab.setVisibility(View.VISIBLE);
+                ll_tab_two.setVisibility(View.GONE);
+                //创建RelativeLayout.LayoutParams
+                RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                params.addRule(RelativeLayout.BELOW,R.id.tab);
+                rl_showData.setLayoutParams(params);
+            }
+        }
+        else{
+            ll_tab.setVisibility(View.GONE);
+            ll_tab_two.setVisibility(View.GONE);
+        }
+    }
+
+    private void cssInit(String type){
+        if(FormatUtil.isNoEmpty(type)){
+            if(type.equals("orderMatch")){
+                showCss(iv_orderMatch.getId(),tv_orderMatch.getId());
+            }
+            else if(type.equals("fastMatch")){
+                showCss(iv_fastMatch.getId(),tv_fastMatch.getId());
+            }
+            else if(type.equals("product")){
+                showCss(iv_commonOrder.getId(),tv_commonOrder.getId());
+            }
+            else{
+
+            }
+        }
+        else{
+            showCss(iv_allOrder.getId(),tv_allOrder.getId());
+        }
+    }
+
+    private void showCss(int ivId,int tvId){
+        hideAllImageView();
+        hideAllTextView();
+        if(ivId == iv_allOrder.getId()){
+            iv_allOrder.setBackgroundResource(R.drawable.icon_radio_selected);
+        }
+        else if(ivId == iv_commonOrder.getId()){
+            iv_commonOrder.setBackgroundResource(R.drawable.icon_radio_selected);
+        }
+        else if(ivId == iv_fastMatch.getId()){
+            iv_fastMatch.setBackgroundResource(R.drawable.icon_radio_selected);
+        }
+        else if(ivId == iv_orderMatch.getId()){
+            iv_orderMatch.setBackgroundResource(R.drawable.icon_radio_selected);
+        }
+        else{
+
+        }
+
+        if(tvId == tv_allOrder.getId()){
+            //tv_allOrder.setTextColor(this.getBaseContext().getResources().getColor(R.color.bg_btn_blue));
+            tv_allOrder.setTextColor(Color.BLUE);
+        }
+        else if(tvId == tv_commonOrder.getId()){
+            tv_commonOrder.setTextColor(Color.BLUE);
+        }
+        else if(tvId == tv_fastMatch.getId()){
+            tv_fastMatch.setTextColor(Color.BLUE);
+        }
+        else if(tvId == tv_orderMatch.getId()){
+            tv_orderMatch.setTextColor(Color.BLUE);
+        }
+        else{
+
+        }
+    }
+
+    private void hideAllImageView(){
+        iv_orderMatch.setBackgroundResource(R.drawable.icon_radio_unselected);
+        iv_fastMatch.setBackgroundResource(R.drawable.icon_radio_unselected);
+        iv_commonOrder.setBackgroundResource(R.drawable.icon_radio_unselected);
+        iv_allOrder.setBackgroundResource(R.drawable.icon_radio_unselected);
+    }
+
+    private void hideAllTextView(){
+        tv_orderMatch.setTextColor(Color.GRAY);
+        tv_fastMatch.setTextColor(Color.GRAY);
+        tv_commonOrder.setTextColor(Color.GRAY);
+        tv_allOrder.setTextColor(Color.GRAY);
     }
 }

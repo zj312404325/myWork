@@ -6,53 +6,98 @@
    android:background="#ffffff"
     tools:context=".Register1Activity" >
 
-   <RelativeLayout android:id="@+id/top_title" android:layout_width="fill_parent"  android:layout_height="45dp" android:background="#0083c8">    
+   <RelativeLayout
+	   android:id="@+id/top_title"
+	   android:layout_width="fill_parent"
+	   android:layout_height="45dp"
+	   android:background="#0083c8">
 
-         <ImageButton android:id="@+id/top_back" android:background="@drawable/nav_left" android:layout_width="48dp"
-         android:layout_height="22dp" android:layout_centerVertical="true" android:layout_marginLeft="10dp"/>
+         <ImageButton
+			 android:id="@+id/top_back"
+			 android:background="@drawable/nav_left"
+			 android:layout_width="48dp"
+			 android:layout_height="22dp"
+			 android:layout_centerVertical="true"
+			 android:layout_marginLeft="10dp"/>
    		<TextView
    		    android:id="@+id/title"
    		    style="@style/wrap_content"
    		    android:layout_centerInParent="true"
-   		     android:textSize="16dp"
+			android:textSize="16dp"
    		    android:text="注册"
    		    android:textColor="#ffffff" />
     
 	</RelativeLayout>
 	<ScrollView style="@style/fill" android:layout_below="@id/top_title"  >
-	<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content"  android:orientation="vertical"   >
-	     <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" 
-		        android:orientation="horizontal"  android:layout_below="@id/top"
-		        android:id="@+id/tab" >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"   >
+	     <LinearLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="40dp"
+			 android:orientation="horizontal"
+			 android:layout_below="@id/top"
+			 android:id="@+id/tab" >
 		        <RelativeLayout style="@style/fill" android:id="@+id/tab1" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="企业账户" android:id="@+id/tab_txt1" 
+		            <TextView
+						style="@style/wrap_content"
+						android:text="企业账户"
+						android:id="@+id/tab_txt1"
 		                android:layout_centerInParent="true"/>
 		  
-		             <LinearLayout android:id="@+id/tab_line1" android:layout_width="fill_parent" android:layout_height="8dp" 
-		    	        android:background="@drawable/line_select" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
+		             <LinearLayout
+						 android:id="@+id/tab_line1"
+						 android:layout_width="fill_parent"
+						 android:layout_height="8dp"
+		    	         android:background="@drawable/line_select"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
 		            
-		            <LinearLayout android:layout_width="1dp" android:layout_height="16dp" 
-		    	        android:background="#b5b6b9" android:layout_alignParentRight="true"
+		            <LinearLayout
+						android:layout_width="1dp"
+						android:layout_height="16dp"
+		    	        android:background="#b5b6b9"
+						android:layout_alignParentRight="true"
 		    	        android:layout_centerVertical="true" />
 		        </RelativeLayout>
-		        <RelativeLayout style="@style/fill" android:id="@+id/tab2" android:layout_weight="1">
-		            <TextView style="@style/wrap_content" android:text="个人账户" android:id="@+id/tab_txt2" 
+		        <RelativeLayout
+					style="@style/fill"
+					android:id="@+id/tab2"
+					android:layout_weight="1">
+		            <TextView
+						style="@style/wrap_content"
+						android:text="个人账户"
+						android:id="@+id/tab_txt2"
 		                android:layout_centerInParent="true"/>
 
-		             <LinearLayout android:id="@+id/tab_line2" android:layout_width="fill_parent" android:layout_height="1dp" 
-		    	        android:background="#b5b6b9" android:layout_alignParentBottom="true" android:orientation="horizontal"  />
-		
-		            
+		             <LinearLayout
+						 android:id="@+id/tab_line2"
+						 android:layout_width="fill_parent"
+						 android:layout_height="1dp"
+		    	         android:background="#b5b6b9"
+						 android:layout_alignParentBottom="true"
+						 android:orientation="horizontal"  />
 		        </RelativeLayout>
 		    </LinearLayout>
-	    	<LinearLayout android:background="@drawable/reg2" android:layout_height="20dp" android:layout_width="wrap_content"
-	    	   android:layout_marginLeft="20dp"
-		  	    android:layout_marginRight="20dp" android:layout_marginTop="20dp"    ></LinearLayout>
+	    	<LinearLayout
+				android:background="@drawable/reg2"
+				android:layout_height="20dp"
+				android:layout_width="wrap_content"
+	    	    android:layout_marginLeft="20dp"
+		  	    android:layout_marginRight="20dp"
+				android:layout_marginTop="20dp">
+			</LinearLayout>
 	    	
-	    	<TextView android:layout_marginLeft="20dp" style="@style/wrap_content"  android:layout_height="40dp"
-	    	    android:text="用户名：" android:layout_marginRight="20dp" android:layout_marginTop="20dp"
-	    	    
-	    	    android:gravity="center_vertical" android:id="@+id/tv_username" />
+	    	<TextView
+				android:layout_marginLeft="20dp"
+				style="@style/wrap_content"
+				android:layout_height="40dp"
+	    	    android:text="用户名："
+				android:layout_marginRight="20dp"
+				android:layout_marginTop="20dp"
+	    	    android:gravity="center_vertical"
+				android:id="@+id/tv_username" />
 	    	
 	    	<!--<com.example.administrator.helloworld.view.MyEditText  android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginLeft="20dp"
 	  	    android:layout_marginRight="20dp" android:layout_marginTop="20dp" 	    test:hint="请输入密码"  test:maxLength="16"
@@ -82,8 +127,13 @@
 				</LinearLayout>
 			</RelativeLayout>
 
-			<TextView android:layout_marginLeft="20dp" style="@style/wrap_content" android:textSize="12dp" 
-	  	    android:layout_marginRight="20dp" android:text="(包括字母、数字、特殊符号，字母区分大小写)"  android:textColor="@color/gray1"/>
+			<TextView
+				android:layout_marginLeft="20dp"
+				style="@style/wrap_content"
+				android:textSize="12dp"
+	  	    	android:layout_marginRight="20dp"
+				android:text="(包括字母、数字、特殊符号，字母区分大小写)"
+				android:textColor="@color/gray1"/>
 
 			<!--<com.example.administrator.helloworld.view.MyEditText  android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginLeft="20dp"
 	  	    android:layout_marginRight="20dp" android:layout_marginTop="20dp" 	test:hint="请再次输入密码"
@@ -227,8 +277,13 @@
 				</LinearLayout>
 			</RelativeLayout>
 
-			<TextView android:layout_marginLeft="20dp" style="@style/wrap_content" android:textSize="12dp" 
-	  	    android:layout_marginRight="20dp" android:text="注：E-mail用来确认注册和找回密码。"  android:textColor="@color/red"/>
+			<TextView
+				android:layout_marginLeft="20dp"
+				style="@style/wrap_content"
+				android:textSize="12dp"
+	  	    	android:layout_marginRight="20dp"
+				android:text="注：E-mail用来确认注册和找回密码。"
+				android:textColor="@color/red"/>
 			
 		
 		<LinearLayout
@@ -247,8 +302,6 @@
 					android:enabled="false"
 					android:layout_weight="1"/>
   		</LinearLayout>
-  	
-	    
 	</LinearLayout>
 	</ScrollView>
 
