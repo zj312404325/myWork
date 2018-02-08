@@ -137,19 +137,394 @@
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
 
-				<ImageView
-					android:layout_marginTop="5dp"
-					android:layout_gravity="center"
-					android:layout_width="200dp"
-					android:layout_height="180dp"
-					android:background="@drawable/supply_step2"/>
-
 				<TextView
 					style="@style/match_parent"
 					android:layout_marginTop="5dp"
 					android:gravity="center"
 					android:text="恭喜，您的申请已通过，请签订以下协议。"
 					android:textSize="14dp"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:gravity="center"
+					android:text="签订方法：
+						1、先至“账户设置”——“电子章管理”里面上传电子章，然后打开下方协议，点击“盖章”按钮，即可完成协议签订。
+						2、没有电子章的用户，将协议下载下来打印并盖章，然后将协议传真给我方，"
+					android:textSize="14dp"/>
+
+				<LinearLayout
+					android:id="@+id/ll_selectZone"
+					style="@style/match_parent"
+					android:layout_margin="10dp"
+					android:layout_gravity="center">
+					<EditText
+						android:layout_width="180dp"
+						android:layout_height="25dp"
+						android:background="@drawable/bg_edittext"
+						android:hint="请选择区域服务中心"
+						android:layout_gravity="center"
+						android:textSize="14dp"
+						android:id="@+id/et_zone"
+						android:inputType="text"
+						android:enabled="false"/>
+
+					<ImageView
+						android:layout_marginLeft="5dp"
+						android:layout_width="9dp"
+						android:layout_height="16dp"
+						android:background="@drawable/right"
+						android:layout_gravity="center_vertical"/>
+				</LinearLayout>
+
+				<TextView
+					android:id="@+id/tv_showFax"
+					android:layout_margin="10dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+               		android:text="请选择区域服务中心!"/>
+
+				<LinearLayout
+					android:id="@+id/ll_contract"
+					style="@style/match_parent"
+					android:layout_margin="10dp"
+					android:layout_gravity="center"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="工业超市合作协议"
+						android:textColor="@color/black"
+						android:textSize="16sp"/>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="甲方：苏州金赢网电子商务有限公司"
+							android:textSize="14sp"/>
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="地址：常熟市东南开发区东南大道333号科创大厦"
+							android:textSize="14sp"/>
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+						<LinearLayout
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content">
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="乙方："
+								android:textSize="14sp"/>
+							<TextView
+								android:id="@+id/tv_compName"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="加载中..."
+								android:textSize="14sp"/>
+						</LinearLayout>
+						<LinearLayout
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content">
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:text="地址："
+								android:textSize="14sp"/>
+							<EditText
+								android:id="@+id/et_compAddress"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:background="@drawable/bg_edittext"
+								android:text="加载中..."
+								android:textSize="14sp"/>
+						</LinearLayout>
+					</LinearLayout>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="为提高区域配送服务功能，切实帮助乙方降低运营成本，实现辅料零库存；甲乙双方本着平等互利、资源共享、优势互补的原则，经友好协商，签订本合作协议。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（一）合作目的和原则"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="第一条 双方的合作应在遵守国家相关法律法规的前提下，遵循“互惠互利、平等诚信”原则，以建立长期、战略性的业务合作关系和促进双方业务的共同发展为目的。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="第二条 甲方帮助乙方实现辅料零库存管理，提高辅料管理的周转率；"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="第三条 甲方承诺：提供给乙方的商品是本区域优势价格，商品质量与服务是最优的；"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="第四条 甲方根据乙方的使用习惯与使用产品，可按需免费配备工业超市售货机，供乙方临时或平时消费使用；"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="第五条 双方达成合作关系后，应积极为合作创造各种有利条件，落实本协议内容。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（二）合作范围及内容"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="区域配送服务功能"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="1、甲方安排乙方所在区域的服务中心的服务人员提供24小时配送服务。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="1、甲方安排乙方所在区域的服务中心的服务人员提供24小时配送服务。"/>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="2、乙方常用商品为："/>
+
+						<EditText
+							android:id="@+id/et_commonGoods"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:background="@drawable/bg_edittext"
+							android:text="加载中..."
+							android:textSize="14sp"/>
+					</LinearLayout>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="3、甲方安排专业团队向乙方提供商品配送、自动售货机配置、技术支持等服务，并对乙方订单进行优先服务。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（三）双方权责"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="1、甲方需在能力范围内，对供给商品的质量、数量承担责任，对乙方提供优先服务。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="2、乙方需确保在双方合作期内，所需工业品优先从金赢网工业超市进行购买，月度合作金额不低于——元"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（四）结算方式"/>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+						<!--<RadioGroup
+							android:id="@+id/radioGroup"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal" >
+							<RadioButton
+								android:id="@+id/radio0"
+								android:text="月度结算"
+								android:layout_marginLeft="30dp"
+								android:button="@null"
+								android:layout_width="50dp"
+								android:layout_height="20dp"
+								android:layout_weight="1"
+								android:checked="false"
+								android:background="@drawable/icon_radio_unselected"/>
+							<RadioButton
+								android:id="@+id/radio1"
+								android:button="@null"
+								android:text="年度结算"
+								android:layout_marginLeft="30dp"
+								android:layout_width="50dp"
+								android:layout_height="20dp"
+								android:layout_weight="1"
+								android:checked="false"
+								android:background="@drawable/icon_radio_unselected" />
+						</RadioGroup>-->
+						<LinearLayout
+							android:id="@+id/ll_monthly"
+							android:layout_weight="1"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+							<ImageView
+								android:id="@+id/iv_monthly"
+								android:layout_width="20dp"
+								android:layout_height="20dp"
+								android:background="@drawable/icon_radio_unselected"
+								android:tag="0"/>
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="月度结算"/>
+						</LinearLayout>
+						<LinearLayout
+							android:id="@+id/ll_yearly"
+							android:layout_weight="1"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+							<ImageView
+								android:id="@+id/iv_yearly"
+								android:layout_width="20dp"
+								android:layout_height="20dp"
+								android:background="@drawable/icon_radio_unselected"
+								android:tag="0"/>
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="年度结算"/>
+						</LinearLayout>
+					</LinearLayout>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="月度结算：甲方每月5日前提供上月消费明细结算表，乙方确认无误后需在每个月的15日前将上月费用支付给甲方。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="年度结算：甲方每年1月5日前提供上年消费明细结算表，乙方确认无误后需在1月15日前将上年度费用支付给甲方。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（五）网络、客户、技术等资源的共享"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="1、甲乙双方同意加强信息技术与电子商务等方向的交流与合作。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="2、甲乙双方同意在条件允许的情况下，实现双方客户资源共享。包括：甲乙双方发挥各自的资源优势，相互推荐优质项目及客户。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（六）保密条款"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="甲乙双方及其代表提供给对方的所有文件（包括纸质和其他介质文件）和客户资料都属机密信息，应妥善保管，在未征得对方书面同意前，不得用作任何与双方合作内容无关的用途，也不得向第三方透露或许可第三方使用。任何一方违反保密条款造成损失的，均应承担法律责任并进行赔偿。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（七）协议的修改"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="1、协议生效后，甲乙双方不得因单位名称的变更或者法定代表人、负责人、承办人等事项的变动而不履行协议所规定的内容。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="2、本协议由甲乙双方共同制定，对双方具有同等约束力，未经另一方书面同意，任何一方不得擅自修改、终止本协议。未尽事宜，以补充协议为准并具有同等法律效力。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="3、本协议执行中如与有关政策、法律、法规和相关制度不相符，甲乙双方应按规定修订本协议。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="（八）附则"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="1、本协议有效期两年，自甲乙双方签订之日起，甲乙双方签字或盖章后生效。"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="2、本协议正本一式贰份，具有同等法律效力，甲乙双方各执壹份。"/>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+						<LinearLayout
+							android:layout_weight="1"
+							android:orientation="horizontal"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content">
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="甲方：（公章）"
+								/>
+							<ImageView
+								android:id="@+id/iv_jySeal"
+								android:layout_width="60dp"
+								android:layout_height="60dp"
+								android:background="@drawable/seal_jy"/>
+						</LinearLayout>
+
+						<LinearLayout
+							android:layout_weight="1"
+							android:orientation="horizontal"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content">
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="乙方：（公章）"
+								/>
+							<ImageView
+								android:id="@+id/iv_customSeal"
+								android:layout_width="60dp"
+								android:layout_height="60dp" />
+						</LinearLayout>
+					</LinearLayout>
+
+				</LinearLayout>
 
 				<LinearLayout
 					android:layout_width="match_parent"
@@ -210,7 +585,7 @@
 					style="@style/match_parent"
 					android:layout_marginTop="5dp"
 					android:gravity="center"
-					android:text="恭喜，您的申请已通过，请签订以下协议。"
+					android:text="您已成功获得信用支付特权!"
 					android:textSize="14dp"/>
 			</LinearLayout>
 

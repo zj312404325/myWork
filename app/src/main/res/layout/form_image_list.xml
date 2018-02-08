@@ -24,13 +24,22 @@
 			android:textSize="20.0dip" />
 	</LinearLayout>
 
-	<ListView
+<!--	<ListView
 		android:id="@+id/formcustomspinner_list"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
 		android:cacheColorHint="@null"
 		android:divider="@android:drawable/divider_horizontal_bright"
-		android:scrollbars="none" /> <!-- listview 的线为灰色 -->
+		android:scrollbars="none" /> &lt;!&ndash; listview 的线为灰色 &ndash;&gt;-->
+
+	<com.example.administrator.jymall.view.MyGridView
+		android:layout_weight="1"
+		android:numColumns="2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:divider="@android:drawable/divider_horizontal_bright"
+		android:id="@+id/mygw">
+	</com.example.administrator.jymall.view.MyGridView>
 
 </LinearLayout>

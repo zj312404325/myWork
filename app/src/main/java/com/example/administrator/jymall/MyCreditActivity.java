@@ -1,13 +1,31 @@
 package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.DensityUtil;
+import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyGridView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,12 +54,40 @@ public class MyCreditActivity extends TopActivity {
     private LinearLayout ll_step_ok;
     @ViewInject(R.id.ll_step_refuse)
     private LinearLayout ll_step_refuse;
+    @ViewInject(R.id.ll_selectZone)
+    private LinearLayout ll_selectZone;
+    @ViewInject(R.id.tv_showFax)
+    private TextView tv_showFax;
+    @ViewInject(R.id.et_zone)
+    private EditText et_zone;
+
+    @ViewInject(R.id.et_compAddress)
+    private EditText et_compAddress;
+    @ViewInject(R.id.et_commonGoods)
+    private EditText et_commonGoods;
+    @ViewInject(R.id.tv_compName)
+    private TextView tv_compName;
+    @ViewInject(R.id.ll_monthly)
+    private LinearLayout ll_monthly;
+    @ViewInject(R.id.ll_yearly)
+    private LinearLayout ll_yearly;
+    @ViewInject(R.id.iv_monthly)
+    private ImageView iv_monthly;
+    @ViewInject(R.id.iv_yearly)
+    private ImageView iv_yearly;
+
+
+
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
 
     private String id="";
     private String pic1="";
     private String pic2="";
     private String pic3="";
+    private String zoneid="";
     private String compType="";
+    private String compName="";
     private String personNumber="";
 
     private String sealurl="";
@@ -50,6 +96,7 @@ public class MyCreditActivity extends TopActivity {
     private String products="";
 
     public List<Map<String, Object>> dateMaps= new ArrayList<Map<String, Object>>();
+    public List<Map<String, Object>> sealMaps= new ArrayList<Map<String, Object>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +108,10 @@ public class MyCreditActivity extends TopActivity {
     }
 
     private void getState(){
+        dateMaps.clear();
+        sealMaps.clear();
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
-
         disableInit();
         XUtilsHelper.getInstance().post("app/mallCreditSupply.htm", maps,new XUtilsHelper.XCallBack(){
 
@@ -75,9 +123,52 @@ public class MyCreditActivity extends TopActivity {
                     res = new JSONObject(result);
                     setServerKey(res.get("serverKey").toString());
                     JSONArray servicelist = (JSONArray)res.get("servicelist");
+                    JSONArray sealList = (JSONArray)res.get("sealList");
+                    JSONObject credit = (JSONObject)res.get("credit");
+                    compName=res.get("compName").toString();
+                    tv_compName.setText(compName);
+
+                    if(FormatUtil.isNoEmpty(credit)){
+                        et_compAddress.setText(credit.getString("address"));
+                        et_commonGoods.setText(credit.getString("products"));
+                        String type=credit.getString("paytype");
+                        if(FormatUtil.isNoEmpty(type)){
+                            if(type.equals("0")){
+                                iv_monthly.setBackgroundResource(R.drawable.icon_radio_selected);
+                                iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                                iv_monthly.setTag("1");
+                                iv_yearly.setTag("0");
+                            }
+                            else if(type.equals("1")){
+                                iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                                iv_yearly.setBackgroundResource(R.drawable.icon_radio_selected);
+                                iv_monthly.setTag("0");
+                                iv_yearly.setTag("1");
+                            }
+                            else{
+                                iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                                iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                                iv_monthly.setTag("0");
+                                iv_yearly.setTag("0");
+                            }
+                        }
+                        else{
+                            iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                            iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                            iv_monthly.setTag("0");
+                            iv_yearly.setTag("0");
+                        }
+                    }
+                    else{
+                        et_compAddress.setText("");
+                        et_commonGoods.setText("");
+                        iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                        iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                        iv_monthly.setTag("0");
+                        iv_yearly.setTag("0");
+                    }
 
                     if(res.get("isEmpty").toString().equals("n")) {
-                        JSONObject credit = (JSONObject)res.get("credit");
                         id=credit.getString("id");
                         if(credit.getString("status").equals("0")){
                             ll_step3.setVisibility(View.VISIBLE);
@@ -102,6 +193,15 @@ public class MyCreditActivity extends TopActivity {
                         dateMap.put("fax", servicelist.getJSONObject(i).get("fax"));
                         dateMap.put("name", servicelist.getJSONObject(i).get("name"));
                         dateMaps.add(dateMap);
+                    }
+
+                    if(res.get("sealstatus").toString().equals("y")) {
+                        for(int i=0;i<sealList.length();i++){
+                            Map<String, Object> dateMap = new HashMap<String, Object>();
+                            dateMap.put("sealName", sealList.getJSONObject(i).get("sealName"));
+                            dateMap.put("picUrl", sealList.getJSONObject(i).get("picUrl"));
+                            sealMaps.add(dateMap);
+                        }
                     }
 
                 } catch (JSONException e) {
@@ -205,6 +305,118 @@ public class MyCreditActivity extends TopActivity {
         });
     }
 
+    @Event(value={R.id.ll_selectZone},type=View.OnTouchListener.class)
+    private boolean selectZoneTouch(View v, MotionEvent arg1) {
+        if(arg1.getAction() == KeyEvent.ACTION_UP){
+            Context context = MyCreditActivity.this;
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.form_common_list, null);
+            ListView myListView = (ListView) layout.findViewById(R.id.formcustomspinner_list);
+            MyAdapter adapter = new MyAdapter(context, dateMaps);
+            myListView.setAdapter(adapter);
+            myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
+                    //在这里面就是执行点击后要进行的操作,这里只是做一个显示
+                    //Toast.makeText(SearchProductListActivity.this, "您点击的是"+list.get(position).toString(), Toast.LENGTH_LONG).show();
+                    et_zone.setText(dateMaps.get(position).get("name").toString());
+                    tv_showFax.setText("我方传真号："+dateMaps.get(position).get("fax").toString());
+                    zoneid=dateMaps.get(position).get("id").toString();
+                    if (alertDialog != null) {
+                        alertDialog.dismiss();
+                    }
+                }
+            });
+
+            builder = new AlertDialog.Builder(context);
+            builder.setView(layout);
+            alertDialog = builder.create();
+            alertDialog.show();
+            return false;
+        }
+        return true;
+    }
+
+    @Event(value={R.id.doSeal},type=View.OnTouchListener.class)
+    private boolean selectSealTouch(View v, MotionEvent arg1) {
+        if(arg1.getAction() == KeyEvent.ACTION_UP){
+            if(sealMaps.size()>0) {
+                Context context = MyCreditActivity.this;
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.form_image_list, null);
+                MyGridView mygw = (MyGridView) layout.findViewById(R.id.mygw);
+
+                String [] from ={};
+                int [] to = {};
+                Sealadapter adapter = new Sealadapter(this, sealMaps, R.layout.form_image_list, from, to);
+                mygw.setAdapter(adapter);
+                /*mygw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
+                        //在这里面就是执行点击后要进行的操作,这里只是做一个显示
+                        //Toast.makeText(SearchProductListActivity.this, "您点击的是"+list.get(position).toString(), Toast.LENGTH_LONG).show();
+                        holder.setText(dateMaps.get(position).get("sealName").toString());
+                        tv_showFax.setText("我方传真号：" + dateMaps.get(position).get("fax").toString());
+                        zoneid = dateMaps.get(position).get("id").toString();
+                        if (alertDialog != null) {
+                            alertDialog.dismiss();
+                        }
+                    }
+                });*/
+
+                builder = new AlertDialog.Builder(context);
+                builder.setView(layout);
+                alertDialog = builder.create();
+                alertDialog.show();
+                return false;
+            }
+            else{
+                CommonUtil.alter("暂无印章!");
+            }
+        }
+        return true;
+    }
+
+    @SuppressLint("NewApi")
+    @Event(value={R.id.ll_monthly,R.id.ll_yearly},type=View.OnTouchListener.class)
+    private boolean selectTouch(View v, MotionEvent e){
+        if(e.getAction() == MotionEvent.ACTION_UP){
+            if(v.getId() ==R.id.ll_monthly ){
+                if(iv_monthly.getTag().toString().equals("0")){
+                    iv_monthly.setBackgroundResource(R.drawable.icon_radio_selected);
+                    iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                    iv_monthly.setTag("1");
+                    iv_yearly.setTag("0");
+                }
+                else{
+                    iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                    iv_yearly.setBackgroundResource(R.drawable.icon_radio_selected);
+                    iv_monthly.setTag("0");
+                    iv_yearly.setTag("1");
+                }
+            }else if(v.getId() ==R.id.ll_yearly ){
+                if(iv_yearly.getTag().toString().equals("0")){
+                    iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                    iv_yearly.setBackgroundResource(R.drawable.icon_radio_selected);
+                    iv_monthly.setTag("0");
+                    iv_yearly.setTag("1");
+                }
+                else{
+                    iv_monthly.setBackgroundResource(R.drawable.icon_radio_selected);
+                    iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
+                    iv_monthly.setTag("1");
+                    iv_yearly.setTag("0");
+                }
+            }else{
+
+            }
+            return false;
+        }
+        return true;
+    }
+
     private void disableInit() {
         ll_step1.setVisibility(View.GONE);
         ll_step2.setVisibility(View.GONE);
@@ -217,5 +429,131 @@ public class MyCreditActivity extends TopActivity {
     private void subClick(View v){
         disableInit();
         ll_step2.setVisibility(View.VISIBLE);
+    }
+
+    //自定义的适配器
+    class MyAdapter extends BaseAdapter {
+        private List<Map<String, Object>> mlist;
+        private Context mContext;
+
+        public MyAdapter(Context context, List<Map<String, Object>> list) {
+            this.mContext = context;
+            mlist = new ArrayList<Map<String, Object>>();
+            this.mlist = list;
+        }
+
+        @Override
+        public int getCount() {
+            return mlist.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mlist.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            MyCreditActivity.MyAdapter.Person person = null;
+            if (convertView == null) {
+                LayoutInflater inflater = LayoutInflater.from(mContext);
+                convertView = inflater.inflate(R.layout.form_dialog_item,null);
+                person = new MyCreditActivity.MyAdapter.Person();
+                person.name = (TextView)convertView.findViewById(R.id.tv_name);
+                convertView.setTag(person);
+            }else{
+                person = (MyCreditActivity.MyAdapter.Person)convertView.getTag();
+            }
+            person.name.setText(dateMaps.get(position).get("name").toString());
+            return convertView;
+        }
+        class Person{
+            TextView name;
+        }
+    }
+
+    //自定义的适配器
+    @SuppressLint("ResourceAsColor")
+    public class Sealadapter  extends SimpleAdapter {
+        public MyCreditActivity.ViewHolder holder;
+        private LayoutInflater mInflater;
+
+        public Sealadapter(Context context,
+                          List<? extends Map<String, ?>> data, int resource, String[] from,
+                          int[] to) {
+            super(context, data, resource, from, to);
+            mInflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @SuppressLint({ "NewApi", "ResourceAsColor" })
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            try{
+                holder=null;
+                if(convertView==null){
+                    convertView=mInflater.inflate(R.layout.listview_seal, null);
+                    holder=new MyCreditActivity.ViewHolder();
+                    x.view().inject(holder,convertView);
+                    convertView.setTag(holder);
+                }
+                else{
+                    holder=(MyCreditActivity.ViewHolder) convertView.getTag();
+                }
+                holder.protitle.setText(sealMaps.get(position).get("sealName").toString());
+
+                XUtilsHelper.getInstance().bindCommonImage(holder.proimg, sealMaps.get(position).get("picUrl").toString(), true);
+
+                LinearLayout.LayoutParams lp1 =new LinearLayout.
+                        LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp1.setMargins(0, 0, DensityUtil.dip2px( 2), DensityUtil.dip2px( 4));
+                LinearLayout.LayoutParams lp2 =new LinearLayout.
+                        LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp2.setMargins(DensityUtil.dip2px( 2), 0, 0, DensityUtil.dip2px( 4));
+                if(position%2 == 0){
+                    holder.pro.setLayoutParams(lp1);
+                }
+                else
+                {
+                    holder.pro.setLayoutParams(lp2);
+                }
+
+
+                holder.pro.setOnTouchListener(new View.OnTouchListener() {
+
+                    @Override
+                    public boolean onTouch(View arg0, MotionEvent e) {
+                        if(e.getAction() == MotionEvent.ACTION_UP){
+                            String url=sealMaps.get(position).get("picUrl").toString();
+                            XUtilsHelper.getInstance().bindCommonImage(holder.proimg, url, true);
+                            sealurl=url;
+                            return false;
+                        }
+                        return true;
+                    }
+                });
+
+
+            }
+            catch(Exception e){
+                Log.v("PRO", e.getMessage());
+            }
+            return super.getView(position, convertView, parent);
+        }
+    }
+
+    class ViewHolder{
+        @ViewInject(R.id.proimg)
+        private ImageView proimg;
+        @ViewInject(R.id.protitle)
+        private TextView protitle;
+        @ViewInject(R.id.pro)
+        private RelativeLayout pro;
+
     }
 }
