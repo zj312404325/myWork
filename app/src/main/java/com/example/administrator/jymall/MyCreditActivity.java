@@ -75,8 +75,8 @@ public class MyCreditActivity extends TopActivity {
     private ImageView iv_monthly;
     @ViewInject(R.id.iv_yearly)
     private ImageView iv_yearly;
-
-
+    @ViewInject(R.id.iv_customSeal)
+    private ImageView iv_customSeal;
 
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
@@ -138,18 +138,21 @@ public class MyCreditActivity extends TopActivity {
                                 iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
                                 iv_monthly.setTag("1");
                                 iv_yearly.setTag("0");
+                                paytype="0";
                             }
                             else if(type.equals("1")){
                                 iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
                                 iv_yearly.setBackgroundResource(R.drawable.icon_radio_selected);
                                 iv_monthly.setTag("0");
                                 iv_yearly.setTag("1");
+                                paytype="1";
                             }
                             else{
                                 iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
                                 iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
                                 iv_monthly.setTag("0");
                                 iv_yearly.setTag("0");
+                                paytype="";
                             }
                         }
                         else{
@@ -157,6 +160,12 @@ public class MyCreditActivity extends TopActivity {
                             iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
                             iv_monthly.setTag("0");
                             iv_yearly.setTag("0");
+                            paytype="";
+                        }
+                        if(FormatUtil.isNoEmpty(credit.getString("sealUrl"))){
+                            String url=credit.getString("sealUrl");
+                            XUtilsHelper.getInstance().bindCommonImage(iv_customSeal, url, true);
+                            sealurl=url;
                         }
                     }
                     else{
@@ -166,6 +175,7 @@ public class MyCreditActivity extends TopActivity {
                         iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
                         iv_monthly.setTag("0");
                         iv_yearly.setTag("0");
+                        paytype="";
                     }
 
                     if(res.get("isEmpty").toString().equals("n")) {
@@ -267,10 +277,9 @@ public class MyCreditActivity extends TopActivity {
 
     @Event(R.id.sub)
     private void subclick(View v){
-        sealurl="";
-        address="";
-        products="";
-        paytype="";
+
+        address=et_compAddress.getText().toString();
+        products=et_commonGoods.getText().toString();
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("id", id);
@@ -292,6 +301,7 @@ public class MyCreditActivity extends TopActivity {
                         CommonUtil.alter(res.get("msg").toString());
                     }
                     else{
+                        CommonUtil.alter("在线签约成功,请等待审核!");
                         getState();
                     }
 
@@ -389,12 +399,14 @@ public class MyCreditActivity extends TopActivity {
                     iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
                     iv_monthly.setTag("1");
                     iv_yearly.setTag("0");
+                    paytype="0";
                 }
                 else{
                     iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
                     iv_yearly.setBackgroundResource(R.drawable.icon_radio_selected);
                     iv_monthly.setTag("0");
                     iv_yearly.setTag("1");
+                    paytype="1";
                 }
             }else if(v.getId() ==R.id.ll_yearly ){
                 if(iv_yearly.getTag().toString().equals("0")){
@@ -402,12 +414,14 @@ public class MyCreditActivity extends TopActivity {
                     iv_yearly.setBackgroundResource(R.drawable.icon_radio_selected);
                     iv_monthly.setTag("0");
                     iv_yearly.setTag("1");
+                    paytype="1";
                 }
                 else{
                     iv_monthly.setBackgroundResource(R.drawable.icon_radio_selected);
                     iv_yearly.setBackgroundResource(R.drawable.icon_radio_unselected);
                     iv_monthly.setTag("1");
                     iv_yearly.setTag("0");
+                    paytype="0";
                 }
             }else{
 
@@ -530,8 +544,11 @@ public class MyCreditActivity extends TopActivity {
                     public boolean onTouch(View arg0, MotionEvent e) {
                         if(e.getAction() == MotionEvent.ACTION_UP){
                             String url=sealMaps.get(position).get("picUrl").toString();
-                            XUtilsHelper.getInstance().bindCommonImage(holder.proimg, url, true);
+                            XUtilsHelper.getInstance().bindCommonImage(iv_customSeal, url, true);
                             sealurl=url;
+                            if (alertDialog != null) {
+                                alertDialog.dismiss();
+                            }
                             return false;
                         }
                         return true;

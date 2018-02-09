@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
 		<LinearLayout
-			android:orientation="vertical"
-			android:layout_weight="1"
+			android:orientation="horizontal"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="80dp"
 			android:layout_gravity="center_vertical"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
 
-			<RelativeLayout
+			<LinearLayout
 				style="@style/wrap_content"
-				android:layout_marginTop="10dp">
+				android:layout_width="180dp"
+				android:layout_height="60dp"
+				android:orientation="vertical"
+				android:layout_gravity="center_vertical">
 				<TextView
 					style="@style/wrap_content"
+					android:layout_width="150dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center_vertical"
 					android:id="@+id/tv_scoreType"
-					android:layout_marginTop="5dp"
-					android:text="订单积分"
+					android:textColor="@color/red"
 					android:textSize="16sp"
-					android:width="180dp" />
+					android:text="订单积分"/>
 
 				<TextView
 					style="@style/wrap_content"
+					android:layout_width="150dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center_vertical"
 					android:id="@+id/tv_scoreTime"
 					android:textSize="12sp"
 					android:textColor="@color/gray"
-					android:text="2018-01-01"
-					android:width="180dp"
-					android:layout_below="@id/tv_scoreType"/>
+					android:text="2018-01-01"/>
+			</LinearLayout>
 
+			<LinearLayout
+				style="@style/wrap_content"
+				android:orientation="vertical"
+				android:layout_gravity="center_vertical">
 				<TextView
 					style="@style/match_parent"
 					android:id="@+id/tv_score"
@@ -41,9 +53,7 @@
 					android:textSize="18sp"
 					android:textColor="@color/red"
 					android:gravity="right"
-					android:layout_marginTop="10dp"
-					android:layout_marginRight="20dp"
-					android:layout_toRightOf="@id/tv_scoreTime"/>
-			</RelativeLayout>
+					android:layout_marginRight="20dp"/>
+			</LinearLayout>
 		</LinearLayout>
 </LinearLayout>

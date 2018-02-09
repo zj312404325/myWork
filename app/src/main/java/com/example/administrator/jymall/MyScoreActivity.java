@@ -2,17 +2,24 @@ package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.administrator.jymall.common.SpinnerPopWindow;
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
@@ -25,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -45,6 +53,11 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
     private TextView total_income;
     @ViewInject(R.id.total_pay)
     private TextView total_pay;
+    @ViewInject(R.id.tv_myScore)
+    private TextView tv_myScore;
+    @ViewInject(R.id.iv_exchangeGift)
+    private ImageView iv_exchangeGift;
+
 
     public List<Map<String, Object>> dateMaps= new ArrayList<Map<String, Object>>();
     public List<Map<String, Object>> provinceMaps= new ArrayList<Map<String, Object>>();
@@ -54,22 +67,33 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
     private String totalIncome="";
     private String totalPay="";
 
+    private SpinnerPopWindow<String> mSpinerPopWindow;
+    private List<String> list;
+    private TextView tvValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_myscore);
         x.view().inject(this);
         super.title.setText("我的积分");
         progressDialog.hide();
 
         sap = new ProSimpleAdapter(MyScoreActivity.this, dateMaps,
                 R.layout.listview_myscore,
-                new String[]{"scoreType"},
-                new int[]{R.id.tv_scoreType});
+                new String[]{},
+                new int[]{});
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
         getData(true,true);
         mHandler = new Handler();
+
+        initData();
+        tvValue = (TextView) findViewById(R.id.tv_value);
+        tvValue.setOnClickListener(clickListener);
+        mSpinerPopWindow = new SpinnerPopWindow<String>(this, list,itemClickListener);
+        mSpinerPopWindow.setOnDismissListener(dismissListener);
     }
 
     private void getData(final boolean isShow,final boolean flag){
@@ -107,6 +131,7 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
 
                     total_income.setText("+"+totalIncome);
                     total_pay.setText("-"+totalPay);
+                    tv_myScore.setText(res.get("score").toString());
 
                     if(scoreList.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);
@@ -133,6 +158,69 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
             }
 
         });
+    }
+
+    @Event(R.id.iv_exchangeGift)
+    private void exchangeGiftClick(View v){
+        Intent i =new Intent(getApplicationContext(),MyExchangeActivity.class);
+        startActivity(i);
+    }
+
+    /**
+     * 监听popupwindow取消
+     */
+    private PopupWindow.OnDismissListener dismissListener=new PopupWindow.OnDismissListener() {
+        @Override
+        public void onDismiss() {
+            setTextImage(R.drawable.icon_down);
+        }
+    };
+
+    /**
+     * popupwindow显示的ListView的item点击事件
+     */
+    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            mSpinerPopWindow.dismiss();
+            tvValue.setText(list.get(position));
+            Toast.makeText(MyScoreActivity.this, "点击了:" + list.get(position),Toast.LENGTH_LONG).show();
+        }
+    };
+
+    /**
+     * 显示PopupWindow
+     */
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.tv_value:
+                    mSpinerPopWindow.setWidth(tvValue.getWidth());
+                    mSpinerPopWindow.showAsDropDown(tvValue);
+                    setTextImage(R.drawable.icon_up);
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        list = new ArrayList<String>();
+        list.add("全部积分" );
+        list.add("近三个月积分" );
+    }
+
+    /**
+     * 给TextView右边设置图片
+     * @param resId
+     */
+    private void setTextImage(int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(),drawable.getMinimumHeight());// 必须设置图片大小，否则不显示
+        tvValue.setCompoundDrawables(null, null, drawable, null);
     }
 
     public class ProSimpleAdapter  extends SimpleAdapter {
@@ -168,6 +256,7 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
             String createdate=myMaps.get(position).get("createdate").toString();
 
             holder.tv_scoreType.setText(title);
+            holder.tv_scoreType.setTextColor(getBaseContext().getResources().getColorStateList(R.color.red));
             holder.tv_scoreTime.setText(createdate);
             if(inoutflag.equals("0")){
                 Resources resource = (Resources) getBaseContext().getResources();
