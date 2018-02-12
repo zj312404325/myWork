@@ -36,9 +36,9 @@ public class AmountView extends LinearLayout {
 
 
 	private static final String TAG = "AmountView";
-    private double amount = 0.001; //购买数量
-    private double goods_storage = 0.001; //商品库存
-    private double goods_min = 0.001; //商品起订量
+    private double amount = 1; //购买数量
+    private double goods_storage = 1; //商品库存
+    private double goods_min = 1; //商品起订量
     
     private OnAmountChangeListener mListener;
 

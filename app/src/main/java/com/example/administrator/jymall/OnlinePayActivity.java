@@ -95,6 +95,7 @@ public class OnlinePayActivity extends TopActivity {
         orderNo = i.getStringExtra("orderNo");
         totalMoney = i.getStringExtra("totalMoney");
         orderdtlProcId= i.getStringExtra("orderdtlProcId");
+        adminmobile= i.getStringExtra("adminmobile");
 
     }
 

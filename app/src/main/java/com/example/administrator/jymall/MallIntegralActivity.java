@@ -50,8 +50,8 @@ public class MallIntegralActivity extends TopActivity {
         super.title.setText("积分商城");
         progressDialog.hide();
         sap = new ProSimpleAdapter(this, resMaps, R.layout.listview_score,
-                new String[]{"proname"},
-                new int[]{R.id.giftName});
+                new String[]{},
+                new int[]{});
         gw_scorelist.setAdapter(sap);
         getData();
     }

@@ -43,6 +43,7 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
 
     public List<Map<String, Object>> dateMaps= new ArrayList<Map<String, Object>>();
     public List<Map<String, Object>> provinceMaps= new ArrayList<Map<String, Object>>();
+    public List<Map<String, Object>> resultMaps= new ArrayList<Map<String, Object>>();
     private SimpleAdapter sap;
     private Handler mHandler;
     private int start = 1;
@@ -63,8 +64,8 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
 
         sap = new ProSimpleAdapter(ServiceCenterActivity.this, dateMaps,
                 R.layout.list_service_center,
-                new String[]{"centerName"},
-                new int[]{R.id.tv_centerName});
+                new String[]{},
+                new int[]{});
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
@@ -132,9 +133,34 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
 
                     for(int i=0;i<provinceList.length();i++){
                         Map<String, Object> dateMap = new HashMap<String, Object>();
-                        dateMap.put("province", serviceList.getJSONObject(i).get("province"));
+                        dateMap.put("province", provinceList.getJSONObject(i).get("province"));
                         provinceMaps.add(dateMap);
                     }
+
+                    for(int i=0;i<provinceList.length();i++){
+                        Map<String, Object> dateMap = new HashMap<String, Object>();
+                        dateMap.put("province", provinceList.getJSONObject(i).get("province"));
+
+                        List<Map<String, Object>> centerMaps= new ArrayList<Map<String, Object>>();
+                        for(int j=0;j<serviceList.length();j++){
+                            if(serviceList.getJSONObject(j).get("province").equals(provinceList.getJSONObject(i).get("province"))){
+                                Map<String, Object> detailMap = new HashMap<String, Object>();
+                                detailMap.put("name", serviceList.getJSONObject(j).get("name"));
+                                detailMap.put("province", serviceList.getJSONObject(j).get("province"));
+                                detailMap.put("city", serviceList.getJSONObject(j).get("city"));
+                                detailMap.put("district", serviceList.getJSONObject(j).get("district"));
+                                detailMap.put("address", serviceList.getJSONObject(j).get("address"));
+                                detailMap.put("mobile", serviceList.getJSONObject(j).get("mobile"));
+                                detailMap.put("contact", serviceList.getJSONObject(j).get("contact"));
+                                detailMap.put("fax", serviceList.getJSONObject(j).get("fax"));
+                                detailMap.put("postcode", serviceList.getJSONObject(j).get("postcode"));
+                                centerMaps.add(detailMap);
+                            }
+                        }
+                        dateMap.put("detailList", centerMaps);
+                        resultMaps.add(dateMap);
+                    }
+
                     sap.notifyDataSetChanged();
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block

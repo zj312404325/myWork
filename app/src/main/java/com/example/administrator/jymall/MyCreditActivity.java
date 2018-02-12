@@ -124,14 +124,36 @@ public class MyCreditActivity extends TopActivity {
                     setServerKey(res.get("serverKey").toString());
                     JSONArray servicelist = (JSONArray)res.get("servicelist");
                     JSONArray sealList = (JSONArray)res.get("sealList");
-                    JSONObject credit = (JSONObject)res.get("credit");
+                    JSONObject credit;
+                    String isEmpty = res.get("isEmpty").toString();
                     compName=res.get("compName").toString();
                     tv_compName.setText(compName);
 
-                    if(FormatUtil.isNoEmpty(credit)){
+                    if(isEmpty.equals("n")){
+                        credit = (JSONObject)res.get("credit");
                         et_compAddress.setText(credit.getString("address"));
                         et_commonGoods.setText(credit.getString("products"));
                         String type=credit.getString("paytype");
+
+                        id=credit.getString("id");
+                        if(credit.getString("status").equals("0")){
+                            ll_step3.setVisibility(View.VISIBLE);
+                        }
+                        if(credit.getString("status").equals("2")){
+                            ll_step_refuse.setVisibility(View.VISIBLE);
+                        }
+                        if(credit.getString("status").equals("1") && !credit.getString("ischecked").equals("1")){
+                            ll_step4.setVisibility(View.VISIBLE);
+                        }
+                        if(credit.getString("status").equals("1") && credit.getString("ischecked").equals("1")){
+                            ll_step_ok.setVisibility(View.VISIBLE);
+                        }
+
+                        if(FormatUtil.isNoEmpty(credit.getString("sealUrl"))){
+                            String url=credit.getString("sealUrl");
+                            XUtilsHelper.getInstance().bindCommonImage(iv_customSeal, url, true);
+                            sealurl=url;
+                        }
                         if(FormatUtil.isNoEmpty(type)){
                             if(type.equals("0")){
                                 iv_monthly.setBackgroundResource(R.drawable.icon_radio_selected);
@@ -162,13 +184,9 @@ public class MyCreditActivity extends TopActivity {
                             iv_yearly.setTag("0");
                             paytype="";
                         }
-                        if(FormatUtil.isNoEmpty(credit.getString("sealUrl"))){
-                            String url=credit.getString("sealUrl");
-                            XUtilsHelper.getInstance().bindCommonImage(iv_customSeal, url, true);
-                            sealurl=url;
-                        }
                     }
                     else{
+                        ll_step1.setVisibility(View.VISIBLE);
                         et_compAddress.setText("");
                         et_commonGoods.setText("");
                         iv_monthly.setBackgroundResource(R.drawable.icon_radio_unselected);
@@ -178,7 +196,7 @@ public class MyCreditActivity extends TopActivity {
                         paytype="";
                     }
 
-                    if(res.get("isEmpty").toString().equals("n")) {
+                    /*if(res.get("isEmpty").toString().equals("n")) {
                         id=credit.getString("id");
                         if(credit.getString("status").equals("0")){
                             ll_step3.setVisibility(View.VISIBLE);
@@ -195,7 +213,7 @@ public class MyCreditActivity extends TopActivity {
                     }
                     else{
                         ll_step1.setVisibility(View.VISIBLE);
-                    }
+                    }*/
 
                     for(int i=0;i<servicelist.length();i++){
                         Map<String, Object> dateMap = new HashMap<String, Object>();

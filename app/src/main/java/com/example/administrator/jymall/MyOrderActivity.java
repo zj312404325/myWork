@@ -408,20 +408,9 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 if(orderType.equals("product")){
                     iv_orderTypeIcon.setBackgroundResource(R.drawable.logo_jinjin);
                 }
-                /*tv_owner.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View arg0, MotionEvent event) {
-                        if (event.getAction() == event.ACTION_UP) {
-                            Intent i = new Intent(getApplicationContext(),CompanyInfoActivity.class);
-                            i.putExtra("id",ownerID );
-                            startActivity(i);
-                            return false;
-                        }
-                        return true;
-                    }
-                });*/
 
                 if(!orderType.equals("orderMatch")) {
+                    btn_payFirst.setVisibility(View.GONE);
                     if (orderStatus == 0) {
                         tv_orderStatus.setText("未支付");
                         btn_cancel.setVisibility(View.GONE);
@@ -563,12 +552,22 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     }
                 }
                 else{
+                    btn_pay.setVisibility(View.GONE);
                     if (orderStatus == 0) {
                         tv_orderStatus.setText("待设置定金");
                         btn_cancel.setVisibility(View.VISIBLE);
                     } else if (orderStatus == 1) {
                         tv_orderStatus.setText("待支付定金");
+                        btn_cancel.setVisibility(View.VISIBLE);
                         btn_payFirst.setVisibility(View.VISIBLE);
+                        btn_payFirst.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                Intent i = new Intent(getApplicationContext(),PreparePayActivity.class);
+                                i.putExtra("id", id);
+                                startActivity(i);
+                            }
+                        });
                         btn_cancel.setVisibility(View.VISIBLE);
                         btn_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -619,17 +618,42 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         });
                     } else if (orderStatus == 2 ) {
                         tv_orderStatus.setText("待确认定金");
+                        btn_payFirst.setVisibility(View.GONE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 3) {
                         tv_orderStatus.setText("待生产完成");
+                        btn_payFirst.setVisibility(View.GONE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 4) {
                         tv_orderStatus.setText("待付尾款");
+                        btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.VISIBLE);
+                        btn_cancel.setVisibility(View.GONE);
+                        btn_payLast.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                Intent i = new Intent(getApplicationContext(),PreparePayActivity.class);
+                                i.putExtra("id", id);
+                                startActivity(i);
+                            }
+                        });
                     } else if (orderStatus == 5) {
                         tv_orderStatus.setText("待确认尾款");
+                        btn_payFirst.setVisibility(View.GONE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 6) {
                         tv_orderStatus.setText("待发货");
+                        btn_payFirst.setVisibility(View.GONE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 7) {
                         tv_orderStatus.setText("等待收货");
+                        btn_payFirst.setVisibility(View.GONE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.VISIBLE);
                         btn_confirmProduct.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -679,8 +703,14 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             }
                         });
                     } else if (orderStatus == 8) {
+                        btn_payFirst.setVisibility(View.GONE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 9) {
+                        btn_payFirst.setVisibility(View.GONE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_cancel.setVisibility(View.GONE);
                         tv_orderStatus.setText("订单取消");
                     }
                 }
@@ -688,21 +718,31 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 //评价状态
                 if(orderType.equals("product")) {
                     if (isAppraised != 1) {
-                        if (orderStatus == 4 && orderType.equals("product")) {
+                        if (orderStatus == 4 ) {
+                            tv_isAppraised.setVisibility(View.GONE);
                             btn_appraise.setVisibility(View.VISIBLE);
                             btn_appraise.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View arg0) {
-                                    // 评价开始
-                                    Intent intent = new Intent(getApplicationContext(), OrderAppraiseActivity.class);
-                                    intent.putExtra("id", id);
-                                    startActivity(intent);
+                                // 评价开始
+                                Intent intent = new Intent(getApplicationContext(), OrderAppraiseActivity.class);
+                                intent.putExtra("id", id);
+                                startActivity(intent);
                                 }
                             });
                         }
-                    } else {
+                        else{
+                            tv_isAppraised.setVisibility(View.GONE);
+                            btn_appraise.setVisibility(View.GONE);
+                        }
+                    } else if(isAppraised ==1){
+                        btn_appraise.setVisibility(View.GONE);
                         tv_isAppraised.setVisibility(View.VISIBLE);
                     }
+                }
+                else{
+                    tv_isAppraised.setVisibility(View.GONE);
+                    btn_appraise.setVisibility(View.GONE);
                 }
 
                 final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(position).get("orderDtls");

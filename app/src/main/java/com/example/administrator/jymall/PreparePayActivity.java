@@ -139,7 +139,7 @@ public class PreparePayActivity extends TopActivity {
 						money = FormatUtil.toDouble(res.getJSONObject("order").getString("money"));
 						orderPayMoney = FormatUtil.toDouble(res.getJSONObject("order").getString("orderPayMoney"));
 						paidMoney=FormatUtil.toDouble(res.getJSONObject("order").getString("getMoney"));
-						umoneysy = BigDecimalUtil.sub(umoney, money,2);
+						umoneysy = BigDecimalUtil.sub(umoney, orderPayMoney,2);
 						if(umoneysy<0){
 							umoneysy=0d;
 						}
@@ -278,6 +278,7 @@ public class PreparePayActivity extends TopActivity {
 		i.putExtra("id", id);
 		i.putExtra("totalMoney",tv_money.getText().toString());
 		i.putExtra("orderdtlProcId",orderdtlProcId);
+		i.putExtra("adminmobile",adminmobile);
 		startActivityForResult(i,CommonUtil.getInt(R.string.RECODE_DOWNPAY));
 	}
 

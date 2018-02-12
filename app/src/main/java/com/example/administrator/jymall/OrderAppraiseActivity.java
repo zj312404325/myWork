@@ -87,6 +87,7 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
     private String showName="0";
     private Handler mHandler;
     private int start = 1;
+    private int orderDtlCount = 0;
 
     SimpleAdapter sap;
 
@@ -147,6 +148,7 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                     setServerKey(res.get("serverKey").toString());
                     order = res.getJSONObject("order");
                     orderDtls = order.getJSONArray("orderDtls");
+                    orderDtlCount=orderDtls.length();
 
                     for(int j=0;j<orderDtls.length();j++){
                         Map<String, Object> dateMap1 = new HashMap<String, Object>();
@@ -617,6 +619,7 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
 
     private void getCommentJson() throws IOException{
         appraiseJsonArray="[";
+        int count=0;
         for(int i=0; i<listViewAll.getChildCount();i++){
             String pic1="";
             String pic2="";
@@ -625,19 +628,27 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
             String pic5="";
             String productLevel="";
             String remark="";
-            LinearLayout layout =(LinearLayout) listViewAll.getChildAt(i);
-            RatingBar rb_productLevel=layout.findViewById(R.id.rb_productLevel);
-            EditText et_remark=layout.findViewById(R.id.et_remark);
-            remark = java.net.URLEncoder.encode(et_remark.getText().toString(),"UTF-8");
-            productLevel=FormatUtil.toString(rb_productLevel.getRating());
-            if(i==listViewAll.getChildCount()-1){
-                appraiseJsonArray += "{\"productid\":\""+ dateMaps.get(i).get("proID").toString() +"\",\"productLevel\":\""+ productLevel +"\",\"remark\":\""+ remark +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\",\"pic4\":\""+ pic4 +"\",\"pic5\":\""+ pic5 +"\"}";
-            }
-            else{
-                appraiseJsonArray += "{\"productid\":\""+ dateMaps.get(i).get("proID").toString() +"\",\"productLevel\":\""+ productLevel +"\",\"remark\":\""+ remark +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\",\"pic4\":\""+ pic4 +"\",\"pic5\":\""+ pic5 +"\"},";
+            if(listViewAll.getChildAt(i).getId() == R.id.ll_id) {
+                LinearLayout layout = (LinearLayout) listViewAll.getChildAt(i);
+                RatingBar rb_productLevel = layout.findViewById(R.id.rb_productLevel);
+                EditText et_remark = layout.findViewById(R.id.et_remark);
+                if (FormatUtil.isNoEmpty(et_remark)) {
+                    if (FormatUtil.isNoEmpty(et_remark.getText())) {
+                        remark = java.net.URLEncoder.encode(FormatUtil.toString(et_remark.getText()), "UTF-8");
+                    }
+                }
+                productLevel = FormatUtil.toString(rb_productLevel.getRating());
+                appraiseJsonArray += "{\"productid\":\"" + dateMaps.get(count).get("proID").toString() + "\",\"productLevel\":\"" + productLevel + "\",\"remark\":\"" + remark + "\",\"pic1\":\"" + pic1 + "\",\"pic2\":\"" + pic2 + "\",\"pic3\":\"" + pic3 + "\",\"pic4\":\"" + pic4 + "\",\"pic5\":\"" + pic5 + "\"},";
+                count++;
+                /*if (i == listViewAll.getChildCount() - 1) {
+                    appraiseJsonArray += "{\"productid\":\"" + dateMaps.get(i).get("proID").toString() + "\",\"productLevel\":\"" + productLevel + "\",\"remark\":\"" + remark + "\",\"pic1\":\"" + pic1 + "\",\"pic2\":\"" + pic2 + "\",\"pic3\":\"" + pic3 + "\",\"pic4\":\"" + pic4 + "\",\"pic5\":\"" + pic5 + "\"}";
+                } else {
+                    appraiseJsonArray += "{\"productid\":\"" + dateMaps.get(i).get("proID").toString() + "\",\"productLevel\":\"" + productLevel + "\",\"remark\":\"" + remark + "\",\"pic1\":\"" + pic1 + "\",\"pic2\":\"" + pic2 + "\",\"pic3\":\"" + pic3 + "\",\"pic4\":\"" + pic4 + "\",\"pic5\":\"" + pic5 + "\"},";
+                }*/
             }
 
         }
+        appraiseJsonArray = appraiseJsonArray.substring(0, appraiseJsonArray.length()-1);
         appraiseJsonArray+="]";
     }
 

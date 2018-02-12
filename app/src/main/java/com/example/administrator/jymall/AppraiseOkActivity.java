@@ -9,7 +9,7 @@ import org.xutils.x;
  * Created by Administrator on 2018-01-25.
  */
 
-@ContentView(R.layout.activity_about_us)
+@ContentView(R.layout.activity_appraise_ok)
 public class AppraiseOkActivity extends TopActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

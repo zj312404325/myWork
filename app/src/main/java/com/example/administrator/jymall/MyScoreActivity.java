@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.administrator.jymall.common.SpinnerPopWindow;
 import com.example.administrator.jymall.common.TopActivity;
@@ -66,6 +65,7 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
     private int start = 1;
     private String totalIncome="";
     private String totalPay="";
+    private String s_date="";
 
     private SpinnerPopWindow<String> mSpinerPopWindow;
     private List<String> list;
@@ -107,6 +107,7 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
         listViewAll.setPullLoadEnable(false);
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
+        maps.put("s_date", s_date);
         maps.put("currentPage", ""+start);
 
         XUtilsHelper.getInstance().post("app/mallIntegralList.htm", maps,new XUtilsHelper.XCallBack(){
@@ -184,7 +185,14 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             mSpinerPopWindow.dismiss();
             tvValue.setText(list.get(position));
-            Toast.makeText(MyScoreActivity.this, "点击了:" + list.get(position),Toast.LENGTH_LONG).show();
+            //Toast.makeText(MyScoreActivity.this, "点击了:" + list.get(position),Toast.LENGTH_LONG).show();
+            if(list.get(position).equals("近三个月积分")){
+                s_date="1";
+            }
+            else{
+                s_date="";
+            }
+            getData(true,true);
         }
     };
 

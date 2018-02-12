@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+	android:layout_marginTop="5dp"
 	android:id="@+id/ll_listview_category">
 
 		<LinearLayout
@@ -40,11 +41,13 @@
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:background="#eaeaeb">
+			android:background="#ffffff">
 			<TextView
 				android:id="@+id/listtv"
 				style="@style/wrap_content"
-				android:text="数据加载中……"
+				android:layout_height="50dp"
+				android:gravity="center"
+				android:text="数据加载中"
 				android:textColor="#939393"
 				android:layout_centerInParent="true"
 				android:layout_marginTop="10dp"/>

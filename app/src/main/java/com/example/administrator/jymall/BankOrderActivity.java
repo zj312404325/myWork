@@ -1,29 +1,9 @@
 package com.example.administrator.jymall;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.jymall.common.MyApplication;
-import com.example.administrator.jymall.common.TopActivity;
-import com.example.administrator.jymall.util.CommonUtil;
-import com.example.administrator.jymall.util.FormatUtil;
-import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.MyListView;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +12,26 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.example.administrator.jymall.common.MyApplication;
+import com.example.administrator.jymall.common.TopActivity;
+import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.FormatUtil;
+import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_bank)
 public class BankOrderActivity extends TopActivity {
@@ -125,18 +125,20 @@ public class BankOrderActivity extends TopActivity {
 				TextView tv_b_bankNo = (TextView)convertView.findViewById(R.id.tv_b_bankNo);		
 				
 				RadioButton rb_bankdefault = (RadioButton)convertView.findViewById(R.id.rb_bankdefault);
-				//Button btn_check = (Button)convertView.findViewById(R.id.btn_check);
+				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
 				Button btn_edit = (Button)convertView.findViewById(R.id.btn_edit);
-				Button btn_del = (Button)convertView.findViewById(R.id.btn_del);				
+				Button btn_del = (Button)convertView.findViewById(R.id.btn_del);
+
+
 				JSONObject cJobj = new JSONObject( resMaps.get(position).get("bank").toString());
 				
 				tv_b_bankName.setText(cJobj.getString("bankName"));
 				tv_b_bankAdd.setText(cJobj.getString("bankAdd"));
 				tv_b_bankNo.setText(cJobj.getString("bankNo"));
 				
-				rb_bankdefault.setChecked(FormatUtil.toBoolean(resMaps.get(position).get("bankdefault").toString()));				
-				/*btn_check.setVisibility(View.VISIBLE);
-				btn_check.setOnClickListener(new View.OnClickListener() {
+				rb_bankdefault.setChecked(FormatUtil.toBoolean(resMaps.get(position).get("bankdefault").toString()));
+				btn_select.setVisibility(View.VISIBLE);
+				btn_select.setOnClickListener(new View.OnClickListener() {
 					
 					@Override
 					public void onClick(View arg0) {
@@ -145,7 +147,7 @@ public class BankOrderActivity extends TopActivity {
 						setResult(33, mIntent);
 						MyApplication.getInstance().finishActivity();
 					}
-				});*/
+				});
 				rb_bankdefault.setOnClickListener(new View.OnClickListener() {					
 					@Override
 					public void onClick(View arg0) {

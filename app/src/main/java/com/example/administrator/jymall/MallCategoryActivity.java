@@ -101,8 +101,8 @@ public class MallCategoryActivity extends TopSearchActivity implements IXListVie
         x.view().inject(this);
         sap = new ProSimpleAdapter(MallCategoryActivity.this, dateTwoMaps,
                 R.layout.listview_category,
-                new String[]{"secondCategory"},
-                new int[]{R.id.tv_secondCategory});
+                new String[]{},
+                new int[]{});
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
@@ -258,6 +258,7 @@ public class MallCategoryActivity extends TopSearchActivity implements IXListVie
 
             MyGridView mygw = (MyGridView) convertView.findViewById(R.id.mygw);
             TextView tv_secondCategory =(TextView) convertView.findViewById(R.id.tv_secondCategory);
+            TextView listtv=(TextView) convertView.findViewById(R.id.listtv);
 
             final String id=myMaps.get(position).get("id").toString();
             final String levels=myMaps.get(position).get("levels").toString();
@@ -266,10 +267,18 @@ public class MallCategoryActivity extends TopSearchActivity implements IXListVie
             tv_secondCategory.setText(myMaps.get(position).get("name").toString());
 
             final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateTwoMaps.get(position).get("threeList");
+            if(dateMapinfo.size()>0){
+                listtv.setVisibility(View.INVISIBLE);
+                listtv.setText("");
+            }
+            else{
+                listtv.setVisibility(View.VISIBLE);
+                listtv.setText("暂无数据");
+            }
             final SimpleAdapter sapinfo = new InfoSimpleAdapter(MallCategoryActivity.this, dateMapinfo,
                     R.layout.listview_category_item,
-                    new String[]{"thirdCategory"},
-                    new int[]{R.id.tv_thirdCategory});
+                    new String[]{},
+                    new int[]{});
             mygw.setAdapter(sapinfo);
 
             tv_secondCategory.setOnClickListener(new View.OnClickListener() {

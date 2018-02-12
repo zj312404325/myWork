@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -173,7 +174,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
             if(status.equals("1")){
                 holder.tv_matchState.setText("已受理");
                 holder.ll_matchInfo.setClickable(true);
-                holder.ll_cancel.setVisibility(View.GONE);
+                holder.btn_cancel.setVisibility(View.GONE);
                 holder.ll_matchInfo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
@@ -186,12 +187,12 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
             else if(status.equals("2")) {
                 holder.tv_matchState.setText("已取消");
                 holder.ll_matchInfo.setClickable(false);
-                holder.ll_cancel.setVisibility(View.GONE);
+                holder.btn_cancel.setVisibility(View.GONE);
             }
             else if(status.equals("3")) {
                 holder.tv_matchState.setText("受理中");
                 holder.ll_matchInfo.setClickable(true);
-                holder.ll_cancel.setVisibility(View.GONE);
+                holder.btn_cancel.setVisibility(View.GONE);
                 holder.ll_matchInfo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
@@ -204,8 +205,8 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
             else{
                 holder.tv_matchState.setText("待受理");
                 holder.ll_matchInfo.setClickable(false);
-                holder.ll_cancel.setVisibility(View.VISIBLE);
-                holder.ll_cancel.setOnTouchListener(new View.OnTouchListener() {
+                holder.btn_cancel.setVisibility(View.VISIBLE);
+                holder.btn_cancel.setOnTouchListener(new View.OnTouchListener() {
 
                     @Override
                     public boolean onTouch(View arg0, MotionEvent e) {
@@ -233,6 +234,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
                                                     }
                                                     else{
                                                         sap.notifyDataSetChanged();
+                                                        getData(true,true);
                                                     }
                                                 } catch (JSONException e) {
                                                     // TODO Auto-generated catch block
@@ -265,6 +267,8 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
         private LinearLayout ll_matchInfo;
         @ViewInject(R.id.ll_cancel)
         private LinearLayout ll_cancel;
+        @ViewInject(R.id.btn_cancel)
+        private Button btn_cancel;
     }
 
     private void onLoad() {
