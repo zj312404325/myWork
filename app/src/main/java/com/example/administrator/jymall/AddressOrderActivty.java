@@ -1,18 +1,5 @@
 package com.example.administrator.jymall;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +18,19 @@ import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.MyListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_address)
 public class AddressOrderActivty extends TopActivity {
@@ -128,9 +128,9 @@ public class AddressOrderActivty extends TopActivity {
 				TextView tv_Addr = (TextView)convertView.findViewById(R.id.tv_Addr);
 				TextView tv_Postcode = (TextView)convertView.findViewById(R.id.tv_Postcode);
 				RadioButton rb_AddrDefault = (RadioButton)convertView.findViewById(R.id.rb_AddrDefault);
-				//Button btn_check = (Button)convertView.findViewById(R.id.btn_check);
-				Button btn_edit = (Button)convertView.findViewById(R.id.btn_edit);
-				Button btn_del = (Button)convertView.findViewById(R.id.btn_del);
+				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
+				TextView btn_edit = (TextView)convertView.findViewById(R.id.btn_edit);
+				TextView btn_del = (TextView)convertView.findViewById(R.id.btn_del);
 				
 				JSONObject cJobj = new JSONObject( resMaps.get(position).get("address").toString());
 				
@@ -143,7 +143,7 @@ public class AddressOrderActivty extends TopActivity {
 				tv_Postcode.setText(cJobj.getString("postcode"));
 				rb_AddrDefault.setChecked(new Boolean(resMaps.get(position).get("addrdefault").toString()));
 				
-				/*btn_check.setOnClickListener(new View.OnClickListener() {
+				btn_select.setOnClickListener(new View.OnClickListener() {
 					
 					@Override
 					public void onClick(View arg0) {
@@ -152,7 +152,7 @@ public class AddressOrderActivty extends TopActivity {
 						setResult(11, mIntent);
 						MyApplication.getInstance().finishActivity();
 					}
-				});*/
+				});
 				
 				rb_AddrDefault.setOnClickListener(new View.OnClickListener() {
 					

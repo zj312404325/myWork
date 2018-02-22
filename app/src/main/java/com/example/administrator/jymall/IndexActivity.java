@@ -66,6 +66,13 @@ public class IndexActivity extends TopSearchActivity  {
     @ViewInject(R.id.listdiscount)
     private TextView listdiscount;
 
+
+    @ViewInject(value=R.id.index_fast_btn)
+    private ImageButton index_fast_btn;
+
+    @ViewInject(value=R.id.index_order_btn)
+    private ImageButton index_order_btn;
+
     private Proadapter proadapter;
     private Proadapter hotadapter;
 
@@ -77,12 +84,24 @@ public class IndexActivity extends TopSearchActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         new UpdateApp("app/versionCheck.htm",this);
-
+        x.view().inject(this);
 
         if(!super.isLogin){return;}
-        x.view().inject(this);
+        else{
+            if(super.isRealName){
+                index_fast_btn.setBackgroundResource(R.drawable.index_fast_match);
+                index_order_btn.setBackgroundResource(R.drawable.index_order_match);
+                index_fast_btn.setEnabled(true);
+                index_order_btn.setEnabled(true);
+            }
+            else{
+                index_fast_btn.setBackgroundResource(R.drawable.index_fast_match_grey);
+                index_order_btn.setBackgroundResource(R.drawable.index_order_match_grey);
+                index_fast_btn.setEnabled(false);
+                index_order_btn.setEnabled(false);
+            }
+        }
         progressDialog.hide();
         try{
             getImgData();
@@ -95,7 +114,8 @@ public class IndexActivity extends TopSearchActivity  {
             mydiscountgw.setAdapter(hotadapter);
 
             String indexData = getIndexData();
-            String hotData = getIndexHotData();
+            //String hotData = getIndexHotData();
+            String hotData = "";
             if(indexData.equals("") || hotData.equals("")) {
                 getData();
                 getHotData();

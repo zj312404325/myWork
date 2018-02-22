@@ -126,7 +126,7 @@ public class AddressActivity extends TopActivity {
 				TextView tv_Addr = (TextView)convertView.findViewById(R.id.tv_Addr);
 				TextView tv_Postcode = (TextView)convertView.findViewById(R.id.tv_Postcode);
 				RadioButton rb_AddrDefault = (RadioButton)convertView.findViewById(R.id.rb_AddrDefault);
-				//Button btn_check = (Button)convertView.findViewById(R.id.btn_check);
+				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
 				TextView tv_icon_edit = (TextView)convertView.findViewById(R.id.tv_icon_edit);
 				TextView tv_icon_del = (TextView)convertView.findViewById(R.id.tv_icon_del);
 				
@@ -141,7 +141,7 @@ public class AddressActivity extends TopActivity {
 				tv_Postcode.setText(cJobj.getString("postcode"));
 				rb_AddrDefault.setChecked(new Boolean(resMaps.get(position).get("addrdefault").toString()));
 				
-				//btn_check.setVisibility(View.GONE);
+				btn_select.setVisibility(View.INVISIBLE);
 				
 				rb_AddrDefault.setOnClickListener(new View.OnClickListener() {
 					

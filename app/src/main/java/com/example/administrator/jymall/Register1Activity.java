@@ -37,6 +37,9 @@ public class Register1Activity extends TopNoLoginActivity {
     @ViewInject(R.id.tab2)
     private RelativeLayout tab2;
 
+    @ViewInject(R.id.rl_comp)
+    private RelativeLayout rl_comp;
+
     @ViewInject(R.id.tab_txt1)
     private TextView tab_txt1;
     @ViewInject(R.id.tab_txt2)
@@ -97,7 +100,7 @@ public class Register1Activity extends TopNoLoginActivity {
         utype = i.getIntExtra("utype", 0);
         parentCode = i.getStringExtra("parentCode");
 
-        tv_username.setText("用户名"+mobile);
+        tv_username.setText("用户名："+mobile);
         et_mobile.setText(mobile);
 
 
@@ -118,6 +121,7 @@ public class Register1Activity extends TopNoLoginActivity {
             et_comp.setText(mobile);
             et_comp.setVisibility(View.GONE);
             tv_comp.setVisibility(View.GONE);
+            rl_comp.setVisibility(View.GONE);
 
         }
 

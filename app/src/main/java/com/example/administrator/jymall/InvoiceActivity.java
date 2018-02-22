@@ -1,29 +1,9 @@
 package com.example.administrator.jymall;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.jymall.common.MyApplication;
-import com.example.administrator.jymall.common.TopActivity;
-import com.example.administrator.jymall.util.CommonUtil;
-import com.example.administrator.jymall.util.FormatUtil;
-import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.MyListView;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +12,26 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.example.administrator.jymall.common.MyApplication;
+import com.example.administrator.jymall.common.TopActivity;
+import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.FormatUtil;
+import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_invoice)
 public class InvoiceActivity extends TopActivity {
@@ -58,7 +58,7 @@ public class InvoiceActivity extends TopActivity {
 	}
 	
 	private void getDate(){
-		progressDialog.show();;
+		progressDialog.show();
 		resMaps.clear();
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
@@ -124,7 +124,7 @@ public class InvoiceActivity extends TopActivity {
 				TextView tv_in_invoiceContent = (TextView)convertView.findViewById(R.id.tv_in_invoiceContent);		
 				
 				RadioButton rb_invoiceDefault = (RadioButton)convertView.findViewById(R.id.rb_invoiceDefault);
-				//Button btn_check = (Button)convertView.findViewById(R.id.btn_check);
+				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
 				TextView btn_edit = (TextView)convertView.findViewById(R.id.btn_edit);
 				TextView btn_del = (TextView)convertView.findViewById(R.id.btn_del);
 				JSONObject cJobj = new JSONObject( resMaps.get(position).get("invoice").toString());
@@ -149,7 +149,7 @@ public class InvoiceActivity extends TopActivity {
 				}
 				
 				rb_invoiceDefault.setChecked(FormatUtil.toBoolean(resMaps.get(position).get("invoiceDefault").toString()));				
-				//btn_check.setVisibility(View.GONE);
+				btn_select.setVisibility(View.INVISIBLE);
 				rb_invoiceDefault.setOnClickListener(new View.OnClickListener() {					
 					@Override
 					public void onClick(View arg0) {

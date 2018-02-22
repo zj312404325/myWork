@@ -32,14 +32,35 @@
 					android:layout_gravity="center_vertical" android:layout_marginTop="5dp">
 					<RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" android:background="@drawable/radio_item"
 						android:text="" android:id="@+id/rb_invoiceDefault" android:layout_gravity="center_vertical" android:layout_marginLeft="10dp"/>
-					<TextView style="@style/wrap_content" android:text="默认发票"
+					<TextView
+						style="@style/wrap_content"
+						android:text="默认发票"
 						android:layout_gravity="center_vertical"  />
-		           	<TextView  style="@style/wrap_content"  android:text="编辑" android:layout_marginLeft="120dp"
-						android:drawableLeft="@drawable/icon_edit" android:id="@+id/btn_edit"    android:layout_gravity="center_vertical"
-		            />
-		        	<TextView  style="@style/wrap_content"  android:text="删除" android:layout_marginLeft="20dp"
-						android:drawableLeft="@drawable/icon_del" android:id="@+id/btn_del" android:layout_gravity="center_vertical"
-		            />
+
+					<Button
+						style="@style/btnwhite"
+						android:text="选择"
+						android:layout_width="60dp"
+						android:layout_height="30dp"
+						android:layout_marginLeft="25dp"
+						android:id="@+id/btn_select"
+						android:layout_gravity="right"/>
+
+		           	<TextView
+						style="@style/wrap_content"
+						android:text="编辑"
+						android:layout_marginLeft="30dp"
+						android:drawableLeft="@drawable/icon_edit"
+						android:id="@+id/btn_edit"
+						android:layout_gravity="center_vertical" />
+
+		        	<TextView
+						style="@style/wrap_content"
+						android:text="删除"
+						android:layout_marginLeft="20dp"
+						android:drawableLeft="@drawable/icon_del"
+						android:id="@+id/btn_del"
+						android:layout_gravity="center_vertical" />
 		        </LinearLayout>
 	</LinearLayout>
 </LinearLayout>

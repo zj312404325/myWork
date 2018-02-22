@@ -59,7 +59,7 @@ public class BankOrderActivity extends TopActivity {
 	}
 
 	private void getDate(){
-		progressDialog.show();;
+		progressDialog.show();
 		resMaps.clear();
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
@@ -126,8 +126,8 @@ public class BankOrderActivity extends TopActivity {
 				
 				RadioButton rb_bankdefault = (RadioButton)convertView.findViewById(R.id.rb_bankdefault);
 				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
-				Button btn_edit = (Button)convertView.findViewById(R.id.btn_edit);
-				Button btn_del = (Button)convertView.findViewById(R.id.btn_del);
+				TextView btn_edit = (TextView)convertView.findViewById(R.id.btn_edit);
+				TextView btn_del = (TextView)convertView.findViewById(R.id.btn_del);
 
 
 				JSONObject cJobj = new JSONObject( resMaps.get(position).get("bank").toString());

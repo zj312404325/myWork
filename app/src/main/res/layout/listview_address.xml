@@ -20,16 +20,41 @@
 			            android:textColor="#8f8f8f" android:id="@+id/tv_Postcode"/>
 			        <LinearLayout style="@style/line"  android:layout_marginTop="10dp"/>
 			        <RelativeLayout style="@style/match_parent" android:layout_marginTop="10dp" android:layout_marginBottom="10dp">  
-		             <RadioButton
-		               style="@style/wrap_content" android:button="@null" android:background="@drawable/radio_item"
-		                android:id="@+id/rb_AddrDefault"/>
-						<TextView style="@style/wrap_content" android:text="设为默认" android:layout_marginLeft="20dp"
+		             	<RadioButton
+							 style="@style/wrap_content"
+							 android:button="@null"
+							 android:background="@drawable/radio_item"
+							 android:id="@+id/rb_AddrDefault"/>
+
+						<TextView
+							style="@style/wrap_content"
+							android:text="设为默认"
+							android:layout_marginLeft="20dp"
 							android:layout_gravity="center_vertical"  />
 
-					<TextView style="@style/wrap_content" android:text="编辑" android:drawableLeft="@drawable/icon_edit"
-						android:id="@+id/tv_icon_edit" android:layout_marginLeft="180dp" android:layout_centerVertical="true"  />
-					<TextView style="@style/wrap_content" android:text="删除" android:drawableLeft="@drawable/icon_del"
-						android:id="@+id/tv_icon_del" android:layout_marginLeft="260dp" android:layout_centerVertical="true"/>
+						<Button
+							style="@style/btnwhite"
+							android:text="选择"
+							android:layout_width="60dp"
+							android:layout_height="30dp"
+							android:layout_marginLeft="100dp"
+							android:id="@+id/btn_select"
+							android:layout_gravity="right"/>
+
+					<TextView
+						style="@style/wrap_content"
+						android:text="编辑"
+						android:drawableLeft="@drawable/icon_edit"
+						android:id="@+id/tv_icon_edit"
+						android:layout_marginLeft="180dp"
+						android:layout_centerVertical="true"  />
+					<TextView
+						style="@style/wrap_content"
+						android:text="删除"
+						android:drawableLeft="@drawable/icon_del"
+						android:id="@+id/tv_icon_del"
+						android:layout_marginLeft="260dp"
+						android:layout_centerVertical="true"/>
 
 		           	<!--<Button  style="@style/btnblue"  android:text="编辑" android:id="@+id/btn_edit"
 		            android:layout_width="60dp" android:layout_height="30dp"

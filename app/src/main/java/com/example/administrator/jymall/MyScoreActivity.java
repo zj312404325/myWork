@@ -163,7 +163,7 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
 
     @Event(R.id.iv_exchangeGift)
     private void exchangeGiftClick(View v){
-        Intent i =new Intent(getApplicationContext(),MyExchangeActivity.class);
+        Intent i =new Intent(getApplicationContext(),MallIntegralActivity.class);
         startActivity(i);
     }
 

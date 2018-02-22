@@ -1,18 +1,5 @@
 package com.example.administrator.jymall;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +19,19 @@ import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.MyListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_invoice)
 public class InvoiceOrderActivity extends TopActivity {
@@ -125,9 +125,9 @@ public class InvoiceOrderActivity extends TopActivity {
 				TextView tv_in_invoiceContent = (TextView)convertView.findViewById(R.id.tv_in_invoiceContent);		
 				
 				RadioButton rb_invoiceDefault = (RadioButton)convertView.findViewById(R.id.rb_invoiceDefault);
-				//Button btn_check = (Button)convertView.findViewById(R.id.btn_check);
-				Button btn_edit = (Button)convertView.findViewById(R.id.btn_edit);
-				Button btn_del = (Button)convertView.findViewById(R.id.btn_del);				
+				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
+				TextView btn_edit = (TextView)convertView.findViewById(R.id.btn_edit);
+				TextView btn_del = (TextView)convertView.findViewById(R.id.btn_del);
 				JSONObject cJobj = new JSONObject( resMaps.get(position).get("invoice").toString());
 				if(cJobj.getString("invoiceType").equals("VAT")){//
 					tv_in_invoiceType.setText("增值税发票");
@@ -150,8 +150,8 @@ public class InvoiceOrderActivity extends TopActivity {
 				}
 				
 				rb_invoiceDefault.setChecked(FormatUtil.toBoolean(resMaps.get(position).get("invoiceDefault").toString()));				
-				/*btn_check.setVisibility(View.VISIBLE);
-				btn_check.setOnClickListener(new View.OnClickListener() {					
+				btn_select.setVisibility(View.VISIBLE);
+				btn_select.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View arg0) {
 						Intent mIntent = new Intent();
@@ -159,7 +159,7 @@ public class InvoiceOrderActivity extends TopActivity {
 						setResult(22, mIntent);
 						MyApplication.getInstance().finishActivity();
 					}
-				});*/
+				});
 				rb_invoiceDefault.setOnClickListener(new View.OnClickListener() {					
 					@Override
 					public void onClick(View arg0) {
