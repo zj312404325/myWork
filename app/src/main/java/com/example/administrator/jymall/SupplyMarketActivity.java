@@ -14,7 +14,8 @@ import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.AmountView;
+import com.example.administrator.jymall.view.CountView;
+import com.example.administrator.jymall.view.IChangeCoutCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +45,7 @@ public class SupplyMarketActivity extends TopActivity{
     @ViewInject(R.id.et_remark)
     private EditText et_remark;
     @ViewInject(R.id.av_quantity)
-    private AmountView av_quantity;
+    private CountView av_quantity;
 
     /**
      * EditText有内容的个数
@@ -66,6 +67,14 @@ public class SupplyMarketActivity extends TopActivity{
         super.title.setText("智能超市");
         progressDialog.hide();
         init();
+
+        av_quantity.setCallback(new IChangeCoutCallback() {
+            @Override
+            public void change(int count) {            //总价变化
+
+            }
+        });
+        av_quantity.setMaxValue(99999);
     }
 
     @Event(R.id.submitbtn)

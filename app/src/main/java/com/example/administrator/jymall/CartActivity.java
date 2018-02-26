@@ -30,7 +30,8 @@ import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.AmountView;
+import com.example.administrator.jymall.view.CountView;
+import com.example.administrator.jymall.view.IChangeCoutCallback;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
 
@@ -215,9 +216,19 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 
 			//final JSONArray productPrices = FormatUtil.toJSONArray(myMaps.get(position).get("productPrices").toString());
 
-			holder.av_quantity.setGoods_storage(999999999);
+			/*holder.av_quantity.setGoods_storage(999999999);
 			holder.av_quantity.setGoods_min(1);
-			holder.av_quantity.setAmount(FormatUtil.toDouble( myMaps.get(position).get("quantity").toString()));
+			holder.av_quantity.setAmount(FormatUtil.toDouble( myMaps.get(position).get("quantity").toString()));*/
+
+			holder.av_quantity.setCallback(new IChangeCoutCallback() {
+				@Override
+				public void change(int count) {            //总价变化
+					myMaps.get(position).put("quantity", count);
+					getAllMoney();
+				}
+			});
+			holder.av_quantity.setMaxValue(99999);
+			holder.av_quantity.setAmount(FormatUtil.toInteger( myMaps.get(position).get("quantity").toString()));
 
 			String isCheck=myMaps.get(position).get("isCheck").toString();
 			if(isCheck.equals("1")){
@@ -255,7 +266,10 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 				}
 			});
 
-			holder.av_quantity.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
+
+
+			//vip
+			/*holder.av_quantity.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
 				@Override
 				public void onAmountChange(View view, double amount) {
 					myMaps.get(position).put("quantity", amount);
@@ -272,7 +286,9 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 					//myMaps.get(position).put("salePrice", salePrice);
 					getAllMoney();
 				}
-			});
+			});*/
+			//
+
 			holder.img_proImgpath.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -289,6 +305,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		public int getCount() {
 			return this.myMaps.size();
 		}
+
 	}
 	
 	private void getAllMoney(){
@@ -469,7 +486,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		@ViewInject(R.id.tv_proName)
 		private TextView tv_proName;
 		@ViewInject(R.id.av_quantity)
-		private AmountView av_quantity;
+		private CountView av_quantity;
 		@ViewInject(R.id.tv_salePrice)
 		private TextView tv_salePrice;
 	}

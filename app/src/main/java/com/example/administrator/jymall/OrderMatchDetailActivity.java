@@ -278,89 +278,100 @@ public class OrderMatchDetailActivity extends TopActivity implements IXListViewL
 
     @Event(R.id.btn_submit)
     private void submitClick(View v){
-        new CommonDialog(OrderMatchDetailActivity.this, R.style.dialog, "确定生成订单？", new CommonDialog.OnCloseListener() {
-            @Override
-            public void onClick(Dialog dialog, boolean confirm) {
-                if(confirm){
-                    orderType="orderMatch";
-                    progressDialog.show();
-                    Map<String, String> maps= new HashMap<String, String>();
-                    maps.put("serverKey", skey);
-                    maps.put("ids", selectIds);
-                    maps.put("orderType", orderType);
-                    maps.put("customid", customid);
-                    XUtilsHelper.getInstance().post("app/prepareMatchOrder.htm", maps,new XUtilsHelper.XCallBack(){
+        if(!FormatUtil.isNoEmpty(selectIds)){
+            CommonUtil.alter("请选择需要生成订单的明细!");
+            return;
+        }
+        else{
+            new CommonDialog(OrderMatchDetailActivity.this, R.style.dialog, "确定生成订单？", new CommonDialog.OnCloseListener() {
+                @Override
+                public void onClick(Dialog dialog, boolean confirm) {
+                    if (confirm) {
+                        orderType = "orderMatch";
+                        progressDialog.show();
+                        Map<String, String> maps = new HashMap<String, String>();
+                        maps.put("serverKey", skey);
+                        maps.put("ids", selectIds);
+                        maps.put("orderType", orderType);
+                        maps.put("customid", customid);
+                        XUtilsHelper.getInstance().post("app/prepareMatchOrder.htm", maps, new XUtilsHelper.XCallBack() {
 
-                        @SuppressLint("NewApi")
-                        @Override
-                        public void onResponse(String result)  {
-                            progressDialog.hide();
-                            JSONObject res;
-                            try {
-                                res = new JSONObject(result);
-                                setServerKey(res.get("serverKey").toString());
-                                if(res.get("d").equals("n")){
-                                    CommonUtil.alter(res.get("msg").toString());
+                            @SuppressLint("NewApi")
+                            @Override
+                            public void onResponse(String result) {
+                                progressDialog.hide();
+                                JSONObject res;
+                                try {
+                                    res = new JSONObject(result);
+                                    setServerKey(res.get("serverKey").toString());
+                                    if (res.get("d").equals("n")) {
+                                        CommonUtil.alter(res.get("msg").toString());
+                                    } else {
+                                        Intent i = new Intent(getApplicationContext(), AddOrderActivity.class);
+                                        i.putExtra("data", (Serializable) dateMaps);
+                                        i.putExtra("goodsMoney", goodsMoney);
+                                        i.putExtra("goodsCount", FormatUtil.toString(selectCount));
+                                        i.putExtra("orderType", "orderMatch");
+                                        i.putExtra("customid", customid);
+                                        startActivity(i);
+                                    }
+                                } catch (JSONException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
                                 }
-                                else{
-                                    Intent i = new Intent(getApplicationContext(), AddOrderActivity.class);
-                                    i.putExtra("data", (Serializable)dateMaps);
-                                    i.putExtra("goodsMoney", goodsMoney);
-                                    i.putExtra("goodsCount", FormatUtil.toString(selectCount));
-                                    i.putExtra("orderType", "orderMatch");
-                                    i.putExtra("customid",customid);
-                                    startActivity(i);
-                                }
-                            } catch (JSONException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
                             }
-                        }
-                    });
-                    dialog.dismiss();
+                        });
+                        dialog.dismiss();
+                    }
                 }
-            }
-        }).setTitle("提示").show();
+            }).setTitle("提示").show();
+        }
     }
 
 
     @Event(R.id.tv_delSelect)
     private void delSelectClick(View v){
-        new CommonDialog(OrderMatchDetailActivity.this, R.style.dialog, "确定要删除这些商品？", new CommonDialog.OnCloseListener() {
-            @Override
-            public void onClick(Dialog dialog, boolean confirm) {
-                if(confirm){
-                    progressDialog.show();
-                    Map<String, String> maps= new HashMap<String, String>();
-                    maps.put("serverKey", skey);
-                    maps.put("ids", selectIds);
+        if(!FormatUtil.isNoEmpty(selectIds)){
+            CommonUtil.alter("请选择需要删除的明细!");
+            return;
+        }
+        else {
+            new CommonDialog(OrderMatchDetailActivity.this, R.style.dialog, "确定要删除这些商品？", new CommonDialog.OnCloseListener() {
+                @Override
+                public void onClick(Dialog dialog, boolean confirm) {
+                    if (confirm) {
+                        progressDialog.show();
+                        Map<String, String> maps = new HashMap<String, String>();
+                        maps.put("serverKey", skey);
+                        maps.put("ids", selectIds);
 
-                    XUtilsHelper.getInstance().post("app/matchDetailDel.htm", maps,new XUtilsHelper.XCallBack(){
+                        XUtilsHelper.getInstance().post("app/matchDetailDel.htm", maps, new XUtilsHelper.XCallBack() {
 
-                        @SuppressLint("NewApi")
-                        @Override
-                        public void onResponse(String result)  {
-                            progressDialog.hide();
-                            JSONObject res;
-                            try {
-                                res = new JSONObject(result);
-                                setServerKey(res.get("serverKey").toString());
-                                if(res.get("d").equals("n")){
-                                    CommonUtil.alter(res.get("msg").toString());
+                            @SuppressLint("NewApi")
+                            @Override
+                            public void onResponse(String result) {
+                                progressDialog.hide();
+                                JSONObject res;
+                                try {
+                                    res = new JSONObject(result);
+                                    setServerKey(res.get("serverKey").toString());
+                                    if (res.get("d").equals("n")) {
+                                        CommonUtil.alter(res.get("msg").toString());
+                                    } else {
+                                        sap.notifyDataSetChanged();
+                                        getData(true, true);
+                                    }
+                                } catch (JSONException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
                                 }
-                                else{
-                                    sap.notifyDataSetChanged();
-                                }
-                            } catch (JSONException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
                             }
-                        }
-                    });
-                    dialog.dismiss();
+                        });
+                        dialog.dismiss();
+                    }
                 }
-            }
-        }).setTitle("提示").show();
+            }).setTitle("提示").show();
+        }
     }
 
     class ViewHolder{

@@ -1,14 +1,16 @@
 package com.example.administrator.jymall;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.administrator.jymall.common.MyApplication;
 import com.example.administrator.jymall.common.TopActivity;
@@ -22,18 +24,15 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.Validator.ValidationListener;
 import com.mobsandgeeks.saripaar.annotation.TextRule;
 
-import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Intent;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnTouchListener;
-import android.widget.Button;
-import android.widget.EditText;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @ContentView(R.layout.activity_address_info)
 public class AddressInfoActivity extends TopActivity implements ValidationListener {
@@ -97,7 +96,47 @@ public class AddressInfoActivity extends TopActivity implements ValidationListen
 	}
 	
 	private void sendData(){
-		progressDialog.show();;
+		if(!FormatUtil.isNoEmpty(et_contact.getText().toString())){
+			CommonUtil.alter("请填写收货人信息！");
+			return;
+		}
+		else{
+			if(FormatUtil.getStringLength(et_contact.getText().toString())>10 || FormatUtil.getStringLength(et_contact.getText().toString())<=1){
+				CommonUtil.alter("收货人信息不正确！");
+				return;
+			}
+		}
+		if(!FormatUtil.isNoEmpty(et_mobilephone.getText().toString())){
+			CommonUtil.alter("请填写手机号码！");
+			return;
+		}
+		else{
+			if(FormatUtil.getStringLength(et_mobilephone.getText().toString())!=11){
+				CommonUtil.alter("手机号码不正确！");
+				return;
+			}
+		}
+		if(!FormatUtil.isNoEmpty(et_zone.getText().toString())){
+			CommonUtil.alter("请选择所在区域！");
+			return;
+		}
+		else{
+			if(FormatUtil.getStringLength(et_zone.getText().toString())>30 || FormatUtil.getStringLength(et_zone.getText().toString())<=1){
+				CommonUtil.alter("区域信息不正确！");
+				return;
+			}
+		}
+		if(!FormatUtil.isNoEmpty(et_addr.getText().toString())){
+			CommonUtil.alter("请填写详细地址！");
+			return;
+		}
+		else{
+			if(FormatUtil.getStringLength(et_addr.getText().toString())>100 || FormatUtil.getStringLength(et_addr.getText().toString())<=1){
+				CommonUtil.alter("详细地址不正确！");
+				return;
+			}
+		}
+		progressDialog.show();
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("contact", et_contact.getText().toString());
@@ -148,15 +187,12 @@ public class AddressInfoActivity extends TopActivity implements ValidationListen
 				alertDialog.show(); 
 				Window window = alertDialog.getWindow();  
 				window.setContentView(R.layout.activity_cascade);
-				Log.i("这尼玛", "基佬陈开始选择地区");
 				et_zone.getText().toString();
-				Log.i("这尼玛", "基佬陈真的开始选择地区");
 				new WheelCascade(window,et_zone.getText().toString(),new ComputeCallBack(){
 					@Override
 					public void onComputeEnd(String str) {
 						alertDialog.cancel();
 						et_zone.setText(str);
-						Log.i("这尼玛", "选择地区完成");
 					}
 					
 				});
@@ -170,7 +206,8 @@ public class AddressInfoActivity extends TopActivity implements ValidationListen
 
 	@Event(R.id.savebtn)
 	private void saveClick(View v){
-		validator.validate();
+		//validator.validate();
+		sendData();
 	}
 
 
@@ -191,10 +228,10 @@ public class AddressInfoActivity extends TopActivity implements ValidationListen
 	@Override
 	public void onFailure(View failedView, Rule<?> failedRule) {
 		// TODO Auto-generated method stub
-		String message = failedRule.getFailureMessage(); 
+		String message = failedRule.getFailureMessage();
 		if (failedView instanceof EditText) { 
-			failedView.requestFocus(); 
-			((EditText) failedView).setError(message); 
+			failedView.requestFocus();
+			((EditText) failedView).setError(message);
 		} 
 		else { CommonUtil.alter(message); }
 	}

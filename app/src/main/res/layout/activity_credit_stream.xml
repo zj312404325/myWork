@@ -40,14 +40,41 @@
 			android:layout_height="1dp"
 			android:background="#c6c6c6" />
 
-		<TextView
-			style="@style/wrap_content"
-			android:layout_marginTop="25dp"
-			android:layout_below="@+id/tv_myPay"
-			android:layout_marginLeft="20dp"
-			android:text="创建时间："
-			android:textSize="20sp"
-			android:layout_centerInParent="true"/>
+		<LinearLayout
+			android:layout_marginTop="20dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/tv_myPay">
+			<TextView
+				style="@style/wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="20dp"
+				android:text="创建时间："
+				android:textSize="20sp" />
+			<EditText
+				android:id="@+id/et_pick_date"
+				android:layout_width="150dp"
+				android:layout_height="38dp"
+				android:layout_marginLeft="15dp"
+				android:background="@drawable/shape_wihte_frame"
+				android:digits="0123456789"
+				android:focusable="false"
+				android:hint="点击选择日期"
+				android:paddingLeft="15dp"
+				android:textColor="#3f3f3f"
+				android:textSize="15sp" />
+
+			<Button
+				style="@style/btnwhite"
+				android:text="查询"
+				android:layout_width="50dp"
+				android:layout_height="30dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"
+				android:id="@+id/btn_query"
+				android:layout_gravity="center_vertical"/>
+
+		</LinearLayout>
 
 	</RelativeLayout>
 
@@ -62,11 +89,13 @@
 			android:cacheColorHint="#00000000">
 		</com.example.administrator.jymall.view.XListView>
 		<TextView
-			style="@style/wrap_content"
+			android:layout_width="fill_parent"
+			android:layout_height="100dp"
 			android:id="@+id/listtv"
 			android:text="暂无数据"
 			android:textColor="#939393"
-			android:layout_centerInParent="true" />
+			android:textSize="25sp"
+			android:gravity="center" />
 	</LinearLayout>
 
 </LinearLayout>

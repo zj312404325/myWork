@@ -16,7 +16,8 @@ import com.example.administrator.jymall.common.UserActivity;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.AmountView;
+import com.example.administrator.jymall.view.CountView;
+import com.example.administrator.jymall.view.IChangeCoutCallback;
 import com.example.administrator.jymall.view.ShufflingView;
 
 import org.json.JSONException;
@@ -69,7 +70,7 @@ public class GiftDetailActivity extends UserActivity {
     private ImageView iv_showImg;
 
     @ViewInject(R.id.av_quantity)
-    private AmountView av_quantity;
+    private CountView av_quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,13 +164,23 @@ public class GiftDetailActivity extends UserActivity {
                             submitbtn.setBackgroundColor(submitbtn.getResources().getColor(R.color.login_back_blue));
                             submitbtn.setTextColor(submitbtn.getResources().getColor(R.color.login_text_white));
                             submitbtn.setEnabled(true);
+                            av_quantity.setMaxValue(FormatUtil.toInteger(gift.getString("quantity")));
                         }
                         else{
                             tv_quantity.setText("库存：0"+gift.getString("unit"));
                             submitbtn.setBackgroundColor(submitbtn.getResources().getColor(R.color.login_back_gray));
                             submitbtn.setTextColor(submitbtn.getResources().getColor(R.color.login_text_gray));
                             submitbtn.setEnabled(false);
+                            av_quantity.setMaxValue(0);
                         }
+
+                        av_quantity.setCallback(new IChangeCoutCallback() {
+                            @Override
+                            public void change(int count) {
+
+                            }
+                        });
+
 
                     }
                 } catch (JSONException e) {

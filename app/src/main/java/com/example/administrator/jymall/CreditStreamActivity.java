@@ -1,12 +1,16 @@
 package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -22,13 +26,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @ContentView(R.layout.activity_credit_stream)
@@ -40,12 +47,21 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
     private TextView listtv;
     @ViewInject(R.id.tv_myPay)
     private TextView tv_myPay;
+    @ViewInject(R.id.et_pick_date)
+    private EditText et_pick_date;
+    @ViewInject(R.id.btn_query)
+    private Button btn_query;
 
     public List<Map<String, Object>> dateMaps= new ArrayList<Map<String, Object>>();
     private SimpleAdapter sap;
     private Handler mHandler;
     private int start = 1;
     private String totalPay="";
+    private String startDate="";
+
+    private int mYear;
+    private int mMonth;
+    private int mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +72,49 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
 
         sap = new ProSimpleAdapter(CreditStreamActivity.this, dateMaps,
                 R.layout.listview_credit_stream,
-                new String[]{"buyerName"},
-                new int[]{R.id.tv_buyerName});
+                new String[]{},
+                new int[]{});
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
         getData(true,true);
         mHandler = new Handler();
+
+        Calendar dateAndTime = Calendar.getInstance(Locale.CHINA);
+        mYear = dateAndTime.get(Calendar.YEAR);
+        mMonth = dateAndTime.get(Calendar.MONTH);
+        mDay = dateAndTime.get(Calendar.DAY_OF_MONTH);
+        final DatePickerDialog dateDialog = new DatePickerDialog(this, R.style.AppDateTheme, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                mYear = year;
+                String mm;
+                String dd;
+                if (monthOfYear < 9) {
+                    mMonth = monthOfYear + 1;
+                    mm = "0" + mMonth;
+                } else {
+                    mMonth = monthOfYear + 1;
+                    mm = String.valueOf(mMonth);
+                }
+                if (dayOfMonth < 9) {
+                    mDay = dayOfMonth;
+                    dd = "0" + mDay;
+                } else {
+                    mDay = dayOfMonth;
+                    dd = String.valueOf(mDay);
+                }
+                mDay = dayOfMonth;
+                et_pick_date.setText(String.valueOf(mYear) +"-"+ mm);
+                startDate=String.valueOf(mYear) +"-"+ mm;
+            }
+        },mYear,mMonth,mDay);
+
+        et_pick_date.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dateDialog.show();
+            }
+        });
     }
 
     private void getData(final boolean isShow,final boolean flag){
@@ -77,6 +129,7 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("currentPage", ""+start);
+        maps.put("startDate", startDate);
 
         XUtilsHelper.getInstance().post("app/mallCreditStream.htm", maps,new XUtilsHelper.XCallBack(){
 
@@ -122,6 +175,12 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
             }
 
         });
+    }
+
+
+    @Event(R.id.btn_query)
+    private void submitclick(View v){
+        getData(true,true);
     }
 
     public class ProSimpleAdapter  extends SimpleAdapter {

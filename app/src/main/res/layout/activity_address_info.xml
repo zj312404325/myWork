@@ -7,45 +7,98 @@
 
      <include  android:id="@+id/top_title"  layout="@layout/top" />
 	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
-	<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
-		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
 		    android:background="#ffffff"  >
 		 	    
-		    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="收 货 人：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-			        android:maxLength="100"
-			       />
+		    <RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+			    <TextView
+					style="@style/wrap_content"
+					android:text="*收  货  人："
+					android:layout_alignParentLeft="true"
+			        android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="80dp"
+					android:maxLines="1"
+			        android:maxLength="100" />
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_contact"  android:maxLength="10"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_contact"
+					android:maxLength="10"/>
 			   			    
 			</RelativeLayout>
-			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
-		    
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="手机号码：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-			        
-			        />
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+			    <TextView
+					style="@style/wrap_content"
+					android:text="*手机号码："
+					android:layout_alignParentLeft="true"
+			        android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="80dp"
+					android:maxLines="1" />
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_mobilephone"  android:maxLength="20"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:inputType="phone"
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_mobilephone"
+					android:maxLength="11"/>
 			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
 			
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="固定电话：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-			      
-			        />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+			    <TextView
+					style="@style/wrap_content"
+					android:text="	固定电话："
+					android:layout_alignParentLeft="true"
+			        android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="80dp"
+					android:maxLines="1" />
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_phone"    android:maxLength="20" />		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_phone"
+					android:maxLength="20" />
 			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
@@ -53,40 +106,91 @@
 			
 			
 		
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="所在地区：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1"
-			         />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+			    <TextView
+					style="@style/wrap_content"
+					android:text="*所在地区："
+					android:layout_alignParentLeft="true"
+			        android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="80dp"
+					android:maxLines="1" />
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="请选择" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null" android:focusable="false" 
-			        android:id="@+id/et_zone" android:maxLength="30"/>		    
-			   	<ImageView android:layout_width="9dp" android:layout_height="16dp" android:background="@drawable/right" android:layout_centerVertical="true" android:layout_alignParentRight="true"/>
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:hint="请选择"
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:focusable="false"
+			        android:id="@+id/et_zone"
+					android:maxLength="30"/>
+			   	<ImageView
+					android:layout_width="9dp"
+					android:layout_height="16dp"
+					android:background="@drawable/right"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
 			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
 			
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="详细地址：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-			/>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+			    <TextView
+					style="@style/wrap_content"
+					android:text="*详细地址："
+					android:layout_alignParentLeft="true"
+			        android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="80dp"
+					android:maxLines="1" />
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_addr"  android:maxLength="50"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_addr"
+					android:maxLength="50"/>
 			   			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
 			
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="邮政编号：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+			    <TextView
+					style="@style/wrap_content"
+					android:text="	邮政编号："
+					android:layout_alignParentLeft="true"
+			        android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="80dp"
+					android:maxLines="1" />
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_postcode"
-			           android:maxLength="10" />		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_postcode"
+					android:maxLength="10" />
 			   			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
@@ -95,9 +199,15 @@
 		
 		
 		
-		<Button  android:id="@+id/savebtn" style="@style/btnblue"            
-            android:text="保     存" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
-            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
+		<Button
+			android:id="@+id/savebtn"
+			style="@style/btndarkblue"
+            android:text="保     存"
+			android:layout_width="match_parent"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+            android:layout_marginLeft="40dp"
+			android:layout_marginRight="40dp"/>
 	</LinearLayout>
 		
 	</ScrollView>

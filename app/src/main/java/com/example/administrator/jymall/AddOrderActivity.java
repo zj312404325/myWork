@@ -130,6 +130,8 @@ public class AddOrderActivity extends TopActivity {
 	private Bitmap bitmap1 = null;
 	private MyConfirmDialog mcd1 = null;
 
+	private double totalCount=0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -151,6 +153,7 @@ public class AddOrderActivity extends TopActivity {
 					temp.put("k", "pro_Num" + dateMaps.get(i).get("id").toString());
 					temp.put("v", dateMaps.get(i).get("quantity").toString());
 					proNum.add(temp);
+					totalCount+=FormatUtil.toDouble(dateMaps.get(i).get("quantity").toString());
 				}
 			}
 		}
@@ -164,6 +167,7 @@ public class AddOrderActivity extends TopActivity {
 						temp.put("k", "pro_Num" + dateMaps.get(i).get("id").toString());
 						temp.put("v", dateMaps.get(i).get("quantity").toString());
 						proNum.add(temp);
+						totalCount+=FormatUtil.toDouble(dateMaps.get(i).get("quantity").toString());
 					}
 				}
 			}
@@ -178,6 +182,7 @@ public class AddOrderActivity extends TopActivity {
 						temp.put("k", "pro_Num" + dateMaps.get(i).get("id").toString());
 						temp.put("v", dateMaps.get(i).get("quantity").toString());
 						proNum.add(temp);
+						totalCount+=FormatUtil.toDouble(dateMaps.get(i).get("quantity").toString());
 					}
 				}
 			}
@@ -299,8 +304,8 @@ public class AddOrderActivity extends TopActivity {
 						setBank();
 						
 						JSONArray prolistjson = res.getJSONArray("productList");
-						tv_goodsCount.setText(goodsCount);
-						tv_goodsMoney.setText(goodsMoney);
+						tv_goodsCount.setText(FormatUtil.toString(totalCount)+"件");
+						tv_goodsMoney.setText(goodsMoney+"元");
 						tv_totalPrice.setText(FormatUtil.toString(res.getDouble("totalPrice")));
 						for(int i=0;i<prolistjson.length();i++){
 							Map<String,Object> maptemp = new HashMap<String, Object>();

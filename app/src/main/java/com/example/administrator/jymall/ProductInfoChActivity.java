@@ -21,7 +21,8 @@ import com.example.administrator.jymall.common.BaseActivity;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.AmountView;
+import com.example.administrator.jymall.view.CountView;
+import com.example.administrator.jymall.view.IChangeCoutCallback;
 import com.example.administrator.jymall.view.MyGridView;
 
 import org.json.JSONArray;
@@ -78,7 +79,7 @@ public class ProductInfoChActivity extends BaseActivity {
 	private SimpleAdapter sim_adapter1;
 	
 	@ViewInject(R.id.amount_view)
-	private AmountView mAmountView;
+	private CountView mAmountView;
 	
 	private JSONObject resdata;
 	private JSONObject info;
@@ -148,19 +149,7 @@ public class ProductInfoChActivity extends BaseActivity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-	    mAmountView.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
-	            @Override
-	            public void onAmountChange(View view, double amount) {
-	               // Toast.makeText(getApplicationContext(), "Amount=>  " + amount, Toast.LENGTH_SHORT).show();
-	            }
 
-				@Override
-				public void onAmountChange1(View view, double amount) {
-					// TODO Auto-generated method stub
-					
-				}
-	    });
 	    progressDialog.hide();
 	}
 	
@@ -250,18 +239,21 @@ public class ProductInfoChActivity extends BaseActivity {
 	private void setInfo(JSONObject selectPro) throws JSONException{
 		tv_quantity.setText(selectPro.get("quantity").toString()+info.get("unit").toString());
 		tv_showProname.setText(info.get("proname").toString());
-		/*if(info.getString("isDiscount").equals("1") && info.getString("isOnDiscount").equals("1")) {
-			tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+selectPro.getString("mynewprice")+"</big></big></font>/"+info.getString("unit")));
-		}
-		else{
-			tv_showPrice.setText(Html.fromHtml("¥<font color='#ff0000'><big><big>"+selectPro.getString("myprice")+"</big></big></font>/"+info.getString("unit")));
-		}*/
-		//tv_procode.setText(selectPro.get("procode").toString());
-		//tv_proquality.setText(selectPro.get("proquality").toString());
-		//tv_remark.setText(selectPro.get("remark").toString());
-		mAmountView.setGoods_storage(FormatUtil.toDouble(selectPro.get("quantity").toString()));
+
+		/*mAmountView.setGoods_storage(FormatUtil.toDouble(selectPro.get("quantity").toString()));
 		mAmountView.setGoods_min(minMoq);
-		mAmountView.setAmount(count);
+		mAmountView.setAmount(count);*/
+
+		mAmountView.setCallback(new IChangeCoutCallback() {
+			@Override
+			public void change(int count) {            //总价变化
+
+			}
+		});
+		mAmountView.setMaxValue(99999);
+		mAmountView.setMinValue(FormatUtil.toInteger(minMoq));
+		mAmountView.setAmount(FormatUtil.toInteger(count));
+
 		pId = selectPro.get("id").toString();
 	}
 	

@@ -68,17 +68,18 @@
 			</LinearLayout>
 
 			<LinearLayout
-				android:id="@+id/ll_cancel"
 				style="@style/wrap_content"
-				android:layout_marginTop="10dp"
-				android:layout_gravity="center"
+				android:layout_marginTop="5dp"
+				android:layout_marginBottom="5dp"
 				android:orientation="horizontal">
-				<TextView
-					style="@style/wrap_content"
+				<Button
+					style="@style/btnwhite"
 					android:text="取消"
-					android:drawableLeft="@drawable/icon_del"
+					android:layout_width="80dp"
+					android:layout_height="30dp"
+					android:layout_marginRight="10dp"
 					android:id="@+id/btn_cancel"
-					android:layout_gravity="center_horizontal"
+					android:layout_gravity="right"
 					android:visibility="gone"/>
 			</LinearLayout>
 		</LinearLayout>

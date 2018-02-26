@@ -129,7 +129,7 @@ public class InvoiceOrderActivity extends TopActivity {
 				TextView btn_edit = (TextView)convertView.findViewById(R.id.btn_edit);
 				TextView btn_del = (TextView)convertView.findViewById(R.id.btn_del);
 				JSONObject cJobj = new JSONObject( resMaps.get(position).get("invoice").toString());
-				if(cJobj.getString("invoiceType").equals("VAT")){//
+				if(cJobj.getString("invoiceType").equals("VAT")){
 					tv_in_invoiceType.setText("增值税发票");
 					tv_in_invoiceInfo.setText(""+cJobj.getString("companyName")+"\n"
 							+""+cJobj.getString("taxNo")+"\n"

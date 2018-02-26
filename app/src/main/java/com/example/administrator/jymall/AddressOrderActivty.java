@@ -129,8 +129,8 @@ public class AddressOrderActivty extends TopActivity {
 				TextView tv_Postcode = (TextView)convertView.findViewById(R.id.tv_Postcode);
 				RadioButton rb_AddrDefault = (RadioButton)convertView.findViewById(R.id.rb_AddrDefault);
 				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
-				TextView btn_edit = (TextView)convertView.findViewById(R.id.btn_edit);
-				TextView btn_del = (TextView)convertView.findViewById(R.id.btn_del);
+				TextView btn_edit = (TextView)convertView.findViewById(R.id.tv_icon_edit);
+				TextView btn_del = (TextView)convertView.findViewById(R.id.tv_icon_del);
 				
 				JSONObject cJobj = new JSONObject( resMaps.get(position).get("address").toString());
 				
@@ -190,7 +190,7 @@ public class AddressOrderActivty extends TopActivity {
 	}
 	
 	private void delAddress(final String id,final int i){
-		progressDialog.show();;
+		progressDialog.show();
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("id", id);

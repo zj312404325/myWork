@@ -1,5 +1,8 @@
 package com.example.administrator.jymall.util;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -17,9 +20,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class FormatUtil {
 	//------------------------------   格式化数值   ---------------------------------
@@ -415,4 +415,22 @@ public class FormatUtil {
 	    		return null;
 	    	}
 	    }
+
+	/**
+	 * 获得字符串长度
+	 * @return
+	 */
+	public static  int getStringLength(String s){
+		int length = 0;
+		for(int i = 0; i < s.length(); i++)
+		{
+			int ascii = Character.codePointAt(s, i);
+			if(ascii >= 0 && ascii <=255)
+				length++;
+			else
+				length += 2;
+
+		}
+		return length;
+	}
 }

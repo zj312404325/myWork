@@ -252,7 +252,8 @@ public class ProductInfoActivity extends UserActivity {
 			   try{
 				    Bundle b=data.getExtras(); //data为B中回传的Intent
 				    pId=b.getString("pId");//str即为回传的值
-				    count = b.getDouble("count");
+				    //count = b.getDouble("count");
+				   count = b.getInt("count");
 				    selectPrice=b.getDouble("selectPrice");
 				    for(int i=0;i<sellProductProps.length();i++){
 				    	if(sellProductProps.getJSONObject(i).get("id").toString().equals(pId)){

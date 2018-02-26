@@ -104,7 +104,7 @@
 								android:text="数量："
 								android:layout_centerVertical="true"
 								android:textColor="@color/gray"/>
-							<com.example.administrator.jymall.view.AmountView
+							<!--<com.example.administrator.jymall.view.AmountView
 						        android:id="@+id/amount_view"
 						        android:layout_width="wrap_content"
 						        android:layout_height="36dp"
@@ -112,7 +112,14 @@
 						        android:layout_marginRight="15dp"
 						        test:btnTextSize="14sp"
 						        test:btnWidth="36dp"
-						        test:tvWidth="50dp"/>
+						        test:tvWidth="50dp"/>-->
+							<com.example.administrator.jymall.view.CountView
+								android:id="@+id/amount_view"
+								android:layout_height="33dp"
+								android:layout_width="120dp"
+								android:layout_alignParentRight="true"
+								android:layout_alignParentBottom="true">
+							</com.example.administrator.jymall.view.CountView>
 						</RelativeLayout>
 						
 					</LinearLayout>
@@ -150,7 +157,7 @@
 		            android:id="@+id/btn_close" 
 		            />
 		     	<Button
-					style="@style/btnblue"
+					style="@style/btndarkblue"
 					android:text="确定"
 		            android:layout_width="100dp"
 					android:layout_height="30dp"

@@ -169,11 +169,18 @@
 							android:gravity="right"
 							android:text=""
 							android:id="@+id/tv_in_invoiceType"/>
-						<TextView
-							style="@style/match_parent"
-							android:gravity="right"
-							android:text=""
-							android:id="@+id/tv_in_invoiceInfo"/>
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="match_parent">
+							<TextView
+								style="@style/wrap_content"
+								android:text="发票信息"/>
+							<TextView
+								style="@style/match_parent"
+								android:gravity="right"
+								android:text=""
+								android:id="@+id/tv_in_invoiceInfo"/>
+						</LinearLayout>
 						<TextView
 							style="@style/match_parent"
 							android:gravity="right"
@@ -207,12 +214,13 @@
 
 		     <LinearLayout
 				 android:layout_width="match_parent"
-				 android:layout_height="wrap_content"
+				 android:layout_height="80dp"
 				 android:orientation="vertical"
 		    	 android:background="#ffffff"
 				 android:layout_marginTop="16dp"
 				 android:id="@+id/ll_bank" >
 
+				 <!--
 				 <RelativeLayout
 					 android:layout_width="match_parent"
 					 android:layout_height="wrap_content"
@@ -232,9 +240,30 @@
 				</RelativeLayout>
 
 				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:orientation="vertical"
+					 style="@style/marginlr"
+					 android:layout_marginTop="16dp">
+
+					 <TextView
+						 style="@style/wrap_content"
+						 android:text=""
+						 android:id="@+id/tv_bk_bankName" />
+					 <TextView
+						 style="@style/wrap_content"
+						 android:text=""
+						 android:layout_alignParentRight="true"
+						 android:id="@+id/tv_bk_bankAdd"/>
+				 </LinearLayout>
+
+				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					style="@style/marginlr">
+					<TextView
+						style="@style/wrap_content"
+						android:text="银行账户" />
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
@@ -249,8 +278,61 @@
 						 android:background="@drawable/right"
 						 android:layout_gravity="center_vertical"
 		        		 android:layout_marginLeft="10dp"
-						 android:layout_marginBottom="10dp"/>
-				</LinearLayout>
+						 android:layout_marginBottom="5dp"/>
+				</LinearLayout>-->
+
+				 <LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:orientation="horizontal"
+					 android:layout_marginTop="10dp"
+					 android:layout_gravity="center"
+					 style="@style/marginlr">
+					 <TextView
+						 style="@style/wrap_content"
+						 android:layout_weight="2"
+						 android:text="银行账户"
+						 android:layout_gravity="center"/>
+
+					 <LinearLayout
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:orientation="vertical"
+						 android:layout_gravity="center_vertical"
+						 android:layout_weight="1"
+						 style="@style/marginlr">
+
+						 <TextView
+							 style="@style/wrap_content"
+							 android:text="银行名称"
+							 android:layout_gravity="right"
+							 android:id="@+id/tv_bk_bankName" />
+						 <TextView
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:text="622222222222222222222"
+							 android:layout_marginTop="5dp"
+							 android:layout_gravity="right"
+							 android:layout_weight="1"
+							 android:id="@+id/tv_bk_bankNo"/>
+						 <TextView
+							 style="@style/wrap_content"
+							 android:text="银行地址"
+							 android:layout_gravity="right"
+							 android:layout_alignParentRight="true"
+							 android:id="@+id/tv_bk_bankAdd"/>
+					 </LinearLayout>
+
+					 <ImageView
+
+						 android:layout_width="9dp"
+						 android:layout_height="16dp"
+						 android:layout_alignParentRight="true"
+						 android:layout_gravity="center"
+						 android:layout_marginLeft="10dp"
+						 android:background="@drawable/right" />
+
+				 </LinearLayout>
 		    </LinearLayout>  
 		    
 		     <LinearLayout

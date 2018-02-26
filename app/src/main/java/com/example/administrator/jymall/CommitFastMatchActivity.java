@@ -203,10 +203,10 @@ public class CommitFastMatchActivity extends TopActivity {
             require=et_require.getText().toString();
 
             if(i==ll_addView.getChildCount()-1){
-                fastMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"model\":\""+ model +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"proDesc\":\""+ proDesc +"\",\"require\":\""+ require +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"}";
+                fastMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"model\":\""+ model +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"proDesc\":\""+ proDesc +"\",\"specialReq\":\""+ require +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"}";
             }
             else{
-                fastMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"model\":\""+ model +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"proDesc\":\""+ proDesc +"\",\"require\":\""+ require +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"},";
+                fastMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"model\":\""+ model +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"proDesc\":\""+ proDesc +"\",\"specialReq\":\""+ require +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"},";
             }
         }
         fastMatchJsonArray+="]";

@@ -1,4 +1,4 @@
-package com.example.administrator.jymall;
+package com.example.administrator.jymall.view;
 
 /**
  * Created by zj on 2018/1/28.
@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.jymall.R;
+import com.example.administrator.jymall.util.FormatUtil;
 
 
 /**
@@ -44,6 +45,8 @@ public class CountView extends LinearLayout implements View.OnClickListener, Tex
 
     private int maxValue = MAX_VALUE;
 
+    private int minValue = MIN_VALUE;
+
 
     public void setCallback(IChangeCoutCallback c) {
         this.callback = c;
@@ -65,6 +68,23 @@ public class CountView extends LinearLayout implements View.OnClickListener, Tex
      */
     public void setMaxValue(int max) {
         this.maxValue = max;
+    }
+
+    /**
+     * 功能描述：设置最小数量
+     * 参数：
+     */
+    public void setMinValue(int min) {
+        this.minValue = min;
+    }
+
+    public int getAmount() {
+        return FormatUtil.toInteger(etCount.getText());
+    }
+
+    public void setAmount(int amount) {
+        etCount.setText(FormatUtil.toString1(amount));
+        this.countValue = amount;
     }
 
 
@@ -139,7 +159,7 @@ public class CountView extends LinearLayout implements View.OnClickListener, Tex
     }
 
     private void btnChangeWord() {
-        ivMinu.setEnabled(countValue > MIN_VALUE);
+        ivMinu.setEnabled(countValue > minValue);
         ivAdd.setEnabled(countValue < maxValue);
         etCount.setText(String.valueOf(countValue));
         etCount.setSelection(etCount.getText().toString().trim().length());
@@ -161,12 +181,12 @@ public class CountView extends LinearLayout implements View.OnClickListener, Tex
         boolean needUpdate = false;
         if (!TextUtils.isEmpty(s)) {
             countValue = Integer.valueOf(s.toString());
-            if (countValue <= MIN_VALUE) {
-                countValue = MIN_VALUE;
+            if (countValue <= minValue) {
+                countValue = minValue;
                 ivMinu.setEnabled(false);
                 ivAdd.setEnabled(true);
                 needUpdate = true;
-                Toast.makeText(mContext, String.format("最少添加%s个数量", MIN_VALUE), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, String.format("最少添加%s个数量", minValue), Toast.LENGTH_SHORT).show();
             } else if (countValue >= maxValue) {
                 countValue = maxValue;
                 ivMinu.setEnabled(true);

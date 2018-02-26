@@ -237,7 +237,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         if(resjarr.length()==0 && start == 1) {
                             listtv.setVisibility(View.VISIBLE);
                         }
-                        else if(resjarr.length() ==  5 ) {
+                        else if(resjarr.length() ==  15 ) {
                             listViewAll.setPullLoadEnable(true);
                         }
                         for(int i=0;i<resjarr.length();i++){
@@ -556,6 +556,53 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     if (orderStatus == 0) {
                         tv_orderStatus.setText("待设置定金");
                         btn_cancel.setVisibility(View.VISIBLE);
+                        btn_cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                // 交易取消开始
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认取消此订单吗?", "确定取消", "否");
+                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                    @Override
+                                    public void doConfirm() {
+                                        mcd.dismiss();
+                                        progressDialog.show();
+                                        Map<String, String> maps= new HashMap<String, String>();
+                                        maps.put("serverKey", skey);
+                                        maps.put("id", id);
+                                        XUtilsHelper.getInstance().post("app/cancelMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
+
+                                            @SuppressLint("NewApi")
+                                            @Override
+                                            public void onResponse(String result)  {
+                                                progressDialog.hide();
+                                                JSONObject res;
+                                                try {
+                                                    res = new JSONObject(result);
+                                                    setServerKey(res.get("serverKey").toString());
+                                                    skey = res.get("serverKey").toString();
+                                                    if(res.get("d").equals("n")){
+                                                        CommonUtil.alter(res.get("msg").toString());
+                                                    }
+                                                    else{
+                                                        CommonUtil.alter("取消成功！");
+                                                        getDate(true,true);
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    // TODO Auto-generated catch block
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    @Override
+                                    public void doCancel() {
+                                        mcd.dismiss();
+                                    }
+                                });
+                                mcd.show();
+                            }
+                        });
                     } else if (orderStatus == 1) {
                         tv_orderStatus.setText("待支付定金");
                         btn_cancel.setVisibility(View.VISIBLE);

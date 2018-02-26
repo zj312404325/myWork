@@ -114,8 +114,7 @@ public class IndexActivity extends TopSearchActivity  {
             mydiscountgw.setAdapter(hotadapter);
 
             String indexData = getIndexData();
-            //String hotData = getIndexHotData();
-            String hotData = "";
+            String hotData = getIndexHotData();
             if(indexData.equals("") || hotData.equals("")) {
                 getData();
                 getHotData();
