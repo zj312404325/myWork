@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 
 import org.json.JSONException;
@@ -64,9 +65,12 @@ public class EditPwdActivity extends TopActivity {
 		if(et_oldpass.getText().toString().length() <1){
     		CommonUtil.alter("老密码不能为空！");return;
     	}
-		if(et_newpass.getText().toString().length() <6){
+		/*if(et_newpass.getText().toString().length() <6){
     		CommonUtil.alter("新密码必须大于6位！");return;
-    	}
+    	}*/
+		if(!FormatUtil.isLegalPassword(et_newpass.getText().toString())){
+			CommonUtil.alter("密码必须为8~16个字符，包括字母、数字、特殊符号任意两种，区分大小写！");return;
+		}
     	if(!et_newpass.getText().toString().equals(et_repass.getText().toString())){
     		CommonUtil.alter("确认密码不相同");return;
     	}

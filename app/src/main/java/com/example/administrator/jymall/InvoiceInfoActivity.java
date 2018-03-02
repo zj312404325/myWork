@@ -1,14 +1,14 @@
 package com.example.administrator.jymall;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.administrator.jymall.common.MyApplication;
 import com.example.administrator.jymall.common.TopActivity;
@@ -17,15 +17,15 @@ import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.mobsandgeeks.saripaar.Validator;
 
-import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @ContentView(R.layout.activity_invoice_info)
 public class InvoiceInfoActivity extends TopActivity {
@@ -80,6 +80,9 @@ public class InvoiceInfoActivity extends TopActivity {
 	
 	@ViewInject(R.id.et_invoiceContent)
 	private EditText et_invoiceContent;
+
+	@ViewInject(R.id.et_taxPersonNo)
+	private EditText et_taxPersonNo;
 	
 
 	
@@ -102,6 +105,7 @@ public class InvoiceInfoActivity extends TopActivity {
 					if(invoiceType.equals("COMMON")){
 						ll_i1.setVisibility(View.VISIBLE);
 						ll_i2.setVisibility(View.GONE);
+						et_taxPersonNo.setText(cJobj.getString("taxNo"));
 						rg_invoiceType1.setChecked(true);
 					}
 					else{
@@ -176,7 +180,7 @@ public class InvoiceInfoActivity extends TopActivity {
 	}
 	
 	private void sendData(){
-		
+		String taxNo="";
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		maps.put("id", id);
@@ -186,6 +190,7 @@ public class InvoiceInfoActivity extends TopActivity {
 				CommonUtil.alter("发票抬头必须填写");
 				return;
 			}
+			taxNo=et_taxPersonNo.getText().toString();
 		}
 		else{
 			if(et_companyName.getText().toString().equals("")){
@@ -206,6 +211,7 @@ public class InvoiceInfoActivity extends TopActivity {
 			if(et_bankNo.getText().toString().equals("")){
 				CommonUtil.alter("银行账户必须填写");return;
 			}
+			taxNo=et_taxNo.getText().toString();
 		}		
 		if(!invoiceContent.equals("1") && et_invoiceContent.getText().toString().equals(""))
 		{
@@ -214,7 +220,7 @@ public class InvoiceInfoActivity extends TopActivity {
 		progressDialog.show();
 		maps.put("title", et_title.getText().toString());
 		maps.put("companyName", et_companyName.getText().toString());
-		maps.put("taxNo", et_taxNo.getText().toString());
+		maps.put("taxNo", taxNo);
 		maps.put("registerAddress", et_registerAddress.getText().toString());
 		maps.put("registerPhone", et_registerPhone.getText().toString());
 		maps.put("bankName", et_bankName.getText().toString());

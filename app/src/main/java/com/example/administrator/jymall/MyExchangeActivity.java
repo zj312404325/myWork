@@ -56,8 +56,8 @@ public class MyExchangeActivity extends TopActivity implements IXListViewListene
 
         sap = new ProSimpleAdapter(MyExchangeActivity.this, dateMaps,
                 R.layout.listview_myexchange,
-                new String[]{"exchangeTime"},
-                new int[]{R.id.tv_exchangeTime});
+                new String[]{},
+                new int[]{});
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);

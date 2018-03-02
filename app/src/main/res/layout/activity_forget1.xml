@@ -27,18 +27,20 @@
 					android:textSize="14sp"
 					android:inputType="textPassword"
 					android:layout_marginLeft="10dp"
-					android:hint="请输入6-16位新密码"
+					android:maxLength="16"
+					android:hint="请输入8-16位新密码"
 					android:background="@null"/>
 			</LinearLayout>
 		</RelativeLayout>
 
 		<TextView
 			style="@style/wrap_content"
+			android:layout_marginTop="10dp"
 			android:layout_marginLeft="20dp"
-			android:textSize="12dp"
+			android:textSize="10dp"
 			android:textColor="#b1b1b1"
 	  	    android:layout_marginRight="20dp"
-			android:text="(包括数字、字母、下划线、特殊符号、区分大小写)"/>
+			android:text="(8~16个字符，包括字母、数字、特殊符号任意两种，区分大小写)"/>
 		
 		<!--<com.example.administrator.helloworld.view.MyEditText  android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginLeft="20dp"
 	  	    android:layout_marginRight="20dp" android:layout_marginTop="20dp" 	test:textSize="14" 	test:hint="请再次输入密码"
@@ -49,7 +51,7 @@
 			android:layout_height="40dp"
 			android:layout_marginLeft="20dp"
 			android:layout_marginRight="20dp"
-			android:layout_marginTop="20dp" >
+			android:layout_marginTop="10dp" >
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"

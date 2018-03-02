@@ -170,8 +170,9 @@ public class RefundGoodsOneEditActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
+                int count=0;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsOneEditActivity.this);
-                builder.setIcon(R.drawable.ic_launcher);
+                builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("退货原因");
                 final String[] refundReason = {"7天无理由退换货", "退运费", "做工问题", "质量问题", "大小/尺寸与商品描述不符", "颜色/图案/款式与商品描述不符", "材质面料与商品描述不符", "少件/漏发", "卖家发错货", "包装/商品损坏/污渍", "假冒品牌", "未按约定时间发货", "发票问题"};
                 //    设置一个单项选择下拉框
@@ -180,7 +181,15 @@ public class RefundGoodsOneEditActivity extends TopActivity {
                  * 第二个参数代表索引，指定默认哪一个单选框被勾选上，1表示默认'女' 会被勾选上
                  * 第三个参数给每一个单选项绑定一个监听器
                  */
-                builder.setSingleChoiceItems(refundReason, 1, new DialogInterface.OnClickListener()
+                if(FormatUtil.isNoEmpty(reason)){
+                    for(int i=0;i<refundReason.length;i++){
+                        if(refundReason[i].equals(reason)){
+                            count=i;
+                            break;
+                        }
+                    }
+                }
+                builder.setSingleChoiceItems(refundReason, count, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which)

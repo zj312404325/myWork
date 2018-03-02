@@ -1,18 +1,22 @@
 package com.example.administrator.jymall;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
@@ -23,23 +27,19 @@ import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ContentView(R.layout.activity_user_money)
 public class UserMoneyActivity  extends TopActivity  implements IXListViewListener {
@@ -163,7 +163,9 @@ public class UserMoneyActivity  extends TopActivity  implements IXListViewListen
 			@Override
 			public void onResponse(String result)  {
 				listtv.setVisibility(View.GONE);
-				if(isShow){progressDialog.hide();};
+				if(isShow){
+					progressDialog.hide();
+				}
 				JSONObject res;
 				try {
 					res = new JSONObject(result);
@@ -193,6 +195,7 @@ public class UserMoneyActivity  extends TopActivity  implements IXListViewListen
 						dateMap.put("ystatus", resjarr.getJSONObject(i).get("ystatus"));
 						dateMap.put("ystatusName", resjarr.getJSONObject(i).get("ystatusName"));
 						dateMap.put("id", resjarr.getJSONObject(i).get("id"));
+						dateMap.put("orderno", resjarr.getJSONObject(i).get("orderno"));
 						dateMaps.add(dateMap);						
 					}
 					sap.notifyDataSetChanged();
@@ -230,6 +233,7 @@ public class UserMoneyActivity  extends TopActivity  implements IXListViewListen
 				TextView tv_createdate = (TextView)convertView.findViewById(R.id.tv_createdate);
 				TextView tv_mtype = (TextView)convertView.findViewById(R.id.tv_mtype);
 				TextView tv_ystatus = (TextView)convertView.findViewById(R.id.tv_ystatus);
+				TextView tv_orderNo = (TextView)convertView.findViewById(R.id.tv_orderNo);
 				String inmoney = dateMaps.get(position).get("inmoney").toString();
 				String ystatus = dateMaps.get(position).get("ystatus").toString();
 				final String id =  dateMaps.get(position).get("id").toString();
@@ -242,7 +246,13 @@ public class UserMoneyActivity  extends TopActivity  implements IXListViewListen
 					tv_inmoney.setTextColor(Color.parseColor("#e16262"));
 					tv_mtype.setTextColor(Color.parseColor("#e16262"));
 				}
-				
+
+				if(FormatUtil.isNoEmpty(dateMaps.get(position).get("orderno").toString())){
+					tv_orderNo.setText(dateMaps.get(position).get("orderno").toString());
+				}
+				else{
+					tv_orderNo.setText("充值订单");
+				}
 				tv_createdate.setText(dateMaps.get(position).get("createdate").toString());
 				tv_mtype.setText(dateMaps.get(position).get("mtype").toString());	
 				if(ystatus.equals("2")){

@@ -248,6 +248,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             dateMap.put("order", resjarr.getJSONObject(i));
 
                             dateMap.put("feeMoney", resjarr.getJSONObject(i).get("feeMoney"));
+                            dateMap.put("firstMoney", resjarr.getJSONObject(i).get("firstMoney"));
                             dateMap.put("initMoney", resjarr.getJSONObject(i).get("initMoney"));
                             dateMap.put("money", resjarr.getJSONObject(i).get("money"));
                             dateMap.put("isAppraised", resjarr.getJSONObject(i).get("isAppraised"));
@@ -351,14 +352,17 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 final String money = dateMaps.get(position).get("money").toString();
                 final String initMoney = dateMaps.get(position).get("initMoney").toString();
                 final String feeMoney = dateMaps.get(position).get("feeMoney").toString();
+                final String firstMoney = dateMaps.get(position).get("firstMoney").toString();
 
                 TextView tv_orderNo = (TextView)convertView.findViewById(R.id.tv_orderNo);
                 TextView tv_orderStatus = (TextView)convertView.findViewById(R.id.tv_orderStatus);
                 TextView tv_count = (TextView)convertView.findViewById(R.id.tv_count);
                 TextView tv_money = (TextView)convertView.findViewById(R.id.tv_money);
                 TextView tv_transFee = (TextView)convertView.findViewById(R.id.tv_transFee);
+                TextView tv_firstMoney = (TextView)convertView.findViewById(R.id.tv_firstMoney);
 
                 LinearLayout orderinfo = (LinearLayout)convertView.findViewById(R.id.orderinfo);
+                LinearLayout ll_firstMoney = (LinearLayout)convertView.findViewById(R.id.ll_firstMoney);
 
                 orderinfo.setOnTouchListener(new View.OnTouchListener() {
 
@@ -376,6 +380,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
 
                 MyListView list_orderinfo = (MyListView)convertView.findViewById(R.id.list_orderinfo);
 
+                Button btn_delete = (Button)convertView.findViewById(R.id.btn_delete);
                 Button btn_cancel = (Button)convertView.findViewById(R.id.btn_cancel);
                 Button btn_pay = (Button)convertView.findViewById(R.id.btn_pay);
                 Button btn_payFirst = (Button)convertView.findViewById(R.id.btn_payFirst);
@@ -397,20 +402,27 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 tv_orderNo.setText(order.getString("orderNo"));
                 tv_count.setText("共"+count+"件商品");
                 tv_money.setText("合计：¥"+money+"元");
-                tv_transFee.setText("（含运费：¥"+feeMoney+"）");
+                tv_transFee.setText("（含运费：¥"+feeMoney+"元）");
 
                 if(orderType.equals("fastMatch")){
                     iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_fast_match);
                 }
                 else if(orderType.equals("orderMatch")){
                     iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_order_match);
+                    if(orderStatus>0){
+                        tv_firstMoney.setText("¥"+firstMoney+"元");
+                    }
                 }
                 if(orderType.equals("product")){
                     iv_orderTypeIcon.setBackgroundResource(R.drawable.logo_jinjin);
                 }
 
+                btn_delete.setVisibility(View.GONE);
+
                 if(!orderType.equals("orderMatch")) {
+                    ll_firstMoney.setVisibility(View.GONE);
                     btn_payFirst.setVisibility(View.GONE);
+                    btn_payLast.setVisibility(View.GONE);
                     if (orderStatus == 0) {
                         tv_orderStatus.setText("未支付");
                         btn_cancel.setVisibility(View.GONE);
@@ -544,6 +556,54 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         btn_pay.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.GONE);
+                        btn_delete.setVisibility(View.VISIBLE);
+                        btn_delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                // 删除订单开始
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认要删除订单？", "确定删除", "否");
+                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                    @Override
+                                    public void doConfirm() {
+                                        mcd.dismiss();
+                                        progressDialog.show();
+                                        Map<String, String> maps= new HashMap<String, String>();
+                                        maps.put("serverKey", skey);
+                                        maps.put("id", id);
+                                        XUtilsHelper.getInstance().post("app/delMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
+
+                                            @SuppressLint("NewApi")
+                                            @Override
+                                            public void onResponse(String result)  {
+                                                progressDialog.hide();
+                                                JSONObject res;
+                                                try {
+                                                    res = new JSONObject(result);
+                                                    setServerKey(res.get("serverKey").toString());
+                                                    skey = res.get("serverKey").toString();
+                                                    if(res.get("d").equals("n")){
+                                                        CommonUtil.alter(res.get("msg").toString());
+                                                    }
+                                                    else{
+                                                        CommonUtil.alter("删除成功！");
+                                                        getDate(true,true);
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    // TODO Auto-generated catch block
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    @Override
+                                    public void doCancel() {
+                                        mcd.dismiss();
+                                    }
+                                });
+                                mcd.show();
+                            }
+                        });
                     } else if (orderStatus == 6) {
                         tv_orderStatus.setText("订单结束");
                         btn_pay.setVisibility(View.GONE);
@@ -554,6 +614,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 else{
                     btn_pay.setVisibility(View.GONE);
                     if (orderStatus == 0) {
+                        ll_firstMoney.setVisibility(View.GONE);
                         tv_orderStatus.setText("待设置定金");
                         btn_cancel.setVisibility(View.VISIBLE);
                         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -604,6 +665,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             }
                         });
                     } else if (orderStatus == 1) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待支付定金");
                         btn_cancel.setVisibility(View.VISIBLE);
                         btn_payFirst.setVisibility(View.VISIBLE);
@@ -664,16 +726,19 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             }
                         });
                     } else if (orderStatus == 2 ) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待确认定金");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 3) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待生产完成");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 4) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待付尾款");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.VISIBLE);
@@ -687,16 +752,19 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             }
                         });
                     } else if (orderStatus == 5) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待确认尾款");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 6) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待发货");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                     } else if (orderStatus == 7) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("等待收货");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
@@ -750,15 +818,65 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             }
                         });
                     } else if (orderStatus == 8) {
+                        ll_firstMoney.setVisibility(View.VISIBLE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 9) {
+                        ll_firstMoney.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                         tv_orderStatus.setText("订单取消");
+                        btn_delete.setVisibility(View.VISIBLE);
+                        btn_delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                // 删除订单开始
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认要删除订单？", "确定删除", "否");
+                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                    @Override
+                                    public void doConfirm() {
+                                        mcd.dismiss();
+                                        progressDialog.show();
+                                        Map<String, String> maps= new HashMap<String, String>();
+                                        maps.put("serverKey", skey);
+                                        maps.put("id", id);
+                                        XUtilsHelper.getInstance().post("app/delMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
+
+                                            @SuppressLint("NewApi")
+                                            @Override
+                                            public void onResponse(String result)  {
+                                                progressDialog.hide();
+                                                JSONObject res;
+                                                try {
+                                                    res = new JSONObject(result);
+                                                    setServerKey(res.get("serverKey").toString());
+                                                    skey = res.get("serverKey").toString();
+                                                    if(res.get("d").equals("n")){
+                                                        CommonUtil.alter(res.get("msg").toString());
+                                                    }
+                                                    else{
+                                                        CommonUtil.alter("删除成功！");
+                                                        getDate(true,true);
+                                                    }
+
+                                                } catch (JSONException e) {
+                                                    // TODO Auto-generated catch block
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
+                                    }
+                                    @Override
+                                    public void doCancel() {
+                                        mcd.dismiss();
+                                    }
+                                });
+                                mcd.show();
+                            }
+                        });
                     }
                 }
 

@@ -3,7 +3,12 @@ package com.example.administrator.jymall;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +21,10 @@ import android.widget.SimpleAdapter;
 import com.example.administrator.jymall.common.CommonDialog;
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.FormatUtil;
+import com.example.administrator.jymall.util.ImageFactory;
 import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyConfirmDialog;
 import com.example.administrator.jymall.view.XListView;
 
 import org.json.JSONException;
@@ -26,6 +34,7 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +56,20 @@ public class CommitFastMatchActivity extends TopActivity {
     private String type;
 
     SimpleAdapter sap;
+
+    //上传图片
+    private String TEMP_IMAGE_PATH;
+    private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
+
+    private Bitmap bitmap1 = null;
+    private Bitmap bitmap2 = null;
+    private Bitmap bitmap3 = null;
+
+    private MyConfirmDialog mcd1 = null;
+    private MyConfirmDialog mcd2 = null;
+    private MyConfirmDialog mcd3 = null;
+
+    private int TEMP_PIC_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +150,12 @@ public class CommitFastMatchActivity extends TopActivity {
         for (int i = 0; i < ll_addView.getChildCount(); i++) {
             final View childAt = ll_addView.getChildAt(i);
             final Button btn_delete = (Button) childAt.findViewById(R.id.btn_delete);
+            final ImageView iv_pic1 = (ImageView) childAt.findViewById(R.id.iv_pic1);
+            final ImageView iv_pic2 = (ImageView) childAt.findViewById(R.id.iv_pic2);
+            final ImageView iv_pic3 = (ImageView) childAt.findViewById(R.id.iv_pic3);
+            String pic1="";
+            String pic2="";
+            String pic3="";
             btn_delete.setTag("remove");//设置删除标记
             btn_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -141,6 +170,444 @@ public class CommitFastMatchActivity extends TopActivity {
             }
             else{
                 btn_delete.setVisibility(View.VISIBLE);
+            }
+
+            iv_pic1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final int viewId=iv_pic1.getId();
+                    if(mcd1==null){
+                        TEMP_PIC_ID=viewId;
+                        mcd1=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
+                        mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                            @Override
+                            public void doConfirm() {
+                                TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
+                                Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+                                intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+                                startActivityForResult(intent1,12);
+                            }
+                            @Override
+                            public void doCancel() {
+                                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+                                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, 11);
+                            }
+                        });
+                    }
+                    mcd1.show();
+                }
+            });
+
+            iv_pic2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final int viewId=iv_pic2.getId();
+                    if(mcd2==null){
+                        TEMP_PIC_ID=viewId;
+                        mcd2=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
+                        mcd2.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                            @Override
+                            public void doConfirm() {
+                                TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
+                                Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+                                intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+                                startActivityForResult(intent1,22);
+                            }
+                            @Override
+                            public void doCancel() {
+                                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+                                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, 21);
+                            }
+                        });
+                    }
+                    mcd2.show();
+                }
+            });
+
+            iv_pic3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final int viewId=iv_pic3.getId();
+                    if(mcd3==null){
+                        TEMP_PIC_ID=viewId;
+                        mcd3=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
+                        mcd3.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                            @Override
+                            public void doConfirm() {
+                                TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
+                                Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+                                intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+                                startActivityForResult(intent1,32);
+                            }
+                            @Override
+                            public void doCancel() {
+                                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+                                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, 31);
+                            }
+                        });
+                    }
+                    mcd3.show();
+                }
+            });
+
+//            iv_pic1.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View view, MotionEvent event) {
+//                    if (event.getAction() == event.ACTION_UP) {
+//                        if(mcd1==null){
+//                            final int viewId=iv_pic1.getId();
+//                            TEMP_PIC_ID=viewId;
+//                            mcd1=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
+//                            mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+//                                @Override
+//                                public void doConfirm() {
+//                                    TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
+//                                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                                    Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+//                                    intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+//                                    startActivityForResult(intent1,12);
+//                                }
+//                                @Override
+//                                public void doCancel() {
+//                                    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+//                                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+//                                    intent.setType("image/*");
+//                                    startActivityForResult(intent, 11);
+//                                }
+//                            });
+//                        }
+//                        mcd1.show();
+//                        return false;
+//                    }
+//                    return true;
+//                }
+//            });
+
+            /*iv_pic2.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    if (event.getAction() == event.ACTION_UP) {
+                        if(mcd1==null){
+                            final int viewId=iv_pic2.getId();
+                            TEMP_PIC_ID=viewId;
+                            mcd1=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
+                            mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                @Override
+                                public void doConfirm() {
+                                    TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
+                                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                    Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+                                    intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+                                    startActivityForResult(intent1,12);
+                                }
+                                @Override
+                                public void doCancel() {
+                                    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+                                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                    intent.setType("image*//*");
+                                    startActivityForResult(intent, 11);
+                                }
+                            });
+                        }
+                        mcd1.show();
+                        return false;
+                    }
+                    return true;
+                }
+            });*/
+
+            /*iv_pic3.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent event) {
+                    if (event.getAction() == event.ACTION_UP) {
+                        if(mcd1==null){
+                            final int viewId=iv_pic3.getId();
+                            TEMP_PIC_ID=viewId;
+                            mcd1=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
+                            mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                                @Override
+                                public void doConfirm() {
+                                    TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
+                                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                    Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+                                    intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+                                    TEMP_PIC_ID=viewId;
+                                    startActivityForResult(intent1,12);
+                                }
+                                @Override
+                                public void doCancel() {
+                                    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+                                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                    intent.setType("image*//*");
+                                    TEMP_PIC_ID=viewId;
+                                    startActivityForResult(intent, 11);
+                                }
+                            });
+                        }
+                        mcd1.show();
+                        return false;
+                    }
+                    return true;
+                }
+            });*/
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==RESULT_OK){
+            //上传照片
+            if(requestCode==11&&data!=null){
+                progressDialog.show();
+                mcd1.dismiss();
+                Uri uri = data.getData();
+
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap1 != null && !bitmap1.isRecycled()){
+                    bitmap1.recycle();
+                    bitmap1 = null;
+                }
+
+                TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                //iv_pic1.setImageBitmap(bitmap1);
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap1);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==12){
+                progressDialog.show();
+                mcd1.dismiss();
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap1 != null && !bitmap1.isRecycled()){
+                    bitmap1.recycle();
+                    bitmap1 = null;
+                }
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap1 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap1);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    //pic1=res.getString("fileUrl");
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==21){
+                progressDialog.show();
+                mcd2.dismiss();
+                Uri uri = data.getData();
+
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap2 != null && !bitmap2.isRecycled()){
+                    bitmap2.recycle();
+                    bitmap2 = null;
+                }
+                TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap2 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                //iv_pic1.setImageBitmap(bitmap1);
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap2);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==22){
+                progressDialog.show();
+                mcd2.dismiss();
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap2 != null && !bitmap2.isRecycled()){
+                    bitmap2.recycle();
+                    bitmap2 = null;
+                }
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap2 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap2);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    //pic1=res.getString("fileUrl");
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==31){
+                progressDialog.show();
+                mcd3.dismiss();
+                Uri uri = data.getData();
+
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap3 != null && !bitmap3.isRecycled()){
+                    bitmap3.recycle();
+                    bitmap3 = null;
+                }
+                TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap3 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                //iv_pic1.setImageBitmap(bitmap1);
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap3);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==32){
+                progressDialog.show();
+                mcd3.dismiss();
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap3 != null && !bitmap3.isRecycled()){
+                    bitmap3.recycle();
+                    bitmap3 = null;
+                }
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap3 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap3);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    //pic1=res.getString("fileUrl");
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
             }
         }
     }
@@ -201,6 +668,16 @@ public class CommitFastMatchActivity extends TopActivity {
             unit=et_unit.getText().toString();
             proDesc=et_proDesc.getText().toString();
             require=et_require.getText().toString();
+
+            if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic1.getTag()))){
+                pic1=iv_pic1.getTag().toString();
+            }
+            if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic2.getTag()))){
+                pic2=iv_pic2.getTag().toString();
+            }
+            if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic3.getTag()))){
+                pic3=iv_pic3.getTag().toString();
+            }
 
             if(i==ll_addView.getChildCount()-1){
                 fastMatchJsonArray += "{\"proName\":\""+ proName +"\",\"brand\":\""+ brand +"\",\"proQuality\":\""+ proquantity +"\",\"model\":\""+ model +"\",\"proSpec\":\""+ spec +"\",\"quantity\":\""+ quantity +"\",\"unit\":\""+ unit +"\",\"proDesc\":\""+ proDesc +"\",\"specialReq\":\""+ require +"\",\"pic1\":\""+ pic1 +"\",\"pic2\":\""+ pic2 +"\",\"pic3\":\""+ pic3 +"\"}";

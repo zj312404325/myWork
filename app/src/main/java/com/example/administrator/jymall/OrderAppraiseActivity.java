@@ -89,6 +89,17 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
     private int start = 1;
     private int orderDtlCount = 0;
 
+    private String TEMP_IMAGE_PATH;
+    private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
+    private Bitmap bitmap1 = null;
+    private Bitmap bitmap2 = null;
+    private Bitmap bitmap3 = null;
+    private MyConfirmDialog mcd1 = null;
+    private MyConfirmDialog mcd2 = null;
+    private MyConfirmDialog mcd3 = null;
+
+    private int TEMP_PIC_ID;
+
     SimpleAdapter sap;
 
     @Override
@@ -195,8 +206,6 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 final ImageView iv_pic1 = (ImageView)convertView.findViewById(R.id.iv_pic1);
                 final ImageView iv_pic2 = (ImageView)convertView.findViewById(R.id.iv_pic2);
                 final ImageView iv_pic3 = (ImageView)convertView.findViewById(R.id.iv_pic3);
-                final ImageView iv_pic4 = (ImageView)convertView.findViewById(R.id.iv_pic4);
-                final ImageView iv_pic5 = (ImageView)convertView.findViewById(R.id.iv_pic5);
 
                 img_proImgPath.setBackgroundResource(0);
                 XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, mdata.get(position).get("proImgPath").toString(), true);
@@ -205,17 +214,13 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 tv_proName.setText(proName);
 
                 iv_pic1.setOnTouchListener(new View.OnTouchListener() {
-                    private String TEMP_IMAGE_PATH;
-                    private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
-                    private Bitmap bitmap = null;
-                    private MyConfirmDialog mcd = null;
-
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == event.ACTION_UP) {
-                            if(mcd==null){
-                                mcd=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
-                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                            TEMP_PIC_ID=v.getId();
+                            if(mcd1==null){
+                                mcd1=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
+                                mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
                                         //设置一个临时路径，保存所拍的照片
@@ -227,7 +232,7 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                                         Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
                                         //MediaStore.EXTRA_OUTPUT为字符串"output"，即将该键值对放进intent中
                                         intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-                                        startActivityForResult(intent1,200);
+                                        startActivityForResult(intent1,12);
                                     }
 
                                     @Override
@@ -235,104 +240,26 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                                         Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
                                         intent.addCategory(Intent.CATEGORY_OPENABLE);
                                         intent.setType("image/*");
-                                        startActivityForResult(intent, 100);
+                                        startActivityForResult(intent, 11);
                                     }
                                 });
                             }
-                            mcd.show();
+                            mcd1.show();
                             return false;
                         }
                         return true;
                     }
-
-                    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-                        if(resultCode==RESULT_OK){
-                            if(requestCode==100&&data!=null){
-                                progressDialog.show();
-                                mcd.dismiss();
-                                //选择图片
-                                Uri uri = data.getData();
-                                if(bitmap != null)//如果不释放的话，不断取图片，将会内存不够
-                                    bitmap.recycle();
-                                TEMP_IMAGE_PATH = ImageFactory.getPath(getApplicationContext(), uri);
-                                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
-                                bitmap = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
-                                iv_pic1.setImageBitmap(bitmap);
-                                Map<String, String> maps = new HashMap<String, String>();
-                                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
-                                maps.put("pathType","company");
-                                Map<String, File> file = new HashMap<String, File>();
-                                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
-                                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
-                                    @Override
-                                    public void onResponse(String result) {
-                                        try{
-                                            JSONObject res = FormatUtil.toJSONObject(result);
-                                            if(res != null){
-                                                if(res.get("d").equals("n")){
-                                                    CommonUtil.alter("图片上传失败");
-                                                    progressDialog.hide();
-                                                }
-                                                else{
-                                                    CommonUtil.alter("图片上传成功");
-                                                    progressDialog.hide();
-                                                }
-                                            }
-                                        }
-                                        catch(Exception e){e.printStackTrace();}
-                                    }
-                                });
-                            }else if(requestCode==200){
-                                progressDialog.show();
-                                mcd.dismiss();
-                                if(bitmap != null)//如果不释放的话，不断取图片，将会内存不够
-                                    bitmap.recycle();
-                                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
-                                bitmap = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
-                                iv_pic1.setImageBitmap(bitmap);
-                                Map<String, String> maps = new HashMap<String, String>();
-                                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
-                                maps.put("pathType","company");
-                                Map<String, File> file = new HashMap<String, File>();
-                                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
-                                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
-
-                                    @Override
-                                    public void onResponse(String result) {
-                                        try{
-                                            JSONObject res = FormatUtil.toJSONObject(result);
-                                            if(res != null){
-                                                if(res.get("d").equals("n")){
-                                                    CommonUtil.alter("图片上传失败");
-                                                    progressDialog.hide();
-                                                }
-                                                else{
-                                                    CommonUtil.alter("图片上传成功");
-                                                    progressDialog.hide();
-                                                }
-                                            }
-                                        }
-                                        catch(Exception e){e.printStackTrace();}
-                                    }
-                                });
-                            }
-                        }
-                    }
-
                 });
 
 
                 iv_pic2.setOnTouchListener(new View.OnTouchListener() {
-                    private String TEMP_IMAGE_PATH;
-                    private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
-                    private Bitmap bitmap = null;
-                    private MyConfirmDialog mcd = null;
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == event.ACTION_UP) {
-                            if(mcd==null){
-                                mcd=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
-                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                            TEMP_PIC_ID=v.getId();
+                            if(mcd2==null){
+                                mcd2=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
+                                mcd2.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
                                         //设置一个临时路径，保存所拍的照片
@@ -344,7 +271,7 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                                         Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
                                         //MediaStore.EXTRA_OUTPUT为字符串"output"，即将该键值对放进intent中
                                         intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-                                        startActivityForResult(intent1,200);
+                                        startActivityForResult(intent1,22);
                                     }
 
                                     @Override
@@ -352,101 +279,24 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                                         Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
                                         intent.addCategory(Intent.CATEGORY_OPENABLE);
                                         intent.setType("image/*");
-                                        startActivityForResult(intent, 100);
+                                        startActivityForResult(intent, 21);
                                     }
                                 });
                             }
-                            mcd.show();
+                            mcd2.show();
                             return false;
                         }
                         return true;
-                    }
-
-                    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-                        if(resultCode==RESULT_OK){
-                            if(requestCode==100&&data!=null){
-                                progressDialog.show();
-                                mcd.dismiss();
-                                //选择图片
-                                Uri uri = data.getData();
-                                if(bitmap != null)//如果不释放的话，不断取图片，将会内存不够
-                                    bitmap.recycle();
-                                TEMP_IMAGE_PATH = ImageFactory.getPath(getApplicationContext(), uri);
-                                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
-                                bitmap = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
-                                iv_pic2.setImageBitmap(bitmap);
-                                Map<String, String> maps = new HashMap<String, String>();
-                                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
-                                maps.put("pathType","company");
-                                Map<String, File> file = new HashMap<String, File>();
-                                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
-                                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
-                                    @Override
-                                    public void onResponse(String result) {
-                                        try{
-                                            JSONObject res = FormatUtil.toJSONObject(result);
-                                            if(res != null){
-                                                if(res.get("d").equals("n")){
-                                                    CommonUtil.alter("图片上传失败");
-                                                    progressDialog.hide();
-                                                }
-                                                else{
-                                                    CommonUtil.alter("图片上传成功");
-                                                    progressDialog.hide();
-                                                }
-                                            }
-                                        }
-                                        catch(Exception e){e.printStackTrace();}
-                                    }
-                                });
-                            }else if(requestCode==200){
-                                progressDialog.show();
-                                mcd.dismiss();
-                                if(bitmap != null)//如果不释放的话，不断取图片，将会内存不够
-                                    bitmap.recycle();
-                                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
-                                bitmap = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
-                                iv_pic2.setImageBitmap(bitmap);
-                                Map<String, String> maps = new HashMap<String, String>();
-                                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
-                                maps.put("pathType","company");
-                                Map<String, File> file = new HashMap<String, File>();
-                                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
-                                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
-
-                                    @Override
-                                    public void onResponse(String result) {
-                                        try{
-                                            JSONObject res = FormatUtil.toJSONObject(result);
-                                            if(res != null){
-                                                if(res.get("d").equals("n")){
-                                                    CommonUtil.alter("图片上传失败");
-                                                    progressDialog.hide();
-                                                }
-                                                else{
-                                                    CommonUtil.alter("图片上传成功");
-                                                    progressDialog.hide();
-                                                }
-                                            }
-                                        }
-                                        catch(Exception e){e.printStackTrace();}
-                                    }
-                                });
-                            }
-                        }
                     }
                 });
                 iv_pic3.setOnTouchListener(new View.OnTouchListener() {
-                    private String TEMP_IMAGE_PATH;
-                    private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
-                    private Bitmap bitmap = null;
-                    private MyConfirmDialog mcd = null;
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == event.ACTION_UP) {
-                            if(mcd==null){
-                                mcd=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
-                                mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                            TEMP_PIC_ID=v.getId();
+                            if(mcd3==null){
+                                mcd3=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
+                                mcd3.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
                                         //设置一个临时路径，保存所拍的照片
@@ -458,7 +308,7 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                                         Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
                                         //MediaStore.EXTRA_OUTPUT为字符串"output"，即将该键值对放进intent中
                                         intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-                                        startActivityForResult(intent1,200);
+                                        startActivityForResult(intent1,32);
                                     }
 
                                     @Override
@@ -466,88 +316,14 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                                         Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
                                         intent.addCategory(Intent.CATEGORY_OPENABLE);
                                         intent.setType("image/*");
-                                        startActivityForResult(intent, 100);
+                                        startActivityForResult(intent, 31);
                                     }
                                 });
                             }
-                            mcd.show();
+                            mcd3.show();
                             return false;
                         }
                         return true;
-                    }
-
-                    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-                        if(resultCode==RESULT_OK){
-                            if(requestCode==100&&data!=null){
-                                progressDialog.show();
-                                mcd.dismiss();
-                                //选择图片
-                                Uri uri = data.getData();
-                                if(bitmap != null)//如果不释放的话，不断取图片，将会内存不够
-                                    bitmap.recycle();
-                                TEMP_IMAGE_PATH = ImageFactory.getPath(getApplicationContext(), uri);
-                                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
-                                bitmap = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
-                                iv_pic3.setImageBitmap(bitmap);
-                                Map<String, String> maps = new HashMap<String, String>();
-                                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
-                                maps.put("pathType","company");
-                                Map<String, File> file = new HashMap<String, File>();
-                                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
-                                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
-                                    @Override
-                                    public void onResponse(String result) {
-                                        try{
-                                            JSONObject res = FormatUtil.toJSONObject(result);
-                                            if(res != null){
-                                                if(res.get("d").equals("n")){
-                                                    CommonUtil.alter("图片上传失败");
-                                                    progressDialog.hide();
-                                                }
-                                                else{
-                                                    CommonUtil.alter("图片上传成功");
-                                                    progressDialog.hide();
-                                                }
-                                            }
-                                        }
-                                        catch(Exception e){e.printStackTrace();}
-                                    }
-                                });
-                            }else if(requestCode==200){
-                                progressDialog.show();
-                                mcd.dismiss();
-                                if(bitmap != null)//如果不释放的话，不断取图片，将会内存不够
-                                    bitmap.recycle();
-                                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
-                                bitmap = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
-                                iv_pic3.setImageBitmap(bitmap);
-                                Map<String, String> maps = new HashMap<String, String>();
-                                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
-                                maps.put("pathType","company");
-                                Map<String, File> file = new HashMap<String, File>();
-                                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
-                                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
-
-                                    @Override
-                                    public void onResponse(String result) {
-                                        try{
-                                            JSONObject res = FormatUtil.toJSONObject(result);
-                                            if(res != null){
-                                                if(res.get("d").equals("n")){
-                                                    CommonUtil.alter("图片上传失败");
-                                                    progressDialog.hide();
-                                                }
-                                                else{
-                                                    CommonUtil.alter("图片上传成功");
-                                                    progressDialog.hide();
-                                                }
-                                            }
-                                        }
-                                        catch(Exception e){e.printStackTrace();}
-                                    }
-                                });
-                            }
-                        }
                     }
                 });
             }
@@ -632,11 +408,25 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 LinearLayout layout = (LinearLayout) listViewAll.getChildAt(i);
                 RatingBar rb_productLevel = layout.findViewById(R.id.rb_productLevel);
                 EditText et_remark = layout.findViewById(R.id.et_remark);
+                ImageView iv_pic1=layout.findViewById(R.id.iv_pic1);
+                ImageView iv_pic2=layout.findViewById(R.id.iv_pic2);
+                ImageView iv_pic3=layout.findViewById(R.id.iv_pic3);
                 if (FormatUtil.isNoEmpty(et_remark)) {
                     if (FormatUtil.isNoEmpty(et_remark.getText())) {
                         remark = java.net.URLEncoder.encode(FormatUtil.toString(et_remark.getText()), "UTF-8");
                     }
                 }
+
+                if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic1.getTag()))){
+                    pic1=iv_pic1.getTag().toString();
+                }
+                if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic2.getTag()))){
+                    pic2=iv_pic2.getTag().toString();
+                }
+                if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic3.getTag()))){
+                    pic3=iv_pic3.getTag().toString();
+                }
+
                 productLevel = FormatUtil.toString(rb_productLevel.getRating());
                 appraiseJsonArray += "{\"productid\":\"" + dateMaps.get(count).get("proID").toString() + "\",\"productLevel\":\"" + productLevel + "\",\"remark\":\"" + remark + "\",\"pic1\":\"" + pic1 + "\",\"pic2\":\"" + pic2 + "\",\"pic3\":\"" + pic3 + "\",\"pic4\":\"" + pic4 + "\",\"pic5\":\"" + pic5 + "\"},";
                 count++;
@@ -650,6 +440,256 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
         }
         appraiseJsonArray = appraiseJsonArray.substring(0, appraiseJsonArray.length()-1);
         appraiseJsonArray+="]";
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==RESULT_OK){
+            //上传照片
+            if(requestCode==11&&data!=null){
+                progressDialog.show();
+                mcd1.dismiss();
+                Uri uri = data.getData();
+
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap1 != null && !bitmap1.isRecycled()){
+                    bitmap1.recycle();
+                    bitmap1 = null;
+                }
+
+                TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                //iv_pic1.setImageBitmap(bitmap1);
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap1);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==12){
+                progressDialog.show();
+                mcd1.dismiss();
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap1 != null && !bitmap1.isRecycled()){
+                    bitmap1.recycle();
+                    bitmap1 = null;
+                }
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap1 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap1);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    //pic1=res.getString("fileUrl");
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==21){
+                progressDialog.show();
+                mcd2.dismiss();
+                Uri uri = data.getData();
+
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap2 != null && !bitmap2.isRecycled()){
+                    bitmap2.recycle();
+                    bitmap2 = null;
+                }
+                TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap2 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                //iv_pic1.setImageBitmap(bitmap1);
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap2);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==22){
+                progressDialog.show();
+                mcd2.dismiss();
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap2 != null && !bitmap2.isRecycled()){
+                    bitmap2.recycle();
+                    bitmap2 = null;
+                }
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap2 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap2);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    //pic1=res.getString("fileUrl");
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==31){
+                progressDialog.show();
+                mcd3.dismiss();
+                Uri uri = data.getData();
+
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap3 != null && !bitmap3.isRecycled()){
+                    bitmap3.recycle();
+                    bitmap3 = null;
+                }
+                TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap3 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                //iv_pic1.setImageBitmap(bitmap1);
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap3);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==32){
+                progressDialog.show();
+                mcd3.dismiss();
+                //如果不释放的话，不断取图片，将会内存不够
+                if(bitmap3 != null && !bitmap3.isRecycled()){
+                    bitmap3.recycle();
+                    bitmap3 = null;
+                }
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap3 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+
+                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
+                iv_pic1.setImageBitmap(bitmap3);
+
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    //pic1=res.getString("fileUrl");
+                                    iv_pic1.setTag(res.getString("fileUrl"));
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+        }
     }
 
     private void checkShowName(boolean f){

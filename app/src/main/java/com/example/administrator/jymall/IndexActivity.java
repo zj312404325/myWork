@@ -74,7 +74,7 @@ public class IndexActivity extends TopSearchActivity  {
     private ImageButton index_order_btn;
 
     private Proadapter proadapter;
-    private Proadapter hotadapter;
+    private HotProadapter hotadapter;
 
     private List<Map<String, Object>> data_list= new ArrayList<Map<String, Object>>();
     private List<Map<String, Object>> hot_data_list= new ArrayList<Map<String, Object>>();
@@ -105,16 +105,20 @@ public class IndexActivity extends TopSearchActivity  {
         progressDialog.hide();
         try{
             getImgData();
-            String [] from ={"proName"};
-            int [] to = {R.id.giftName};
+            String [] from ={};
+            int [] to = {};
             proadapter = new Proadapter(this, data_list, R.layout.list_indexprolist, from, to);
-            hotadapter = new Proadapter(this, hot_data_list, R.layout.list_indexprolist, from, to);
+            hotadapter = new HotProadapter(this, hot_data_list, R.layout.list_indexdisprolist, from, to);
 
             mygw.setAdapter(proadapter);
             mydiscountgw.setAdapter(hotadapter);
 
-            String indexData = getIndexData();
-            String hotData = getIndexHotData();
+            /*String indexData = getIndexData();
+            String hotData = getIndexHotData();*/
+
+            String indexData = "";
+            String hotData = "";
+
             if(indexData.equals("") || hotData.equals("")) {
                 getData();
                 getHotData();
@@ -201,6 +205,14 @@ public class IndexActivity extends TopSearchActivity  {
             length =resjarr.length();
         }
 
+        if(length>0){
+            listtv.setVisibility(View.GONE);
+        }
+        else{
+            listtv.setText("暂无数据");
+            listtv.setVisibility(View.VISIBLE);
+        }
+
         for(int i=0;i<length;i++){
             Map<String, Object> dateMap = new HashMap<String, Object>();
             dateMap.put("unit", resjarr.getJSONObject(i).get("unit"));
@@ -223,6 +235,14 @@ public class IndexActivity extends TopSearchActivity  {
             length = resjarr.length();
         }
 
+        if(length>0){
+            listdiscount.setVisibility(View.GONE);
+        }
+        else{
+            listdiscount.setText("暂无数据");
+            listdiscount.setVisibility(View.VISIBLE);
+        }
+
         for(int i=0;i<length;i++){
             Map<String, Object> dateMap = new HashMap<String, Object>();
             dateMap.put("unit", resjarr.getJSONObject(i).get("unit"));
@@ -230,6 +250,7 @@ public class IndexActivity extends TopSearchActivity  {
             dateMap.put("proName", resjarr.getJSONObject(i).get("proName"));
             dateMap.put("salePrice", resjarr.getJSONObject(i).get("salePrice"));
             dateMap.put("newSaleprice", resjarr.getJSONObject(i).get("newSaleprice"));
+            dateMap.put("formerPrice", resjarr.getJSONObject(i).get("formerPrice"));
             dateMap.put("isDiscount", resjarr.getJSONObject(i).get("isDiscount"));
             dateMap.put("quantity", resjarr.getJSONObject(i).get("quantity"));
             dateMap.put("id", resjarr.getJSONObject(i).get("id"));
@@ -365,11 +386,85 @@ public class IndexActivity extends TopSearchActivity  {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
+    public class HotProadapter  extends SimpleAdapter {
+        public ViewHolder holder;
+        private LayoutInflater mInflater;
+
+        public HotProadapter(Context context,
+                          List<? extends Map<String, ?>> data, int resource, String[] from,
+                          int[] to) {
+            super(context, data, resource, from, to);
+            mInflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @SuppressLint({ "NewApi", "ResourceAsColor" })
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            try{
+                holder=null;
+                if(convertView==null){
+                    convertView=mInflater.inflate(R.layout.list_indexdisprolist, null);
+                    holder=new ViewHolder();
+                    x.view().inject(holder,convertView);
+                    convertView.setTag(holder);
+                }
+                else{
+                    holder=(ViewHolder) convertView.getTag();
+                }
+                holder.protitle.setText(hot_data_list.get(position).get("proName").toString());
+                holder.promoney.setText("现价：￥"+hot_data_list.get(position).get("newSaleprice").toString()
+                        +"/"+hot_data_list.get(position).get("unit").toString());
+                holder.oldpromoney.setText("原价：￥"+hot_data_list.get(position).get("formerPrice").toString()
+                        +"/"+hot_data_list.get(position).get("unit").toString());
+                XUtilsHelper.getInstance().bindCommonImage(holder.proimg, hot_data_list.get(position).get("imagePath").toString(), true);
+
+                LinearLayout.LayoutParams lp1 =new LinearLayout.
+                        LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp1.setMargins(0, 0, DensityUtil.dip2px( 2), DensityUtil.dip2px( 4));
+                LinearLayout.LayoutParams lp2 =new LinearLayout.
+                        LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp2.setMargins(DensityUtil.dip2px( 2), 0, 0, DensityUtil.dip2px( 4));
+                if(position%2 == 0){
+                    holder.pro.setLayoutParams(lp1);
+                }
+                else
+                {
+                    holder.pro.setLayoutParams(lp2);
+                }
+
+
+                holder.pro.setOnTouchListener(new View.OnTouchListener() {
+
+                    @Override
+                    public boolean onTouch(View arg0, MotionEvent e) {
+                        if(e.getAction() == MotionEvent.ACTION_UP){
+                            Intent i = new Intent(getApplicationContext(),ProductInfoActivity.class);
+                            i.putExtra("id", hot_data_list.get(position).get("id").toString());
+                            startActivity(i);
+                            return false;
+                        }
+                        return true;
+                    }
+                });
+
+
+            }
+            catch(Exception e){
+                Log.v("PRO", e.getMessage());
+            }
+            return super.getView(position, convertView, parent);
+        }
+    }
+
     class ViewHolder{
         @ViewInject(R.id.proimg)
         private ImageView proimg;
         @ViewInject(R.id.protitle)
         private TextView protitle;
+        @ViewInject(R.id.oldpromoney)
+        private TextView oldpromoney;
         @ViewInject(R.id.promoney)
         private TextView promoney;
         @ViewInject(R.id.pro)

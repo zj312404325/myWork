@@ -55,8 +55,8 @@ public class CommonUtil {
 	
 	public static void openQiutDialog() {
 		new AlertDialog.Builder(MyApplication.getInstance().currentActivity())
-		.setTitle("金赢网")
-		.setMessage("是否退出金赢网？")
+		.setTitle("金赢工业超市")
+		.setMessage("是否退出金赢工业超市？")
 				.setPositiveButton("残忍退出", new DialogInterface.OnClickListener() {
 
 					@Override

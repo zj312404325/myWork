@@ -219,7 +219,7 @@ public class PreparePayActivity extends TopActivity {
 
 	@Event(R.id.btn_umoneyPay)
 	private void umoneyPay(View v){
-		if(umoneysy <= 0){
+		if(umoneysy <0){
 			CommonUtil.alter("你的余额不足，请先充值！");return ;
 		}
 		if(et_password.getText().length()<1){

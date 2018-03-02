@@ -12,7 +12,7 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:layout_below="@id/top_title"
-			android:layout_above="@+id/ll_commentInfo">
+			>
 
 		    <LinearLayout
 				android:layout_width="match_parent"
@@ -26,14 +26,149 @@
 				   	 <TextView
 						 style="@style/wrap_content"
 						 android:text="评价订单（评价一单获得5积分）"
-						 android:layout_marginLeft="40dp"
+						 android:layout_marginLeft="30dp"
 						 android:layout_centerVertical="true"
 						 android:textColor="#ffffff"
 						 android:textSize="20sp"
 						 android:id="@+id/tv_orderStatus"/>
+					<Button
+						style="@style/btndarkblue"
+						android:id="@+id/btn_submit"
+						android:layout_marginTop="5dp"
+						android:text="评价"
+						android:layout_width="match_parent"
+						android:layout_toEndOf="@id/tv_orderStatus"/>
 				</RelativeLayout>
 
 				<LinearLayout style="@style/line" />
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/ll_commentInfo"
+				android:layout_alignParentBottom="true"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:background="#ffffff"
+				android:layout_marginTop="16dp">
+
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="40dp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp">
+					<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentLeft="true"
+						android:id="@+id/iv_logisticImg"
+						android:background="@drawable/icon_logistic" />
+
+					<TextView
+						style="@style/wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="物流服务评价"
+						android:layout_toEndOf="@id/iv_logisticImg"
+						android:layout_centerVertical="true"
+						android:textColor="#939393" />
+
+					<TextView
+						style="@style/wrap_content"
+						android:text="满意请给五星哦"
+						android:layout_alignParentRight="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"/>
+				</RelativeLayout>
+
+				<LinearLayout
+					style="@style/line"
+					android:layout_marginTop="5dp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp"/>
+
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_marginTop="5dp"
+					android:layout_height="30dp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp">
+					<TextView
+						android:id="@+id/tv_package"
+						style="@style/wrap_content"
+						android:text="商品包装："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+
+					<!-- 星级评分条 -->
+					<RatingBar
+						android:id="@+id/rb_package"
+						style="@style/myRatingBar"
+						android:layout_width="76dp"
+						android:layout_height="20dp"
+						android:layout_toEndOf="@id/tv_package"
+						android:layout_centerVertical="true"
+						android:layout_centerHorizontal="true"
+						android:numStars="5"
+						android:rating="5"
+						android:stepSize="1" />
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="30dp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp">
+					<TextView
+						android:id="@+id/tv_sendGoods"
+						style="@style/wrap_content"
+						android:text="发货速度："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+
+					<!-- 星级评分条 -->
+					<RatingBar
+						android:id="@+id/rb_sendGoods"
+						style="@style/myRatingBar"
+						android:layout_width="76dp"
+						android:layout_height="20dp"
+						android:layout_toEndOf="@id/tv_sendGoods"
+						android:layout_centerVertical="true"
+						android:layout_centerHorizontal="true"
+						android:numStars="5"
+						android:rating="5"
+						android:stepSize="1" />
+				</RelativeLayout>
+
+				<LinearLayout style="@style/line" />
+
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:background="#ffffff"
+					android:layout_marginTop="0dp">
+
+					<CheckBox
+						android:id="@+id/cb_hideName"
+						android:layout_marginLeft="10dp"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content" />
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="匿名评价"/>
+				</LinearLayout>
+
+
 			</LinearLayout>
 
 			<LinearLayout
@@ -60,137 +195,6 @@
 				</LinearLayout>
 		</LinearLayout>
 
-		<LinearLayout
-				 android:id="@+id/ll_commentInfo"
-				 android:layout_alignParentBottom="true"
-				 android:layout_width="match_parent"
-				 android:layout_height="wrap_content"
-				 android:orientation="vertical"
-		    	 android:background="#ffffff"
-				 android:layout_marginTop="16dp">
 
-				 <RelativeLayout
-					 android:layout_width="match_parent"
-					 android:layout_height="40dp"
-					 android:layout_marginLeft="16dp"
-					 android:layout_marginRight="16dp">
-					 <ImageView
-						 android:layout_width="wrap_content"
-						 android:layout_height="wrap_content"
-						 android:layout_alignParentLeft="true"
-						 android:id="@+id/iv_logisticImg"
-						 android:background="@drawable/icon_logistic" />
-
-					 <TextView
-						 style="@style/wrap_content"
-						 android:layout_width="wrap_content"
-						 android:layout_height="wrap_content"
-						 android:text="物流服务评价"
-						 android:layout_toEndOf="@id/iv_logisticImg"
-						 android:layout_centerVertical="true"
-						 android:textColor="#939393" />
-
-					 <TextView
-						 style="@style/wrap_content"
-						 android:text="满意请给五星哦"
-						 android:layout_alignParentRight="true"
-						 android:layout_centerVertical="true"
-						 android:textColor="#939393"/>
-				 </RelativeLayout>
-
-				 <LinearLayout
-					 style="@style/line"
-					 android:layout_marginTop="5dp"
-					 android:layout_marginLeft="16dp"
-					 android:layout_marginRight="16dp"/>
-
-				 <RelativeLayout
-					 android:layout_width="match_parent"
-					 android:layout_marginTop="5dp"
-					 android:layout_height="30dp"
-					 android:layout_marginLeft="16dp"
-					 android:layout_marginRight="16dp">
-					 <TextView
-						 style="@style/wrap_content"
-						 android:text="商品包装："
-						 android:layout_alignParentLeft="true"
-						 android:layout_centerVertical="true"
-						 android:textColor="#939393"
-						 android:layout_width="80dp"
-						 android:maxLines="1" />
-
-					 <!-- 星级评分条 -->
-					 <RatingBar
-						 android:id="@+id/rb_package"
-						 style="@style/myRatingBar"
-						 android:layout_width="76dp"
-						 android:layout_height="20dp"
-						 android:layout_alignParentEnd="true"
-						 android:layout_centerHorizontal="true"
-						 android:numStars="5"
-						 android:rating="5"
-						 android:stepSize="1" />
-
-				 </RelativeLayout>
-
-				 <RelativeLayout
-					 android:layout_width="match_parent"
-					 android:layout_height="30dp"
-					 android:layout_marginLeft="16dp"
-					 android:layout_marginRight="16dp">
-					 <TextView
-						 style="@style/wrap_content"
-						 android:text="发货速度："
-						 android:layout_alignParentLeft="true"
-						 android:layout_centerVertical="true"
-						 android:textColor="#939393"
-						 android:layout_width="80dp"
-						 android:maxLines="1" />
-
-					 <!-- 星级评分条 -->
-					 <RatingBar
-						 android:id="@+id/rb_sendGoods"
-						 style="@style/myRatingBar"
-						 android:layout_width="76dp"
-						 android:layout_height="20dp"
-						 android:layout_alignParentEnd="true"
-						 android:layout_centerHorizontal="true"
-						 android:numStars="5"
-						 android:rating="5"
-						 android:stepSize="1" />
-				 </RelativeLayout>
-
-				<LinearLayout style="@style/line" />
-
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal"
-				android:background="#ffffff"
-				android:layout_marginTop="16dp">
-
-				<CheckBox
-					android:id="@+id/cb_hideName"
-					android:layout_marginLeft="10dp"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="匿名评价"/>
-			</LinearLayout>
-			
-			<Button
-				style="@style/btndarkblue"
-				android:id="@+id/btn_submit"
-				android:layout_marginTop="5dp"
-				android:text="评价"
-				android:layout_width="match_parent"
-				android:layout_marginBottom="10dp"
-            	android:layout_marginLeft="40dp"
-				android:layout_marginRight="40dp"/>
-
-		 </LinearLayout>
 
 </RelativeLayout>

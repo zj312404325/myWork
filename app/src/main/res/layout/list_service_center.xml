@@ -85,6 +85,7 @@
 				style="@style/wrap_content"
 				android:id="@+id/mapinfo"
 				android:layout_marginTop="5dp"
+				android:layout_marginBottom="5dp"
 				android:text="查看地图"
 				android:layout_gravity="center_horizontal" />
 		</LinearLayout>

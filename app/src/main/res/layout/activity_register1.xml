@@ -132,7 +132,7 @@
 				style="@style/wrap_content"
 				android:textSize="12dp"
 	  	    	android:layout_marginRight="20dp"
-				android:text="(包括字母、数字、特殊符号，字母区分大小写)"
+				android:text="(包括字母、数字、特殊符号任意两种，字母区分大小写)"
 				android:textColor="@color/gray1"/>
 
 			<!--<com.example.administrator.helloworld.view.MyEditText  android:layout_width="match_parent" android:layout_height="40dp" android:layout_marginLeft="20dp"

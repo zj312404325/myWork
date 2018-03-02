@@ -15,6 +15,7 @@
 
 	<LinearLayout style="@style/match_parent"
 		android:layout_below="@id/top"
+		android:layout_above="@id/bottom_tap"
 		android:background="#ffffff"
 		android:orientation="vertical">
 
@@ -168,4 +169,5 @@
 			android:layout_gravity="center_horizontal"
 			android:layout_centerInParent="true" />
 	</LinearLayout>
+
 </RelativeLayout>

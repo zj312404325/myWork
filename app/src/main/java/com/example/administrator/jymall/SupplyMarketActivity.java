@@ -82,12 +82,31 @@ public class SupplyMarketActivity extends TopActivity{
         if(et_contact.getText().toString().length() <1){
             CommonUtil.alter("联系人不能为空！");return;
         }
+        else{
+            if(FormatUtil.getStringLength(et_contact.getText().toString())>20){
+                CommonUtil.alter("联系人输入有误！");return;
+            }
+        }
         if(et_mobile.getText().toString().length() <1){
             CommonUtil.alter("联系电话不能为空！");return;
+        }
+        else{
+            if(et_mobile.getText().toString().length() !=11){
+                CommonUtil.alter("联系电话输入有误！");return;
+            }
         }
         if(et_compname.getText().toString().length() <1){
             CommonUtil.alter("公司名称不能为空！");return;
         }
+        else{
+            if(FormatUtil.getStringLength(et_compname.getText().toString())>20){
+                CommonUtil.alter("公司名称输入有误！");return;
+            }
+        }
+        if(FormatUtil.getStringLength(et_remark.getText().toString())>100){
+            CommonUtil.alter("备注输入有误！");return;
+        }
+
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("contact", et_contact.getText().toString());

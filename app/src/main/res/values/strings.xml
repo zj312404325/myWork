@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HelloWorld</string>
+    <string name="app_name">金赢工业超市</string>
     <string name="action_settings">Settings</string>
     <string name="saf">sadf</string>
     <string name="hello_world">Hello world!</string>
@@ -65,4 +65,5 @@
     <string name="title_activity_tx_zx">TxZxActivity</string>
     <string name="title_activity_refund_list">RefundListActivity</string>
     <string name="title_activity_register_tis">RegisterTisActivity</string>
+    <string name="rule_password">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`¬!"£$%^*()~=#{}[];':,./?/*-_+&#060;&#062;&#064;&#038;</string>
 </resources>

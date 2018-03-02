@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.administrator.jymall.common.TopNoLoginActivity;
 import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 
 import org.json.JSONException;
@@ -64,8 +65,8 @@ public class Forget1Activity extends TopNoLoginActivity {
     @Event(R.id.submitbtn)
     private void submitClick(View v){
 
-        if(et_newpass.getText().length() <6){
-            CommonUtil.alter("密码必须大于6位！");return;
+        if(!FormatUtil.isLegalPassword(et_newpass.getText().toString())){
+            CommonUtil.alter("密码必须为8~16个字符，包括字母、数字、特殊符号任意两种，区分大小写！");return;
         }
         if(!et_newpass.getText().toString().equals(et_repass.getText().toString())){
             CommonUtil.alter("两次密码不相同");return;
@@ -138,7 +139,16 @@ public class Forget1Activity extends TopNoLoginActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if (editable.length() > 0) {
+                    int pos = editable.length() - 1;
+                    char c = editable.charAt(pos);
+                    if (c == '#') {
+                        //这里限制在字串最后追加#
+                        editable.delete(pos,pos+1);
+                        //Toast.makeText(Forget1Activity.this, "Error letter.", Toast.LENGTH_SHORT).show();
+                        //CommonUtil.alter("输入字符非法！");
+                    }
+                }
             }
         };
 

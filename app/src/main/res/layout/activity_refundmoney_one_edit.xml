@@ -179,9 +179,11 @@
 
 				<EditText
 					style="@style/wrap_content"
-					android:text="加载中..."
+					android:layout_width="100dp"
+					android:background="@drawable/bg_edittext"
+					android:text="0.00"
 					android:id="@+id/tv_refundMoney"
-					android:inputType="number"
+					android:inputType="numberDecimal"
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentRight="true"
 					android:layout_centerVertical="true"/>
@@ -232,8 +234,10 @@
 
 				<EditText
 					style="@style/wrap_content"
+					android:layout_width="match_parent"
 					android:text=""
 					android:hint="选填"
+					android:background="@drawable/bg_edittext"
 					android:id="@+id/et_refundMark"
 					android:layout_gravity="center_vertical"
 					android:layout_alignParentRight="true"

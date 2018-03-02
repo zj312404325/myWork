@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+		<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="#ffffff"
+				android:id="@+id/pro">
+		         
+		         <ImageView
+					 android:id="@+id/proimg"
+					 android:layout_width="match_parent"
+					 android:layout_height="146dp" />
+		       
+		         <TextView
+					 android:id="@+id/protitle"
+					 android:layout_below="@id/proimg"
+					 android:layout_width="match_parent"
+					 android:layout_height="25dp"
+		             android:text="放技术达力芬结束啦的房价圣达菲萨芬"
+					 android:gravity="center"
+					 android:maxLines="1"
+		             android:layout_marginLeft="4dp"
+					 android:layout_marginRight="4dp" />
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="50dp"
+					android:layout_below="@id/protitle"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/oldpromoney"
+						android:layout_width="match_parent"
+						android:layout_height="25dp"
+						android:text="原价：￥1231"
+						android:gravity="center"
+						android:layout_weight="1"
+						android:textColor="#c96876"/>
+					<TextView
+						android:id="@+id/promoney"
+						android:layout_width="match_parent"
+						android:layout_height="25dp"
+						android:text="现价：￥1231"
+						android:gravity="center"
+						android:layout_weight="1"
+						android:textColor="#c96876"/>
+				</LinearLayout>
+
+		</RelativeLayout>
+</LinearLayout>

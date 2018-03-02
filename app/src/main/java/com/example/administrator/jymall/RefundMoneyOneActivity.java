@@ -171,6 +171,7 @@ public class RefundMoneyOneActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
+                int count=0;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneActivity.this);
                 builder.setIcon(R.drawable.ic_launcher);
                 builder.setTitle("货物状态");
@@ -181,7 +182,15 @@ public class RefundMoneyOneActivity extends TopActivity {
                  * 第二个参数代表索引，指定默认哪一个单选框被勾选上，1表示默认'女' 会被勾选上
                  * 第三个参数给每一个单选项绑定一个监听器
                  */
-                builder.setSingleChoiceItems(receiveState, 1, new DialogInterface.OnClickListener()
+                if(FormatUtil.isNoEmpty(isReceived)){
+                    if(isReceived.equals("1")){
+                        count=1;
+                    }
+                    else{
+                        count=0;
+                    }
+                }
+                builder.setSingleChoiceItems(receiveState, count, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
@@ -231,6 +240,7 @@ public class RefundMoneyOneActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
+                int count=0;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneActivity.this);
                 builder.setIcon(R.drawable.ic_launcher);
                 builder.setTitle("退款原因");
@@ -238,10 +248,18 @@ public class RefundMoneyOneActivity extends TopActivity {
                 //    设置一个单项选择下拉框
                 /**
                  * 第一个参数指定我们要显示的一组下拉单选框的数据集合
-                 * 第二个参数代表索引，指定默认哪一个单选框被勾选上，1表示默认'女' 会被勾选上
+                 * 第二个参数代表索引，指定默认哪一个单选框被勾选上，0开始
                  * 第三个参数给每一个单选项绑定一个监听器
                  */
-                builder.setSingleChoiceItems(refundReason, 1, new DialogInterface.OnClickListener()
+                if(FormatUtil.isNoEmpty(reason)){
+                    for(int i=0;i<refundReason.length;i++){
+                        if(refundReason[i].equals(reason)){
+                            count=i;
+                            break;
+                        }
+                    }
+                }
+                builder.setSingleChoiceItems(refundReason, count, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
@@ -343,6 +361,8 @@ public class RefundMoneyOneActivity extends TopActivity {
                                     finish();
                                     Intent i =  new Intent(getApplicationContext(), RefundMoneyTwoActivity.class);
                                     i.putExtra("refundId", refundid);
+                                    i.putExtra("orderId", orderid);
+                                    i.putExtra("orderDtlId", orderdtlid);
                                     startActivity(i);
                                 }
                             } catch (JSONException e) {
@@ -423,6 +443,7 @@ public class RefundMoneyOneActivity extends TopActivity {
                                 }
                                 else{
                                     fileurl=res.getString("fileUrl");
+                                    progressDialog.hide();
                                 }
                             }
                         }

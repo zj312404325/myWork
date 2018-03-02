@@ -46,11 +46,10 @@
     <application
         android:name=".common.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/icon_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
@@ -491,7 +490,12 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="pjReKIasuMsRUX3qsr9aNjrwZPOCipn0" />
+            android:value="emEzNCQmilO0tSZHQZCgrTVrEGGvLmuK" />
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">//LBS SDK中的服务
+        </service>
     </application>
 
 </manifest>

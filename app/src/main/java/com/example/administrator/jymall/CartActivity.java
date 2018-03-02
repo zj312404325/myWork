@@ -95,6 +95,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 	public List<Map<String, Object>> dateMaps= new ArrayList<Map<String, Object>>();
 	
 	private SimpleAdapter sap;
+	private String skey ="";
 	
 
 	@Override
@@ -102,6 +103,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
 		super.progressDialog.hide();
+		skey=super.serverKey;
 		parentControl();
 		changeDiv();
 		sap = new InfoSimpleAdapter(CartActivity.this, dateMaps,
@@ -157,6 +159,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 						dateMap.put("createDate", buyCartList.getJSONObject(i).get("createDate"));
 						dateMap.put("proID", buyCartList.getJSONObject(i).get("proID"));
 						dateMap.put("propID", buyCartList.getJSONObject(i).get("propID"));
+						dateMap.put("proSpec", buyCartList.getJSONObject(i).get("proSpec"));
 						dateMaps.add(dateMap);
 					}
 					sap.notifyDataSetChanged();
@@ -211,8 +214,18 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 				holder.tv_salePrice.setText("面议");
 			}
 			else {
-				holder.tv_salePrice.setText("￥" + FormatUtil.toString(salePricetemp));
+				holder.tv_salePrice.setText("￥" + FormatUtil.toString(salePricetemp)+"元");
 			}
+
+			//规格
+			String spec=myMaps.get(position).get("proSpec").toString();
+			if(FormatUtil.isNoEmpty(spec)){
+				holder.tv_spec.setText("规格："+spec);
+			}
+			else{
+				holder.tv_spec.setText("规格：暂无");
+			}
+
 
 			//final JSONArray productPrices = FormatUtil.toJSONArray(myMaps.get(position).get("productPrices").toString());
 
@@ -224,6 +237,38 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 				@Override
 				public void change(int count) {            //总价变化
 					myMaps.get(position).put("quantity", count);
+
+					//改变数量
+					Map<String, String> maps= new HashMap<String, String>();
+					maps.put("serverKey", skey);
+					maps.put("quantity", FormatUtil.toString(count));
+					maps.put("id", myMaps.get(position).get("id").toString());
+					XUtilsHelper.getInstance().post("app/updateMallBuycart.htm", maps,new XUtilsHelper.XCallBack(){
+
+						@SuppressLint("NewApi")
+						@Override
+						public void onResponse(String result)  {
+
+							JSONObject res;
+							try {
+								res = new JSONObject(result);
+								setServerKey(res.get("serverKey").toString());
+								if(res.get("d").equals("n")){
+									CommonUtil.alter(res.get("msg").toString(),getApplicationContext());
+								}
+								else{
+									myMaps.get(position).put("salePrice", res.get("salePrice").toString());
+									double salePricetemp = FormatUtil.toDoubleSmp(res.get("salePrice").toString());
+									holder.tv_salePrice.setText("￥" + FormatUtil.toString(salePricetemp)+"元");
+									getAllMoney();
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+
+					});
 					getAllMoney();
 				}
 			});
@@ -402,12 +447,18 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 	
 	@Event(R.id.btn_js)
 	private void btnjsClick(View v){
-		Intent i = new Intent(getApplicationContext(), AddOrderActivity.class);
-		i.putExtra("data", (Serializable)dateMaps);
-		i.putExtra("goodsMoney", goodsMoney);
-		i.putExtra("goodsCount", FormatUtil.toString(goodsCount));
-		i.putExtra("orderType", "order");
-		startActivity(i);
+		if(super.isRealName) {
+			Intent i = new Intent(getApplicationContext(), AddOrderActivity.class);
+			i.putExtra("data", (Serializable) dateMaps);
+			i.putExtra("goodsMoney", goodsMoney);
+			i.putExtra("goodsCount", FormatUtil.toString(goodsCount));
+			i.putExtra("orderType", "order");
+			startActivity(i);
+		}
+		else{
+			CommonUtil.alter("请先进行实名认证！");
+			return;
+		}
 	}
 	
 	@Event(R.id.top_del)
@@ -489,6 +540,8 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		private CountView av_quantity;
 		@ViewInject(R.id.tv_salePrice)
 		private TextView tv_salePrice;
+		@ViewInject(R.id.tv_spec)
+		private TextView tv_spec;
 	}
 
 	private void onLoad() {

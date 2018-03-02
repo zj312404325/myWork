@@ -45,12 +45,21 @@
               android:layout_alignParentRight="true"
               android:layout_alignParentBottom="true">
           </com.example.administrator.jymall.view.CountView>
+
             <TextView
                 android:id="@+id/tv_salePrice"
                 style="@style/wrap_content"
                 android:text="￥3400.00"
                 android:textColor="@color/red"
                 android:layout_alignParentBottom="true"/>
+
+          <TextView
+              android:id="@+id/tv_spec"
+              style="@style/wrap_content"
+              android:text="规格：3.00*1024"
+              android:textSize="12sp"
+              android:layout_above="@id/tv_salePrice"
+              android:layout_marginBottom="5dp"/>
         </RelativeLayout>
     </LinearLayout>
 

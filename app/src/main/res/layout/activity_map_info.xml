@@ -5,13 +5,18 @@
     tools:context=".MapInfoActivity" >
 
 	 <include  android:id="@+id/top_title"  layout="@layout/top" />
-	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+	<LinearLayout style="@style/fill" android:layout_below="@id/top_title" >
+		<TextView
+			android:id="@+id/position_text_view"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="gone"/>
 		<com.baidu.mapapi.map.MapView
 			android:id="@+id/bmapView"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:clickable="true" />
+			android:clickable="true"/>
 		
-	</ScrollView>
+	</LinearLayout>
 
 </RelativeLayout>

@@ -84,12 +84,93 @@
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
 
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:gravity="left"
+					android:text="尊敬的用户，为了您的申请能尽快审核，请如实填写下列信息："
+					android:textSize="14dp"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_height="30dp"
+					android:layout_marginTop="5dp"
+					android:background="#ececec"
+					android:gravity="center_vertical"
+					android:text="办公场所照片："
+					android:textSize="14dp"/>
+
 				<ImageView
+					android:id="@+id/iv_officeImage"
 					android:layout_marginTop="5dp"
 					android:layout_gravity="center"
 					android:layout_width="200dp"
 					android:layout_height="180dp"
-					android:background="@drawable/supply_step2"/>
+					android:background="@drawable/mall_upload_common"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:text="注：我们只接受jpg、jpeg、gif、png、bmp格式图像，图像最大不要超过10MB。"
+					android:textColor="@color/login_back_blue"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:layout_height="30dp"
+					android:layout_marginTop="5dp"
+					android:background="#ececec"
+					android:gravity="center_vertical"
+					android:text="公司运营"
+					android:textSize="14dp"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="企业性质："/>
+						<TextView
+							android:layout_marginLeft="10dp"
+							android:id="@+id/tv_value"
+							android:layout_width="120dp"
+							android:layout_height="wrap_content"
+							android:background="@drawable/bg_edittext"
+							android:drawableRight="@drawable/icon_down"
+							android:padding="10dp"
+							android:text=""
+							android:hint="请选择"
+							android:tag="0"
+							android:textSize="14sp"/>
+					</LinearLayout>
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_marginTop="10dp"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="企业人数："/>
+
+						<EditText
+							android:id="@+id/et_peopleCount"
+							android:layout_marginLeft="10dp"
+							android:layout_width="120dp"
+							android:padding="10dp"
+							android:layout_height="wrap_content"
+							android:background="@drawable/bg_edittext"
+							android:inputType="number"
+							android:textSize="14sp"
+							android:text="99"/>
+					</LinearLayout>
+
+				</LinearLayout>
 
 				<Button
 					style="@style/btndarkblue"

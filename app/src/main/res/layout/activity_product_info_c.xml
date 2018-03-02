@@ -259,6 +259,13 @@
 					android:textColor="#939393"
 					android:layout_centerInParent="true" />-->
 
+				<com.example.administrator.jymall.view.XListView
+					android:id="@+id/xListView"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:cacheColorHint="#00000000">
+				</com.example.administrator.jymall.view.XListView>
+
 				<com.example.administrator.jymall.view.MyListView
 					android:id="@+id/lv_list"
 					android:layout_width="match_parent"

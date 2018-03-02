@@ -6,7 +6,7 @@
     tools:context=".ProductActivity"
 	android:background="#ffffff">
 
-	<include  android:id="@+id/top"  layout="@layout/top_search_product" />
+	<include  android:id="@+id/top"  layout="@layout/top_search_product_title" />
 
 	<LinearLayout
 		android:layout_width="fill_parent"

@@ -65,23 +65,17 @@
 					android:id="@+id/tv_matchState"
 					android:textSize="18sp"
 					android:text="加载中..."/>
-
-			</LinearLayout>
-
-			<LinearLayout
-				style="@style/wrap_content"
-				android:layout_marginTop="5dp"
-				android:layout_marginBottom="5dp"
-				android:orientation="horizontal">
 				<Button
 					style="@style/btnwhite"
 					android:text="取消"
+					android:layout_marginLeft="10dp"
 					android:layout_width="80dp"
 					android:layout_height="30dp"
 					android:layout_marginRight="10dp"
 					android:id="@+id/btn_cancel"
 					android:layout_gravity="right"
 					android:visibility="gone"/>
+
 			</LinearLayout>
 		</LinearLayout>
 	</LinearLayout>

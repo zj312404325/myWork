@@ -542,6 +542,8 @@
 							android:text=""
 							android:hint="选填"
 							android:layout_width="match_parent"
+							android:maxLength="20"
+							android:maxLines="1"
 							android:background="@drawable/bg_edittext"
 							android:id="@+id/et_refundFeeRemark"
 							android:layout_gravity="center_vertical"
@@ -614,7 +616,7 @@
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="100dp"
+				android:layout_height="120dp"
 				android:orientation="vertical"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
@@ -630,8 +632,16 @@
 
 				<TextView
 					style="@style/wrap_content"
+					android:text="请等待商家收货并退款"
+					android:layout_gravity="center_horizontal"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"/>
+
+				<TextView
+					style="@style/wrap_content"
 					android:text="- 如果商家收到货并检验无误，将操作退款给您。"
 					android:layout_gravity="left"
+					android:layout_marginTop="5dp"
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>
 

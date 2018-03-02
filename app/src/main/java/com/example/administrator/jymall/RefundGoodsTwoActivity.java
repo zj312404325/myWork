@@ -249,8 +249,9 @@ public class RefundGoodsTwoActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
+                int count=0;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsTwoActivity.this);
-                builder.setIcon(R.drawable.ic_launcher);
+                builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("区域服务中心");
                 final String[] list = (String[])serviceNameList.toArray(new String[serviceNameList.size()]);
                 //    设置一个单项选择下拉框
@@ -259,7 +260,16 @@ public class RefundGoodsTwoActivity extends TopActivity {
                  * 第二个参数代表索引，指定默认哪一个单选框被勾选上，1表示默认'女' 会被勾选上
                  * 第三个参数给每一个单选项绑定一个监听器
                  */
-                builder.setSingleChoiceItems(list, 0, new DialogInterface.OnClickListener()
+                String info=serviceInfo.getText().toString();
+                if(FormatUtil.isNoEmpty(info)){
+                    for(int i=0;i<list.length;i++){
+                        if(list[i].equals(info)){
+                            count=i;
+                            break;
+                        }
+                    }
+                }
+                builder.setSingleChoiceItems(list, count, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
@@ -308,8 +318,9 @@ public class RefundGoodsTwoActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
+                int count=0;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsTwoActivity.this);
-                builder.setIcon(R.drawable.ic_launcher);
+                builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("物流公司");
                 final String[] compList = {"顺丰", "中通", "圆通", "韵达"};
                 //    设置一个单项选择下拉框
@@ -318,7 +329,15 @@ public class RefundGoodsTwoActivity extends TopActivity {
                  * 第二个参数代表索引，指定默认哪一个单选框被勾选上，1表示默认'女' 会被勾选上
                  * 第三个参数给每一个单选项绑定一个监听器
                  */
-                builder.setSingleChoiceItems(compList, 0, new DialogInterface.OnClickListener()
+                if(FormatUtil.isNoEmpty(logistic)){
+                    for(int i=0;i<compList.length;i++){
+                        if(compList[i].equals(logistic)){
+                            count=i;
+                            break;
+                        }
+                    }
+                }
+                builder.setSingleChoiceItems(compList, count, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
@@ -463,6 +482,15 @@ public class RefundGoodsTwoActivity extends TopActivity {
         }
         else if(!FormatUtil.isNoEmpty(logistic)){
             CommonUtil.alter("请选择物流公司！");
+            return ;
+        }
+
+        if(FormatUtil.getStringLength(logisticno)>20){
+            CommonUtil.alter("运单号填写不正确！");
+            return ;
+        }
+        if(FormatUtil.getStringLength(logisticremark)>40){
+            CommonUtil.alter("运费说明填写不正确！");
             return ;
         }
 

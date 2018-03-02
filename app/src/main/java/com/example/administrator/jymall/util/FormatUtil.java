@@ -433,4 +433,17 @@ public class FormatUtil {
 		}
 		return length;
 	}
+
+	/**
+	 * 获得字符串长度
+	 * @return
+	 */
+	public static  boolean isLegalPassword(String s){
+		Pattern pattern = Pattern.compile("(?!^[0-9]+$)(?!^[A-z]+$)(?!^[^A-z0-9]+$)^.{8,16}$");
+		Matcher matcher = pattern.matcher(s);
+		boolean b= matcher.matches();
+		return b;
+	}
+
+
 }

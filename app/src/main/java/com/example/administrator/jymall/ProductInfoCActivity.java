@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.DateStyle;
+import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.URLImageParser;
@@ -36,12 +39,13 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @ContentView(R.layout.activity_product_info_c)
-public class ProductInfoCActivity extends TopActivity{
+public class ProductInfoCActivity extends TopActivity implements XListView.IXListViewListener{
 	
 	@ViewInject(R.id.tab1)
 	private RelativeLayout tab1;
@@ -71,6 +75,9 @@ public class ProductInfoCActivity extends TopActivity{
 	private XListView listViewAll=null;
 	@ViewInject(R.id.lv_list)
 	private MyListView lv_list;
+
+	private int start = 1;
+	private Handler mHandler;
 
 	public List<Map<String, Object>> data_list= new ArrayList<Map<String, Object>>();
 	private SimpleAdapter sap;
@@ -109,10 +116,14 @@ public class ProductInfoCActivity extends TopActivity{
 			appraiseList = new JSONArray(i.getStringExtra("appraiseList"));
 			sap = new ProSimpleAdapter(ProductInfoCActivity.this, data_list,
 					R.layout.listview_appraise,
-					new String[]{"userName"},
-					new int[]{R.id.tv_userName});
-			lv_list.setAdapter(sap);
-			getData();
+					new String[]{},
+					new int[]{});
+			//lv_list.setAdapter(sap);
+			listViewAll.setAdapter(sap);
+			listViewAll.setPullLoadEnable(true);
+			listViewAll.setXListViewListener(this);
+			getData(true,true);
+			mHandler = new Handler();
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -120,10 +131,38 @@ public class ProductInfoCActivity extends TopActivity{
 		}
 	}
 
-	private void getData(){
+	private void getData(final boolean isShow,final boolean flag){
+		int pageSize=10;
+
+		if(isShow){
+			progressDialog.show();
+		}
+		if(flag){
+			start = 1;
+		}
+
+		listViewAll.setPullLoadEnable(false);
+		tv_noData.setVisibility(View.GONE);
 		try {
 			if(FormatUtil.isNoEmpty(appraiseList)) {
-				for (int i = 0; i < appraiseList.length(); i++) {
+				int count=appraiseList.length();
+				int totalPage=pageSize*start;
+				if(totalPage<=count){
+					count=totalPage;
+				}
+				if(flag){
+					data_list.clear();
+				}
+				if(isShow){
+					progressDialog.hide();
+				}
+				if(count==0 && start == 1) {
+					tv_noData.setVisibility(View.VISIBLE);
+				}
+				else if(count ==  10 ) {
+					listViewAll.setPullLoadEnable(true);
+				}
+				for (int i = 0; i < count; i++) {
 					Map<String, Object> dateMap = new HashMap<String, Object>();
 					dateMap.put("createuser", appraiseList.getJSONObject(i).get("createuser"));
 					dateMap.put("createdate", appraiseList.getJSONObject(i).get("createdate"));
@@ -202,27 +241,34 @@ public class ProductInfoCActivity extends TopActivity{
 				holder.iv_pic1.setVisibility(View.GONE);
 				holder.iv_pic2.setVisibility(View.GONE);
 				holder.iv_pic3.setVisibility(View.GONE);
-				holder.iv_pic4.setVisibility(View.GONE);
-				holder.iv_pic5.setVisibility(View.GONE);
+
 				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic1").toString())) {
 					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic1, data_list.get(position).get("pic1").toString(), true);
 					holder.iv_pic1.setVisibility(View.VISIBLE);
+				}
+				else{
+					holder.iv_pic1.setVisibility(View.GONE);
 				}
 				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic2").toString())) {
 					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic2, data_list.get(position).get("pic2").toString(), true);
 					holder.iv_pic2.setVisibility(View.VISIBLE);
 				}
+				else{
+					holder.iv_pic2.setVisibility(View.GONE);
+				}
 				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic3").toString())) {
 					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic3, data_list.get(position).get("pic3").toString(), true);
 					holder.iv_pic3.setVisibility(View.VISIBLE);
 				}
-				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic4").toString())) {
-					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic4, data_list.get(position).get("pic4").toString(), true);
-					holder.iv_pic4.setVisibility(View.VISIBLE);
+				else{
+					holder.iv_pic3.setVisibility(View.GONE);
 				}
-				if(FormatUtil.isNoEmpty(data_list.get(position).get("pic5").toString())) {
-					XUtilsHelper.getInstance().bindCommonImage(holder.iv_pic5, data_list.get(position).get("pic5").toString(), true);
-					holder.iv_pic5.setVisibility(View.VISIBLE);
+
+				if( holder.iv_pic1.getVisibility() == View.GONE &&   holder.iv_pic2.getVisibility() == View.GONE && holder.iv_pic3.getVisibility() == View.GONE){
+					holder.ll_imageArea.setVisibility(View.GONE);
+				}
+				else{
+					holder.ll_imageArea.setVisibility(View.VISIBLE);
 				}
 
 				String level=data_list.get(position).get("productLevel").toString();
@@ -269,10 +315,8 @@ public class ProductInfoCActivity extends TopActivity{
 		private ImageView iv_pic2;
 		@ViewInject(R.id.iv_pic3)
 		private ImageView iv_pic3;
-		@ViewInject(R.id.iv_pic4)
-		private ImageView iv_pic4;
-		@ViewInject(R.id.iv_pic5)
-		private ImageView iv_pic5;
+		@ViewInject(R.id.ll_imageArea)
+		private LinearLayout ll_imageArea;
 	}
 	
 	@SuppressLint("NewApi")
@@ -328,5 +372,33 @@ public class ProductInfoCActivity extends TopActivity{
 		return true;
 	}
 
+	private void onLoad() {
+		listViewAll.stopRefresh();
+		listViewAll.stopLoadMore();
+		listViewAll.setRefreshTime(DateUtil.DateToString(new Date(), DateStyle.HH_MM_SS));
+	}
+	@Override
+	public void onRefresh() {
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				start = 1;
+				getData(true,true);
+				onLoad();
+			}
+		}, 1);
 
+	}
+	@Override
+	public void onLoadMore() {
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				start++;
+				getData(true,false);
+				onLoad();
+			}
+		}, 1);
+
+	}
 }

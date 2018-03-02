@@ -3,7 +3,14 @@ package com.example.administrator.jymall;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -16,15 +23,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.example.administrator.jymall.common.SpinnerPopWindow;
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
+import com.example.administrator.jymall.util.ImageFactory;
 import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyConfirmDialog;
 import com.example.administrator.jymall.view.MyGridView;
 
 import org.json.JSONArray;
@@ -35,6 +46,7 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +90,11 @@ public class MyCreditActivity extends TopActivity {
     @ViewInject(R.id.iv_customSeal)
     private ImageView iv_customSeal;
 
+    @ViewInject(R.id.iv_officeImage)
+    private ImageView iv_officeImage;
+    @ViewInject(R.id.et_peopleCount)
+    private EditText et_peopleCount;
+
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
 
@@ -85,6 +102,7 @@ public class MyCreditActivity extends TopActivity {
     private String pic1="";
     private String pic2="";
     private String pic3="";
+    private String officeImage="";
     private String zoneid="";
     private String compType="";
     private String compName="";
@@ -98,6 +116,18 @@ public class MyCreditActivity extends TopActivity {
     public List<Map<String, Object>> dateMaps= new ArrayList<Map<String, Object>>();
     public List<Map<String, Object>> sealMaps= new ArrayList<Map<String, Object>>();
 
+
+    private List<String> list;
+    private TextView tvValue;
+    private SpinnerPopWindow<String> mSpinerPopWindow;
+
+    //上传图片
+    private String TEMP_IMAGE_PATH;
+    private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
+
+    private Bitmap bitmap1 = null;
+    private MyConfirmDialog mcd1 = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +135,73 @@ public class MyCreditActivity extends TopActivity {
         super.title.setText("信用支付状态");
         progressDialog.hide();
         getState();
+
+        initData();
+        tvValue = (TextView) findViewById(R.id.tv_value);
+        tvValue.setOnClickListener(clickListener);
+        mSpinerPopWindow = new SpinnerPopWindow<String>(this, list,itemClickListener);
+        mSpinerPopWindow.setOnDismissListener(dismissListener);
+    }
+
+    /**
+     * 监听popupwindow取消
+     */
+    private PopupWindow.OnDismissListener dismissListener=new PopupWindow.OnDismissListener() {
+        @Override
+        public void onDismiss() {
+            setTextImage(R.drawable.icon_down);
+        }
+    };
+
+    /**
+     * popupwindow显示的ListView的item点击事件
+     */
+    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            mSpinerPopWindow.dismiss();
+            tvValue.setText(list.get(position));
+            compType=list.get(position);
+            //Toast.makeText(MyScoreActivity.this, "点击了:" + list.get(position),Toast.LENGTH_LONG).show();
+        }
+    };
+
+    /**
+     * 显示PopupWindow
+     */
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.tv_value:
+                    mSpinerPopWindow.setWidth(tvValue.getWidth());
+                    mSpinerPopWindow.showAsDropDown(tvValue);
+                    setTextImage(R.drawable.icon_up);
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        list = new ArrayList<String>();
+        list.add("生产企业" );
+        list.add("加工企业" );
+        list.add("仓储企业" );
+        list.add("贸易商" );
+        list.add("事业单位" );
+    }
+
+    /**
+     * 给TextView右边设置图片
+     * @param resId
+     */
+    private void setTextImage(int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(),drawable.getMinimumHeight());// 必须设置图片大小，否则不显示
+        tvValue.setCompoundDrawables(null, null, drawable, null);
     }
 
     private void getState(){
@@ -253,11 +350,9 @@ public class MyCreditActivity extends TopActivity {
 
     @Event(R.id.submit)
     private void dosubmitclick(View v){
-        pic1="";
-        pic1="";
-        pic1="";
-        compType="";
-        personNumber="";
+        pic1=officeImage;
+        compType=tvValue.getText().toString();
+        personNumber=et_peopleCount.getText().toString();
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("id", id);
@@ -280,6 +375,7 @@ public class MyCreditActivity extends TopActivity {
                         CommonUtil.alter(res.get("msg").toString());
                     }
                     else{
+                        CommonUtil.alter("申请成功，请等待审核！");
                         getState();
                     }
 
@@ -590,5 +686,107 @@ public class MyCreditActivity extends TopActivity {
         @ViewInject(R.id.pro)
         private RelativeLayout pro;
 
+    }
+
+    @Event(value=R.id.iv_officeImage,type=View.OnTouchListener.class)
+    private boolean officeImageclick(View v, MotionEvent event){
+        if (event.getAction() == event.ACTION_UP) {
+            if(mcd1==null){
+                mcd1=new MyConfirmDialog(MyCreditActivity.this, "办公室照片", "拍照上传", "本地上传");
+                mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
+                    @Override
+                    public void doConfirm() {
+                        TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
+                        Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+                        intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+                        startActivityForResult(intent1,201);
+                    }
+                    @Override
+                    public void doCancel() {
+                        Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
+                        intent.setType("image/*");
+                        startActivityForResult(intent, 101);
+                    }
+                });
+            }
+            mcd1.show();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==RESULT_OK){
+            //办公室照片
+            if(requestCode==101&&data!=null){
+                progressDialog.show();
+                mcd1.dismiss();
+                Uri uri = data.getData();
+                if(bitmap1 != null)//如果不释放的话，不断取图片，将会内存不够
+                    bitmap1.recycle();
+                TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                iv_officeImage.setImageBitmap(bitmap1);
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    officeImage=res.getString("fileUrl");
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+            else if(requestCode==201){
+                progressDialog.show();
+                mcd1.dismiss();
+                if(bitmap1 != null)//如果不释放的话，不断取图片，将会内存不够
+                    bitmap1.recycle();
+                ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
+                bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                iv_officeImage.setImageBitmap(bitmap1);
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("fileUploadeFileName", TEMP_IMAGE_PATH1.substring(TEMP_IMAGE_PATH1.lastIndexOf("/")+1));
+                maps.put("pathType","company");
+                Map<String, File> file = new HashMap<String, File>();
+                file.put("fileUploade",new File(TEMP_IMAGE_PATH1));
+                XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
+                    @Override
+                    public void onResponse(String result) {
+                        progressDialog.hide();
+                        try{
+                            JSONObject res = FormatUtil.toJSONObject(result);
+                            if(res != null){
+                                if(res.get("d").equals("n")){
+                                    CommonUtil.alter("图片上传失败");
+                                }
+                                else{
+                                    officeImage=res.getString("fileUrl");
+                                }
+                            }
+                        }
+                        catch(Exception e){e.printStackTrace();}
+                    }
+                });
+            }
+        }
     }
 }
