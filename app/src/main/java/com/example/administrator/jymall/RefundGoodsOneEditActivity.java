@@ -170,7 +170,7 @@ public class RefundGoodsOneEditActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsOneEditActivity.this);
                 builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("退货原因");

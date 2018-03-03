@@ -249,7 +249,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsTwoActivity.this);
                 builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("区域服务中心");
@@ -318,7 +318,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsTwoActivity.this);
                 builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("物流公司");
@@ -361,6 +361,11 @@ public class RefundGoodsTwoActivity extends TopActivity {
                                 tv_showComp.setText(compList[which]);
                                 logistic = compList[which];
                             }
+                        }
+                        else{
+                            //默认选第一个
+                            tv_showComp.setText(compList[0]);
+                            logistic = compList[0];
                         }
                     }
                 });

@@ -164,7 +164,7 @@ public class RefundGoodsOneActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundGoodsOneActivity.this);
                 builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("退货原因");
@@ -192,6 +192,10 @@ public class RefundGoodsOneActivity extends TopActivity {
                             if(which>-1) {
                                 tv_showReason.setText(refundReason[which]);
                                 reason = refundReason[which];
+                            }
+                            else{
+                                tv_showReason.setText(refundReason[0]);
+                                reason = refundReason[0];
                             }
                         }
                         //Toast.makeText(RefundMoneyOneActivity.this, "状态为：" + refundReason[which], Toast.LENGTH_SHORT).show();

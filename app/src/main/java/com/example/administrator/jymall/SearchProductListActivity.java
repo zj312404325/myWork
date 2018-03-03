@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.example.administrator.jymall.common.TopSearchActivity;
 import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
+import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
@@ -133,6 +134,10 @@ public class SearchProductListActivity extends TopSearchActivity implements IXLi
         Intent i = this.getIntent();
         cId = i.getStringExtra("categoryid");
         keyword= i.getStringExtra("keyword");
+
+        if(FormatUtil.isNoEmpty(keyword)){
+            top_searchbar_input_txt.setText(keyword);
+        }
 
         sap = new ProSimpleAdapter(SearchProductListActivity.this, dateMaps,
                 R.layout.listview_search_product,

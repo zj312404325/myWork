@@ -1,6 +1,8 @@
 package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -529,6 +531,16 @@ public class MyOrderInfoActivity extends TopActivity {
             });
             mcd.show();
         }
+    }
+
+    @Event(value=R.id.btn_copy)
+    private void copyClick(View v){
+        ClipboardManager clipboardManager = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
+        //创建ClipData对象
+        ClipData clipData = ClipData.newPlainText("orderNo", tv_orderNo.getText().toString());
+        //添加ClipData对象到剪切板中
+        clipboardManager.setPrimaryClip(clipData);
+        CommonUtil.alter("成功复制到剪贴板!");
     }
 
     private void hideAll(){

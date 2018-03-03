@@ -176,7 +176,7 @@ public class RefundMoneyOneEditActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneEditActivity.this);
                 builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("货物状态");
@@ -245,7 +245,7 @@ public class RefundMoneyOneEditActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneEditActivity.this);
                 builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("退款原因");

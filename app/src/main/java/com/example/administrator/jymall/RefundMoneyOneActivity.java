@@ -171,9 +171,9 @@ public class RefundMoneyOneActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneActivity.this);
-                builder.setIcon(R.drawable.ic_launcher);
+                builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("货物状态");
                 final String[] receiveState = {"未收到货", "已收到货"};
                 //    设置一个单项选择下拉框
@@ -240,9 +240,9 @@ public class RefundMoneyOneActivity extends TopActivity {
             @Override
             public void onClick(View v)
             {
-                int count=0;
+                int count=-1;
                 AlertDialog.Builder builder = new AlertDialog.Builder(RefundMoneyOneActivity.this);
-                builder.setIcon(R.drawable.ic_launcher);
+                builder.setIcon(R.drawable.icon_logo);
                 builder.setTitle("退款原因");
                 final String[] refundReason = {"7天无理由退换货", "退运费", "做工问题", "质量问题", "大小/尺寸与商品描述不符", "颜色/图案/款式与商品描述不符", "材质面料与商品描述不符", "少件/漏发", "卖家发错货", "包装/商品损坏/污渍", "假冒品牌", "未按约定时间发货", "发票问题"};
                 //    设置一个单项选择下拉框

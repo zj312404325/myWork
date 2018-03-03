@@ -20,7 +20,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.administrator.jymall.common.MyApplication;
-import com.example.administrator.jymall.common.TopActivity;
+import com.example.administrator.jymall.common.TopSearchOrderActivity;
 import com.example.administrator.jymall.util.BaseConst;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.DateStyle;
@@ -51,8 +51,8 @@ import java.util.Map;
  * Created by Administrator on 2018-01-09.
  */
 
-@ContentView(R.layout.activity_order)
-public class MyOrderActivity extends TopActivity implements IXListViewListener{
+@ContentView(R.layout.activity_order_search)
+public class MyOrderSearchActivity  extends TopSearchOrderActivity implements IXListViewListener{
 
     @ViewInject(R.id.tab)
     private LinearLayout ll_tab;
@@ -135,9 +135,6 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
     @ViewInject(R.id.iv_orderMatch)
     private ImageView iv_orderMatch;
 
-    @ViewInject(R.id.top_search)
-    private ImageView top_search;
-
     @ViewInject(R.id.tv_allOrder)
     private TextView tv_allOrder;
     @ViewInject(R.id.tv_commonOrder)
@@ -172,31 +169,29 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_order_search);
         x.view().inject(this);
         progressDialog.hide();
-        super.title.setText("我的订单");
-        top_search.setVisibility(View.VISIBLE);
+        //super.title.setText("订单搜索");
         skey = super.serverKey;
 
         Intent i = this.getIntent();
-        orderType = i.getStringExtra("orderType");
-        if(orderType== null){
-            orderType="";
+        orderNo = i.getStringExtra("keyword");
+        if(FormatUtil.isNoEmpty(orderNo)){
+            top_searchbar_input_txt.setText(orderNo);
         }
-        cssInit(orderType);
-        orderTypeInit(orderType);
 
-        sap = new ProSimpleAdapter(MyOrderActivity.this, dateMaps,
+        sap = new ProSimpleAdapter(MyOrderSearchActivity.this, dateMaps,
                 R.layout.listview_mallorder,
                 new String[]{"id"},
                 new int[]{R.id.tv_id});
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
-        setTab();
-        setTabTwo();
+
         getDate(true,true);
         mHandler = new Handler();
+
     }
 
     private void getDate(final boolean isShow,final boolean flag){
@@ -330,8 +325,6 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         }, 2000);
     }
 
-
-
     public class ProSimpleAdapter  extends SimpleAdapter {
         private LayoutInflater mInflater;
         public ProSimpleAdapter(Context context,
@@ -445,7 +438,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 交易取消开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认取消此订单吗?", "确定取消", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderSearchActivity.this, "您确认取消此订单吗?", "确定取消", "否");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -507,7 +500,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 确认收货开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确定收货", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderSearchActivity.this, "您确认已经收到货物?", "确定收货", "否");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -565,7 +558,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 删除订单开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认要删除订单？", "确定删除", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderSearchActivity.this, "您确认要删除订单？", "确定删除", "否");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -625,7 +618,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 交易取消开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认取消此订单吗?", "确定取消", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderSearchActivity.this, "您确认取消此订单吗?", "确定取消", "否");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -686,7 +679,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 交易取消开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认取消此订单吗?", "确定取消", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderSearchActivity.this, "您确认取消此订单吗?", "确定取消", "否");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -778,7 +771,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 确认收货开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确定收货", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderSearchActivity.this, "您确认已经收到货物?", "确定收货", "否");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -838,7 +831,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 删除订单开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认要删除订单？", "确定删除", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderSearchActivity.this, "您确认要删除订单？", "确定删除", "否");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -915,7 +908,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 }
 
                 final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) dateMaps.get(position).get("orderDtls");
-                final SimpleAdapter sapinfo = new InfoSimpleAdapter(MyOrderActivity.this, dateMapinfo,
+                final SimpleAdapter sapinfo = new InfoSimpleAdapter(MyOrderSearchActivity.this, dateMapinfo,
                         R.layout.listview_myorderinfo,
                         new String[]{"proName"},
                         new int[]{R.id.tv_proName});
@@ -1165,12 +1158,6 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
             return false;
         }
         return true;
-    }
-
-    @Event(value=R.id.top_search)
-    private void searchClick(View v){
-        Intent i = new Intent(getApplicationContext(),MyOrderSearchActivity.class);
-        startActivity(i);
     }
 
     @Override

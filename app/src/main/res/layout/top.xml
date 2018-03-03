@@ -33,4 +33,14 @@
 			android:layout_centerVertical="true"
 			android:layout_marginRight="10dp"
 			android:visibility="gone"/>
+
+		<ImageView
+			android:layout_width="17dp"
+			android:layout_height="17dp"
+			android:layout_alignParentEnd="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="20dp"
+			android:id="@+id/top_search"
+			android:background="@drawable/input_search"
+			android:visibility="gone"/>
 </RelativeLayout>

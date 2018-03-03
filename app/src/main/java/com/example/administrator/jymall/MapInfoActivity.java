@@ -14,13 +14,20 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.geocode.GeoCodeOption;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.example.administrator.jymall.common.TopActivity;
-import com.mobsandgeeks.saripaar.Validator;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
@@ -29,17 +36,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ContentView(R.layout.activity_map_info)
-public class MapInfoActivity extends TopActivity{
-
-    private MapView mMapView = null;
-    private BaiduMap mBaiduMap;
-    Validator validator;
-
+public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultListener{
     public LocationClient mLocationClient;
+    private GeoCoder mSearch = null; // 搜索模块，也可去掉地图模块独立使用
     private TextView positionText;
     private MapView mapView;
     private BaiduMap baiduMap;
     private boolean isFirstLocate=true;
+
+    private String  city;
+    private String  address;
+    private String  mobile;
+    private String  contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +60,10 @@ public class MapInfoActivity extends TopActivity{
 
 
         Intent i = getIntent();
-        String address = i.getStringExtra("address");
-        String mobile = i.getStringExtra("mobile");
-        String contact = i.getStringExtra("contact");
-        String city = i.getStringExtra("city");
+        address = i.getStringExtra("address");
+        mobile = i.getStringExtra("mobile");
+        contact = i.getStringExtra("contact");
+        city = i.getStringExtra("city");
 
         setContentView(R.layout.activity_map_info);
 
@@ -68,22 +76,88 @@ public class MapInfoActivity extends TopActivity{
         baiduMap.setMyLocationEnabled(true);
         positionText= (TextView) findViewById(R.id.position_text_view);
         List<String> permissionList=new ArrayList<>();
-        /*if(ContextCompat.checkSelfPermission(MapInfoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        }
-        if(ContextCompat.checkSelfPermission(MapInfoActivity.this, Manifest.permission.READ_PHONE_STATE)!= PackageManager.PERMISSION_GRANTED){
-            permissionList.add(Manifest.permission.READ_PHONE_STATE);
-        }
-        if(ContextCompat.checkSelfPermission(MapInfoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }*/
+
+        // 初始化搜索模块，注册事件监听
+        /**
+         * public static GeoCoder newInstance()
+         * 新建地理编码查询
+         * @return 地理编码查询对象
+         * */
+        mSearch = GeoCoder.newInstance();
+        /**
+         * public void setOnGetGeoCodeResultListener(OnGetGeoCoderResultListener listener)
+         * 设置查询结果监听者
+         * @param listener - 监听者
+         *
+         * 需要实现OnGetGeoCoderResultListener的
+         * onGetGeoCodeResult(GeoCodeResult result)和onGetReverseGeoCodeResult(ReverseGeoCodeResult result)
+         * 方法
+         * */
+        mSearch.setOnGetGeoCodeResultListener(this);
+
+        showCity(city,address);
+
         if(!permissionList.isEmpty()){
             String[]permissions=permissionList.toArray(new String[permissionList.size()]);
             ActivityCompat.requestPermissions(MapInfoActivity.this,permissions,1);
         }else{
             requestLocation();
         }
-    }//ACCESS_FINE_LOCATION、ACCESS_COARSE_LOCATION、READ_PHONE_STATE、WRITE_EXTERNAL_STORAGE这4个权限是危险权限
+    }
+
+    /**
+     * 发起搜索
+     *
+     * @param
+     */
+    private void showCity(String city, String address) {
+            // 地理位置搜索
+            //city(editCity.getText().toString())可以不写，GeoCodeOption共有两个方法，一个是查询城市，一个是查询地址；
+            //但是address（）方法必须写
+            mSearch.geocode(new GeoCodeOption().city(city).address(address));
+    }
+
+    /**
+     * 地理位置查询回调方法
+     * @param result 返回的经纬度
+     */
+    @Override
+    public void onGetGeoCodeResult(GeoCodeResult result) {
+        if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+            Toast.makeText(MapInfoActivity.this, "抱歉，未能找到结果", Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
+        baiduMap.clear();
+        //获取地址并且在地图上标注
+        baiduMap.addOverlay(new MarkerOptions().position(result.getLocation())
+                .icon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.icon_ali_location)));
+        baiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(result
+                .getLocation()));
+    }
+
+    /**
+     * 饭地理位置查询回调方法
+     * @param result 返回的地理位置
+     */
+    @Override
+    public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+        if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+            Toast.makeText(MapInfoActivity.this, "抱歉，未能找到地址", Toast.LENGTH_LONG).show();
+            return;
+        }
+        baiduMap.clear();
+        //获取地址并且标注
+        baiduMap.addOverlay(new MarkerOptions().position(result.getLocation())
+                .icon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.icon_ali_location)));
+        baiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(result
+                .getLocation()));
+
+    }
+
+    //ACCESS_FINE_LOCATION、ACCESS_COARSE_LOCATION、READ_PHONE_STATE、WRITE_EXTERNAL_STORAGE这4个权限是危险权限
     // 需要进行运行时权限处理，不过ACCESS_FINE_LOCATION、ACCESS_COARSE_LOCATION属于同一个权限组，两者申请其一就可以了。
     // 这里运用了一比较新的用法在运行时一次性申请3个权限。首先创建了一个List集合，然后依次判断这3个权限有没有被授权，
     // 如果没有被授权，就添加到List集合中，最后将List转换成数组，在调用ActivityCompat.requestPermissions()方法一次性申请。
@@ -137,6 +211,7 @@ public class MapInfoActivity extends TopActivity{
         super.onDestroy();
         mLocationClient.stop();//销毁之前，用stop()来停止定位
         mapView.onDestroy();
+        mSearch.destroy();
         baiduMap.setMyLocationEnabled(false);
     }
 
