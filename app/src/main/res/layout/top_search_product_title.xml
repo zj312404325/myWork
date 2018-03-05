@@ -64,4 +64,13 @@
 		android:layout_alignParentRight="true"
 		android:layout_marginRight="10dp"/>
 
+	<ImageButton
+		android:id="@+id/top_cart"
+		android:background="@drawable/icon_cart"
+		android:layout_width="30dp"
+		android:layout_height="30dp"
+		android:layout_centerVertical="true"
+		android:layout_toLeftOf="@id/top_fl"
+		android:layout_marginRight="10dp"/>
+
 </RelativeLayout>

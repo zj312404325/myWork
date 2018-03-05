@@ -1,5 +1,29 @@
 package com.example.administrator.jymall.util;
 
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ProgressBar;
+
+import com.example.administrator.jymall.BuildConfig;
+import com.example.administrator.jymall.R;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,28 +32,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.http.Header;
-import org.json.JSONArray;
-
 //import com.example.administrator.helloworld.AddOrderActivity;
-import com.example.administrator.jymall.R;
 //import com.example.administrator.helloworld.UserCenterActivity;
-import com.loopj.android.http.JsonHttpResponseHandler;
-
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.Uri;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.widget.ProgressBar;
-import android.view.LayoutInflater;
-import android.view.View;
 
 public class UpdateApp {
 	/* 版本号检查路径 */
@@ -374,9 +378,20 @@ public class UpdateApp {
         }
         // 通过Intent安装APK文件
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
-                "application/vnd.android.package-archive");
+
+        //判断是否是AndroidN以及更高的版本 解决安卓7.0无法安装更新
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".fileProvider", apkfile);
+            i.setDataAndType(contentUri, "application/vnd.android.package-archive");
+        } else {
+            i.setDataAndType(Uri.fromFile(apkfile), "application/vnd.android.package-archive");
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+
+        /*i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setDataAndType(Uri.parse("file://" + apkfile.toString()), "application/vnd.android.package-archive");*/
+
         mContext.startActivity(i);
         android.os.Process.killProcess(android.os.Process.myPid());
     }

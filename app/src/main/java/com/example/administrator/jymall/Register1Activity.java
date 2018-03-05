@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.administrator.jymall.common.TopNoLoginActivity;
 import com.example.administrator.jymall.util.CommonUtil;
 import com.example.administrator.jymall.util.DensityUtil;
+import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.ValidationUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
 
@@ -131,8 +132,8 @@ public class Register1Activity extends TopNoLoginActivity {
 
     @Event(R.id.nextbtn)
     private void nextClick(View v){
-        if(et_password.getText().toString().length() <6){
-            CommonUtil.alter("密码必须大于6位！");return;
+        if(!FormatUtil.isLegalPassword(et_password.getText().toString())){
+            CommonUtil.alter("密码必须为8~16个字符，包括字母、数字、特殊符号任意两种，区分大小写！");return;
         }
         if(!et_password.getText().toString().equals(et_repassword.getText().toString())){
             CommonUtil.alter("两个密码不相同");return;

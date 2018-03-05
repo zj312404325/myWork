@@ -391,6 +391,8 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 Button btn_payLast = (Button)convertView.findViewById(R.id.btn_payLast);
                 Button btn_confirmProduct = (Button)convertView.findViewById(R.id.btn_confirmProduct);
                 Button btn_appraise = (Button)convertView.findViewById(R.id.btn_appraise);
+                Button btn_logistic = (Button)convertView.findViewById(R.id.btn_logistic);
+
                 TextView tv_isAppraised = (TextView)convertView.findViewById(R.id.tv_isAppraised);
                 ImageView iv_orderTypeIcon = (ImageView)convertView.findViewById(R.id.iv_orderTypeIcon);
 
@@ -422,6 +424,15 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 }
 
                 btn_delete.setVisibility(View.GONE);
+                btn_logistic.setVisibility(View.VISIBLE);
+                btn_logistic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        Intent i = new Intent(getApplicationContext(),LogisticInfoActivity.class);
+                        i.putExtra("id", id);
+                        startActivity(i);
+                    }
+                });
 
                 if(!orderType.equals("orderMatch")) {
                     ll_firstMoney.setVisibility(View.GONE);

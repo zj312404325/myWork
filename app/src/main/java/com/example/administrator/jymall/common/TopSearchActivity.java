@@ -28,6 +28,9 @@ public class TopSearchActivity  extends ButtomTapActivity{
 	
 	@ViewInject(R.id.top_fx)
 	public ImageButton top_fx;
+
+	@ViewInject(R.id.top_back)
+	public ImageButton top_back;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,5 +63,10 @@ public class TopSearchActivity  extends ButtomTapActivity{
 	@Event(value=R.id.top_fx)
 	private void Click3(View v){
 		//CommonUtil.alter("我点击了分享");
+	}
+
+	@Event(value=R.id.top_back)
+	private void backClick(View v){
+		MyApplication.getInstance().finishActivity();
 	}
 }

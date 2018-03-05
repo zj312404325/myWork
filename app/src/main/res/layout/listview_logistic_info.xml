@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="80dp"
+		android:layout_gravity="center_vertical"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:orientation="horizontal">
+
+		<LinearLayout
+			style="@style/wrap_content"
+			android:layout_gravity="center_vertical"
+			android:orientation="vertical">
+
+			<ImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:background="@drawable/icon_logo" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="300dp"
+			android:layout_marginLeft="10dp"
+			android:layout_height="80dp"
+			android:layout_gravity="center_vertical"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				<TextView
+					android:id="@+id/tv_dateString"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center_vertical"
+					android:text="2018-02-22"
+					android:textColor="@color/red"
+					android:textSize="16sp" />
+				<TextView
+					android:layout_marginLeft="20dp"
+					android:id="@+id/tv_timeString"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:gravity="center_vertical"
+					android:text="13:11:11"
+					android:textColor="@color/red"
+					android:textSize="16sp" />
+			</LinearLayout>
+
+
+			<TextView
+				android:id="@+id/tv_context"
+				style="@style/wrap_content"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:text="[苏州市] [常熟直营十五]的派件已签收 感谢使用中通快递,期待再次为您服务!"
+				android:textColor="@color/gray"
+				android:maxLines="3"
+				android:textSize="12sp" />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

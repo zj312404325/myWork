@@ -232,6 +232,16 @@
 		  				android:layout_marginRight="10dp"
 						android:id="@+id/btn_thfh"
 		  			 	android:visibility="gone" />
+
+					<Button
+						style="@style/btnwhite"
+						android:text="物流信息"
+						android:layout_width="90dp"
+						android:layout_height="30dp"
+						android:layout_marginRight="10dp"
+						android:id="@+id/btn_logistic"
+						android:layout_gravity="right"
+						android:visibility="gone" />
 		        	
 		        </LinearLayout>
 		    <LinearLayout style="@style/line"  />

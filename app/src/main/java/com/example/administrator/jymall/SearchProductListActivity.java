@@ -24,7 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.example.administrator.jymall.common.TopSearchActivity;
+import com.example.administrator.jymall.common.TopSearchTitleActivity;
 import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.FormatUtil;
@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.Map;
 
 @ContentView(R.layout.activity_search_product)
-public class SearchProductListActivity extends TopSearchActivity implements IXListViewListener {
+public class SearchProductListActivity extends TopSearchTitleActivity implements IXListViewListener {
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;

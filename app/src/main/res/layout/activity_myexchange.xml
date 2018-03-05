@@ -23,14 +23,37 @@
 			android:textSize="18sp"
 			android:layout_centerHorizontal="true" />
 
-		<TextView
-			style="@style/wrap_content"
-			android:id="@+id/tv_myScore"
-			android:layout_below="@+id/myshow"
-			android:text="8888"
-			android:textColor="#939393"
-			android:textSize="25sp"
-			android:layout_centerInParent="true"/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/myshow">
+
+			<ImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_marginLeft="100dp"
+				android:background="@drawable/icon_my_score"/>
+			<TextView
+				style="@style/wrap_content"
+				android:id="@+id/tv_myScore"
+				android:layout_below="@+id/myshow"
+				android:layout_gravity="center"
+				android:text="8888"
+				android:textColor="#939393"
+				android:textSize="25sp"
+				android:layout_centerInParent="true"/>
+
+			<TextView
+				style="@style/wrap_content"
+				android:layout_gravity="center"
+				android:text="积分"
+				android:textColor="#939393"
+				android:textSize="25sp"
+				android:layout_centerInParent="true"/>
+
+		</LinearLayout>
+
+
 
 
 	</RelativeLayout>
@@ -50,6 +73,7 @@
 				android:id="@+id/listtv"
 				android:text="暂无数据"
 				android:textColor="#939393"
+				android:layout_gravity="center"
 			    android:layout_centerInParent="true" />
 	</LinearLayout>
 

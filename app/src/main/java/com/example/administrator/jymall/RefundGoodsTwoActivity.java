@@ -494,7 +494,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
             CommonUtil.alter("运单号填写不正确！");
             return ;
         }
-        if(FormatUtil.getStringLength(logisticremark)>40){
+        if(FormatUtil.getStringLength(logisticremark)>100){
             CommonUtil.alter("运费说明填写不正确！");
             return ;
         }

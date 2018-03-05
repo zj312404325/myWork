@@ -84,6 +84,7 @@ public class InvoiceActivity extends TopActivity {
 							maptemp.put("invoice", jobj.toString());
 							maptemp.put("invoiceDefault", jobj.get("invoiceDefault"));
 							maptemp.put("invoiceContent", jobj.get("invoiceContent").toString());
+							maptemp.put("taxNo", jobj.get("taxNo").toString());
 							maptemp.put("id", jobj.get("id"));
 							resMaps.add(maptemp);
 						}
@@ -121,7 +122,9 @@ public class InvoiceActivity extends TopActivity {
 				}
 				TextView tv_in_invoiceType = (TextView)convertView.findViewById(R.id.tv_in_invoiceType);
 				TextView tv_in_invoiceInfo = (TextView)convertView.findViewById(R.id.tv_in_invoiceInfo);
-				TextView tv_in_invoiceContent = (TextView)convertView.findViewById(R.id.tv_in_invoiceContent);		
+				TextView tv_in_invoiceContent = (TextView)convertView.findViewById(R.id.tv_in_invoiceContent);
+				TextView tv_in_taxNo = (TextView)convertView.findViewById(R.id.tv_in_taxNo);
+
 				
 				RadioButton rb_invoiceDefault = (RadioButton)convertView.findViewById(R.id.rb_invoiceDefault);
 				Button btn_select = (Button)convertView.findViewById(R.id.btn_select);
@@ -140,6 +143,12 @@ public class InvoiceActivity extends TopActivity {
 				else{
 					tv_in_invoiceType.setText("普通发票");
 					tv_in_invoiceInfo.setText(cJobj.getString("title"));
+					if(FormatUtil.isNoEmpty(cJobj.getString("taxNo"))){
+						tv_in_taxNo.setText(cJobj.getString("taxNo"));
+					}
+					else{
+						tv_in_taxNo.setText("暂无");
+					}
 				}
 				if(cJobj.getString("invoiceContent").equals("1")){
 					tv_in_invoiceContent.setText("明细");

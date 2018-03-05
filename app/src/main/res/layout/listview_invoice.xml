@@ -12,13 +12,29 @@
          		    android:layout_height="wrap_content" android:layout_gravity="center_vertical"
          		    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
 			       
-			       <TextView style="@style/match_parent"  android:text="普通发票"
-				                android:id="@+id/tv_in_invoiceType" android:textColor="#000000" android:textSize="16dp"/>
-					<TextView style="@style/match_parent"  android:text="苏州金赢网电子商务有限公司"
+			       <TextView
+					   style="@style/match_parent"
+					   android:text="普通发票"
+					   android:id="@+id/tv_in_invoiceType"
+					   android:textColor="#000000"
+					   android:textSize="16dp"/>
+					<TextView
+						style="@style/match_parent"
+						android:text="苏州金赢网电子商务有限公司"
 						android:id="@+id/tv_in_invoiceInfo"/>
-					<TextView style="@style/match_parent"  android:text="明细"
+					<TextView
+						style="@style/match_parent"
+						android:text="纳税人识别号123"
+						android:id="@+id/tv_in_taxNo"/>
+					<TextView
+						style="@style/match_parent"
+						android:text="明细"
 						android:id="@+id/tv_in_invoiceContent"/>
-					<TextView style="@style/wrap_content" android:visibility="gone" android:id="@+id/temp"/>
+
+					<TextView
+						style="@style/wrap_content"
+						android:visibility="gone"
+						android:id="@+id/temp"/>
 
 					<TextView
 						android:layout_marginTop="5dp"
