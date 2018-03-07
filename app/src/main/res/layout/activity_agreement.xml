@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#ececec"
+	tools:context=".AgreementActivity" >
+
+	<include  android:id="@+id/top_title"  layout="@layout/top" />
+	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:background="#ffffff"
+			android:layout_marginTop="10dp">
+			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_weight="1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<TextView
+					style="@style/match_parent"
+					android:text="金赢网工业超市规则"
+					android:id="@+id/tv_b_bankName"
+					android:textColor="#000000"
+					android:textSize="16dp"
+					android:layout_marginTop="5dp"/>
+
+				<TextView
+					android:layout_marginTop="5dp"
+					android:layout_width="fill_parent"
+					android:layout_height="1dp"
+					android:background="#c6c6c6"
+					/>
+
+				<TextView
+					android:id="@+id/tv_content"
+					style="@style/match_parent"
+					android:layout_marginTop="5dp"
+					android:text="加载中..."
+					android:textSize="14dp"/>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>

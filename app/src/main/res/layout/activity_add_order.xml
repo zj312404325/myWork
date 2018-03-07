@@ -437,10 +437,18 @@
 							 android:id="@+id/cb_agree"/>
 						 <TextView
 							 style="@style/wrap_content"
-							 android:text="我已阅读并同意《金赢网交易条款》"
+							 android:text="我已阅读并同意"
 							 android:layout_alignParentLeft="true"
 							 android:layout_centerVertical="true"
 							 android:maxLines="1" />
+						<TextView
+							android:id="@+id/tv_agreement"
+							style="@style/wrap_content"
+							android:text="《金赢网交易条款》"
+							android:textColor="@color/login_back_blue"
+							android:layout_alignParentLeft="true"
+							android:layout_centerVertical="true"
+							android:maxLines="1" />
 				 	</LinearLayout>
 
 				 	<LinearLayout

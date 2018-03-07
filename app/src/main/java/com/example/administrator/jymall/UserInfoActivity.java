@@ -58,6 +58,9 @@ public class UserInfoActivity extends TopActivity {
 	
 	@ViewInject(R.id.bank)
 	private RelativeLayout bank;
+
+	@ViewInject(R.id.agreement)
+	private RelativeLayout agreement;
 	
 	@ViewInject(R.id.btn_userMoney)
 	private RelativeLayout btn_userMoney;
@@ -149,6 +152,15 @@ public class UserInfoActivity extends TopActivity {
 	private boolean bankTouch(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
 			startActivity(new Intent(getApplicationContext(),BankActivity.class));
+			return false;
+		}
+		return true;
+	}
+
+	@Event(value=R.id.agreement,type=View.OnTouchListener.class)
+	private boolean agreementTouch(View v, MotionEvent event){
+		if (event.getAction() == event.ACTION_UP) {
+			startActivity(new Intent(getApplicationContext(),AgreementActivity.class));
 			return false;
 		}
 		return true;

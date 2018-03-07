@@ -498,6 +498,11 @@
             android:label="LogisticInfoActivity" >
         </activity>
 
+        <activity
+            android:name=".AgreementActivity"
+            android:label="AgreementActivity" >
+        </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.administrator.jymall.fileProvider"
@@ -510,7 +515,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="emEzNCQmilO0tSZHQZCgrTVrEGGvLmuK" />
+            android:value="MXD9rwu9PceU1GwMxKKvIfp1O8pCvhje" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

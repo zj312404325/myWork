@@ -1,6 +1,7 @@
 package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -67,6 +68,8 @@ public class AddOrderActivity extends TopActivity {
 	private TextView tv_ad_mobilephone;
 	@ViewInject(R.id.tv_ad_addinfo)
 	private TextView tv_ad_addinfo;
+	@ViewInject(R.id.tv_agreement)
+	private TextView tv_agreement;
 	@ViewInject(R.id.ll_address)
 	private LinearLayout ll_address;
 	@ViewInject(R.id.ll_address1)
@@ -554,6 +557,47 @@ public class AddOrderActivity extends TopActivity {
 			return false;
 		}
 		return true;
+	}
+
+	@Event(R.id.tv_agreement)
+	private void agreementClick(View v){
+		new AlertDialog.Builder(this)
+				.setTitle("金赢网交易条款")
+				.setMessage("第一章 总则\n" +
+						"\n" +
+						"第一条 为了保障金赢网用户的合法权益，维护金赢网的正常经营秩序，特制定本交易条款。\n" +
+						"\n" +
+						"第二条 金赢网用户在提供或者接受商品订购与配送服务时，应当遵守本交易条款。\n" +
+						"\n" +
+						"第三条 金赢网用户应当遵守法律、法规和规章等规定。对于任何违反法律、法规和规章等规定的行为，本交易条款已有规定的，适用本交易条款的相关规定；本交易条款尚无规定的，金赢网有权酌情予以处理。但金赢网对用户的处理并不免除其应承担的法律责任。\n" +
+						"\n" +
+						"第四条 金赢网有权随时修订本交易条款并在金赢网上进行公布。若金赢网用户不同意遵守本交易条款或者相关修订的，应立即停止使用金赢网的有关产品或者服务；若金赢网用户选择使用或者继续使用金赢网的有关产品或者服务的，视为同意遵守本交易条款或者相关修订。\n" +
+						"\n" +
+						"第五条 金赢网用户的各类交易行为，发生在金赢网交易条款修订之前的，适用当时的金赢网交易条款进行处理；发生在金赢网交易条款修订之后的，适用现行的金赢网交易条款进行处理。\n" +
+						"\n" +
+						"第二章 术语\n" +
+						"\n" +
+						"第六条 金赢网，指苏州金赢网电子商务有限公司，域名为jinying365.com。\n" +
+						"\n" +
+						"第七条 订单，指金赢网用户成交金赢网入驻商家的商品或者服务所形成的契约。\n" +
+						"\n" +
+						"第三章 交易流程\n" +
+						"\n" +
+						"第一节 注册金赢网用户\n" +
+						"\n" +
+						"第八条 互联网用户需要按照金赢网系统设置的注册流程完成注册，成为金赢网用户后，才能使用金赢网所提供的各项服务。\n" +
+						"\n" +
+						"第二节 要约\n" +
+						"\n" +
+						"第九条 入驻商家所发布的商品广告、价目表和声明等均不属于要约，在入驻商家处理了金赢网用户的订单之前，双方之间不存在任何契约关系。\n" +
+						"\n" +
+						"第十条 在下订单的同时，金赢网用户应确认自身的身份信息及收货地址、邮编和电话等资料准确无误，并对订单中提供的所有信息的真实性、准确性负责。\n" +
+						"\n" +
+						"第三节 生成订单\n" +
+						"\n" +
+						"第十一条 金赢网上商品的定价和可获性都在金赢网上予以明确注明。同时，入驻商家有权针对商品和订购数量进行限制。 每一项商品所标明的价格均不包含送货费，送货费用根据金赢网用户选择的送货方式的不同而异。")
+				.setCancelable(true)
+				.create().show();
 	}
 	
 	@Override

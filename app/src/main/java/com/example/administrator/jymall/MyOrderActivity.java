@@ -424,15 +424,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 }
 
                 btn_delete.setVisibility(View.GONE);
-                btn_logistic.setVisibility(View.VISIBLE);
-                btn_logistic.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        Intent i = new Intent(getApplicationContext(),LogisticInfoActivity.class);
-                        i.putExtra("id", id);
-                        startActivity(i);
-                    }
-                });
+                btn_logistic.setVisibility(View.GONE);
 
                 if(!orderType.equals("orderMatch")) {
                     ll_firstMoney.setVisibility(View.GONE);
@@ -442,6 +434,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         tv_orderStatus.setText("未支付");
                         btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                         btn_pay.setVisibility(View.VISIBLE);
                         btn_pay.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -504,11 +497,13 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         btn_pay.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                     } else if (orderStatus == 2 ) {
                         tv_orderStatus.setText("等待发货");
                         btn_pay.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                     } else if (orderStatus == 3) {
                         tv_orderStatus.setText("等待收货");
                         btn_pay.setVisibility(View.GONE);
@@ -561,15 +556,34 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                                 mcd.show();
                             }
                         });
+                        btn_logistic.setVisibility(View.VISIBLE);
+                        btn_logistic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                Intent i = new Intent(getApplicationContext(),LogisticInfoActivity.class);
+                                i.putExtra("id", id);
+                                startActivity(i);
+                            }
+                        });
                     } else if (orderStatus == 4) {
                         tv_orderStatus.setText("订单完成");
                         btn_pay.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.VISIBLE);
+                        btn_logistic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                Intent i = new Intent(getApplicationContext(),LogisticInfoActivity.class);
+                                i.putExtra("id", id);
+                                startActivity(i);
+                            }
+                        });
                     } else if (orderStatus == 5) {
                         tv_orderStatus.setText("订单取消");
                         btn_pay.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.GONE);
                         btn_delete.setVisibility(View.VISIBLE);
                         btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -624,13 +638,16 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         btn_pay.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
                         btn_confirmProduct.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                     }
                 }
                 else{
                     btn_pay.setVisibility(View.GONE);
+                    btn_logistic.setVisibility(View.GONE);
                     if (orderStatus == 0) {
                         ll_firstMoney.setVisibility(View.GONE);
                         tv_orderStatus.setText("待设置定金");
+                        btn_logistic.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.VISIBLE);
                         btn_cancel.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -682,7 +699,8 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 1) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待支付定金");
-                        btn_cancel.setVisibility(View.VISIBLE);
+                        btn_payLast.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.VISIBLE);
                         btn_payFirst.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -746,18 +764,21 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                     } else if (orderStatus == 3) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待生产完成");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                     } else if (orderStatus == 4) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待付尾款");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.VISIBLE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                         btn_payLast.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View arg0) {
@@ -772,12 +793,14 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                     } else if (orderStatus == 6) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待发货");
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                     } else if (orderStatus == 7) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("等待收货");
@@ -832,17 +855,36 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                                 mcd.show();
                             }
                         });
+                        btn_logistic.setVisibility(View.VISIBLE);
+                        btn_logistic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                Intent i = new Intent(getApplicationContext(),LogisticInfoActivity.class);
+                                i.putExtra("id", id);
+                                startActivity(i);
+                            }
+                        });
                     } else if (orderStatus == 8) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.VISIBLE);
+                        btn_logistic.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View arg0) {
+                                Intent i = new Intent(getApplicationContext(),LogisticInfoActivity.class);
+                                i.putExtra("id", id);
+                                startActivity(i);
+                            }
+                        });
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 9) {
                         ll_firstMoney.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
+                        btn_logistic.setVisibility(View.GONE);
                         tv_orderStatus.setText("订单取消");
                         btn_delete.setVisibility(View.VISIBLE);
                         btn_delete.setOnClickListener(new View.OnClickListener() {

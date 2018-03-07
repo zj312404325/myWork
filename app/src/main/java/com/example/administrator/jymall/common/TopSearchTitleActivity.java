@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.administrator.jymall.CartActivity;
 import com.example.administrator.jymall.MallCategoryActivity;
 import com.example.administrator.jymall.R;
 import com.example.administrator.jymall.SearchProductListActivity;
@@ -38,6 +39,11 @@ public class TopSearchTitleActivity extends ButtomTapActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Event(value= R.id.top_cart)
+    private void cartClick(View v){
+        startActivity(new Intent(getApplicationContext(),CartActivity.class));
     }
 
     @Event(value= R.id.top_fl)

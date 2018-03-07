@@ -119,11 +119,13 @@
 						 android:layout_centerVertical="true"
 						 android:id="@+id/tv_orderNo" />
 
+
 					 <Button
-						 style="@style/btndarkblue"
+						 style="@style/btnwhite"
 						 android:id="@+id/btn_copy"
 						 android:text="复制"
-						 android:layout_width="match_parent"
+						 android:layout_width="60dp"
+						 android:layout_height="30dp"
 						 android:layout_centerVertical="true"
 						 android:layout_marginLeft="5dp"
 						 android:layout_toEndOf="@id/tv_orderNo"/>

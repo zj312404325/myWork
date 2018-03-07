@@ -214,6 +214,34 @@
 					android:layout_alignParentRight="true"/>
 			    
 			</RelativeLayout>
+
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="1dp"
+				android:background="#d0d0d0" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:id="@+id/agreement"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<TextView
+					style="@style/wrap_content"
+					android:text="平台协议"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true" />
+
+				<ImageView
+					android:layout_width="9dp"
+					android:layout_height="16dp"
+					android:background="@drawable/right"
+					android:layout_centerVertical="true"
+					android:layout_alignParentRight="true"/>
+
+			</RelativeLayout>
+
 			<LinearLayout
 				android:layout_width="fill_parent"
 				android:layout_height="1dp"

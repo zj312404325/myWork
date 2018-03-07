@@ -1,26 +1,17 @@
 package com.example.administrator.jymall;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.geocode.GeoCodeOption;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
@@ -31,9 +22,6 @@ import com.example.administrator.jymall.common.TopActivity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @ContentView(R.layout.activity_map_info)
 public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultListener{
@@ -52,8 +40,8 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLocationClient=new LocationClient(getApplicationContext());
-        mLocationClient.registerLocationListener(new MyLocationListener());
+        /*mLocationClient=new LocationClient(getApplicationContext());
+        mLocationClient.registerLocationListener(new MyLocationListener());*/
         SDKInitializer.initialize(getApplicationContext());//创建一个LocationClient的实例，
         // LocationClient的构建函数接收一个Context参数，这里调用getApplicationContext(),方法来获取一个全局的Context参数并传入。
         // 然后调用LocationClient的registerLocationListener（）方法来注册一个定位监听器，当获取到位置信息的时候，就会回调这个定位监听器。
@@ -73,9 +61,10 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
 
         mapView= (MapView) findViewById(R.id.bmapView);
         baiduMap=mapView.getMap();
-        baiduMap.setMyLocationEnabled(true);
+
+        /*baiduMap.setMyLocationEnabled(true);
         positionText= (TextView) findViewById(R.id.position_text_view);
-        List<String> permissionList=new ArrayList<>();
+        List<String> permissionList=new ArrayList<>();*/
 
         // 初始化搜索模块，注册事件监听
         /**
@@ -97,12 +86,12 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
 
         showCity(city,address);
 
-        if(!permissionList.isEmpty()){
+        /*if(!permissionList.isEmpty()){
             String[]permissions=permissionList.toArray(new String[permissionList.size()]);
             ActivityCompat.requestPermissions(MapInfoActivity.this,permissions,1);
         }else{
             requestLocation();
-        }
+        }*/
     }
 
     /**
@@ -138,7 +127,7 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
     }
 
     /**
-     * 饭地理位置查询回调方法
+     * 反地理位置查询回调方法
      * @param result 返回的地理位置
      */
     @Override
@@ -161,12 +150,12 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
     // 需要进行运行时权限处理，不过ACCESS_FINE_LOCATION、ACCESS_COARSE_LOCATION属于同一个权限组，两者申请其一就可以了。
     // 这里运用了一比较新的用法在运行时一次性申请3个权限。首先创建了一个List集合，然后依次判断这3个权限有没有被授权，
     // 如果没有被授权，就添加到List集合中，最后将List转换成数组，在调用ActivityCompat.requestPermissions()方法一次性申请。
-    private void requestLocation(){
+    /*private void requestLocation(){
         initLocation();
         mLocationClient.start();
-    }
+    }*/
 
-    private void navigateTo(BDLocation location){
+   /* private void navigateTo(BDLocation location){
         if(isFirstLocate){
             LatLng ll=new LatLng(location.getLatitude(),location.getLongitude());//LatLng类用于存放经纬度
             // 第一个参数是纬度值，第二个参数是精度值。这里输入的是本地位置。
@@ -183,8 +172,9 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
         locationBuilder.longitude(location.getLongitude());
         MyLocationData locationData=locationBuilder.build();
         baiduMap.setMyLocationData(locationData);//获取我们的当地位置
-    }
-    private void initLocation() {
+    }*/
+
+    /*private void initLocation() {
         LocationClientOption option=new LocationClientOption();
         option.setScanSpan(5000);//表示每5秒更新一下当前位置
         option.setIsNeedAddress(true);
@@ -193,7 +183,8 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
         // Battery_Saving表示节电模式，只会使用网络进行定位。
         // Device_Sensors表示传感器模式，只会使用GPS进行定位。
         mLocationClient.setLocOption(option);
-    }
+    }*/
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -209,13 +200,13 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLocationClient.stop();//销毁之前，用stop()来停止定位
+        //mLocationClient.stop();//销毁之前，用stop()来停止定位
         mapView.onDestroy();
         mSearch.destroy();
         baiduMap.setMyLocationEnabled(false);
     }
 
-    @Override
+    /*@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
             case 1:
@@ -237,8 +228,9 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
         }//onRequestPermissionsResult()方法中，对权限申请结果进行逻辑判断。这里使用一个循环对每个权限进行判断，
         // 如果有任意一个权限被拒绝了，那么就会直接调用finish()方法关闭程序，只有当所有的权限被用户同意了，才会
         // 调用requestPermissions()方法开始地理位置定位。
-    }
-    public class MyLocationListener implements BDLocationListener {
+    }*/
+
+    /*public class MyLocationListener implements BDLocationListener {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -246,7 +238,7 @@ public class MapInfoActivity extends TopActivity implements OnGetGeoCoderResultL
                 navigateTo(location);
             }
         }
-    }
+    }*/
 
 
 }

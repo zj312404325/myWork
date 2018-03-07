@@ -229,6 +229,25 @@ public class XUtilsHelper {
 
 
     /**
+     * 带有前缀的图片显示
+     *
+     * @param iv
+     * @param url
+     * @param option
+     */
+    public void bindUrlImage(ImageView iv, String url, boolean option) {
+        try{
+            if (option) {
+                options = new ImageOptions.Builder().setLoadingDrawableId(R.drawable.loading).setFailureDrawableId(R.drawable.noimg).build();
+                x.image().bind(iv, url, options);
+            } else {
+                x.image().bind(iv, url);
+            }
+        }
+        catch(Exception e){e.printStackTrace();}
+    }
+
+    /**
      * 正常图片显示
      *
      * @param iv

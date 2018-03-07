@@ -10,7 +10,7 @@
 
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="150dp"
+		android:layout_height="180dp"
 		android:background="#ffffff"
 		android:id="@+id/rl_showImg">
 
@@ -24,6 +24,7 @@
 			android:layout_centerHorizontal="true" />
 
 		<LinearLayout
+			android:id="@+id/ll_myScore"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/myshow">
@@ -53,6 +54,29 @@
 
 		</LinearLayout>
 
+		<LinearLayout
+			android:layout_marginTop="10dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="#ffffff"
+			android:layout_below="@+id/ll_myScore">
+			<TextView
+				android:layout_marginLeft="20dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="积分兑换查询"/>
+			<TextView
+				android:layout_marginLeft="10dp"
+				android:id="@+id/tv_value"
+				android:layout_width="150dp"
+				android:layout_height="wrap_content"
+				android:background="@drawable/bg_edittext"
+				android:drawableRight="@drawable/icon_down"
+				android:padding="10dp"
+				android:text="全部兑换记录"
+				android:tag="0"
+				android:textSize="12sp"/>
+		</LinearLayout>
 
 
 

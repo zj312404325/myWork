@@ -132,7 +132,8 @@
 					<RelativeLayout
 						style="@style/marginlr"
 						android:layout_width="match_parent"
-						android:layout_height="25dp" >
+						android:layout_height="25dp"
+						android:visibility="gone">
 						<TextView
 							style="@style/wrap_content"
 							android:id="@+id/tv_minqty"

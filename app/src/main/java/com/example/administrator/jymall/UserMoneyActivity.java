@@ -192,10 +192,13 @@ public class UserMoneyActivity  extends TopActivity  implements IXListViewListen
 						dateMap.put("createdate", resjarr.getJSONObject(i).get("createdate"));
 						dateMap.put("inmoney", resjarr.getJSONObject(i).get("inmoney"));
 						dateMap.put("mtype", resjarr.getJSONObject(i).get("mtype"));
+						dateMap.put("type", resjarr.getJSONObject(i).get("type"));
 						dateMap.put("ystatus", resjarr.getJSONObject(i).get("ystatus"));
 						dateMap.put("ystatusName", resjarr.getJSONObject(i).get("ystatusName"));
 						dateMap.put("id", resjarr.getJSONObject(i).get("id"));
 						dateMap.put("orderno", resjarr.getJSONObject(i).get("orderno"));
+						dateMap.put("bankorderno", resjarr.getJSONObject(i).get("bankorderno"));
+						dateMap.put("createDateStr", resjarr.getJSONObject(i).get("createDateStr"));
 						dateMaps.add(dateMap);						
 					}
 					sap.notifyDataSetChanged();
@@ -236,6 +239,8 @@ public class UserMoneyActivity  extends TopActivity  implements IXListViewListen
 				TextView tv_orderNo = (TextView)convertView.findViewById(R.id.tv_orderNo);
 				String inmoney = dateMaps.get(position).get("inmoney").toString();
 				String ystatus = dateMaps.get(position).get("ystatus").toString();
+				String mtype = dateMaps.get(position).get("mtype").toString();
+				String type = dateMaps.get(position).get("type").toString();
 				final String id =  dateMaps.get(position).get("id").toString();
 				tv_inmoney.setText(inmoney);
 				if(inmoney.indexOf("+")>-1){
@@ -247,12 +252,21 @@ public class UserMoneyActivity  extends TopActivity  implements IXListViewListen
 					tv_mtype.setTextColor(Color.parseColor("#e16262"));
 				}
 
-				if(FormatUtil.isNoEmpty(dateMaps.get(position).get("orderno").toString())){
-					tv_orderNo.setText(dateMaps.get(position).get("orderno").toString());
+				if(type.equals("1")){
+					tv_orderNo.setText(dateMaps.get(position).get("bankorderno").toString());
+				}
+				else if(type.equals("3")){
+					tv_orderNo.setText("JYTX"+dateMaps.get(position).get("createDateStr").toString());
 				}
 				else{
-					tv_orderNo.setText("充值订单");
+					if(FormatUtil.isNoEmpty(dateMaps.get(position).get("orderno").toString())){
+						tv_orderNo.setText(dateMaps.get(position).get("orderno").toString());
+					}
+					else{
+						tv_orderNo.setText("充值订单");
+					}
 				}
+
 				tv_createdate.setText(dateMaps.get(position).get("createdate").toString());
 				tv_mtype.setText(dateMaps.get(position).get("mtype").toString());	
 				if(ystatus.equals("2")){

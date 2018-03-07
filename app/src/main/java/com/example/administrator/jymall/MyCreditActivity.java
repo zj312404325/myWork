@@ -248,7 +248,7 @@ public class MyCreditActivity extends TopActivity {
 
                         if(FormatUtil.isNoEmpty(credit.getString("sealUrl"))){
                             String url=credit.getString("sealUrl");
-                            XUtilsHelper.getInstance().bindCommonImage(iv_customSeal, url, true);
+                            XUtilsHelper.getInstance().bindUrlImage(iv_customSeal, url, true);
                             sealurl=url;
                         }
                         if(FormatUtil.isNoEmpty(type)){
@@ -659,7 +659,7 @@ public class MyCreditActivity extends TopActivity {
                         if(e.getAction() == MotionEvent.ACTION_UP){
                             String url=sealMaps.get(position).get("picUrl").toString();
                             XUtilsHelper.getInstance().bindCommonImage(iv_customSeal, url, true);
-                            sealurl=url;
+                            sealurl=CommonUtil.getStrings(R.string.img_url)+url;
                             if (alertDialog != null) {
                                 alertDialog.dismiss();
                             }
