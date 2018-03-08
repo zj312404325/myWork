@@ -117,7 +117,7 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
                     JSONArray provinceList = (JSONArray)res.get("provinceList");
                     if(serviceList.length()==0 && start == 1)
                         listtv.setVisibility(View.VISIBLE);
-                    else if(serviceList.length() ==  10 )
+                    else if(serviceList.length() ==  20 )
                         listViewAll.setPullLoadEnable(true);
 
                     for(int i=0;i<serviceList.length();i++){

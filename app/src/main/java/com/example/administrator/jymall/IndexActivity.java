@@ -158,7 +158,7 @@ public class IndexActivity extends TopSearchActivity  {
         progressDialog.show();
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
-        maps.put("id", "FF8080815940854F01599037A80B5DB4");
+        maps.put("id", "2C9383F162037598016204E2CDEB001C");
         XUtilsHelper.getInstance().post("app/indexAdData.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")

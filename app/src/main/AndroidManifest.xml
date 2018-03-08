@@ -518,6 +518,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        //百度Map相关
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="MXD9rwu9PceU1GwMxKKvIfp1O8pCvhje" />
@@ -526,6 +527,21 @@
             android:enabled="true"
             android:process=":remote">//LBS SDK中的服务
         </service>
+
+        //支付宝相关
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind">
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind">
+        </activity>
+
     </application>
 
 </manifest>

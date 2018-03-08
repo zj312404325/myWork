@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ececec"
-    tools:context=".PreparePayActivity" >
+    android:background="#ececec" >
 
     <include  android:id="@+id/top_title"  layout="@layout/top" />
     <ScrollView style="@style/fill" android:layout_below="@id/top_title" >
@@ -35,7 +34,7 @@
 					android:layout_height="wrap_content">
 					<LinearLayout
 						android:layout_width="60dp"
-						android:layout_height="150dp"
+						android:layout_height="80dp"
 						android:layout_gravity="center_horizontal"
 						android:orientation="vertical"
 						android:id="@+id/ll_rg">
@@ -45,31 +44,31 @@
 							android:layout_height="match_parent"
 							android:layout_marginTop="5dp"
 							android:id="@+id/rg_payMethod">
+
 							<RadioButton
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:layout_marginLeft="20dp"
 								android:layout_marginTop="20dp"
-								android:id="@+id/rb_wechatpay" />
+								android:id="@+id/rb_alipay"
+								android:checked="true"/>
 
 							<RadioButton
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:layout_marginLeft="20dp"
 								android:layout_marginTop="40dp"
-								android:id="@+id/rb_alipay" />
+								android:id="@+id/rb_wechat"
+								android:visibility="gone"/>
 						</RadioGroup>
 					</LinearLayout>
 					<LinearLayout
 						android:layout_width="match_parent"
-						android:layout_height="150dp"
+						android:layout_height="80dp"
 						android:layout_gravity="center_horizontal"
 						android:orientation="vertical"
 						android:layout_toRightOf="@id/ll_rg">
-						<ImageView
-							android:layout_width="250dp"
-							android:layout_height="75dp"
-							android:background="@drawable/pay_union"/>
+
 						<ImageView
 							android:layout_width="200dp"
 							android:layout_height="75dp"
