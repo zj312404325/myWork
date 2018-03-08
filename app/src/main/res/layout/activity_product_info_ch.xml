@@ -94,6 +94,13 @@
 							android:orientation="vertical">
 						</LinearLayout>
 
+						<LinearLayout
+							android:id="@+id/ll_propInfo"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="vertical">
+						</LinearLayout>
+
 						<RelativeLayout
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
@@ -129,7 +136,6 @@
 						android:background="#ffffff"
 						android:layout_marginTop="40dp">
 					</LinearLayout>
-
 			</LinearLayout>
 			</ScrollView>
 			<Button

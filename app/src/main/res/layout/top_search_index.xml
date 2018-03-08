@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/top_title"
+	android:layout_width="fill_parent"
+    android:layout_height="45dp"
+	android:background="@color/login_back_blue">
+
+
+	<ImageButton
+		android:id="@+id/top_fl"
+		android:background="@drawable/fl"
+		android:layout_width="23dp"
+		android:layout_height="36dp"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="10dp"/>
+       
+    <RelativeLayout
+		android:id="@+id/top_searchbar"
+		android:layout_width="214dp"
+		android:layout_height="35dp"
+		android:layout_centerInParent="true"
+		android:focusable="true"
+   		android:focusableInTouchMode="true" >
+	  	    
+	  	    <ImageView
+				android:layout_width="17dp"
+				android:layout_height="17dp"
+				android:layout_alignParentLeft="true"
+	  	        android:layout_centerVertical="true"
+				android:layout_marginLeft="10dp"
+	  	        android:id="@+id/top_searchbar_input_img"
+	  	        android:background="@drawable/input_search"/>
+	  	    <EditText
+				android:layout_width="match_parent"
+				android:layout_height="30dp"
+				android:layout_centerVertical="true"
+	  	        android:layout_marginLeft="30dp"
+				android:layout_marginRight="10dp"
+				android:textColor="#ffffff"
+	  	        android:background="@null"
+				android:hint="请输入产品关键字"
+				android:textColorHint="#ffffff"
+	  	        android:textSize="14dp"
+				android:id="@+id/top_searchbar_input_txt"
+	  	        android:text=""
+				android:imeOptions="actionSearch"
+				android:singleLine="true">
+			</EditText>
+	  	    <LinearLayout
+				android:layout_alignParentBottom="true"
+				android:layout_width="match_parent"
+	  	        android:layout_height="3dp"
+	  	        android:background="@drawable/input_w" 
+	  	        android:id="@+id/input_text_b" 
+	  	        android:orientation="horizontal">
+			</LinearLayout>
+	</RelativeLayout>
+
+	<ImageButton
+		android:id="@+id/top_fx"
+		android:background="@drawable/icon_share"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_centerVertical="true"
+		android:layout_alignParentRight="true"
+		android:layout_marginRight="10dp"/>
+
+</RelativeLayout>

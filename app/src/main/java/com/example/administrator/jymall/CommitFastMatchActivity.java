@@ -25,6 +25,7 @@ import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.ImageFactory;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.MyConfirmDialog;
+import com.example.administrator.jymall.view.MyImageView;
 import com.example.administrator.jymall.view.XListView;
 
 import org.json.JSONException;
@@ -35,7 +36,9 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @ContentView(R.layout.activity_commit_fastmatch)
@@ -60,6 +63,16 @@ public class CommitFastMatchActivity extends TopActivity {
     //上传图片
     private String TEMP_IMAGE_PATH;
     private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
+
+    //记录Layout 行数
+    private int TEMP_LL_COUNT=0;
+
+    //记录imageview序号
+    private int TEMP_IMAGE_COUNT=1;
+
+    private List<Bitmap> bitmapList1 =new ArrayList<Bitmap>() ;
+    private List<Bitmap> bitmapList2 =new ArrayList<Bitmap>();
+    private List<Bitmap> bitmapList3 =new ArrayList<Bitmap>();
 
     private Bitmap bitmap1 = null;
     private Bitmap bitmap2 = null;
@@ -148,11 +161,15 @@ public class CommitFastMatchActivity extends TopActivity {
     private void sortViewItem() {
         //获取LinearLayout里面所有的view
         for (int i = 0; i < ll_addView.getChildCount(); i++) {
+            bitmapList1.add(null);
+            bitmapList2.add(null);
+            bitmapList3.add(null);
+            final int count=i;
             final View childAt = ll_addView.getChildAt(i);
             final Button btn_delete = (Button) childAt.findViewById(R.id.btn_delete);
-            final ImageView iv_pic1 = (ImageView) childAt.findViewById(R.id.iv_pic1);
-            final ImageView iv_pic2 = (ImageView) childAt.findViewById(R.id.iv_pic2);
-            final ImageView iv_pic3 = (ImageView) childAt.findViewById(R.id.iv_pic3);
+            final MyImageView iv_pic1 = (MyImageView) childAt.findViewById(R.id.iv_pic1);
+            final MyImageView iv_pic2 = (MyImageView) childAt.findViewById(R.id.iv_pic2);
+            final MyImageView iv_pic3 = (MyImageView) childAt.findViewById(R.id.iv_pic3);
             String pic1="";
             String pic2="";
             String pic3="";
@@ -175,6 +192,8 @@ public class CommitFastMatchActivity extends TopActivity {
             iv_pic1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    TEMP_LL_COUNT=count;
+                    TEMP_IMAGE_COUNT=1;
                     final int viewId=iv_pic1.getId();
                     if(mcd1==null){
                         TEMP_PIC_ID=viewId;
@@ -204,6 +223,8 @@ public class CommitFastMatchActivity extends TopActivity {
             iv_pic2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    TEMP_LL_COUNT=count;
+                    TEMP_IMAGE_COUNT=2;
                     final int viewId=iv_pic2.getId();
                     if(mcd2==null){
                         TEMP_PIC_ID=viewId;
@@ -233,6 +254,8 @@ public class CommitFastMatchActivity extends TopActivity {
             iv_pic3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    TEMP_LL_COUNT=count;
+                    TEMP_IMAGE_COUNT=3;
                     final int viewId=iv_pic3.getId();
                     if(mcd3==null){
                         TEMP_PIC_ID=viewId;
@@ -258,120 +281,34 @@ public class CommitFastMatchActivity extends TopActivity {
                     mcd3.show();
                 }
             });
-
-//            iv_pic1.setOnTouchListener(new View.OnTouchListener() {
-//                @Override
-//                public boolean onTouch(View view, MotionEvent event) {
-//                    if (event.getAction() == event.ACTION_UP) {
-//                        if(mcd1==null){
-//                            final int viewId=iv_pic1.getId();
-//                            TEMP_PIC_ID=viewId;
-//                            mcd1=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
-//                            mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
-//                                @Override
-//                                public void doConfirm() {
-//                                    TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
-//                                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                                    Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
-//                                    intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-//                                    startActivityForResult(intent1,12);
-//                                }
-//                                @Override
-//                                public void doCancel() {
-//                                    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
-//                                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-//                                    intent.setType("image/*");
-//                                    startActivityForResult(intent, 11);
-//                                }
-//                            });
-//                        }
-//                        mcd1.show();
-//                        return false;
-//                    }
-//                    return true;
-//                }
-//            });
-
-            /*iv_pic2.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    if (event.getAction() == event.ACTION_UP) {
-                        if(mcd1==null){
-                            final int viewId=iv_pic2.getId();
-                            TEMP_PIC_ID=viewId;
-                            mcd1=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
-                            mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
-                                @Override
-                                public void doConfirm() {
-                                    TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
-                                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
-                                    intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-                                    startActivityForResult(intent1,12);
-                                }
-                                @Override
-                                public void doCancel() {
-                                    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
-                                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-                                    intent.setType("image*//*");
-                                    startActivityForResult(intent, 11);
-                                }
-                            });
-                        }
-                        mcd1.show();
-                        return false;
-                    }
-                    return true;
-                }
-            });*/
-
-            /*iv_pic3.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent event) {
-                    if (event.getAction() == event.ACTION_UP) {
-                        if(mcd1==null){
-                            final int viewId=iv_pic3.getId();
-                            TEMP_PIC_ID=viewId;
-                            mcd1=new MyConfirmDialog(CommitFastMatchActivity.this, "上传照片", "拍照上传", "本地上传");
-                            mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
-                                @Override
-                                public void doConfirm() {
-                                    TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/temp.png";
-                                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
-                                    intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
-                                    TEMP_PIC_ID=viewId;
-                                    startActivityForResult(intent1,12);
-                                }
-                                @Override
-                                public void doCancel() {
-                                    Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
-                                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-                                    intent.setType("image*//*");
-                                    TEMP_PIC_ID=viewId;
-                                    startActivityForResult(intent, 11);
-                                }
-                            });
-                        }
-                        mcd1.show();
-                        return false;
-                    }
-                    return true;
-                }
-            });*/
         }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode==RESULT_OK){
             //上传照片
+            RelativeLayout layout =(RelativeLayout) ll_addView.getChildAt(TEMP_LL_COUNT);
+            MyImageView iv_pic=null;
+            if(TEMP_IMAGE_COUNT==1) {
+                iv_pic = layout.findViewById(R.id.iv_pic1);
+            }
+            else if(TEMP_IMAGE_COUNT==2) {
+                iv_pic = layout.findViewById(R.id.iv_pic2);
+            }
+            else if(TEMP_IMAGE_COUNT==3) {
+                iv_pic = layout.findViewById(R.id.iv_pic3);
+            }
+            final MyImageView iv_pic1=iv_pic;
             if(requestCode==11&&data!=null){
                 progressDialog.show();
                 mcd1.dismiss();
                 Uri uri = data.getData();
 
                 //如果不释放的话，不断取图片，将会内存不够
-                if(bitmap1 != null && !bitmap1.isRecycled()){
+                if(bitmapList1.size()>0){
+                    bitmap1 = bitmapList1.get(TEMP_LL_COUNT);
+                }
+                if (bitmap1 != null && !bitmap1.isRecycled()) {
                     bitmap1.recycle();
                     bitmap1 = null;
                 }
@@ -379,9 +316,9 @@ public class CommitFastMatchActivity extends TopActivity {
                 TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList1.set(TEMP_LL_COUNT,bitmap1);
 
                 //iv_pic1.setImageBitmap(bitmap1);
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap1);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -412,14 +349,17 @@ public class CommitFastMatchActivity extends TopActivity {
                 progressDialog.show();
                 mcd1.dismiss();
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList1.size()>0){
+                    bitmap1 = bitmapList1.get(TEMP_LL_COUNT);
+                }
                 if(bitmap1 != null && !bitmap1.isRecycled()){
                     bitmap1.recycle();
                     bitmap1 = null;
                 }
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap1 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList1.set(TEMP_LL_COUNT,bitmap1);
 
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap1);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -453,6 +393,9 @@ public class CommitFastMatchActivity extends TopActivity {
                 Uri uri = data.getData();
 
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList2.size()>0){
+                    bitmap2 = bitmapList2.get(TEMP_LL_COUNT);
+                }
                 if(bitmap2 != null && !bitmap2.isRecycled()){
                     bitmap2.recycle();
                     bitmap2 = null;
@@ -460,9 +403,9 @@ public class CommitFastMatchActivity extends TopActivity {
                 TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap2 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList2.set(TEMP_LL_COUNT,bitmap2);
 
                 //iv_pic1.setImageBitmap(bitmap1);
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap2);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -493,14 +436,17 @@ public class CommitFastMatchActivity extends TopActivity {
                 progressDialog.show();
                 mcd2.dismiss();
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList2.size()>0){
+                    bitmap2 = bitmapList2.get(TEMP_LL_COUNT);
+                }
                 if(bitmap2 != null && !bitmap2.isRecycled()){
                     bitmap2.recycle();
                     bitmap2 = null;
                 }
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap2 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList2.set(TEMP_LL_COUNT,bitmap2);
 
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap2);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -534,6 +480,9 @@ public class CommitFastMatchActivity extends TopActivity {
                 Uri uri = data.getData();
 
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList3.size()>0){
+                    bitmap3 = bitmapList3.get(TEMP_LL_COUNT);
+                }
                 if(bitmap3 != null && !bitmap3.isRecycled()){
                     bitmap3.recycle();
                     bitmap3 = null;
@@ -541,9 +490,9 @@ public class CommitFastMatchActivity extends TopActivity {
                 TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap3 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList3.set(TEMP_LL_COUNT,bitmap3);
 
                 //iv_pic1.setImageBitmap(bitmap1);
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap3);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -574,6 +523,9 @@ public class CommitFastMatchActivity extends TopActivity {
                 progressDialog.show();
                 mcd3.dismiss();
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList3.size()>0){
+                    bitmap3 = bitmapList3.get(TEMP_LL_COUNT);
+                }
                 if(bitmap3 != null && !bitmap3.isRecycled()){
                     bitmap3.recycle();
                     bitmap3 = null;
@@ -581,7 +533,6 @@ public class CommitFastMatchActivity extends TopActivity {
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap3 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
 
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap3);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -618,6 +569,7 @@ public class CommitFastMatchActivity extends TopActivity {
             View newView = View.inflate(this, R.layout.item_fastmatch, null);
             top_add.setTag("add");
             ll_addView.addView(newView);
+            sortViewItem();
         }
         else{//如果有一个以上的Item,点击为添加的Item则添加
             View newView = View.inflate(this, R.layout.item_fastmatch, null);
@@ -655,9 +607,9 @@ public class CommitFastMatchActivity extends TopActivity {
             EditText et_unit=layout.findViewById(R.id.et_unit);
             EditText et_proDesc=layout.findViewById(R.id.et_proDesc);
             EditText et_require=layout.findViewById(R.id.et_require);
-            ImageView iv_pic1=layout.findViewById(R.id.iv_pic1);
-            ImageView iv_pic2=layout.findViewById(R.id.iv_pic2);
-            ImageView iv_pic3=layout.findViewById(R.id.iv_pic3);
+            MyImageView iv_pic1=layout.findViewById(R.id.iv_pic1);
+            MyImageView iv_pic2=layout.findViewById(R.id.iv_pic2);
+            MyImageView iv_pic3=layout.findViewById(R.id.iv_pic3);
 
             proName=et_proName.getText().toString();
             brand=et_brand.getText().toString();

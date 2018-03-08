@@ -35,6 +35,7 @@ import com.example.administrator.jymall.util.FormatUtil;
 import com.example.administrator.jymall.util.ImageFactory;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.MyConfirmDialog;
+import com.example.administrator.jymall.view.MyImageView;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
 
@@ -89,8 +90,19 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
     private int start = 1;
     private int orderDtlCount = 0;
 
+    //上传图片
     private String TEMP_IMAGE_PATH;
     private String TEMP_IMAGE_PATH1= Environment.getExternalStorageDirectory().getPath()+"/temp1.png";
+
+    //记录Layout 行数
+    private int TEMP_LL_COUNT=0;
+    //记录imageview序号
+    private int TEMP_IMAGE_COUNT=1;
+
+    private List<Bitmap> bitmapList1 =new ArrayList<Bitmap>() ;
+    private List<Bitmap> bitmapList2 =new ArrayList<Bitmap>();
+    private List<Bitmap> bitmapList3 =new ArrayList<Bitmap>();
+
     private Bitmap bitmap1 = null;
     private Bitmap bitmap2 = null;
     private Bitmap bitmap3 = null;
@@ -162,6 +174,9 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                     orderDtlCount=orderDtls.length();
 
                     for(int j=0;j<orderDtls.length();j++){
+                        bitmapList1.add(null);
+                        bitmapList2.add(null);
+                        bitmapList3.add(null);
                         Map<String, Object> dateMap1 = new HashMap<String, Object>();
                         dateMap1.put("id", orderDtls.getJSONObject(j).get("ID"));
                         dateMap1.put("proName", orderDtls.getJSONObject(j).get("proName"));
@@ -203,9 +218,11 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 ImageView img_proImgPath = (ImageView)convertView.findViewById(R.id.img_proImgPath);
                 TextView tv_proName = (TextView)convertView.findViewById(R.id.tv_proName);
                 EditText et_remark = (EditText)convertView.findViewById(R.id.et_remark);
-                final ImageView iv_pic1 = (ImageView)convertView.findViewById(R.id.iv_pic1);
-                final ImageView iv_pic2 = (ImageView)convertView.findViewById(R.id.iv_pic2);
-                final ImageView iv_pic3 = (ImageView)convertView.findViewById(R.id.iv_pic3);
+
+                final int count=position;
+                final MyImageView iv_pic1 = (MyImageView)convertView.findViewById(R.id.iv_pic1);
+                final MyImageView iv_pic2 = (MyImageView)convertView.findViewById(R.id.iv_pic2);
+                final MyImageView iv_pic3 = (MyImageView)convertView.findViewById(R.id.iv_pic3);
 
                 img_proImgPath.setBackgroundResource(0);
                 XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, mdata.get(position).get("proImgPath").toString(), true);
@@ -218,6 +235,8 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == event.ACTION_UP) {
                             TEMP_PIC_ID=v.getId();
+                            TEMP_LL_COUNT=count;
+                            TEMP_IMAGE_COUNT=1;
                             if(mcd1==null){
                                 mcd1=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
                                 mcd1.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
@@ -257,6 +276,8 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == event.ACTION_UP) {
                             TEMP_PIC_ID=v.getId();
+                            TEMP_LL_COUNT=count;
+                            TEMP_IMAGE_COUNT=2;
                             if(mcd2==null){
                                 mcd2=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
                                 mcd2.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
@@ -294,6 +315,8 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == event.ACTION_UP) {
                             TEMP_PIC_ID=v.getId();
+                            TEMP_LL_COUNT=count;
+                            TEMP_IMAGE_COUNT=3;
                             if(mcd3==null){
                                 mcd3=new MyConfirmDialog(OrderAppraiseActivity.this, "上传照片", "拍照上传", "本地上传");
                                 mcd3.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
@@ -408,9 +431,9 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 LinearLayout layout = (LinearLayout) listViewAll.getChildAt(i);
                 RatingBar rb_productLevel = layout.findViewById(R.id.rb_productLevel);
                 EditText et_remark = layout.findViewById(R.id.et_remark);
-                ImageView iv_pic1=layout.findViewById(R.id.iv_pic1);
-                ImageView iv_pic2=layout.findViewById(R.id.iv_pic2);
-                ImageView iv_pic3=layout.findViewById(R.id.iv_pic3);
+                MyImageView iv_pic1=layout.findViewById(R.id.iv_pic1);
+                MyImageView iv_pic2=layout.findViewById(R.id.iv_pic2);
+                MyImageView iv_pic3=layout.findViewById(R.id.iv_pic3);
                 if (FormatUtil.isNoEmpty(et_remark)) {
                     if (FormatUtil.isNoEmpty(et_remark.getText())) {
                         remark = java.net.URLEncoder.encode(FormatUtil.toString(et_remark.getText()), "UTF-8");
@@ -445,12 +468,27 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode==RESULT_OK){
             //上传照片
+            LinearLayout layout =(LinearLayout) listViewAll.getChildAt(TEMP_LL_COUNT);
+            MyImageView iv_pic=null;
+            if(TEMP_IMAGE_COUNT==1) {
+                iv_pic = layout.findViewById(R.id.iv_pic1);
+            }
+            else if(TEMP_IMAGE_COUNT==2) {
+                iv_pic = layout.findViewById(R.id.iv_pic2);
+            }
+            else if(TEMP_IMAGE_COUNT==3) {
+                iv_pic = layout.findViewById(R.id.iv_pic3);
+            }
+            final MyImageView iv_pic1=iv_pic;
             if(requestCode==11&&data!=null){
                 progressDialog.show();
                 mcd1.dismiss();
                 Uri uri = data.getData();
 
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList1.size()>0){
+                    bitmap1 = bitmapList1.get(TEMP_LL_COUNT);
+                }
                 if(bitmap1 != null && !bitmap1.isRecycled()){
                     bitmap1.recycle();
                     bitmap1 = null;
@@ -459,9 +497,9 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap1 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList1.set(TEMP_LL_COUNT,bitmap1);
 
                 //iv_pic1.setImageBitmap(bitmap1);
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap1);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -492,14 +530,18 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 progressDialog.show();
                 mcd1.dismiss();
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList1.size()>0){
+                    bitmap1 = bitmapList1.get(TEMP_LL_COUNT);
+                }
                 if(bitmap1 != null && !bitmap1.isRecycled()){
                     bitmap1.recycle();
                     bitmap1 = null;
                 }
+                bitmapList1.set(TEMP_LL_COUNT,bitmap1);
+
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap1 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
 
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap1);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -533,6 +575,9 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 Uri uri = data.getData();
 
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList2.size()>0){
+                    bitmap2 = bitmapList2.get(TEMP_LL_COUNT);
+                }
                 if(bitmap2 != null && !bitmap2.isRecycled()){
                     bitmap2.recycle();
                     bitmap2 = null;
@@ -540,9 +585,9 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap2 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList2.set(TEMP_LL_COUNT,bitmap2);
 
                 //iv_pic1.setImageBitmap(bitmap1);
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap2);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -573,14 +618,17 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 progressDialog.show();
                 mcd2.dismiss();
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList2.size()>0){
+                    bitmap2 = bitmapList2.get(TEMP_LL_COUNT);
+                }
                 if(bitmap2 != null && !bitmap2.isRecycled()){
                     bitmap2.recycle();
                     bitmap2 = null;
                 }
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap2 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList2.set(TEMP_LL_COUNT,bitmap2);
 
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap2);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -614,6 +662,9 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 Uri uri = data.getData();
 
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList3.size()>0){
+                    bitmap3 = bitmapList3.get(TEMP_LL_COUNT);
+                }
                 if(bitmap3 != null && !bitmap3.isRecycled()){
                     bitmap3.recycle();
                     bitmap3 = null;
@@ -621,9 +672,9 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 TEMP_IMAGE_PATH =ImageFactory.getPath(getApplicationContext(), uri);
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap3 =BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmapList3.set(TEMP_LL_COUNT,bitmap3);
 
                 //iv_pic1.setImageBitmap(bitmap1);
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap3);
 
                 Map<String, String> maps = new HashMap<String, String>();
@@ -654,14 +705,17 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 progressDialog.show();
                 mcd3.dismiss();
                 //如果不释放的话，不断取图片，将会内存不够
+                if(bitmapList3.size()>0){
+                    bitmap3 = bitmapList3.get(TEMP_LL_COUNT);
+                }
                 if(bitmap3 != null && !bitmap3.isRecycled()){
                     bitmap3.recycle();
                     bitmap3 = null;
                 }
                 ImageFactory.compressPicture(TEMP_IMAGE_PATH, TEMP_IMAGE_PATH1);
                 bitmap3 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
+                bitmap3 = BitmapFactory.decodeFile(TEMP_IMAGE_PATH1);
 
-                final ImageView iv_pic1=(ImageView) findViewById(FormatUtil.toInt(TEMP_PIC_ID));
                 iv_pic1.setImageBitmap(bitmap3);
 
                 Map<String, String> maps = new HashMap<String, String>();

@@ -232,19 +232,19 @@
 			android:layout_width="wrap_content"
 			android:layout_height="110dp"
 			android:orientation="horizontal">
-			<ImageView
+			<com.example.administrator.jymall.view.MyImageView
 				android:id="@+id/iv_pic1"
 				android:layout_weight="1"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:background="@drawable/mall_upload_common"/>
-			<ImageView
+			<com.example.administrator.jymall.view.MyImageView
 				android:id="@+id/iv_pic2"
 				android:layout_weight="1"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:background="@drawable/mall_upload_common"/>
-			<ImageView
+			<com.example.administrator.jymall.view.MyImageView
 				android:id="@+id/iv_pic3"
 				android:layout_weight="1"
 				android:layout_width="wrap_content"

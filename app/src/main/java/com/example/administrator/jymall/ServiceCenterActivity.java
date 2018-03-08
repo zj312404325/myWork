@@ -16,6 +16,7 @@ import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyGridView;
 import com.example.administrator.jymall.view.XListView;
 import com.example.administrator.jymall.view.XListView.IXListViewListener;
 
@@ -62,8 +63,8 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
         super.title.setText("区域服务中心");
         progressDialog.hide();
 
-        sap = new ProSimpleAdapter(ServiceCenterActivity.this, dateMaps,
-                R.layout.list_service_center,
+        sap = new ProvinceSimpleAdapter(ServiceCenterActivity.this, resultMaps,
+                R.layout.list_service_province,
                 new String[]{},
                 new int[]{});
         listViewAll.setAdapter(sap);
@@ -102,6 +103,8 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
                 listtv.setVisibility(View.GONE);
                 if(flag){
                     dateMaps.clear();
+                    provinceMaps.clear();
+                    resultMaps.clear();
                 }
                 if(isShow){
                     progressDialog.hide();
@@ -173,7 +176,51 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
 
     }
 
+    public class ProvinceSimpleAdapter  extends SimpleAdapter {
 
+        public ViewHolder holder;
+        private LayoutInflater mInflater;
+        private List<Map<String, Object>> myMaps;
+
+        public ProvinceSimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+            super(context, data, resource, from, to);
+            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            myMaps = (List<Map<String, Object>>) data;
+        }
+
+        @SuppressLint("NewApi")
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            if(convertView==null){
+                convertView=mInflater.inflate(R.layout.list_service_province, null);
+            }
+
+            MyGridView mygw = (MyGridView) convertView.findViewById(R.id.mygw);
+            TextView tv_province =(TextView) convertView.findViewById(R.id.tv_province);
+            TextView listtv=(TextView) convertView.findViewById(R.id.listtv);
+
+            final String name=myMaps.get(position).get("province").toString();
+
+            tv_province.setText(name);
+
+            final List<Map<String, Object>> dateMapinfo= (List<Map<String, Object>>) resultMaps.get(position).get("detailList");
+            if(dateMapinfo.size()>0){
+                listtv.setVisibility(View.INVISIBLE);
+                listtv.setText("");
+            }
+            else{
+                listtv.setVisibility(View.VISIBLE);
+                listtv.setText("暂无数据");
+            }
+            final SimpleAdapter sapinfo = new ProSimpleAdapter(ServiceCenterActivity.this, dateMapinfo,
+                    R.layout.list_service_center,
+                    new String[]{},
+                    new int[]{});
+            mygw.setAdapter(sapinfo);
+
+            return super.getView(position, convertView, parent);
+        }
+    }
 
 
     public class ProSimpleAdapter  extends SimpleAdapter {

@@ -7,28 +7,8 @@
 
     <include  android:id="@+id/top"  layout="@layout/top" />
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:layout_below="@id/top">
-
-			<com.example.administrator.jymall.view.XListView
-				android:id="@+id/xListView"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:cacheColorHint="#00000000">
-			</com.example.administrator.jymall.view.XListView>
-			<TextView
-				style="@style/wrap_content"
-				android:id="@+id/listtv"
-				android:text="暂无数据"
-				android:textColor="#939393"
-				android:layout_centerInParent="true" />
-
-		</LinearLayout>
-
 	<LinearLayout
+		android:id="@+id/ll_bottom"
 		android:layout_alignParentBottom="true"
 		android:layout_width="match_parent"
 		android:layout_height="60dp"
@@ -76,5 +56,27 @@
 			android:text="确认生成订单"
 			android:textSize="14dp"
 			android:enabled="false"/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:layout_below="@id/top"
+		android:layout_above="@id/ll_bottom">
+
+		<com.example.administrator.jymall.view.XListView
+			android:id="@+id/xListView"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:cacheColorHint="#00000000">
+		</com.example.administrator.jymall.view.XListView>
+		<TextView
+			style="@style/wrap_content"
+			android:id="@+id/listtv"
+			android:text="暂无数据"
+			android:textColor="#939393"
+			android:layout_centerInParent="true" />
+
 	</LinearLayout>
 </RelativeLayout>

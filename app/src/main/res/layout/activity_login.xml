@@ -102,16 +102,20 @@
                 android:layout_width="90dp"
                 android:background="@null"
                 android:text="手机快速注册"
-                android:textColor="@color/orange"
-                />
+                android:textColor="@color/orange" />
+
+            <Button
+                android:background="@null"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/forgetBtn"
                 style="@style/btngray"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="193dp"
+                android:layout_gravity="right"
                 android:background="@null"
                 android:text="忘记密码"
                 android:textColor="@color/orange"

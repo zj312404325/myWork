@@ -18,9 +18,10 @@
 			android:orientation="vertical">
 
 			<ImageView
-				android:layout_width="50dp"
-				android:layout_height="50dp"
-				android:background="@drawable/icon_logo" />
+				android:id="@+id/iv_state"
+				android:layout_width="16dp"
+				android:layout_height="16dp"
+				android:background="@drawable/icon_logistic_blue" />
 		</LinearLayout>
 
 		<LinearLayout
@@ -39,12 +40,11 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
-					android:gravity="center_vertical"
+					android:gravity="center"
 					android:text="2018-02-22"
 					android:textColor="@color/red"
 					android:textSize="16sp" />
 				<TextView
-					android:layout_marginLeft="20dp"
 					android:id="@+id/tv_timeString"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"

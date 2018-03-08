@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 /**
  * 重写ImageView，避免引用已回收的bitmap异常
  *
- * @author zwn
+ * @author
  *
  */
 public class MyImageView extends AppCompatImageView {

@@ -49,6 +49,8 @@ public class ProductInfoChActivity extends BaseActivity {
 	
 	@ViewInject(R.id.ll_chinfo)
 	private LinearLayout ll_chinfo;
+	@ViewInject(R.id.ll_propInfo)
+	private LinearLayout ll_propInfo;
 	@ViewInject(R.id.ll_prices)
 	private LinearLayout ll_prices;
 	@ViewInject(R.id.ll_info)
@@ -75,8 +77,10 @@ public class ProductInfoChActivity extends BaseActivity {
 	private Button btn_ok;
 	
 	private List<Map<String, Object>> data_list1;
+	private List<Map<String, Object>> price_list;
 	
 	private SimpleAdapter sim_adapter1;
+	private SimpleAdapter sim_adapter_price;
 	
 	@ViewInject(R.id.amount_view)
 	private CountView mAmountView;
@@ -89,6 +93,8 @@ public class ProductInfoChActivity extends BaseActivity {
 	JSONObject selectPro;
 
 	JSONObject defaultProp;
+
+	JSONArray productPrices;
 	
 	private String var1;
 	
@@ -107,13 +113,19 @@ public class ProductInfoChActivity extends BaseActivity {
 		Intent intent = this.getIntent();
 		String [] from ={"text"};
 	    int [] to = {R.id.text};
+
+		String [] from1 ={""};
+		int [] to1 = {};
+
 	    data_list1 = new ArrayList<Map<String, Object>>();
+		price_list = new ArrayList<Map<String, Object>>();
 		try {
 			resdata =new JSONObject( intent.getStringExtra("data"));
 			info = resdata.getJSONObject("info");
 			double count1 = intent.getDoubleExtra("count", 0);
 			selectPro = new JSONObject(intent.getStringExtra("selectPro"));
 			defaultProp = new JSONObject(intent.getStringExtra("defaultProp"));
+			productPrices= defaultProp.getJSONArray("productPrices");
 			sellProductProps = resdata.getJSONArray("propsArr");
 			for(int i=0;i<sellProductProps.length();i++){
 					 Map<String, Object> map = new HashMap<String, Object>();
@@ -132,8 +144,24 @@ public class ProductInfoChActivity extends BaseActivity {
 			         }
 			         data_list1.add(map);
 			}
+
+			//获取起批量价格数据
+			for(int i=0;i<productPrices.length();i++){
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("moq", productPrices.getJSONObject(i).getString("moq"));
+				map.put("isDiscount", productPrices.getJSONObject(i).getString("isDiscount"));
+				map.put("price", productPrices.getJSONObject(i).getString("price"));
+				map.put("discountPrice", productPrices.getJSONObject(i).getString("discountPrice"));
+				price_list.add(map);
+			}
+
 			sim_adapter1 = new TestSimpleAdapter1(this, data_list1, R.layout.select_value, from, to);
 			createDiv("规格",sim_adapter1);
+
+			//填充起批量view
+			sim_adapter_price = new PriceSimpleAdapter(this, price_list, R.layout.select_price, from1, to1);
+			createPriceDiv("起批量",sim_adapter_price);
+
 			getPriceInfo(selectPro.getString("id").toString(),count1);
 			pId=selectPro.getString("id").toString();
 			if(info.getString("isDiscount").equals("1") && info.getString("isOnDiscount").equals("1")) {
@@ -180,6 +208,33 @@ public class ProductInfoChActivity extends BaseActivity {
         ll_chinfo.addView(gview);
         ll_chinfo.addView(ll);
 	}
+
+	private void createPriceDiv(String title,SimpleAdapter aa){
+		TextView tv = new TextView(this);
+		tv.setText(title);
+		tv.setTextColor(Color.parseColor("#000000"));
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		lp.setMargins(0, DensityUtil.dip2px(10), 0, 0);
+		tv.setLayoutParams(lp);
+
+		MyGridView gview = new MyGridView(this);
+		gview.setNumColumns(1);
+		LinearLayout.LayoutParams lp1 =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		lp1.setMargins(0, DensityUtil.dip2px( 5), 0, 0);
+		gview.setLayoutParams(lp1);
+
+		LinearLayout ll = new LinearLayout(this);
+		LinearLayout.LayoutParams lp2 =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px( 0.5f));
+		lp2.setMargins(0, DensityUtil.dip2px(10), 0, 0);
+		ll.setLayoutParams(lp2);
+		ll.setBackgroundColor(0xFFd0d0d0);
+		//配置适配器
+		gview.setAdapter(aa);
+
+		ll_propInfo.addView(tv);
+		ll_propInfo.addView(gview);
+		ll_propInfo.addView(ll);
+	}
 	
 	private void getPriceInfo(String id,final double count1) throws JSONException{
 		ll_prices.removeAllViews();
@@ -197,7 +252,22 @@ public class ProductInfoChActivity extends BaseActivity {
 					res1 = new JSONObject(result);
 					setServerKey(res1.get("serverKey").toString());
 					JSONArray   parr = (JSONArray)res1.get("data");
+					JSONObject   prop = (JSONObject)res1.get("prop");
 					changeDiv(parr,count1);
+
+					productPrices= prop.getJSONArray("productPrices");
+					price_list.clear();
+					//获取起批量价格数据
+					for(int i=0;i<productPrices.length();i++){
+						Map<String, Object> map = new HashMap<String, Object>();
+						map.put("moq", productPrices.getJSONObject(i).getString("moq"));
+						map.put("isDiscount", productPrices.getJSONObject(i).getString("isDiscount"));
+						map.put("price", productPrices.getJSONObject(i).getString("price"));
+						map.put("discountPrice", productPrices.getJSONObject(i).getString("discountPrice"));
+						price_list.add(map);
+					}
+					sim_adapter_price.notifyDataSetChanged();
+
 					
 					
 				} catch (JSONException e) {
@@ -239,10 +309,6 @@ public class ProductInfoChActivity extends BaseActivity {
 	private void setInfo(JSONObject selectPro) throws JSONException{
 		tv_quantity.setText(selectPro.get("quantity").toString()+info.get("unit").toString());
 		tv_showProname.setText(info.get("proname").toString());
-
-		/*mAmountView.setGoods_storage(FormatUtil.toDouble(selectPro.get("quantity").toString()));
-		mAmountView.setGoods_min(minMoq);
-		mAmountView.setAmount(count);*/
 
 		mAmountView.setCallback(new IChangeCoutCallback() {
 			@Override
@@ -328,6 +394,54 @@ public class ProductInfoChActivity extends BaseActivity {
 					});
 				}
 				
+			}
+			catch(Exception e){
+				Log.v("PRO", e.getMessage());
+			}
+			return super.getView(position, convertView, parent);
+		}
+	}
+
+
+	@SuppressLint("ResourceAsColor")
+	public class PriceSimpleAdapter  extends SimpleAdapter {
+		private LayoutInflater mInflater;
+		public PriceSimpleAdapter(Context context,
+								  List<? extends Map<String, ?>> data, int resource, String[] from,
+								  int[] to) {
+			super(context, data, resource, from, to);
+			mInflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		}
+
+		@SuppressLint({ "NewApi", "ResourceAsColor" })
+		@Override
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			try{
+				if(convertView==null){
+					convertView=mInflater.inflate(R.layout.select_price, null);
+				}
+				String isDiscount =  price_list.get(position).get("isDiscount").toString();
+				String isOnDiscount = info.getString("isOnDiscount");
+				String moq = price_list.get(position).get("moq").toString();
+				String discountPrice = price_list.get(position).get("discountPrice").toString();
+				String price = price_list.get(position).get("price").toString();
+
+				TextView tv_quantity = (TextView)convertView.findViewById(R.id.tv_quantity);
+				TextView tv_price = (TextView)convertView.findViewById(R.id.tv_price);
+
+				tv_quantity.setText(moq+info.getString("unit"));
+				tv_quantity.setTextColor(Color.parseColor("#000000"));
+				if(!isDiscount.equals("1") || !isOnDiscount.equals("1")){
+					tv_price.setText("¥"+price+"元/"+info.getString("unit"));
+					tv_price.setTextColor(Color.parseColor("#000000"));
+				}
+				if(isDiscount.equals("1") && isOnDiscount.equals("1")){
+					tv_price.setText("¥"+discountPrice+"元/"+info.getString("unit"));
+					tv_price.setTextColor(Color.parseColor("#000000"));
+				}
+				tv_quantity.setTag(position);
+				tv_price.setTag(position);
 			}
 			catch(Exception e){
 				Log.v("PRO", e.getMessage());

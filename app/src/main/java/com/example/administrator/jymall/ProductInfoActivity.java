@@ -214,9 +214,6 @@ public class ProductInfoActivity extends UserActivity {
 				i.putExtra("info",info.toString());
 				i.putExtra("defaultProp",defaultProp.toString());
 				i.putExtra("appraiseList",appraiseList.toString());
-				Log.i("这尼玛", "info:"+info.toString());
-				Log.i("这尼玛", "defaultProp:"+defaultProp.toString());
-				Log.i("这尼玛", "appraiseList:"+appraiseList.toString());
 				startActivity(i);
 			}
 			return false;

@@ -147,6 +147,7 @@ public class ProductInfoCActivity extends TopActivity implements XListView.IXLis
 			if(FormatUtil.isNoEmpty(appraiseList)) {
 				int count=appraiseList.length();
 				int totalPage=pageSize*start;
+				int startPage=pageSize*(start-1);
 				if(totalPage<=count){
 					count=totalPage;
 				}
@@ -162,7 +163,7 @@ public class ProductInfoCActivity extends TopActivity implements XListView.IXLis
 				else if(count ==  10 ) {
 					listViewAll.setPullLoadEnable(true);
 				}
-				for (int i = 0; i < count; i++) {
+				for (int i=startPage; i < count; i++) {
 					Map<String, Object> dateMap = new HashMap<String, Object>();
 					dateMap.put("createuser", appraiseList.getJSONObject(i).get("createuser"));
 					dateMap.put("createdate", appraiseList.getJSONObject(i).get("createdate"));

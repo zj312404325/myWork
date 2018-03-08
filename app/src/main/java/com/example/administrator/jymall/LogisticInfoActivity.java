@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -237,6 +238,13 @@ public class LogisticInfoActivity extends TopActivity implements IXListViewListe
             holder.tv_timeString.setText(timeString);
             holder.tv_context.setText(content);
 
+            if(position==0){
+                holder.iv_state.setBackgroundResource(R.drawable.icon_logistic_blue);
+            }
+            else{
+                holder.iv_state.setBackgroundResource(R.drawable.icon_logistic_grey);
+            }
+
             return super.getView(position, convertView, parent);
         }
 
@@ -253,6 +261,8 @@ public class LogisticInfoActivity extends TopActivity implements IXListViewListe
         private TextView tv_timeString;
         @ViewInject(R.id.tv_context)
         private TextView tv_context;
+        @ViewInject(R.id.iv_state)
+        private ImageView iv_state;
     }
 
     private void onLoad() {

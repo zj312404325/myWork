@@ -325,6 +325,7 @@ public class MallCategoryActivity extends TopSearchTitleActivity implements IXLi
                     public void onClick(View arg0) {
                         Intent i = new Intent(getApplicationContext(),SearchProductListActivity.class);
                         i.putExtra("categoryid", id);
+                        i.putExtra("keyword", name);
                         i.putExtra("levels", levels);
                         startActivity(i);
                     }

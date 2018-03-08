@@ -6,7 +6,7 @@ android:layout_height="match_parent"
 android:orientation="vertical" android:background="#ffffff"
 tools:context=".IndexActivity" >
 
-<include  android:id="@+id/top"  layout="@layout/top_search_product" />
+<include  android:id="@+id/top"  layout="@layout/top_search_index" />
 
 <!-- 底部菜单 -->
 <include  android:id="@+id/bottom_tap"  layout="@layout/buttom_tap" />

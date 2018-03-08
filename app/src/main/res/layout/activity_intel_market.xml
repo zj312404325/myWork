@@ -160,6 +160,7 @@
 					</RelativeLayout>
 					<RelativeLayout style="@style/fill" android:layout_weight="8">
 						<ImageView
+							android:id="@+id/iv_part1"
 							android:layout_marginTop="10dp"
 							android:layout_marginBottom="10dp"
 							android:layout_width="30dp"
@@ -176,100 +177,106 @@
 					android:background="#c6c6c6" />
 
 				<LinearLayout
-					style="@style/match_parent"
-					android:layout_marginTop="5dp"
-					android:orientation="horizontal">
-
-					<TextView
-						android:id="@+id/venderDetail"
-						android:layout_width="240dp"
-						android:layout_height="100dp"
-						android:text="针对部分工业产品非标的特点，金赢网www.jinying365.com免费为平台客户配备工业品自动售货机，结合不同客户的需求和金赢网专业团队的产品筛选优势，对应的工业产品将由金赢网配置齐全后存放于售货机内供客户按需购买。客户视其所需，可自助购买并开取对应产品。"
-						android:textSize="12dp" />
-					<ImageView
-						android:layout_width="80dp"
-						android:layout_height="100dp"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="5dp"
-						android:background="@drawable/icon_vender"
-						android:scaleType="centerInside" />
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_marginTop="10dp"
-					android:orientation="horizontal"
-					android:layout_weight="1"
+					android:id="@+id/ll_part1"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+					android:orientation="vertical">
+					<LinearLayout
+						style="@style/match_parent"
+						android:layout_marginTop="5dp"
+						android:orientation="horizontal">
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
+						<TextView
+							android:id="@+id/venderDetail"
+							android:layout_width="240dp"
+							android:layout_height="100dp"
+							android:text="针对部分工业产品非标的特点，金赢网www.jinying365.com免费为平台客户配备工业品自动售货机，结合不同客户的需求和金赢网专业团队的产品筛选优势，对应的工业产品将由金赢网配置齐全后存放于售货机内供客户按需购买。客户视其所需，可自助购买并开取对应产品。"
+							android:textSize="12dp" />
 						<ImageView
-							android:background="@drawable/icon_19"
-							android:layout_width="70dp"
-							android:layout_height="90dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_27"
-							android:layout_width="70dp"
-							android:layout_height="90dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_40"
-							android:layout_width="70dp"
-							android:layout_height="90dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_80"
-							android:layout_width="70dp"
-							android:layout_height="90dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+							android:layout_width="80dp"
+							android:layout_height="100dp"
+							android:layout_marginLeft="10dp"
+							android:layout_marginRight="5dp"
+							android:background="@drawable/icon_vender"
+							android:scaleType="centerInside" />
+					</LinearLayout>
 
-				<LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<TextView
-							android:layout_width="100dp"
-							android:text="19格"
-							android:layout_height="30dp"
-							android:layout_centerInParent="true"
-							android:gravity="center" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<TextView
-							android:layout_width="100dp"
-							android:text="27格"
-							android:layout_height="30dp"
-							android:layout_centerInParent="true"
-							android:gravity="center"/>
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<TextView
-							android:layout_width="100dp"
-							android:text="40格"
-							android:layout_height="30dp"
-							android:layout_centerInParent="true"
-							android:gravity="center"/>
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<TextView
-							android:layout_width="100dp"
-							android:text="80格"
-							android:layout_height="30dp"
-							android:layout_centerInParent="true"
-							android:gravity="center"/>
-					</RelativeLayout>
+					<LinearLayout
+						android:layout_marginTop="10dp"
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
+
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_19"
+								android:layout_width="70dp"
+								android:layout_height="90dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_27"
+								android:layout_width="70dp"
+								android:layout_height="90dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_40"
+								android:layout_width="70dp"
+								android:layout_height="90dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_80"
+								android:layout_width="70dp"
+								android:layout_height="90dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
+
+					<LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<TextView
+								android:layout_width="100dp"
+								android:text="19格"
+								android:layout_height="30dp"
+								android:layout_centerInParent="true"
+								android:gravity="center" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<TextView
+								android:layout_width="100dp"
+								android:text="27格"
+								android:layout_height="30dp"
+								android:layout_centerInParent="true"
+								android:gravity="center"/>
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<TextView
+								android:layout_width="100dp"
+								android:text="40格"
+								android:layout_height="30dp"
+								android:layout_centerInParent="true"
+								android:gravity="center"/>
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<TextView
+								android:layout_width="100dp"
+								android:text="80格"
+								android:layout_height="30dp"
+								android:layout_centerInParent="true"
+								android:gravity="center"/>
+						</RelativeLayout>
+					</LinearLayout>
 				</LinearLayout>
 
 				<LinearLayout
@@ -298,6 +305,7 @@
 					</RelativeLayout>
 					<RelativeLayout style="@style/fill" android:layout_weight="8">
 						<ImageView
+							android:id="@+id/iv_part2"
 							android:layout_marginTop="10dp"
 							android:layout_marginBottom="10dp"
 							android:layout_width="30dp"
@@ -308,6 +316,7 @@
 				</LinearLayout>
 
 				<LinearLayout
+					android:id="@+id/ll_part2"
 					android:layout_marginTop="10dp"
 					android:orientation="vertical"
 					android:layout_weight="1"
@@ -374,6 +383,7 @@
 					</RelativeLayout>
 					<RelativeLayout style="@style/fill" android:layout_weight="8">
 						<ImageView
+							android:id="@+id/iv_part3"
 							android:layout_marginTop="10dp"
 							android:layout_marginBottom="10dp"
 							android:layout_width="30dp"
@@ -390,366 +400,374 @@
 					android:layout_marginTop="5dp"/>
 
 				<LinearLayout
-					android:layout_marginTop="10dp"
-					android:orientation="horizontal"
-					android:layout_weight="1"
+					android:id="@+id/ll_part3"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+					android:orientation="vertical">
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom1"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom2"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom3"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:layout_marginTop="10dp"
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom1"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom2"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom3"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom4"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom5"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom6"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom4"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom5"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom6"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom7"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom8"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom9"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom7"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom8"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom9"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom10"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom11"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom12"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom10"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom11"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom12"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom13"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom14"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom15"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom13"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom14"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom15"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom16"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom17"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom18"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom16"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom17"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom18"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom19"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom20"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom21"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom19"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom20"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom21"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom22"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom23"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom24"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom22"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom23"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom24"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom25"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom26"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom27"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom25"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom26"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom27"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom28"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom29"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom30"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-				</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
 
-				<LinearLayout
-					android:orientation="horizontal"
-					android:layout_weight="1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical">
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom28"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom29"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom30"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
 
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom31"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true" />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:background="@drawable/icon_custom32"
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
-					<RelativeLayout style="@style/fill" android:layout_weight="1" >
-						<ImageView
-							android:layout_width="300dp"
-							android:layout_height="70dp"
-							android:scaleType="center"
-							android:layout_centerInParent="true"  />
-					</RelativeLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
+
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom31"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom32"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
+
 				</LinearLayout>
 
 				<LinearLayout
