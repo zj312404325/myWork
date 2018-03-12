@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -437,7 +438,7 @@ public class AddOrderActivity extends TopActivity {
 					pro_salePrice.setText("面议");
 				}
 				else{
-					pro_salePrice.setText("￥" + prolist.get(position).get("salePrice").toString() + "/" + prolist.get(position).get("unit").toString());
+					pro_salePrice.setText(Html.fromHtml("￥" + prolist.get(position).get("salePrice").toString() + "/<font color=\"#1a3688\">" + prolist.get(position).get("unit").toString()+"</font>"));
 				}
 				pro_stockQty.setText("X "+prolist.get(position).get("stockQty").toString());				
 			}

@@ -212,28 +212,30 @@ public class FastMatchDetailActivity extends TopActivity implements IXListViewLi
             holder.tv_brand.setText(brand);
             holder.tv_spec.setText(proSpec);
             holder.tv_quantity.setText(quantity+unit);
-            holder.tv_unitPrice.setText(salePrice);
-            holder.tv_money.setText(money);
 
+            if(FormatUtil.isNoEmpty(salePrice)) {
+                holder.tv_unitPrice.setText(salePrice+"元");
+            }
+            if(FormatUtil.isNoEmpty(money)) {
+                holder.tv_money.setText(money+"元");
+            }
             if(hasGoods.equals("1")){
                 holder.tv_unitPrice.setText("无货");
                 holder.tv_money.setText("-");
             }
             else{
-                if(salePrice.equals("0")){
+                if (salePrice.equals("0")) {
                     holder.tv_unitPrice.setText("");
+                } else {
+                    holder.tv_unitPrice.setText(salePrice+"元");
                 }
-                else {
-                    holder.tv_unitPrice.setText(salePrice);
-                }
-                if(money.equals("0")){
+                if (money.equals("0")) {
                     holder.tv_money.setText("");
+                } else {
+                    holder.tv_money.setText(money+"元");
                 }
-                else {
-                    holder.tv_money.setText(money);
-                }
-
             }
+
 
             if(hasOrder.equals("1")) {
                 holder.tv_orderStatus.setText("已生成订单");

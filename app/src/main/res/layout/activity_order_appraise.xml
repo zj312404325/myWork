@@ -6,7 +6,6 @@
     tools:context=".OrderAppraiseActivity" >
 
     <include  android:id="@+id/top_title"  layout="@layout/top" />
-
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -31,13 +30,7 @@
 						 android:textColor="#ffffff"
 						 android:textSize="20sp"
 						 android:id="@+id/tv_orderStatus"/>
-					<Button
-						style="@style/btndarkblue"
-						android:id="@+id/btn_submit"
-						android:layout_marginTop="5dp"
-						android:text="评价"
-						android:layout_width="match_parent"
-						android:layout_toEndOf="@id/tv_orderStatus"/>
+
 				</RelativeLayout>
 
 				<LinearLayout style="@style/line" />
@@ -49,8 +42,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
-				android:background="#ffffff"
-				android:layout_marginTop="16dp">
+				android:background="#ffffff">
 
 				<RelativeLayout
 					android:layout_width="match_parent"
@@ -126,7 +118,7 @@
 					<TextView
 						android:id="@+id/tv_sendGoods"
 						style="@style/wrap_content"
-						android:text="发货速度："
+						android:text="送货速度："
 						android:layout_alignParentLeft="true"
 						android:layout_centerVertical="true"
 						android:textColor="#939393"
@@ -171,10 +163,12 @@
 
 			</LinearLayout>
 
+
 			<LinearLayout
 				style="@style/line"
 				android:layout_marginLeft="16dp"
 				android:layout_marginRight="16dp"  />
+
 
 			<LinearLayout
 					android:orientation="vertical"
@@ -193,6 +187,8 @@
 						android:textColor="#939393"
 						android:layout_centerInParent="true" />
 				</LinearLayout>
+
+
 		</LinearLayout>
 
 

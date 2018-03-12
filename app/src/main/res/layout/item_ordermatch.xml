@@ -16,13 +16,24 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
-			<TextView
-				android:id="@+id/tv_proName"
+
+			<LinearLayout
 				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="5dp"
-				android:text="*商品名称:"
-				android:textSize="18sp" />
+				android:layout_height="wrap_content">
+				<TextView
+					android:layout_width="10dp"
+					android:layout_height="wrap_content"
+					android:text="*"
+					android:textSize="18sp"
+					android:textColor="#e60012"/>
+				<TextView
+					android:id="@+id/tv_proName"
+					android:layout_width="90dp"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="5dp"
+					android:text="商品名称:"
+					android:textSize="18sp" />
+			</LinearLayout>
 
 			<EditText
 				android:id="@+id/et_proName"
@@ -30,7 +41,8 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="10"/>
 
 		</LinearLayout>
 
@@ -41,10 +53,10 @@
 			android:layout_marginRight="10dp">
 			<TextView
 				android:id="@+id/tv_brand"
-				android:layout_width="100dp"
+				android:layout_width="95dp"
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="5dp"
-				android:text="品							牌:"
+				android:text="	品						 牌:"
 				android:textSize="18sp" />
 
 			<EditText
@@ -53,7 +65,8 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="10"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -61,13 +74,23 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
-			<TextView
-				android:id="@+id/tv_spec"
+
+			<LinearLayout
 				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="5dp"
-				android:text="*规						格:"
-				android:textSize="18sp" />
+				android:layout_height="wrap_content">
+				<TextView
+					android:layout_width="10dp"
+					android:layout_height="wrap_content"
+					android:text="*"
+					android:textSize="18sp"
+					android:textColor="#e60012"/>
+				<TextView
+					android:id="@+id/tv_spec"
+					android:layout_width="90dp"
+					android:layout_height="wrap_content"
+					android:text="	规						格:"
+					android:textSize="18sp" />
+			</LinearLayout>
 
 			<EditText
 				android:id="@+id/et_spec"
@@ -75,7 +98,8 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="10"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -83,13 +107,24 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
-			<TextView
-				android:id="@+id/tv_proQuality"
+
+			<LinearLayout
 				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="5dp"
-				android:text="*材						质:"
-				android:textSize="18sp" />
+				android:layout_height="wrap_content">
+				<TextView
+					android:layout_width="10dp"
+					android:layout_height="wrap_content"
+					android:text="*"
+					android:textSize="18sp"
+					android:textColor="#e60012"/>
+				<TextView
+					android:id="@+id/tv_proQuality"
+					android:layout_width="90dp"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="5dp"
+					android:text="材						质:"
+					android:textSize="18sp" />
+			</LinearLayout>
 
 			<EditText
 				android:id="@+id/et_proQuality"
@@ -97,7 +132,8 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="10"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -105,13 +141,24 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
-			<TextView
-				android:id="@+id/tv_quantity"
+			<LinearLayout
 				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="5dp"
-				android:text="*数						量:"
-				android:textSize="18sp" />
+				android:layout_height="wrap_content">
+				<TextView
+					android:layout_width="10dp"
+					android:layout_height="wrap_content"
+					android:text="*"
+					android:textSize="18sp"
+					android:textColor="#e60012"/>
+				<TextView
+					android:id="@+id/tv_quantity"
+					android:layout_width="90dp"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="5dp"
+					android:inputType="number"
+					android:text="数						量:"
+					android:textSize="18sp" />
+			</LinearLayout>
 
 			<EditText
 				android:id="@+id/et_quantity"
@@ -119,7 +166,8 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="10"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -127,21 +175,33 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
-			<TextView
-				android:id="@+id/tv_unit"
+			<LinearLayout
 				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="5dp"
-				android:text="*单						位:"
-				android:textSize="18sp" />
+				android:layout_height="wrap_content">
+				<TextView
+					android:layout_width="10dp"
+					android:layout_height="wrap_content"
+					android:text="*"
+					android:textSize="18sp"
+					android:textColor="#e60012"/>
+				<TextView
+					android:id="@+id/tv_unit"
+					android:layout_width="90dp"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="5dp"
+					android:text="单						位:"
+					android:textSize="18sp" />
+			</LinearLayout>
 
-			<EditText
-				android:id="@+id/et_unit"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="@drawable/bg_edittext"
-				android:padding="5dp"
-				android:singleLine="true" />
+				<EditText
+					android:id="@+id/et_unit"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/bg_edittext"
+					android:padding="5dp"
+					android:singleLine="true"
+					android:maxLength="10"/>
+
 		</LinearLayout>
 
 		<LinearLayout
@@ -151,10 +211,10 @@
 			android:layout_marginRight="10dp">
 			<TextView
 				android:id="@+id/tv_proDesc"
-				android:layout_width="100dp"
+				android:layout_width="95dp"
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="5dp"
-				android:text="	性能要求:"
+				android:text="性 能 要求:"
 				android:textSize="18sp" />
 
 			<EditText
@@ -163,7 +223,8 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="20"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -171,13 +232,24 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
-			<TextView
-				android:id="@+id/tv_require"
+
+			<LinearLayout
 				android:layout_width="100dp"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="5dp"
-				android:text="*参						 数:"
-				android:textSize="18sp" />
+				android:layout_height="wrap_content">
+				<TextView
+					android:layout_width="10dp"
+					android:layout_height="wrap_content"
+					android:text="*"
+					android:textSize="18sp"
+					android:textColor="#e60012"/>
+				<TextView
+					android:id="@+id/tv_require"
+					android:layout_width="90dp"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="5dp"
+					android:text="参						数:"
+					android:textSize="18sp" />
+			</LinearLayout>
 
 			<EditText
 				android:id="@+id/et_parameter"
@@ -185,7 +257,8 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="20"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -195,7 +268,7 @@
 			android:layout_marginRight="10dp">
 			<TextView
 				android:id="@+id/tv_remark"
-				android:layout_width="100dp"
+				android:layout_width="95dp"
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="5dp"
 				android:text="	备						 注:"
@@ -207,8 +280,15 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
-				android:singleLine="true" />
+				android:singleLine="true"
+				android:maxLength="20"/>
 		</LinearLayout>
+
+		<LinearLayout
+			style="@style/line"
+			android:layout_marginTop="5dp"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"/>
 
 		<LinearLayout
 			android:id="@+id/ll_addHotelEvaluate"
@@ -220,13 +300,13 @@
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp">
 
-			<TextView
+			<!--<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="5dp"
 				android:layout_weight="1"
 				android:text="产品图片:"
-				android:textSize="18sp" />
+				android:textSize="18sp" />-->
 
 		<LinearLayout
 			android:layout_width="wrap_content"

@@ -34,6 +34,12 @@
 				android:layout_gravity="center_vertical"
 	            android:textSize="16sp"
 				android:id="@+id/tv_totalPrice"/>
+			<TextView
+				style="@style/wrap_content"
+				android:text="元"
+				android:textColor="#e60012"
+				android:layout_gravity="center_vertical"
+				android:textSize="16sp"/>
 	    </LinearLayout>
 	    
 	    <Button
@@ -479,6 +485,7 @@
 								style="@style/wrap_content"
 								android:layout_width="match_parent"
 								android:text="3"
+								android:textColor="#e60012"
 								android:textSize="14sp"
 								android:layout_gravity="right"
 								android:background="@null"
@@ -500,6 +507,7 @@
 								style="@style/wrap_content"
 								android:layout_width="match_parent"
 								android:text="¥300"
+								android:textColor="#e60012"
 								android:textSize="14sp"
 								android:layout_gravity="right"
 								android:background="@null"
@@ -522,6 +530,7 @@
 								style="@style/wrap_content"
 								android:layout_width="match_parent"
 								android:text="¥0.00"
+								android:textColor="#e60012"
 								android:textSize="14sp"
 								android:layout_gravity="right"
 								android:background="@null"

@@ -51,4 +51,7 @@
     <color name="login_back_blue">#1a3688</color>
     <color name="login_text_white">#ffffff</color>
     <color name="verify_orange">#ff9326</color>
+
+    <color name="score_positive">#29ba00</color>
+    <color name="score_negative">#ff9900</color>
 </resources>

@@ -147,6 +147,9 @@ public class Register1Activity extends TopNoLoginActivity {
         if(et_comp.getText().length() <1){
             CommonUtil.alter("公司名称不能为空！");return;
         }
+        if(FormatUtil.getStringLength(et_comp.getText().toString()) >50){
+            CommonUtil.alter("公司名称过长！");return;
+        }
         if(et_mobile.getText().toString().length() != 11){
             CommonUtil.alter("手机号不正确！！");return;
         }

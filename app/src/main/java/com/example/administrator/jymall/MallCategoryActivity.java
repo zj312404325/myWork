@@ -106,6 +106,8 @@ public class MallCategoryActivity extends TopSearchTitleActivity implements IXLi
         listViewAll.setAdapter(sap);
         listViewAll.setPullLoadEnable(true);
         listViewAll.setXListViewListener(this);
+
+        showSelect(R.id.iv_select1);
         getData(true,true);
         mHandler = new Handler();
         parentControl();
@@ -325,7 +327,7 @@ public class MallCategoryActivity extends TopSearchTitleActivity implements IXLi
                     public void onClick(View arg0) {
                         Intent i = new Intent(getApplicationContext(),SearchProductListActivity.class);
                         i.putExtra("categoryid", id);
-                        i.putExtra("keyword", name);
+                        i.putExtra("categoryName", name);
                         i.putExtra("levels", levels);
                         startActivity(i);
                     }

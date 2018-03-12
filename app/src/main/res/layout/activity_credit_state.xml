@@ -25,12 +25,17 @@
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
 
-				<TextView
-					style="@style/match_parent"
-					android:text="				 拥有VIP信用支付特权的用户，可享受订单月度结算或年度结算"
-					android:textColor="#000000"
-					android:textSize="16dp"
-					android:layout_marginTop="5dp"/>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+					<TextView
+						android:id="@+id/tv_title"
+						style="@style/match_parent"
+						android:text="				 拥有VIP信用支付特权的用户，可享受订单月度结算或年度结算"
+						android:textColor="#000000"
+						android:textSize="16dp"
+						android:layout_marginTop="5dp"/>
+				</LinearLayout>
 
 				<TextView
 					android:layout_marginTop="5dp"
@@ -167,7 +172,7 @@
 							android:background="@drawable/bg_edittext"
 							android:inputType="number"
 							android:textSize="14sp"
-							android:text="99"/>
+							android:text=""/>
 					</LinearLayout>
 
 				</LinearLayout>
@@ -229,9 +234,10 @@
 					style="@style/match_parent"
 					android:layout_marginTop="5dp"
 					android:gravity="center"
-					android:text="签订方法：
-						1、先至“账户设置”——“电子章管理”里面上传电子章，然后打开下方协议，点击“盖章”按钮，即可完成协议签订。
-						2、没有电子章的用户，将协议下载下来打印并盖章，然后将协议传真给我方，"
+					android:text="签订方法：\n
+					\n1、先至“账户设置”——“电子章管理”里面上传电子章，然后打开下方协议，点击“盖章”按钮，即可完成协议签订。
+					\n2、没有电子章的用户，将协议下载下来打印并盖章，然后将协议传真给我方，"
+
 					android:textSize="14dp"/>
 
 				<LinearLayout
@@ -252,9 +258,9 @@
 
 					<ImageView
 						android:layout_marginLeft="5dp"
-						android:layout_width="9dp"
+						android:layout_width="16dp"
 						android:layout_height="16dp"
-						android:background="@drawable/right"
+						android:background="@drawable/icon_ali_down"
 						android:layout_gravity="center_vertical"/>
 				</LinearLayout>
 
@@ -376,11 +382,6 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="区域配送服务功能"/>
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="1、甲方安排乙方所在区域的服务中心的服务人员提供24小时配送服务。"/>
 
 					<TextView
 						android:layout_width="wrap_content"
@@ -613,7 +614,8 @@
 					android:layout_gravity="center_vertical"
 					android:layout_marginTop="5dp"
 					android:layout_marginLeft="10dp"
-					android:layout_marginRight="10dp">
+					android:layout_marginRight="10dp"
+					android:layout_marginBottom="10dp">
 
 					<TextView
 						android:layout_width="wrap_content"

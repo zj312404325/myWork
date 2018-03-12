@@ -20,7 +20,7 @@
 				android:layout_height="50dp"
 				android:text="加载中..."
 				android:gravity="center"
-				android:textColor="#9c9c9c"
+				android:textColor="#666666"
 				android:layout_gravity="center"
 				android:background="#ececec" />
 		</LinearLayout>

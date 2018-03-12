@@ -38,7 +38,7 @@
 				android:layout_marginLeft="20dp"
 				android:text="5999积分"
 				android:gravity="center"
-				android:textColor="#c96876"
+				android:textColor="#898989"
 				/>
 			<TextView
 				android:id="@+id/av_quantity"
@@ -48,7 +48,7 @@
 				android:layout_marginRight="20dp"
 				android:text="库存：999件"
 				android:gravity="center"
-				android:textColor="#c96876"
+				android:textColor="#898989"
 				/>
 		</LinearLayout>
 	</RelativeLayout>

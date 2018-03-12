@@ -10,10 +10,20 @@
 		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
 		    	<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
 			    	android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:focusable="true"  android:focusableInTouchMode="true">
-				    <TextView style="@style/wrap_content" android:text="线下充值银行账户：" android:layout_alignParentLeft="true" 
-				        android:layout_centerVertical="true"  android:maxLines="1" 
-				        
-				       />
+
+
+					<TextView
+						style="@style/wrap_content"
+						android:text="充值金额："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+
+					<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp"
+						android:layout_centerVertical="true" android:background="@null" android:hint="请输入充值金额"
+						android:id="@+id/et_rechargemoney" android:inputType="numberDecimal"/>
 				    	    
 				   			    
 				</RelativeLayout>
@@ -22,14 +32,12 @@
 				
 				<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
 			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:focusable="true"  android:focusableInTouchMode="true">
-				    <TextView style="@style/wrap_content" android:text="充值金额：" android:layout_alignParentLeft="true" 
-				        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-				        
-				       />
-				    
-				   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-				        android:layout_centerVertical="true" android:background="@null" android:hint="请输入充值金额"  
-				        android:id="@+id/et_rechargemoney" android:inputType="numberDecimal"/>		    
+					<TextView
+						style="@style/wrap_content"
+						android:text="线下充值银行账户："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:maxLines="1" />
 				   			    
 				</RelativeLayout>
 				<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0"
@@ -66,7 +74,7 @@
 				<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0"
 				    android:layout_marginLeft="10dp" android:layout_marginRight="10dp" />	
 				
-				 <Button  android:id="@+id/btn_pay" style="@style/btnblue"            
+				 <Button  android:id="@+id/btn_pay" style="@style/btndarkblue"
             android:text="提交" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
             android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
 		    

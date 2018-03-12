@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -231,7 +232,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
                     }
                     else if(refundStatus.equals("4")){
                         tv_refundOkDate.setText("- 退款时间："+orderdtl.getString("backEndDate"));
-                        tv_refundMoney.setText("- 退款金额："+refund.getString("money")+"元");
+                        tv_refundMoney.setText(Html.fromHtml("- 退款金额：<font color=\"#1a3688\">"+refund.getString("money")+"</font>元"));
                         showRefundOk();
                     }
 

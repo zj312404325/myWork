@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -95,6 +96,9 @@ public class MyCreditActivity extends TopActivity {
     @ViewInject(R.id.et_peopleCount)
     private EditText et_peopleCount;
 
+    @ViewInject(R.id.tv_title)
+    private TextView tv_title;
+
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
 
@@ -133,6 +137,7 @@ public class MyCreditActivity extends TopActivity {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
         super.title.setText("信用支付状态");
+        tv_title.setText(Html.fromHtml("拥有VIP信用支付特权的用户，可享受订单<font color=\"#1a3688\">月度结算</font>或<font color=\"#1a3688\">年度结算</font>"));
         progressDialog.hide();
         getState();
 

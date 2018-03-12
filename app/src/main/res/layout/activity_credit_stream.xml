@@ -29,7 +29,7 @@
 			android:id="@+id/tv_myPay"
 			android:layout_below="@+id/myshow"
 			android:text="8888.00 元"
-			android:textColor="@color/red"
+			android:textColor="#666666"
 			android:textSize="25sp"
 			android:layout_centerInParent="true"/>
 

@@ -33,7 +33,7 @@
 					android:id="@+id/et_contact"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:textSize="10sp"
+					android:textSize="14sp"
 					android:hint=""
 					android:maxLength="16"
 					android:background="@null"/>
@@ -74,7 +74,7 @@
 					android:id="@+id/et_address"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:textSize="10sp"
+					android:textSize="14sp"
 					android:hint=""
 					android:maxLength="100"
 					android:background="@null"/>
@@ -109,7 +109,7 @@
 					android:id="@+id/et_mobile"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:textSize="10sp"
+					android:textSize="14sp"
 					android:hint=""
 					android:inputType="phone"
 					android:maxLength="11"

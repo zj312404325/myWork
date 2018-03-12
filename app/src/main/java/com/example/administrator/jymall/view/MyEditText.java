@@ -69,6 +69,7 @@ public class MyEditText extends RelativeLayout {
         input_txt.setTextColor(textColor);
         input_txt.setText(text);
         input_txt.setHint(hint);
+		input_txt.setSingleLine(true);
         input_txt.setTextSize(TypedValue.COMPLEX_UNIT_DIP,textSize);
         if(ispwd==1){
         	input_txt.setTransformationMethod(PasswordTransformationMethod.getInstance());

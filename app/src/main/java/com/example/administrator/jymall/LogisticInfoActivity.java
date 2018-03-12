@@ -239,10 +239,16 @@ public class LogisticInfoActivity extends TopActivity implements IXListViewListe
             holder.tv_context.setText(content);
 
             if(position==0){
-                holder.iv_state.setBackgroundResource(R.drawable.icon_logistic_blue);
+                holder.iv_state.setBackgroundResource(R.drawable.icon_point_blue);
+                holder.tv_context.setTextColor(holder.tv_context.getResources().getColor(R.color.login_back_blue));
+                holder.tv_dateString.setTextColor(holder.tv_dateString.getResources().getColor(R.color.login_back_blue));
+                holder.tv_timeString.setTextColor(holder.tv_timeString.getResources().getColor(R.color.login_back_blue));
             }
             else{
-                holder.iv_state.setBackgroundResource(R.drawable.icon_logistic_grey);
+                holder.iv_state.setBackgroundResource(R.drawable.icon_point_gray);
+                holder.tv_context.setTextColor(holder.tv_context.getResources().getColor(R.color.gray));
+                holder.tv_dateString.setTextColor(holder.tv_dateString.getResources().getColor(R.color.gray));
+                holder.tv_timeString.setTextColor(holder.tv_timeString.getResources().getColor(R.color.gray));
             }
 
             return super.getView(position, convertView, parent);

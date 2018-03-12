@@ -57,8 +57,8 @@
 			style="@style/fill"
 			android:layout_weight="1"
 			android:text="我的购物车"
-			android:textColor="#ffffff"
-	        android:background="#3bc4f4"
+			android:textColor="#666666"
+	        android:background="#ffffff"
 			android:id="@+id/myBuy"/>
 	    <Button
 			style="@style/fill"
@@ -160,7 +160,7 @@
 						android:layout_height="25dp" >
 						<TextView
 							style="@style/wrap_content"
-							android:text="联 系方式：0512-52686666"
+							android:text="联系方式：0512-52686666"
 							android:textColor="@color/gray"
 							android:textSize="12dp"/>
 						<LinearLayout style="@style/line" android:layout_alignParentBottom="true" />

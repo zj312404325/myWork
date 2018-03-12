@@ -142,10 +142,10 @@ public class GiftDetailActivity extends UserActivity {
                             tv_giftNo.setText("礼品编号：暂无");
                         }
                         if(FormatUtil.isNoEmpty(gift.getString("giftIntegral")) && FormatUtil.toInteger(gift.getString("giftIntegral"))>0) {
-                            tv_giftScore.setText("所需积分：" +gift.getString("giftIntegral")+"积分");
+                            tv_giftScore.setText(Html.fromHtml("所需积分：<font color=\"#e60012\">"+gift.getString("giftIntegral")+"</font>积分"));
                         }
                         else{
-                            tv_giftScore.setText("所需积分：9999积分");
+                            tv_giftScore.setText("所需积分：<font color=\"#e60012\">9999999</font>积分");
                         }
                         if(FormatUtil.isNoEmpty(gift.getString("description"))){
                             CharSequence  charSequence;

@@ -138,6 +138,9 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
         if(FormatUtil.isNoEmpty(keyword)){
             top_searchbar_input_txt.setText(keyword);
         }
+        else{
+            top_searchbar_input_txt.setText(i.getStringExtra("categoryName"));
+        }
 
         sap = new ProSimpleAdapter(SearchProductListActivity.this, dateMaps,
                 R.layout.listview_search_product,
@@ -211,7 +214,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
     @Event(value=R.id.tab1)
     private void btn_tab1(View v){
         css("2");
-        tab_txt1.setTextColor(Color.parseColor("#2192cd"));
+        tab_txt1.setTextColor(Color.parseColor("#1a3688"));
         orderString = "";
         getDate(true,true);
     }
@@ -220,7 +223,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
     private void btn_tab2(View v){
         css("2");
 
-        tab_txt2.setTextColor(Color.parseColor("#2192cd"));
+        tab_txt2.setTextColor(Color.parseColor("#1a3688"));
         if(v.getTag().equals("1")){
             tab_img2.setBackgroundResource(R.drawable.tab_s2);
             v.setTag("2");
@@ -238,7 +241,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
     private void btn_tab3(View v){
         css("3");
 
-        tab_txt3.setTextColor(Color.parseColor("#2192cd"));
+        tab_txt3.setTextColor(Color.parseColor("#1a3688"));
         if(v.getTag().equals("1")){
             tab_img3.setBackgroundResource(R.drawable.tab_s2);
             v.setTag("2");
@@ -259,7 +262,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
             if(v.getId() == R.id.tab1){
                 css("1");
                 if(v.getTag().equals("1")){
-                    tab_txt1.setTextColor(Color.parseColor("#2192cd"));
+                    tab_txt1.setTextColor(Color.parseColor("#1a3688"));
                     v.setTag("2");
                 }
                 else{
@@ -274,7 +277,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
                 if(v.getTag().equals("1")){
                     searech.setVisibility(View.VISIBLE);
                     tab_img4.setBackgroundResource(R.drawable.searchup);
-                    tab_txt4.setTextColor(Color.parseColor("#2192cd"));
+                    tab_txt4.setTextColor(Color.parseColor("#1a3688"));
 
                     v.setTag("2");
                 }
@@ -420,7 +423,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
                     if(resjarr.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);
                     }
-                    else if(resjarr.length() ==  10 ) {
+                    else if(resjarr.length() ==  16 ) {
                         listViewAll.setPullLoadEnable(true);
                     }
 
@@ -529,6 +532,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
                 String brand= dateMaps.get(position).get("brand").toString();
                 tv_brand.setText(dateMaps.get(position).get("brand").toString());
                 //prospec.setText(dateMaps.get(position).get("prospec").toString());
+
                 String salePricestr= dateMaps.get(position).get("salePrice").toString();
                 salePrice.setText(salePricestr.equals("0")?"面议":"￥"+salePricestr+"/"+dateMaps.get(position).get("unit").toString());
                 tv_stockQuantity.setText(dateMaps.get(position).get("proQuality").toString()+dateMaps.get(position).get("unit").toString());

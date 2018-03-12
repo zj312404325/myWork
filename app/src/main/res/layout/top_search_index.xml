@@ -29,7 +29,7 @@
 	  	        android:layout_centerVertical="true"
 				android:layout_marginLeft="10dp"
 	  	        android:id="@+id/top_searchbar_input_img"
-	  	        android:background="@drawable/input_search"/>
+	  	        android:background="@drawable/icon_search"/>
 	  	    <EditText
 				android:layout_width="match_parent"
 				android:layout_height="30dp"

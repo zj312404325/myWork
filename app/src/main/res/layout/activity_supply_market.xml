@@ -69,8 +69,6 @@
 					android:layout_height="20dp"
 					android:text="*联系电话："
 					android:textSize="14dp"
-					android:inputType="phone"
-					android:maxLength="11"
 					android:layout_gravity="center_vertical"/>
 				<EditText
 					android:id="@+id/et_mobile"
@@ -114,7 +112,7 @@
 					android:layout_height="match_parent"
 					android:textSize="14sp"
 					android:hint=""
-					android:maxLength="20"
+					android:maxLength="25"
 					android:background="@null"/>
 			</LinearLayout>
 
@@ -193,7 +191,7 @@
 					android:layout_height="match_parent"
 					android:textSize="14sp"
 					android:hint=""
-					android:maxLength="50"
+					android:maxLength="100"
 					android:background="@null"/>
 			</LinearLayout>
 

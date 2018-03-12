@@ -152,7 +152,7 @@
 						android:text="全部"
 						android:id="@+id/tab_txt1"
 		                android:layout_centerInParent="true"
-						android:textColor="#0083c8"/>
+						android:textColor="#1a3688"/>
 	
 		             <LinearLayout
 						 android:id="@+id/tab_line1"

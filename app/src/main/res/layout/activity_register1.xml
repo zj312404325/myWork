@@ -10,7 +10,7 @@
 	   android:id="@+id/top_title"
 	   android:layout_width="fill_parent"
 	   android:layout_height="45dp"
-	   android:background="#0083c8">
+	   android:background="@color/login_back_blue">
 
          <ImageButton
 			 android:id="@+id/top_back"
@@ -119,7 +119,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:textSize="14sp"
-						android:hint="请输入密码"
+						android:hint="请输入8-16位密码"
 						android:inputType="textPassword"
 						android:layout_marginLeft="10dp"
 						android:maxLength="16"
@@ -154,7 +154,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:textSize="14sp"
-						android:hint="请再次输入密码"
+						android:hint="请再次确认密码"
 						android:inputType="textPassword"
 						android:layout_marginLeft="10dp"
 						android:maxLength="16"
@@ -211,7 +211,7 @@
 						android:layout_height="match_parent"
 						android:textSize="14sp"
 						android:hint="请输入与营业执照相符的公司名称"
-						android:maxLength="30"
+						android:maxLength="25"
 						android:layout_marginLeft="10dp"
 						android:background="@null"/>
 				</LinearLayout>

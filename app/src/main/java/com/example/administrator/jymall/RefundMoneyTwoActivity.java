@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -149,7 +150,7 @@ public class RefundMoneyTwoActivity extends TopActivity {
                     }
                     else if(refundStatus.equals("2")){
                         tv_refundOkDate.setText("- 退款时间："+orderdtl.getString("backEndDate"));
-                        tv_refundMoney.setText("- 退款金额："+refund.getString("money"));
+                        tv_refundMoney.setText(Html.fromHtml("- 退款金额：<font color=\"#1a3688\">"+refund.getString("money")+"</font>元"));
                         showRefundOk();
                     }
 

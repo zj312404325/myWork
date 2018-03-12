@@ -146,7 +146,7 @@
 					android:layout_alignParentRight="true"
 					android:layout_centerVertical="true"
 					android:layout_height="30dp"
-					android:gravity="center"
+					android:gravity="center_vertical"
 					android:layout_marginRight="10dp"
 					android:background="@color/login_back_gray"
 					android:text="获取验证码"

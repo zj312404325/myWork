@@ -57,7 +57,7 @@
 						android:scaleType="fitCenter"/>
 					<TextView
 						style="@style/match_parent"
-						android:text="你可获得工业行业有事产品的免费推荐，试用和使用"
+						android:text="你可获得工业行业优势产品的免费推荐，试用和使用"
 						android:textSize="14dp"
 						android:layout_marginLeft="30dp"
 						android:layout_gravity="center_vertical"/>

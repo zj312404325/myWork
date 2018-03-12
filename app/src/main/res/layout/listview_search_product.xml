@@ -28,10 +28,10 @@
 							style="@style/wrap_content"
 							android:text="镀锌飞洒发放假啊失联飞机拉三等奖范德萨傻大姐弗利萨都放假了撒旦法撒旦就发了圣达菲建设大路分"
 							android:layout_marginTop="10dp"
-							android:maxLines="2"
+							android:singleLine="true"
 							android:textSize="11dp"
 							android:lineSpacingExtra="4dp"
-							android:textColor="#0083c8"
+							android:textColor="#333333"
 							android:id="@+id/proName"
 							android:layout_height="30dp"/>
 			       
@@ -74,7 +74,7 @@
 								style="@style/wrap_content"
 								android:text="￥1234.00/箱"
 								android:id="@+id/salePrice"
-			                	android:textColor="#b53144"
+			                	android:textColor="#e60012"
 								android:textSize="14dp"
 								android:layout_alignParentLeft="true"
 			                	android:layout_centerVertical="true"

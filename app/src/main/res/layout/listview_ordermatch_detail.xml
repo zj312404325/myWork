@@ -104,6 +104,7 @@
 						style="@style/wrap_content"
 						android:layout_height="match_parent"
 						android:text="加载中..."
+						android:textColor="#bb3144"
 						android:textSize="18sp" />
 				</LinearLayout>
 
@@ -119,6 +120,7 @@
 						style="@style/wrap_content"
 						android:id="@+id/tv_money"
 						android:textSize="18sp"
+						android:textColor="#bb3144"
 						android:text="加载中..."/>
 				</LinearLayout>
 

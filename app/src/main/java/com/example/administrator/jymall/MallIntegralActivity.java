@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -130,9 +131,9 @@ public class MallIntegralActivity extends TopActivity {
                     holder=(MallIntegralActivity.ViewHolder) convertView.getTag();
                 }
                 holder.giftName.setText(resMaps.get(position).get("giftname").toString());
-                holder.giftScore.setText(resMaps.get(position).get("giftIntegral").toString()
-                        +"积分");
-                holder.av_quantity.setText(resMaps.get(position).get("quantity").toString()
+                holder.giftScore.setText(Html.fromHtml("<font color=\"#e60012\">"+resMaps.get(position).get("giftIntegral").toString()
+                        +"</font>积分"));
+                holder.av_quantity.setText("库存："+resMaps.get(position).get("quantity").toString()
                         +resMaps.get(position).get("unit").toString());
                 XUtilsHelper.getInstance().bindCommonImage(holder.giftImg, resMaps.get(position).get("picurl").toString(), true);
 

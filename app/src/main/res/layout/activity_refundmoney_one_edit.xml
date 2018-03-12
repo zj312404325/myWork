@@ -13,7 +13,7 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:background="#ffffff"
-			android:layout_height="86dp"
+			android:layout_height="100dp"
 			android:orientation="horizontal" >
 			<RelativeLayout
 				android:layout_width="76dp"
@@ -182,6 +182,7 @@
 					android:layout_width="100dp"
 					android:background="@drawable/bg_edittext"
 					android:text="0.00"
+					android:textColor="#e60012"
 					android:id="@+id/tv_refundMoney"
 					android:inputType="numberDecimal"
 					android:layout_gravity="center_vertical"

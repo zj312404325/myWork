@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -344,8 +345,8 @@ public class IndexActivity extends TopSearchActivity  {
                     holder=(ViewHolder) convertView.getTag();
                 }
                 holder.protitle.setText(data_list.get(position).get("proName").toString());
-                holder.promoney.setText("￥"+data_list.get(position).get("salePrice").toString()
-                        +"/"+data_list.get(position).get("unit").toString());
+                holder.promoney.setText(Html.fromHtml("￥"+data_list.get(position).get("salePrice").toString()
+                        +"/<font color=\"#b1b1b1\">"+data_list.get(position).get("unit").toString()+"</font>"));
                 XUtilsHelper.getInstance().bindCommonImage(holder.proimg, data_list.get(position).get("imagePath").toString(), true);
 
                 LinearLayout.LayoutParams lp1 =new LinearLayout.
@@ -414,10 +415,10 @@ public class IndexActivity extends TopSearchActivity  {
                     holder=(ViewHolder) convertView.getTag();
                 }
                 holder.protitle.setText(hot_data_list.get(position).get("proName").toString());
-                holder.promoney.setText("现价：￥"+hot_data_list.get(position).get("newSaleprice").toString()
-                        +"/"+hot_data_list.get(position).get("unit").toString());
-                holder.oldpromoney.setText("原价：￥"+hot_data_list.get(position).get("formerPrice").toString()
-                        +"/"+hot_data_list.get(position).get("unit").toString());
+                holder.promoney.setText(Html.fromHtml("现价：￥"+hot_data_list.get(position).get("newSaleprice").toString()
+                        +"/<font color=\"#b1b1b1\">"+hot_data_list.get(position).get("unit").toString()+"</font>"));
+                holder.oldpromoney.setText(Html.fromHtml("原价：￥"+hot_data_list.get(position).get("formerPrice").toString()
+                        +"/<font color=\"#b1b1b1\">"+hot_data_list.get(position).get("unit").toString()+"</font>"));
                 XUtilsHelper.getInstance().bindCommonImage(holder.proimg, hot_data_list.get(position).get("imagePath").toString(), true);
 
                 LinearLayout.LayoutParams lp1 =new LinearLayout.

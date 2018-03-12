@@ -39,7 +39,7 @@
 	    android:layout_above="@id/bottom_tap"
 		android:background="#ffffff">
 	    <LinearLayout style="@style/line" ></LinearLayout>
-	    
+
 	    <CheckBox
 			style="@style/wrap_content"
 			android:text="全选"

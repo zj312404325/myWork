@@ -48,7 +48,7 @@
 		   style="@style/btndarkblue"
 		   android:id="@+id/submitbtn"
 		   android:layout_gravity="center_horizontal"
-		   android:text="完成"
+		   android:text="马上登录"
 		   android:layout_width="150dp"/>
 	</LinearLayout>
 

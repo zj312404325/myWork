@@ -33,8 +33,12 @@
 		    	<LinearLayout android:layout_width="wrap_content"  android:layout_height="wrap_content" android:orientation="horizontal"
 		    	    android:background="#ffffff" android:layout_gravity="center_horizontal" android:padding="20dp" >
 		    	    
-		    	    <Button  android:id="@+id/btn_cz" style="@style/btnbluesmall"            
-	            android:text="充值" android:layout_width="120dp" />
+		    	    <Button
+						android:id="@+id/btn_cz"
+						style="@style/btndarkbluesmall"
+	            		android:text="充值"
+
+						android:layout_width="120dp" />
 		    	    
 		    	    <Button  android:id="@+id/btn_tx" style="@style/btnorangesmall"            
 	            android:text="提现" android:layout_width="120dp" android:layout_marginLeft="20dp" />
@@ -48,12 +52,27 @@
 	    	        android:textSize="16dp" />
 	    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="30dp" android:layout_marginLeft="16dp"
 	    	        android:layout_marginRight="16dp"  >
-		    	    <Button android:layout_width="match_parent"  android:layout_height="30dp" android:text="最近一个月"
-		    	        android:layout_weight="1" style="@style/btnumlefts" android:id="@+id/btn_s1"/>
-	    	        <Button android:layout_width="match_parent"  android:layout_height="30dp" android:text="最近三个月"
-	    	             android:layout_weight="1" style="@style/btnummibble"  android:id="@+id/btn_s2"/>
-	    	        <Button android:layout_width="match_parent"  android:layout_height="30dp" android:text="最近一年"
-	    	             android:layout_weight="1" style="@style/btnumright"  android:id="@+id/btn_s3"/>
+		    	    <Button
+						android:layout_width="match_parent"
+						android:layout_height="30dp"
+						android:text="最近一个月"
+		    	        android:layout_weight="1"
+						style="@style/btnumlefts"
+						android:id="@+id/btn_s1"/>
+	    	        <Button
+						android:layout_width="match_parent"
+						android:layout_height="30dp"
+						android:text="最近三个月"
+						android:layout_weight="1"
+						style="@style/btnummibble"
+						android:id="@+id/btn_s2"/>
+	    	        <Button
+						android:layout_width="match_parent"
+						android:layout_height="30dp"
+						android:text="最近一年"
+						android:layout_weight="1"
+						style="@style/btnumright"
+						android:id="@+id/btn_s3"/>
 	    	    </LinearLayout>
 	    	    
 	    	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="horizontal"

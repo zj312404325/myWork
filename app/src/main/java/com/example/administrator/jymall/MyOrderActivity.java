@@ -513,7 +513,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 确认收货开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确定收货", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确认收货", "取消");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -647,6 +647,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     if (orderStatus == 0) {
                         ll_firstMoney.setVisibility(View.GONE);
                         tv_orderStatus.setText("待设置定金");
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_logistic.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.VISIBLE);
                         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -699,6 +700,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 1) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待支付定金");
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_logistic.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.VISIBLE);
@@ -761,6 +763,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 2 ) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待确认定金");
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
@@ -768,6 +771,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 3) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待生产完成");
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
@@ -775,6 +779,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 4) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待付尾款");
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.VISIBLE);
                         btn_cancel.setVisibility(View.GONE);
@@ -790,6 +795,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 5) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待确认尾款");
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
@@ -797,6 +803,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                     } else if (orderStatus == 6) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
                         tv_orderStatus.setText("待发货");
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
@@ -812,7 +819,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                             @Override
                             public void onClick(View arg0) {
                                 // 确认收货开始
-                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确定收货", "否");
+                                final MyConfirmDialog mcd = new MyConfirmDialog(MyOrderActivity.this, "您确认已经收到货物?", "确认收货", "取消");
                                 mcd.setClicklistener(new MyConfirmDialog.ClickListenerInterface() {
                                     @Override
                                     public void doConfirm() {
@@ -866,6 +873,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         });
                     } else if (orderStatus == 8) {
                         ll_firstMoney.setVisibility(View.VISIBLE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
@@ -881,6 +889,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         tv_orderStatus.setText("订单完成");
                     } else if (orderStatus == 9) {
                         ll_firstMoney.setVisibility(View.GONE);
+                        btn_confirmProduct.setVisibility(View.GONE);
                         btn_payFirst.setVisibility(View.GONE);
                         btn_payLast.setVisibility(View.GONE);
                         btn_cancel.setVisibility(View.GONE);
@@ -1075,24 +1084,24 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         tab_line5.setBackgroundColor(0xFFb5b6b9);
         tab_line5.setLayoutParams(lp2);
         if(orderStatus.equals("")){
-            tab_txt1.setTextColor(Color.parseColor("#0083c8"));
+            tab_txt1.setTextColor(Color.parseColor("#1a3688"));
             tab_line1.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line1.setLayoutParams(lp1);
         }else if(orderStatus.equals("0") ){
-            tab_txt2.setTextColor(Color.parseColor("#0083c8"));
+            tab_txt2.setTextColor(Color.parseColor("#1a3688"));
             tab_line2.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line2.setLayoutParams(lp1);
         }else if(orderStatus.equals("3") ){
-            tab_txt3.setTextColor(Color.parseColor("#0083c8"));
+            tab_txt3.setTextColor(Color.parseColor("#1a3688"));
             //tab_line3.setBackground(CommonUtil.getDrawable(R.drawable.tab_s));
             tab_line3.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line3.setLayoutParams(lp1);
         }else if(orderStatus.equals("4") ){
-            tab_txt4.setTextColor(Color.parseColor("#0083c8"));
+            tab_txt4.setTextColor(Color.parseColor("#1a3688"));
             tab_line4.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line4.setLayoutParams(lp1);
         }else if(orderStatus.equals("5") ){
-            tab_txt5.setTextColor(Color.parseColor("#0083c8"));
+            tab_txt5.setTextColor(Color.parseColor("#1a3688"));
             tab_line5.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_line5.setLayoutParams(lp1);
         }
@@ -1123,27 +1132,27 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
         tab_two_line6.setBackgroundColor(0xFFb5b6b9);
         tab_two_line6.setLayoutParams(lp2);
         if(orderStatus.equals("")){
-            tab_two_txt1.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_txt1.setTextColor(Color.parseColor("#1a3688"));
             tab_two_line1.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_two_line1.setLayoutParams(lp1);
         }else if(orderStatus.equals("1") ){
-            tab_two_txt2.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_txt2.setTextColor(Color.parseColor("#1a3688"));
             tab_two_line2.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_two_line2.setLayoutParams(lp1);
         }else if(orderStatus.equals("4") ){
-            tab_two_txt3.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_txt3.setTextColor(Color.parseColor("#1a3688"));
             tab_two_line3.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_two_line3.setLayoutParams(lp1);
         }else if(orderStatus.equals("7") ){
-            tab_two_txt4.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_txt4.setTextColor(Color.parseColor("#1a3688"));
             tab_two_line4.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_two_line4.setLayoutParams(lp1);
         }else if(orderStatus.equals("8") ){
-            tab_two_txt5.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_txt5.setTextColor(Color.parseColor("#1a3688"));
             tab_two_line5.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_two_line5.setLayoutParams(lp1);
         }else if(orderStatus.equals("9") ){
-            tab_two_txt6.setTextColor(Color.parseColor("#0083c8"));
+            tab_two_txt6.setTextColor(Color.parseColor("#1a3688"));
             tab_two_line6.setBackground(CommonUtil.getDrawable(R.drawable.icon_blue_bottom));
             tab_two_line6.setLayoutParams(lp1);
         }

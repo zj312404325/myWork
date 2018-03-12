@@ -11,14 +11,22 @@
 
 			<LinearLayout android:layout_width="match_parent"  android:layout_height="30dp"
 				android:background="#ffffff" android:orientation="horizontal" >
-				<TextView style="@style/wrap_content" android:text="公司名称、法人信息须与执照上信息完全一致，认证成功后如需修改证件，请重新上传并提交变更！"
-					android:textSize="12dp" android:layout_gravity="center_vertical" android:drawableLeft="@drawable/icon_light"
+				<TextView
+					style="@style/wrap_content"
+					android:text="公司名称、法人信息须与执照上信息完全一致，认证成功后如需修改证件，请重新上传并提交变更！"
+					android:textSize="12dp"
+					android:textColor="#f47d06"
+					android:layout_gravity="center_vertical"
+					android:drawableLeft="@drawable/icon_light"
 					android:layout_marginLeft="20dp"  />
 
 			</LinearLayout>
 
-			<LinearLayout android:layout_width="match_parent"  android:layout_height="40dp"
-				android:background="#ffffff" android:orientation="horizontal" >
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:background="#ffffff"
+				android:orientation="horizontal">
 				<ImageView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -28,17 +36,36 @@
 					android:src="@drawable/step_realname" />
 			</LinearLayout>
 
-			<LinearLayout android:layout_width="match_parent"  android:layout_height="30dp"
-				android:background="#ffffff" android:orientation="horizontal" >
-				<TextView style="@style/wrap_content" android:text="填写资料\n提交认证" android:layout_weight="1" android:singleLine="false"
-					android:textSize="12dp" android:layout_gravity="center_vertical"
-					android:layout_marginLeft="55dp"  />
-				<TextView style="@style/wrap_content" android:text="等待工作\n人员审核" android:layout_weight="1" android:singleLine="false"
-					android:textSize="12dp" android:layout_gravity="center_vertical"
-					android:layout_marginLeft="16dp"  />
-				<TextView style="@style/wrap_content" android:text="认证成功\n使用服务" android:layout_weight="1" android:singleLine="false"
-					android:textSize="12dp" android:layout_gravity="center_vertical"
-					android:layout_marginLeft="18dp"  />
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="30dp"
+				android:background="#ffffff"
+				android:orientation="horizontal" >
+				<TextView
+					style="@style/wrap_content"
+					android:text="填写资料\n提交认证"
+					android:layout_weight="1.2"
+					android:singleLine="false"
+					android:textSize="12dp"
+					android:layout_gravity="center_vertical"
+					android:gravity="center"
+					 />
+				<TextView
+					style="@style/wrap_content"
+					android:text="等待工作\n人员审核"
+					android:layout_weight="0.8"
+					android:singleLine="false"
+					android:textSize="12dp"
+					android:layout_gravity="center_vertical"
+					android:gravity="center"/>
+				<TextView
+					style="@style/wrap_content"
+					android:text="认证成功\n使用服务"
+					android:layout_weight="1.1"
+					android:singleLine="false"
+					android:textSize="12dp"
+					android:layout_gravity="center_vertical"
+					android:gravity="center" />
 			</LinearLayout>
 
 			<LinearLayout android:layout_width="match_parent"  android:layout_height="30dp"
@@ -52,9 +79,14 @@
 					android:layout_marginRight="20dp" android:id="@+id/tv_realname_comp" />
 			</LinearLayout>
 
-		    <TextView style="@style/wrap_content" android:text="注：图片限于jpg、jpeg、gif、png、bmp格式，不超过1MB或1024KB。"
-		      android:textColor="#bdbdbd" android:textSize="12dp"
-		      android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:id="@+id/tv_ts" />
+		    <TextView
+				style="@style/wrap_content"
+				android:text="注：图片限于jpg、jpeg、gif、png、bmp格式，不超过1MB或1024KB。"
+		      	android:textColor="#bdbdbd"
+				android:textSize="12dp"
+		      	android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:id="@+id/tv_ts" />
 		    
 		    <RelativeLayout style="@style/fill" android:background="#ffffff" android:layout_height="110dp" 
 		        android:id="@+id/rl_businesslicense">
@@ -80,30 +112,58 @@
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>
 		    
-		    <RelativeLayout style="@style/fill" android:background="#ffffff" android:layout_height="110dp" android:layout_marginTop="2dp"
+		    <RelativeLayout
+				style="@style/fill"
+				android:background="#ffffff"
+				android:layout_height="110dp"
+				android:layout_marginTop="2dp"
 				android:id="@+id/rl_organizationFile">
 		        <LinearLayout style="@style/line" />
-		        <ImageView android:background="@drawable/nopic" android:layout_width="74dp" android:layout_height="74dp"
-		            android:layout_marginLeft="20dp" android:layout_marginTop="20dp" android:id="@+id/iv_organizationFile"/>
-		        <TextView style="@style/wrap_content" android:layout_marginTop="20dp" android:layout_marginLeft="114dp" 
+		        <ImageView
+					android:background="@drawable/nopic"
+					android:layout_width="74dp"
+					android:layout_height="74dp"
+		            android:layout_marginLeft="20dp"
+					android:layout_marginTop="20dp"
+					android:id="@+id/iv_organizationFile"/>
+		        <TextView
+					style="@style/wrap_content"
+					android:layout_marginTop="20dp"
+					android:layout_marginLeft="114dp"
 		            android:text="组织机构代码证（副本）"/>
-		       
-		       
+
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>
 		    
-		    <RelativeLayout style="@style/fill" android:background="#ffffff" android:layout_height="160dp" android:layout_marginTop="2dp">
+		    <RelativeLayout
+				style="@style/fill"
+				android:background="#ffffff"
+				android:layout_height="110dp"
+				android:layout_marginTop="2dp">
 		        <LinearLayout style="@style/line" />
-		        <ImageView android:background="@drawable/nopic" android:layout_width="74dp" android:layout_height="74dp"
-		            android:layout_marginLeft="20dp" android:layout_marginTop="20dp" android:id="@+id/iv_legalUrl"/>
-		        <TextView style="@style/wrap_content" android:layout_marginTop="20dp" android:layout_marginLeft="114dp" 
-		            android:text="身份证（正面）" android:id="@+id/tv_legalUrl"/>
+		        <ImageView
+					android:background="@drawable/nopic"
+					android:layout_width="74dp"
+					android:layout_height="74dp"
+		            android:layout_marginLeft="20dp"
+					android:layout_marginTop="20dp"
+					android:id="@+id/iv_legalUrl"/>
+		        <TextView
+					style="@style/wrap_content"
+					android:layout_marginTop="20dp"
+					android:layout_marginLeft="114dp"
+		            android:text="身份证（正面）"
+					android:id="@+id/tv_legalUrl"/>
 		       
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>
 		    
 		    
-		    <RelativeLayout style="@style/fill" android:background="#ffffff" android:layout_height="160dp" android:layout_marginTop="2dp"
+		    <RelativeLayout
+				style="@style/fill"
+				android:background="#ffffff"
+				android:layout_height="110dp"
+				android:layout_marginTop="2dp"
 		        android:id="@+id/rl_legalBackUrl">
 		        <LinearLayout style="@style/line" />
 		        <ImageView android:background="@drawable/nopic" android:layout_width="74dp" android:layout_height="74dp"
@@ -114,9 +174,15 @@
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>
 		    
-		    <Button  android:id="@+id/savebtn" style="@style/btnblue"            
-            android:text="立即认证" android:layout_width="match_parent" android:layout_marginTop="20dp" android:layout_marginBottom="20dp" 
-            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"/>
+		    <Button
+				android:id="@+id/savebtn"
+				style="@style/btndarkblue"
+            	android:text="立即认证"
+				android:layout_width="match_parent"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="20dp"
+            	android:layout_marginLeft="40dp"
+				android:layout_marginRight="40dp"/>
 		    
 		</LinearLayout>
 	</ScrollView>

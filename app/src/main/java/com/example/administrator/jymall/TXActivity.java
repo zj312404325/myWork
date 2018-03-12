@@ -1,24 +1,9 @@
 package com.example.administrator.jymall;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
-
-import com.example.administrator.jymall.common.TopActivity;
-import com.example.administrator.jymall.util.CommonUtil;
-import com.example.administrator.jymall.util.XUtilsHelper;
-import com.example.administrator.jymall.view.MyEditText;
-
-import android.os.Bundle;
-import android.os.Handler;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,6 +11,21 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.administrator.jymall.common.TopActivity;
+import com.example.administrator.jymall.util.CommonUtil;
+import com.example.administrator.jymall.util.XUtilsHelper;
+import com.example.administrator.jymall.view.MyEditText;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @ContentView(R.layout.activity_pay_password)
 public class TXActivity extends TopActivity {
@@ -60,7 +60,7 @@ public class TXActivity extends TopActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		x.view().inject(this);
-		super.title.setText("支付密码");		
+		super.title.setText("安全验证");
 		progressDialog.hide();
 		Intent i = this.getIntent();
 		adminmobile = i.getStringExtra("adminmobile");

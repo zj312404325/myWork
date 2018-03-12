@@ -97,7 +97,18 @@ public class FormatUtil {
 			if(obj instanceof Float)	return new DecimalFormat("0.000").format(obj);			
 			return obj.toString().replaceAll("\"", "\\\"");
 		}catch(Exception e){return "";} 	
-	} 
+	}
+
+	//2位小数
+	public static String  toString2(Object obj){
+		if(obj == null)
+			return "";
+		try{
+			if(obj instanceof Double)	return new DecimalFormat("0.00").format(obj);
+			if(obj instanceof Float)	return new DecimalFormat("0.00").format(obj);
+			return obj.toString().replaceAll("\"", "\\\"");
+		}catch(Exception e){return "";}
+	}
 	
 	public static String trim(Object obj)
 	{

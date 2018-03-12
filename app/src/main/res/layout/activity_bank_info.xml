@@ -34,6 +34,8 @@
 					style="@style/wrap_content"
 					android:layout_width="match_parent"
 					android:text=""
+					android:hint="请点击选择银行"
+					android:focusable="false"
 					android:layout_marginLeft="80dp"
 			        android:layout_centerVertical="true"
 					android:background="@null"

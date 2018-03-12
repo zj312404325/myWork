@@ -66,66 +66,9 @@
 	</RelativeLayout>
 
 	<LinearLayout
-		style="@style/match_parent"
-		android:orientation="vertical"
-		android:layout_below="@id/rl_showImg">
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="#ffffff">
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="积分兑换查询"/>
-			<TextView
-				android:layout_marginLeft="10dp"
-				android:id="@+id/tv_value"
-				android:layout_width="120dp"
-				android:layout_height="wrap_content"
-				android:background="@drawable/bg_edittext"
-				android:drawableRight="@drawable/icon_down"
-				android:padding="10dp"
-				android:text="全部积分"
-				android:tag="0"
-				android:textSize="12sp"/>
-		</LinearLayout>
-
-		<TextView
-			style="@style/wrap_content"
-			android:layout_marginTop="10dp"
-			android:layout_marginBottom="10dp"
-			android:layout_marginLeft="10dp"
-			android:text="积分明细"
-			android:textColor="#939393"
-			android:layout_centerInParent="true" />
-
-		<LinearLayout
-			style="@style/match_parent"
-			android:background="#ffffff"
-			android:orientation="vertical">
-			<View style="@style/line"/>
-				<com.example.administrator.jymall.view.XListView
-					android:id="@+id/xListView"
-					android:layout_width="fill_parent"
-					android:layout_height="fill_parent"
-					android:cacheColorHint="#00000000">
-				</com.example.administrator.jymall.view.XListView>
-				<TextView
-					style="@style/wrap_content"
-					android:id="@+id/listtv"
-					android:text="暂无数据"
-					android:textColor="#939393"
-					android:layout_marginLeft="10dp"
-					android:layout_centerInParent="true" />
-		</LinearLayout>
-	</LinearLayout>
-
-	<LinearLayout
 		android:id="@+id/ll_bottom"
 		style="@style/match_parent"
 		android:background="#ffffff"
-
 		android:orientation="vertical"
 		android:layout_alignParentBottom ="true">
 
@@ -170,7 +113,7 @@
 				android:gravity="center"
 				android:layout_gravity="center_vertical"
 				android:layout_weight="1"
-				android:textColor="@color/yellow"
+				android:textColor="@color/score_positive"
 				android:layout_centerInParent="true" />
 
 			<TextView
@@ -181,8 +124,67 @@
 				android:gravity="center"
 				android:layout_gravity="center_vertical"
 				android:layout_weight="1"
-				android:textColor="@color/yellow"
+				android:textColor="@color/score_negative"
 				android:layout_centerInParent="true" />
+		</LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+		style="@style/match_parent"
+		android:orientation="vertical"
+		android:layout_below="@id/rl_showImg"
+		android:layout_above="@id/ll_bottom">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="#ffffff">
+			<TextView
+				android:layout_marginLeft="10dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="积分兑换查询"/>
+			<TextView
+				android:layout_marginLeft="10dp"
+				android:id="@+id/tv_value"
+				android:layout_width="120dp"
+				android:layout_height="wrap_content"
+				android:background="@drawable/bg_edittext"
+				android:drawableRight="@drawable/icon_down"
+				android:padding="10dp"
+				android:text="全部积分"
+				android:tag="0"
+				android:textSize="12sp"/>
+		</LinearLayout>
+
+		<TextView
+			style="@style/wrap_content"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp"
+			android:layout_marginLeft="10dp"
+			android:text="积分明细"
+			android:textColor="#939393"
+			android:layout_centerInParent="true" />
+
+		<LinearLayout
+			style="@style/match_parent"
+			android:background="#ffffff"
+			android:orientation="vertical">
+			<View style="@style/line"/>
+				<com.example.administrator.jymall.view.XListView
+					android:id="@+id/xListView"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:cacheColorHint="#00000000">
+				</com.example.administrator.jymall.view.XListView>
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/listtv"
+					android:text="暂无数据"
+					android:textColor="#939393"
+					android:layout_marginLeft="10dp"
+					android:layout_gravity="center_horizontal"
+					android:layout_centerInParent="true" />
 		</LinearLayout>
 	</LinearLayout>
 

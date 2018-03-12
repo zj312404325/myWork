@@ -305,7 +305,7 @@ public class RefundMoneyOneActivity extends TopActivity {
         money=tv_refundMoney.getText().toString();
         remark=et_refundMark.getText().toString();
         if(!FormatUtil.isNoEmpty(money)){
-            CommonUtil.alter("退款金额不能为空！");
+            CommonUtil.alter("退货金额不能为空！");
             return ;
         }
         else if(!FormatUtil.isNoEmpty(isReceived)){
@@ -313,7 +313,7 @@ public class RefundMoneyOneActivity extends TopActivity {
             return ;
         }
         else if(!FormatUtil.isNoEmpty(reason)){
-            CommonUtil.alter("退款原因不能为空！");
+            CommonUtil.alter("退货原因不能为空！");
             return ;
         }
         else{

@@ -21,6 +21,7 @@
 					 android:layout_width="match_parent"
 					 android:layout_height="25dp"
 		             android:text="放技术达力芬结束啦的房价圣达菲萨芬"
+					 android:singleLine="true"
 					 android:gravity="center"
 					 android:maxLines="1"
 		             android:layout_marginLeft="4dp"

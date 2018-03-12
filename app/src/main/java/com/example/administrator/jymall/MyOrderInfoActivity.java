@@ -313,7 +313,20 @@ public class MyOrderInfoActivity extends TopActivity {
 
                 JSONObject temp  =FormatUtil.toJSONObject( mdata.get(position).get("orderInfo").toString());
                 img_proImgPath.setBackgroundResource(0);
-                XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
+                //XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
+
+                if(orderType.equals("product")) {
+                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
+                }
+                else if(orderType.equals("fastMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_fast_match);
+                }
+                else if(orderType.equals("orderMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_order_match);
+                }
+                else{
+                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
+                }
 
                 String salePrice = temp.getString("salePrice");
                 final String orderdtlid = temp.getString("iD");

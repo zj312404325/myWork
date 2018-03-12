@@ -149,7 +149,7 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
                     setServerKey(res.get("serverKey").toString());
                     JSONArray streamList = (JSONArray)res.get("data");
                     totalPay= FormatUtil.toString(res.get("totalmoney"));
-                    tv_myPay.setText(totalPay);
+                    tv_myPay.setText(totalPay+"元");
 
                     if(streamList.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);
@@ -218,7 +218,7 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
             holder.tv_orderNo.setText("订单编号："+orderno);
             holder.tv_orderTime.setText(createdate);
             holder.tv_buyerName.setText("买家名称："+inusername);
-            holder.tv_money.setText("流水金额："+inmoney);
+            holder.tv_money.setText("流水金额："+inmoney+"元");
             if(mtype.equals("1")){
                 holder.tv_type.setText("类    型：订单支付");
             }

@@ -40,7 +40,7 @@
 				android:layout_below="@+id/myshow"
 				android:layout_gravity="center"
 				android:text="8888"
-				android:textColor="#939393"
+				android:textColor="#ff9900"
 				android:textSize="25sp"
 				android:layout_centerInParent="true"/>
 

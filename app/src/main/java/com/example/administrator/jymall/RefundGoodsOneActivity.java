@@ -237,7 +237,7 @@ public class RefundGoodsOneActivity extends TopActivity {
             return ;
         }
         else if(!FormatUtil.isNoEmpty(reason)){
-            CommonUtil.alter("退款原因不能为空！");
+            CommonUtil.alter("退货原因不能为空！");
             return ;
         }
         else{

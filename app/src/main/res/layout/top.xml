@@ -41,6 +41,14 @@
 			android:layout_centerVertical="true"
 			android:layout_marginRight="20dp"
 			android:id="@+id/top_search"
-			android:background="@drawable/input_search"
+			android:background="@drawable/icon_search"
+			android:visibility="gone"/>
+
+		<Button
+			style="@style/btndarkblue"
+			android:id="@+id/btn_top_appraise"
+			android:text="评价"
+			android:layout_centerVertical="true"
+			android:layout_alignParentEnd="true"
 			android:visibility="gone"/>
 </RelativeLayout>

@@ -455,7 +455,9 @@
 
         <activity
             android:name=".OrderAppraiseActivity"
-            android:label="OrderAppraiseActivity" >
+            android:label="OrderAppraiseActivity"
+            android:windowSoftInputMode=
+                "stateAlwaysHidden|adjustPan">
         </activity>
 
         <activity

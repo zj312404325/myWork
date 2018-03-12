@@ -6,7 +6,7 @@
     <RelativeLayout android:layout_width="match_parent"  android:layout_height="86dp">
 	    <LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="86dp"
+			android:layout_height="100dp"
 			android:layout_marginLeft="16dp"
 			android:layout_marginRight="16dp"
 			android:orientation="horizontal" >
@@ -26,7 +26,8 @@
 			            	<TextView
 								style="@style/wrap_content"
 								android:text=""
-			            	    android:layout_marginTop="10dp"
+			            	    android:layout_marginTop="5dp"
+
 								android:maxLines="2"
 								android:textSize="11dp"
 			            	    android:lineSpacingExtra="4dp"

@@ -2,6 +2,7 @@ package com.example.administrator.jymall.common;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,6 +21,9 @@ public class TopActivity  extends UserActivity{
 	
 	@ViewInject(R.id.title)
 	public TextView title;
+
+	@ViewInject(R.id.btn_top_appraise)
+	public Button btn_top_appraise;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -3,6 +3,7 @@ package com.example.administrator.jymall;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.administrator.jymall.common.MyApplication;
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.BigDecimalUtil;
 import com.example.administrator.jymall.util.CommonUtil;
@@ -144,16 +144,16 @@ public class PreparePayActivity extends TopActivity {
 							umoneysy=0d;
 						}
 						tv_orderNo.setText(FormatUtil.toString(orderNo));
-						tv_umoney.setText(FormatUtil.toString(umoney));
-						tv_leftUmoney.setText(FormatUtil.toString(umoneysy));
-						tv_paidMoney.setText("已付金额：¥"+FormatUtil.toString(paidMoney));
+						tv_umoney.setText(FormatUtil.toString(umoney)+"元");
+						tv_leftUmoney.setText(FormatUtil.toString(umoneysy)+"元");
+						tv_paidMoney.setText(Html.fromHtml("<font color=\"#333333\">已付金额：</font>¥"+FormatUtil.toString(paidMoney)));
 
 						if(res.getJSONObject("order").getString("orderType").equals("orderMatch")){
-							tv_orderMoney.setText("交易金额：¥"+FormatUtil.toString(orderPayMoney));
+							tv_orderMoney.setText(Html.fromHtml("<font color=\"#333333\">交易金额：</font>¥"+FormatUtil.toString(orderPayMoney)));
 							tv_money.setText(FormatUtil.toString(orderPayMoney));
 						}
 						else{
-							tv_orderMoney.setText("交易金额：¥"+FormatUtil.toString(money));
+							tv_orderMoney.setText(Html.fromHtml("<font color=\"#333333\">交易金额：</font>¥"+FormatUtil.toString(money)));
 							tv_money.setText(FormatUtil.toString(money));
 						}
 						hideUmoneyInfo();
@@ -173,7 +173,7 @@ public class PreparePayActivity extends TopActivity {
 										}
 										else{
 											tv_money.setText(FormatUtil.toString(BigDecimalUtil.sub(orderPayMoney,umoney,2)));
-											tv_leftUmoney.setText("0.00");
+											tv_leftUmoney.setText("0.00"+"元");
 											hideAll();
 										}
 									}
@@ -183,7 +183,7 @@ public class PreparePayActivity extends TopActivity {
 										}
 										else{
 											tv_money.setText(FormatUtil.toString(BigDecimalUtil.sub(money,umoney,2)));
-											tv_leftUmoney.setText("0.00");
+											tv_leftUmoney.setText("0.00"+"元");
 											hideAll();
 										}
 									}
@@ -245,7 +245,8 @@ public class PreparePayActivity extends TopActivity {
 					setServerKey(res.get("serverKey").toString());
 					if(res.get("d").equals("n")){
 						CommonUtil.alter(res.get("msg").toString());
-						MyApplication.getInstance().finishActivity();
+						return;
+						//MyApplication.getInstance().finishActivity();
 					}
 					else{
 						CommonUtil.alter("支付成功");

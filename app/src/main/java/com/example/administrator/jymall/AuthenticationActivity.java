@@ -1,15 +1,20 @@
 package com.example.administrator.jymall;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.x;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
-import org.xutils.view.annotation.ViewInject;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.administrator.jymall.common.TopActivity;
 import com.example.administrator.jymall.util.CommonUtil;
@@ -18,21 +23,16 @@ import com.example.administrator.jymall.util.ImageFactory;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.MyConfirmDialog;
 
-import android.graphics.Typeface;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 @ContentView(R.layout.activity_authentication)
 public class AuthenticationActivity extends TopActivity {
@@ -156,7 +156,7 @@ public class AuthenticationActivity extends TopActivity {
 				tv_realname_comp.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
 
 				if(ischeck == 0){
-					tv_ts.setText("你还没进行实名认证？请尽快实名认证.(点击图片可以上传)");
+					tv_ts.setText("您还没进行实名认证，请尽快实名认证。(点击图片可以上传)\n"+"注：图片限于jpg、jpeg、gif、png、bmp格式，不超过1MB或1024KB。");
 				}
 				else if(ischeck == 1){
 					tv_ts.setText("恭喜您，您的资料已通过审核!");
@@ -169,7 +169,7 @@ public class AuthenticationActivity extends TopActivity {
 					savebtn.setText("立即变更");
 				}
 				else if(ischeck == 3 || ischeck == 5){
-					tv_ts.setText("认证信息已提交，我们将在1到2个工作日完成您的信息审核，请耐心等耐，如需帮助请致电400-8877-185!");
+					tv_ts.setText("认证信息已提交，我们将在1到2个工作日完成您的信息审核，请耐心等耐，如需帮助请致电0512-52686666!");
 					//savebtn.setVisibility(View.GONE);
 					savebtn.setText("资料变更");
 				}

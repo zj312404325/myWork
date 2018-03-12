@@ -329,7 +329,7 @@ public class ProductInfoCActivity extends TopActivity implements XListView.IXLis
 			RelativeLayout.LayoutParams lp2 =new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(1));
 			lp2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);	
 			if(v.getId() ==R.id.tab1 ){
-				tab_txt1.setTextColor(Color.parseColor("#0083c8"));
+				tab_txt1.setTextColor(Color.parseColor("#1a3688"));
 				tab_line1.setBackground(CommonUtil.getDrawable(R.drawable.tab_s3));
 				tab_line1.setLayoutParams(lp1);
 				tab_txt2.setTextColor(Color.parseColor("#000000"));
@@ -342,7 +342,7 @@ public class ProductInfoCActivity extends TopActivity implements XListView.IXLis
 				proinfo2.setVisibility(View.GONE);
 				proinfo3.setVisibility(View.GONE);
 			}else if(v.getId() ==R.id.tab2 ){
-				tab_txt2.setTextColor(Color.parseColor("#0083c8"));
+				tab_txt2.setTextColor(Color.parseColor("#1a3688"));
 				tab_line2.setBackground(CommonUtil.getDrawable(R.drawable.tab_s3));
 				tab_line2.setLayoutParams(lp1);
 				tab_txt1.setTextColor(Color.parseColor("#000000"));
@@ -355,7 +355,7 @@ public class ProductInfoCActivity extends TopActivity implements XListView.IXLis
 				proinfo1.setVisibility(View.GONE);
 				proinfo3.setVisibility(View.GONE);
 			}else if(v.getId() ==R.id.tab3 ){
-				tab_txt3.setTextColor(Color.parseColor("#0083c8"));
+				tab_txt3.setTextColor(Color.parseColor("#1a3688"));
 				tab_line3.setBackground(CommonUtil.getDrawable(R.drawable.tab_s3));
 				tab_line3.setLayoutParams(lp1);
 				tab_txt2.setTextColor(Color.parseColor("#000000"));

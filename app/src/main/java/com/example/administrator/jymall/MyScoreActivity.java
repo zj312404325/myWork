@@ -268,7 +268,7 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
             holder.tv_scoreTime.setText(createdate);
             if(inoutflag.equals("0")){
                 Resources resource = (Resources) getBaseContext().getResources();
-                ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.red);
+                ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.score_positive);
                 if (csl != null) {
                     holder.tv_score.setTextColor(csl);
                 }
@@ -276,7 +276,7 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
             }
             else if(inoutflag.equals("1")){
                 Resources resource = (Resources) getBaseContext().getResources();
-                ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.green);
+                ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.score_negative);
                 if (csl != null) {
                     holder.tv_score.setTextColor(csl);
                 }
