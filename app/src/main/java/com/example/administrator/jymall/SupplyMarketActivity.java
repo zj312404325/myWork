@@ -99,12 +99,12 @@ public class SupplyMarketActivity extends TopActivity{
             CommonUtil.alter("公司名称不能为空！");return;
         }
         else{
-            if(FormatUtil.getStringLength(et_compname.getText().toString())>20){
-                CommonUtil.alter("公司名称输入有误！");return;
+            if(FormatUtil.getStringLength(et_compname.getText().toString())>25){
+                CommonUtil.alter("公司名称不能超过25字符！");return;
             }
         }
         if(FormatUtil.getStringLength(et_remark.getText().toString())>100){
-            CommonUtil.alter("备注输入有误！");return;
+            CommonUtil.alter("备注不能超过100字符！");return;
         }
 
         Map<String, String> maps= new HashMap<String, String>();

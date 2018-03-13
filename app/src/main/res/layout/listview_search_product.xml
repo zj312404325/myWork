@@ -29,7 +29,6 @@
 							android:text="镀锌飞洒发放假啊失联飞机拉三等奖范德萨傻大姐弗利萨都放假了撒旦法撒旦就发了圣达菲建设大路分"
 							android:layout_marginTop="10dp"
 							android:singleLine="true"
-							android:textSize="11dp"
 							android:lineSpacingExtra="4dp"
 							android:textColor="#333333"
 							android:id="@+id/proName"

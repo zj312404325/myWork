@@ -61,7 +61,7 @@
 							 android:layout_alignParentRight="true"
 			                 android:id="@+id/tv_ystatus"
 							 android:layout_centerVertical="true"
-							 android:textColor="#0083c8"/>
+							 android:textColor="#1a3688"/>
 			             <TextView
 							 style="@style/wrap_content"
 							 android:text="状态："

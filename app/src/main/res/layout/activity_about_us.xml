@@ -28,7 +28,7 @@
 					style="@style/match_parent"
 					android:text="金赢智能工业超市"
 					android:id="@+id/tv_b_bankName"
-					android:textColor="@color/red"
+					android:textColor="@color/black"
 					android:textSize="16dp"
 					android:layout_marginTop="5dp"/>
 
@@ -47,8 +47,12 @@
 
 				<TextView
 					style="@style/match_parent"
-					android:layout_marginTop="5dp"
 					android:text="								金赢智能工业超市依托金赢网电子商务平台，金赢网平台（www.jinying365.com）作为全球工业生态圈服务平台，凭借雄厚的技术研发团队和优质的客户服务体系，致力于为全球工业提供全面、优质、领先的产品和服务，为客户提供一站式的线上交易解决方案的同时，为我国工业产业的优化升级及顺利转型做出贡献。金赢智能工业超市为平台用户提供“一站式MRO工业用品平台”，帮助企业提升效率，降低制造业成本。"
+					android:textSize="14dp"/>
+
+				<TextView
+					style="@style/match_parent"
+					android:text="								金赢智能工业超市为平台用户提供“一站式MRO工业用品平台”，帮助企业提升效率，降低制造业成本。"
 					android:textSize="14dp"/>
 			</LinearLayout>
 

@@ -23,7 +23,8 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp">
+				android:layout_marginRight="10dp"
+				android:visibility="gone">
 
 				<LinearLayout
 					android:layout_width="match_parent"
@@ -87,7 +88,8 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp">
+				android:layout_marginRight="10dp"
+				android:visibility="gone">
 
 				<TextView
 					style="@style/match_parent"
@@ -195,7 +197,8 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp">
+				android:layout_marginRight="10dp"
+				android:visibility="gone">
 
 				<ImageView
 					android:layout_marginTop="5dp"
@@ -221,22 +224,22 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp">
+				android:layout_marginRight="10dp"
+				android:visibility="gone">
 
 				<TextView
 					style="@style/match_parent"
 					android:layout_marginTop="5dp"
-					android:gravity="center"
+					android:gravity="left"
 					android:text="恭喜，您的申请已通过，请签订以下协议。"
 					android:textSize="14dp"/>
 
 				<TextView
 					style="@style/match_parent"
 					android:layout_marginTop="5dp"
-					android:gravity="center"
-					android:text="签订方法：\n
-					\n1、先至“账户设置”——“电子章管理”里面上传电子章，然后打开下方协议，点击“盖章”按钮，即可完成协议签订。
-					\n2、没有电子章的用户，将协议下载下来打印并盖章，然后将协议传真给我方，"
+					android:gravity="left"
+					android:text="签订方法：\n\n1、先至“账户设置”——“电子章管理”里面上传电子章，\n			然后打开下方协议，点击“盖章”按钮，即可完成协\n			议签订。
+					\n2、没有电子章的用户，将协议下载下来打印并盖章，\n			然后将协议传真给我方，"
 
 					android:textSize="14dp"/>
 
@@ -610,7 +613,7 @@
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
+					android:layout_height="60dp"
 					android:layout_gravity="center_vertical"
 					android:layout_marginTop="5dp"
 					android:layout_marginLeft="10dp"
@@ -655,7 +658,8 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp">
+				android:layout_marginRight="10dp"
+				android:visibility="gone">
 
 				<ImageView
 					android:layout_marginTop="5dp"
@@ -680,7 +684,8 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp">
+				android:layout_marginRight="10dp"
+				android:visibility="gone">
 
 				<ImageView
 					android:layout_marginTop="5dp"

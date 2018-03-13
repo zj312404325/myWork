@@ -264,7 +264,6 @@ public class MyScoreActivity extends TopActivity implements IXListViewListener {
             String createdate=myMaps.get(position).get("createdate").toString();
 
             holder.tv_scoreType.setText(title);
-            holder.tv_scoreType.setTextColor(getBaseContext().getResources().getColorStateList(R.color.red));
             holder.tv_scoreTime.setText(createdate);
             if(inoutflag.equals("0")){
                 Resources resource = (Resources) getBaseContext().getResources();

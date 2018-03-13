@@ -346,7 +346,7 @@ public class IndexActivity extends TopSearchActivity  {
                 }
                 holder.protitle.setText(data_list.get(position).get("proName").toString());
                 holder.promoney.setText(Html.fromHtml("￥"+data_list.get(position).get("salePrice").toString()
-                        +"/<font color=\"#b1b1b1\">"+data_list.get(position).get("unit").toString()+"</font>"));
+                        +"<font color=\"#b1b1b1\">/"+data_list.get(position).get("unit").toString()+"</font>"));
                 XUtilsHelper.getInstance().bindCommonImage(holder.proimg, data_list.get(position).get("imagePath").toString(), true);
 
                 LinearLayout.LayoutParams lp1 =new LinearLayout.
@@ -416,9 +416,9 @@ public class IndexActivity extends TopSearchActivity  {
                 }
                 holder.protitle.setText(hot_data_list.get(position).get("proName").toString());
                 holder.promoney.setText(Html.fromHtml("现价：￥"+hot_data_list.get(position).get("newSaleprice").toString()
-                        +"/<font color=\"#b1b1b1\">"+hot_data_list.get(position).get("unit").toString()+"</font>"));
+                        +"<font color=\"#b1b1b1\">/"+hot_data_list.get(position).get("unit").toString()+"</font>"));
                 holder.oldpromoney.setText(Html.fromHtml("原价：￥"+hot_data_list.get(position).get("formerPrice").toString()
-                        +"/<font color=\"#b1b1b1\">"+hot_data_list.get(position).get("unit").toString()+"</font>"));
+                        +"<font color=\"#b1b1b1\">/"+hot_data_list.get(position).get("unit").toString()+"</font>"));
                 XUtilsHelper.getInstance().bindCommonImage(holder.proimg, hot_data_list.get(position).get("imagePath").toString(), true);
 
                 LinearLayout.LayoutParams lp1 =new LinearLayout.

@@ -67,7 +67,7 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
-        super.title.setText("我的积分");
+        super.title.setText("信用支付流水");
         progressDialog.hide();
 
         sap = new ProSimpleAdapter(CreditStreamActivity.this, dateMaps,
@@ -149,7 +149,7 @@ public class CreditStreamActivity extends TopActivity implements IXListViewListe
                     setServerKey(res.get("serverKey").toString());
                     JSONArray streamList = (JSONArray)res.get("data");
                     totalPay= FormatUtil.toString(res.get("totalmoney"));
-                    tv_myPay.setText(totalPay+"元");
+                    tv_myPay.setText(totalPay);
 
                     if(streamList.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);

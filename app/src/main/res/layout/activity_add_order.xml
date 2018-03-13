@@ -78,12 +78,30 @@
 					android:orientation="horizontal"
 				    style="@style/marginlr"
 					android:layout_marginTop="16dp">
-				    <TextView style="@style/wrap_content" android:text="" android:id="@+id/tv_ad_contact" />
 				    <TextView
 						style="@style/wrap_content"
-						android:text=""
-						android:layout_alignParentRight="true"
+						android:text="大傻子"
+						android:textStyle="bold"
+						android:id="@+id/tv_ad_contact" />
+				    <TextView
+						style="@style/wrap_content"
+						android:layout_marginLeft="10dp"
+						android:text="13888888888"
+						android:textStyle="bold"
+						android:layout_toEndOf="@id/tv_ad_contact"
 				        android:id="@+id/tv_ad_mobilephone"/>
+
+					<Button
+						android:id="@+id/index_address"
+						style="@style/btnwhite"
+						android:text="默认"
+						android:layout_marginLeft="10dp"
+						android:layout_width="35dp"
+						android:layout_height="20dp"
+						android:layout_toEndOf="@id/tv_ad_mobilephone"
+						android:layout_centerVertical="true"
+						android:enabled="false"/>
+
 				</RelativeLayout>
 				<LinearLayout
 					android:layout_width="match_parent"
@@ -174,16 +192,30 @@
 							style="@style/match_parent"
 							android:gravity="right"
 							android:text=""
+							android:layout_marginRight="20dp"
 							android:id="@+id/tv_in_invoiceType"/>
 						<LinearLayout
 							android:layout_width="match_parent"
 							android:layout_height="match_parent">
 							<TextView
 								style="@style/wrap_content"
+								android:layout_centerVertical="true"
 								android:text="发票信息"/>
+
+							<Button
+								android:id="@+id/index_invoice"
+								style="@style/btnwhite"
+								android:text="默认"
+								android:layout_marginLeft="20dp"
+								android:layout_width="35dp"
+								android:layout_height="20dp"
+								android:layout_centerVertical="true"
+								android:enabled="false"/>
+
 							<TextView
 								style="@style/match_parent"
 								android:gravity="right"
+								android:layout_marginRight="20dp"
 								android:text=""
 								android:id="@+id/tv_in_invoiceInfo"/>
 						</LinearLayout>
@@ -191,6 +223,7 @@
 							style="@style/match_parent"
 							android:gravity="right"
 							android:text=""
+							android:layout_marginRight="20dp"
 							android:id="@+id/tv_in_invoiceContent"/>
 					</LinearLayout>
 
@@ -203,7 +236,7 @@
 						android:visibility="gone">
 						<TextView
 							style="@style/match_parent"
-							android:gravity="right"
+							android:gravity="left"
 							android:text="未设置发票"/>
 					</LinearLayout>
 
@@ -212,7 +245,9 @@
 						android:layout_height="16dp"
 						android:layout_marginTop="16dp"
 						android:background="@drawable/right"
-						android:layout_alignEnd="@+id/ll_Invoice"
+						android:layout_centerVertical="true"
+						android:layout_alignParentRight="true"
+
 						android:layout_marginLeft="10dp"/>
 
 				</RelativeLayout>
@@ -296,9 +331,19 @@
 					 style="@style/marginlr">
 					 <TextView
 						 style="@style/wrap_content"
-						 android:layout_weight="2"
+						 android:layout_weight="1"
 						 android:text="银行账户"
 						 android:layout_gravity="center"/>
+
+					 <Button
+						 android:id="@+id/index_bank"
+						 style="@style/btnwhite"
+						 android:text="默认"
+						 android:layout_marginLeft="10dp"
+						 android:layout_width="35dp"
+						 android:layout_height="20dp"
+						 android:layout_gravity="center"
+						 android:enabled="false"/>
 
 					 <LinearLayout
 						 android:layout_width="wrap_content"
@@ -306,6 +351,7 @@
 						 android:orientation="vertical"
 						 android:layout_gravity="center_vertical"
 						 android:layout_weight="1"
+						 android:layout_marginRight="4dp"
 						 style="@style/marginlr">
 
 						 <TextView

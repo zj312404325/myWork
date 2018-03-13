@@ -57,6 +57,7 @@ public class CommitOrderMatchActivity extends TopActivity {
 
     private String skey;
     private String type;
+    private int errorTimes=0;
 
     SimpleAdapter sap;
 
@@ -102,47 +103,48 @@ public class CommitOrderMatchActivity extends TopActivity {
         try {
             type = "1";
             getFastMatchJson();
+            if (errorTimes == 0) {
+                new CommonDialog(CommitOrderMatchActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm) {
+                            progressDialog.show();
+                            Map<String, String> maps = new HashMap<String, String>();
+                            maps.put("serverKey", skey);
+                            maps.put("type", type);
+                            maps.put("orderMatchJsonArray", orderMatchJsonArray);
+                            XUtilsHelper.getInstance().post("app/saveOrderMatch.htm", maps, new XUtilsHelper.XCallBack() {
 
-            new CommonDialog(CommitOrderMatchActivity.this, R.style.dialog, "确定提交？", new CommonDialog.OnCloseListener() {
-                @Override
-                public void onClick(Dialog dialog, boolean confirm) {
-                    if (confirm) {
-                        progressDialog.show();
-                        Map<String, String> maps = new HashMap<String, String>();
-                        maps.put("serverKey", skey);
-                        maps.put("type", type);
-                        maps.put("orderMatchJsonArray", orderMatchJsonArray);
-                        XUtilsHelper.getInstance().post("app/saveOrderMatch.htm", maps, new XUtilsHelper.XCallBack() {
-
-                            @SuppressLint("NewApi")
-                            @Override
-                            public void onResponse(String result) {
-                                progressDialog.hide();
-                                JSONObject res;
-                                try {
-                                    res = new JSONObject(result);
-                                    setServerKey(res.get("serverKey").toString());
-                                    if (res.get("d").equals("n")) {
-                                        CommonUtil.alter(res.get("msg").toString());
-                                    } else {
-                                        if(res.get("import_status").equals("n")){
-                                            CommonUtil.alter(res.get("import_info").toString());
+                                @SuppressLint("NewApi")
+                                @Override
+                                public void onResponse(String result) {
+                                    progressDialog.hide();
+                                    JSONObject res;
+                                    try {
+                                        res = new JSONObject(result);
+                                        setServerKey(res.get("serverKey").toString());
+                                        if (res.get("d").equals("n")) {
+                                            CommonUtil.alter(res.get("msg").toString());
+                                        } else {
+                                            if (res.get("import_status").equals("n")) {
+                                                CommonUtil.alter(res.get("import_info").toString());
+                                            } else {
+                                                Intent i = new Intent(getApplicationContext(), CommitOrderMatchOkActivity.class);
+                                                startActivity(i);
+                                            }
                                         }
-                                        else {
-                                            Intent i = new Intent(getApplicationContext(), CommitOrderMatchOkActivity.class);
-                                            startActivity(i);
-                                        }
+                                    } catch (JSONException e) {
+                                        // TODO Auto-generated catch block
+                                        e.printStackTrace();
                                     }
-                                } catch (JSONException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
                                 }
-                            }
-                        });
-                        dialog.dismiss();
+                            });
+                            dialog.dismiss();
+                        }
                     }
-                }
-            }).setTitle("提示").show();
+                }).setTitle("提示").show();
+            }
+            errorTimes=0;
         }
         catch (Exception e){
             e.printStackTrace();
@@ -615,6 +617,81 @@ public class CommitOrderMatchActivity extends TopActivity {
             functionReq=et_functionReq.getText().toString();
             parameter=et_parameter.getText().toString();
             remark=et_remark.getText().toString();
+
+            //非空校验
+            if(!FormatUtil.isNoEmpty(FormatUtil.toString(proName))){
+                CommonUtil.alter("商品名称不能为空！");
+                errorTimes++;
+                return;
+            }
+            else if(FormatUtil.getStringLength(FormatUtil.toString(proName))>25){
+                CommonUtil.alter("商品名称过长！");
+                errorTimes++;
+                return;
+            }
+            if(!FormatUtil.isNoEmpty(FormatUtil.toString(proquantity))){
+                CommonUtil.alter("材质不能为空！");
+                errorTimes++;
+                return;
+            }
+            else if(FormatUtil.getStringLength(FormatUtil.toString(proquantity))>25){
+                CommonUtil.alter("材质过长！");
+                errorTimes++;
+                return;
+            }
+            if(!FormatUtil.isNoEmpty(FormatUtil.toString(spec))){
+                CommonUtil.alter("规格不能为空！");
+                errorTimes++;
+                return;
+            }
+            else if(FormatUtil.getStringLength(FormatUtil.toString(spec))>25){
+                CommonUtil.alter("规格过长！");
+                errorTimes++;
+                return;
+            }
+            if(!FormatUtil.isNoEmpty(FormatUtil.toString(quantity))){
+                CommonUtil.alter("数量不能为空！");
+                errorTimes++;
+                return;
+            }
+            if(!FormatUtil.isNoEmpty(FormatUtil.toString(unit))){
+                CommonUtil.alter("单位不能为空！");
+                errorTimes++;
+                return;
+            }
+            else if(FormatUtil.getStringLength(FormatUtil.toString(unit))>25){
+                CommonUtil.alter("单位过长！");
+                errorTimes++;
+                return;
+            }
+            if(!FormatUtil.isNoEmpty(FormatUtil.toString(parameter))){
+                CommonUtil.alter("参数不能为空！");
+                errorTimes++;
+                return;
+            }
+            else if(FormatUtil.getStringLength(FormatUtil.toString(parameter))>25){
+                CommonUtil.alter("参数过长！");
+                errorTimes++;
+                return;
+            }
+
+            //非必填项校验
+            if(FormatUtil.getStringLength(FormatUtil.toString(brand))>25){
+                CommonUtil.alter("品牌过长！");
+                errorTimes++;
+                return;
+            }
+            if(FormatUtil.getStringLength(FormatUtil.toString(functionReq))>25){
+                CommonUtil.alter("性能要求过长！");
+                errorTimes++;
+                return;
+            }
+            if(FormatUtil.getStringLength(FormatUtil.toString(remark))>50){
+                CommonUtil.alter("备注过长！");
+                errorTimes++;
+                return;
+            }
+            //
 
             if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic1.getTag()))){
                 pic1=iv_pic1.getTag().toString();

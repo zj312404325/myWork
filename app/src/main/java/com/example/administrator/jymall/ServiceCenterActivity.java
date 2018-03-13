@@ -3,8 +3,12 @@ package com.example.administrator.jymall;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +59,9 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
     private Button search_btn;
     @ViewInject(R.id.txt_keyword)
     private TextView txt_keyword;
+    @ViewInject(R.id.tv_introduction)
+    private TextView tv_introduction;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +79,12 @@ public class ServiceCenterActivity extends TopActivity implements IXListViewList
         listViewAll.setXListViewListener(this);
         getData(true,true);
         mHandler = new Handler();
+
+        //首行缩进
+        SpannableStringBuilder span = new SpannableStringBuilder("缩进"+tv_introduction.getText());
+        span.setSpan(new ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
+                Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tv_introduction.setText(span);
         //parentControl();
     }
 

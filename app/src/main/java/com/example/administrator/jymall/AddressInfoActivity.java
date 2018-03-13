@@ -111,7 +111,7 @@ public class AddressInfoActivity extends TopActivity implements ValidationListen
 			return;
 		}
 		else{
-			if(FormatUtil.getStringLength(et_mobilephone.getText().toString())!=11){
+			if(!FormatUtil.isPhoneLegal(et_mobilephone.getText().toString())){
 				CommonUtil.alter("手机号码不正确！");
 				return;
 			}

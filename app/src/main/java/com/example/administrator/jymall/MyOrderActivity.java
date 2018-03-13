@@ -1308,16 +1308,16 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
 
         if(tvId == tv_allOrder.getId()){
             //tv_allOrder.setTextColor(this.getBaseContext().getResources().getColor(R.color.bg_btn_blue));
-            tv_allOrder.setTextColor(Color.BLUE);
+            tv_allOrder.setTextColor(Color.parseColor("#1a3688"));
         }
         else if(tvId == tv_commonOrder.getId()){
-            tv_commonOrder.setTextColor(Color.BLUE);
+            tv_commonOrder.setTextColor(Color.parseColor("#1a3688"));
         }
         else if(tvId == tv_fastMatch.getId()){
-            tv_fastMatch.setTextColor(Color.BLUE);
+            tv_fastMatch.setTextColor(Color.parseColor("#1a3688"));
         }
         else if(tvId == tv_orderMatch.getId()){
-            tv_orderMatch.setTextColor(Color.BLUE);
+            tv_orderMatch.setTextColor(Color.parseColor("#1a3688"));
         }
         else{
 

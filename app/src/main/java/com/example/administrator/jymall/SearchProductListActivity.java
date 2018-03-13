@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -534,7 +535,7 @@ public class SearchProductListActivity extends TopSearchTitleActivity implements
                 //prospec.setText(dateMaps.get(position).get("prospec").toString());
 
                 String salePricestr= dateMaps.get(position).get("salePrice").toString();
-                salePrice.setText(salePricestr.equals("0")?"面议":"￥"+salePricestr+"/"+dateMaps.get(position).get("unit").toString());
+                salePrice.setText(salePricestr.equals("0")? "面议":Html.fromHtml("￥"+salePricestr+ "<font color=\"#b1b1b1\">/"+dateMaps.get(position).get("unit").toString()+"</font>"));
                 tv_stockQuantity.setText(dateMaps.get(position).get("proQuality").toString()+dateMaps.get(position).get("unit").toString());
 
                 ll_proInfo.setOnTouchListener(new View.OnTouchListener() {

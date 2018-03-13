@@ -79,6 +79,7 @@
 				   	 <TextView
 						 style="@style/wrap_content"
 						 android:text="待付款金额:"
+						 android:textColor="#333333"
 						 android:layout_gravity="center_vertical"   />
 				   	<TextView
 						style="@style/wrap_content"
@@ -108,7 +109,7 @@
 				    <TextView
 						style="@style/wrap_content"
 						android:text="可用余额："
-						android:textColor="#1a3688"
+						android:textColor="#333333"
 				        android:layout_centerVertical="true"
 						android:layout_toRightOf="@+id/cb_selectUmoney"
 						android:id="@+id/rb_umoney"  />
@@ -120,7 +121,7 @@
 						 android:layout_centerVertical="true"
 						 android:id="@+id/tv_umoney"
 						 android:textSize="15dp"
-						 android:textColor="#bb3144"  />
+						 android:textColor="#28a300"  />
 
 					<LinearLayout
 						android:id="@+id/ll_leftUmoney"
@@ -131,7 +132,7 @@
 						<TextView
 							style="@style/wrap_content"
 							android:text="剩余余额："
-							android:textColor="#28a300"/>
+							android:textColor="#333333"/>
 						<TextView
 							style="@style/wrap_content"
 							android:text="加载中..."

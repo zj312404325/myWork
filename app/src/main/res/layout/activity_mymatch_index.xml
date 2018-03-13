@@ -27,8 +27,7 @@
 					style="@style/wrap_content"
 					android:text="标准配管理"
 					android:layout_alignParentLeft="true"
-					android:layout_centerVertical="true"
-					android:drawableLeft="@drawable/icon_mall"/>
+					android:layout_centerVertical="true"/>
 
 				<ImageView
 					android:layout_width="9dp"
@@ -53,8 +52,7 @@
 					style="@style/wrap_content"
 					android:text="定制配管理"
 					android:layout_alignParentLeft="true"
-					android:layout_centerVertical="true"
-					android:drawableLeft="@drawable/icon_service_center"/>
+					android:layout_centerVertical="true"/>
 
 				<ImageView
 					android:layout_width="9dp"

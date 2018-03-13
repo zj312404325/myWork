@@ -124,9 +124,15 @@
 		
 			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
 			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="注册电话：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1"
-			         />
+			    <TextView
+					style="@style/wrap_content"
+					android:text="注册电话："
+					android:layout_alignParentLeft="true"
+			        android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="80dp"
+					android:inputType="number"
+					android:maxLines="1" />
 			    
 			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
 			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_registerPhone" android:maxLength="20"/>		    

@@ -207,7 +207,21 @@ public class RefundGoodsTwoActivity extends TopActivity {
                     tv_info.setText(info);
                     tv_proName.setText(orderdtl.getString("proName"));
                     img_proImgPath.setBackgroundResource(0);
-                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+
+                    String orderType=order.get("orderType").toString();
+                    if(orderType.equals("product")) {
+                        XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+                    }
+                    else if(orderType.equals("fastMatch")){
+                        img_proImgPath.setBackgroundResource(R.drawable.pro_fast_match);
+                    }
+                    else if(orderType.equals("orderMatch")){
+                        img_proImgPath.setBackgroundResource(R.drawable.pro_order_match);
+                    }
+                    else{
+                        XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+                    }
+
                     if(salePrice.equals("0")){
                         salePrice = "面议";
                     }
@@ -232,7 +246,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
                     }
                     else if(refundStatus.equals("4")){
                         tv_refundOkDate.setText("- 退款时间："+orderdtl.getString("backEndDate"));
-                        tv_refundMoney.setText(Html.fromHtml("- 退款金额：<font color=\"#1a3688\">"+refund.getString("money")+"</font>元"));
+                        tv_refundMoney.setText(Html.fromHtml("- 退款金额：<font color=\"#e60012\">"+refund.getString("money")+"</font>元"));
                         showRefundOk();
                     }
 

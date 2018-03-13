@@ -8,6 +8,9 @@
 
 	<include  android:id="@+id/top_title"  layout="@layout/top" />
 
+	<LinearLayout style="@style/match_parent"
+		android:background="#ffffff"
+		android:orientation="vertical">
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="180dp"
@@ -99,6 +102,7 @@
 				android:textColor="#939393"
 				android:layout_gravity="center"
 			    android:layout_centerInParent="true" />
+	</LinearLayout>
 	</LinearLayout>
 
 </LinearLayout>

@@ -105,7 +105,20 @@ public class RefundIndexActivity extends TopActivity {
                     tv_info.setText(info);
                     tv_proName.setText(orderdtl.getString("proName"));
                     img_proImgPath.setBackgroundResource(0);
-                    XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+
+                    String orderType=order.get("orderType").toString();
+                    if(orderType.equals("product")) {
+                        XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+                    }
+                    else if(orderType.equals("fastMatch")){
+                        img_proImgPath.setBackgroundResource(R.drawable.pro_fast_match);
+                    }
+                    else if(orderType.equals("orderMatch")){
+                        img_proImgPath.setBackgroundResource(R.drawable.pro_order_match);
+                    }
+                    else{
+                        XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
+                    }
 
                     if(salePrice.equals("0")){
                         salePrice = "面议";

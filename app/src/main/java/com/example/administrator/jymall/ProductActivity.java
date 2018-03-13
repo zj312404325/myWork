@@ -180,7 +180,7 @@ public class ProductActivity extends TopSearch2Activity implements IXListViewLis
 	@Event(value=R.id.tab2)
 	private void btn_tab2(View v){
 		css("2");
-		tab_txt2.setTextColor(Color.parseColor("#2192cd"));
+		tab_txt2.setTextColor(Color.parseColor("#1a3688"));
 		orderString = "";
 		getDate(true,true);
 	}
@@ -189,7 +189,7 @@ public class ProductActivity extends TopSearch2Activity implements IXListViewLis
 	private void btn_tab3(View v){
 		css("3");
 
-		tab_txt3.setTextColor(Color.parseColor("#2192cd"));
+		tab_txt3.setTextColor(Color.parseColor("#1a3688"));
 		if(v.getTag().equals("1")){
 			tab_img3.setBackgroundResource(R.drawable.tab_s2);
 			v.setTag("2");
@@ -212,7 +212,7 @@ public class ProductActivity extends TopSearch2Activity implements IXListViewLis
 				if(v.getTag().equals("1")){
 					future.setVisibility(View.VISIBLE);
 					tab_img1.setBackgroundResource(R.drawable.searchup);
-					tab_txt1.setTextColor(Color.parseColor("#2192cd"));
+					tab_txt1.setTextColor(Color.parseColor("#1a3688"));
 					v.setTag("2");
 				}
 				else{
@@ -228,7 +228,7 @@ public class ProductActivity extends TopSearch2Activity implements IXListViewLis
 				if(v.getTag().equals("1")){
 					searech.setVisibility(View.VISIBLE);
 					tab_img4.setBackgroundResource(R.drawable.searchup);
-					tab_txt4.setTextColor(Color.parseColor("#2192cd"));
+					tab_txt4.setTextColor(Color.parseColor("#1a3688"));
 
 					v.setTag("2");
 				}

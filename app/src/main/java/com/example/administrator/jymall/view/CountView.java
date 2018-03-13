@@ -200,10 +200,13 @@ public class CountView extends LinearLayout implements View.OnClickListener, Tex
             }
         } else {  //如果编辑框被清空了，直接填1
             countValue = 1;
+            if(minValue>countValue){
+                countValue=minValue;
+            }
             ivMinu.setEnabled(false);
             ivAdd.setEnabled(true);
             needUpdate = true;
-            Toast.makeText(mContext, String.format("最少添加%s个数量", MIN_VALUE), Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, String.format("最少添加%s个数量", minValue), Toast.LENGTH_SHORT).show();
 
         }
         changeWord(needUpdate);

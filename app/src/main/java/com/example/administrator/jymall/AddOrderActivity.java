@@ -106,6 +106,13 @@ public class AddOrderActivity extends TopActivity {
 	private TextView tv_goodsMoney;
 	@ViewInject(R.id.tv_transFee)
 	private TextView tv_transFee;
+
+	@ViewInject(R.id.index_address)
+	private Button index_address;
+	@ViewInject(R.id.index_invoice)
+	private Button index_invoice;
+	@ViewInject(R.id.index_bank)
+	private Button index_bank;
 	
 	
 	private List<Map<String,Object>> prolist = new ArrayList<Map<String,Object>>();
@@ -193,7 +200,7 @@ public class AddOrderActivity extends TopActivity {
 		}
 
 		if(ids.equals("")){
-			CommonUtil.alter("请选择购买产品！");
+			CommonUtil.alter("请选择要购买的产品！");
 			finish();
 		}
 		else {
@@ -216,16 +223,16 @@ public class AddOrderActivity extends TopActivity {
 	private void btn_tjclick(View v){
 		try{
 			if(bankAccount== null){
-				Toast.makeText(getApplicationContext(), "请先设置银行账号！",Toast.LENGTH_LONG*10000).show();
-				return;
+				/*Toast.makeText(getApplicationContext(), "请先设置银行账号！",Toast.LENGTH_LONG*10000).show();
+				return;*/
 			}
 			if(address== null){
 				Toast.makeText(getApplicationContext(), "请先设置收货地址！",Toast.LENGTH_LONG*10000).show();
 				return;
 			}
 			if(Invoice== null){
-				Toast.makeText(getApplicationContext(), "请先设置开票资料！",Toast.LENGTH_LONG*10000).show();
-				return;
+				/*Toast.makeText(getApplicationContext(), "请先设置开票资料！",Toast.LENGTH_LONG*10000).show();
+				return;*/
 			}
 			if(!cb_agree.isChecked()){
 				Toast.makeText(getApplicationContext(), "请阅读并同意金赢网交易条款!",Toast.LENGTH_LONG*10000).show();
@@ -438,7 +445,7 @@ public class AddOrderActivity extends TopActivity {
 					pro_salePrice.setText("面议");
 				}
 				else{
-					pro_salePrice.setText(Html.fromHtml("￥" + prolist.get(position).get("salePrice").toString() + "/<font color=\"#1a3688\">" + prolist.get(position).get("unit").toString()+"</font>"));
+					pro_salePrice.setText(Html.fromHtml("￥" + prolist.get(position).get("salePrice").toString() + "<font color=\"#b1b1b1\">/" + prolist.get(position).get("unit").toString()+"</font>"));
 				}
 				pro_stockQty.setText("X "+prolist.get(position).get("stockQty").toString());				
 			}
@@ -455,7 +462,7 @@ public class AddOrderActivity extends TopActivity {
 	private void setAddress(){
 		try{
 			if(address != null){
-				tv_ad_contact.setText("收货人："+address.getString("contact"));
+				tv_ad_contact.setText(address.getString("contact"));
 				tv_ad_addinfo.setText(address.getString("province")+"  "
 						+address.getString("city")+"  "
 						+address.getString("district")+"  "
@@ -463,6 +470,12 @@ public class AddOrderActivity extends TopActivity {
 				tv_ad_mobilephone.setText(address.getString("mobilephone"));
 				ll_address1.setVisibility(View.GONE);
 				ll_address.setVisibility(View.VISIBLE);
+				if(address.getBoolean("addrdefault")){
+					index_address.setVisibility(View.VISIBLE);
+				}
+				else{
+					index_address.setVisibility(View.GONE);
+				}
 			}
 			else{
 				ll_address1.setVisibility(View.VISIBLE);
@@ -483,6 +496,12 @@ public class AddOrderActivity extends TopActivity {
 				tv_bk_bankNo.setText(bankAccount.getString("bankNo"));
 				ll_bank1.setVisibility(View.GONE);
 				ll_bank.setVisibility(View.VISIBLE);
+				if(bankAccount.getBoolean("bankdefault")){
+					index_bank.setVisibility(View.VISIBLE);
+				}
+				else{
+					index_bank.setVisibility(View.GONE);
+				}
 			}
 			else{
 				ll_bank1.setVisibility(View.VISIBLE);
@@ -516,6 +535,13 @@ public class AddOrderActivity extends TopActivity {
 				}
 				ll_Invoice.setVisibility(View.VISIBLE);
 				ll_Invoice1.setVisibility(View.GONE);
+
+				if(Invoice.getString("invoiceDefault").equals("1")){
+					index_invoice.setVisibility(View.VISIBLE);
+				}
+				else{
+					index_invoice.setVisibility(View.GONE);
+				}
 			}
 			else{
 				ll_Invoice.setVisibility(View.GONE);

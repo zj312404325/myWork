@@ -182,7 +182,7 @@
 						<Button
 							style="@style/btndarkblue"
 							android:id="@+id/submitbtn"
-							android:text="提交"
+							android:text="我要兑换"
 							android:enabled="false"
 							android:layout_weight="1"/>
 

@@ -24,9 +24,10 @@
 				android:background="@drawable/image_service_center"/>
 
 			<TextView
+				android:id="@+id/tv_introduction"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="				金赢智能工业超市，在全国各主要城市设立区域服务中心，每个中心设有多个配送点，就近为客户提供一站式工业用品采购及管理服务，您可以根据所在区域就近选择服务中心。"
+				android:text="金赢智能工业超市，在全国各主要城市设立区域服务中心，每个中心设有多个配送点，就近为客户提供一站式工业用品采购及管理服务，您可以根据所在区域就近选择服务中心。"
 				android:textColor="#ffffff"
 				android:layout_alignParentBottom="true"
 				android:layout_marginBottom="20dp"/>
