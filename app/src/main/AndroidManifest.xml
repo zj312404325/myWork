@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.jymall">
+    package="com.example.administrator.jymall"
+    android:versionCode="1"
+    android:versionName="0.0.1">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -531,7 +533,7 @@
         </service>
 
         //支付宝相关
-        <activity
+        <!--<activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
@@ -542,7 +544,7 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind">
-        </activity>
+        </activity>-->
 
     </application>
 

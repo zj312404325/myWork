@@ -237,12 +237,26 @@
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"/>
 
-				<ImageView
-					android:id="@+id/iv_uploadImg"
-					android:layout_width="80dp"
-					android:layout_height="80dp"
-					android:layout_marginBottom="10dp"
-					android:background="@drawable/mall_file_upload"/>
+				<RelativeLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<ImageView
+
+						android:id="@+id/iv_uploadImg"
+						android:layout_width="80dp"
+						android:layout_height="80dp"
+						android:layout_marginTop="5dp"
+						android:layout_marginBottom="5dp"
+						android:background="@drawable/mall_file_upload"/>
+					<ImageView
+						android:id="@+id/iv_close_uploadImg"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentStart="true"
+						android:layout_alignParentTop="true"
+						android:layout_marginStart="70dp"
+						android:background="@drawable/icon_ali_close" />
+				</RelativeLayout>
 			</LinearLayout>
 
 			<Button

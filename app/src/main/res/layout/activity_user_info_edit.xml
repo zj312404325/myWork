@@ -32,7 +32,8 @@
 					android:layout_alignParentLeft="true"
 			        android:layout_centerVertical="true"
 					android:textColor="#939393"
-					android:layout_width="80dp"
+					android:layout_width="100dp"
+					android:maxLength="10"
 					android:maxLines="1" />
 			    
 			   	<EditText
@@ -42,6 +43,7 @@
 					android:layout_marginLeft="80dp"
 			        android:layout_centerVertical="true"
 					android:background="@null"
+					android:singleLine="true"
 					android:id="@+id/et_realname" />
 			   			   			    
 			</RelativeLayout>
@@ -55,7 +57,7 @@
 
 		        <TextView
 		            style="@style/wrap_content"
-		            android:layout_width="80dp"
+		            android:layout_width="100dp"
 		            android:layout_alignParentLeft="true"
 		            android:layout_centerVertical="true"
 		            android:maxLines="1"
@@ -89,7 +91,7 @@
 					android:layout_alignParentLeft="true"
 			        android:layout_centerVertical="true"
 					android:textColor="#939393"
-					android:layout_width="80dp"
+					android:layout_width="100dp"
 					android:maxLines="1" />
 			    
 			   	<EditText
@@ -101,6 +103,7 @@
 					android:background="@null"
 					android:inputType="number"
 					android:maxLength="11"
+					android:singleLine="true"
 					android:id="@+id/et_mobile" />
 			   			   			    
 			</RelativeLayout>
@@ -117,16 +120,18 @@
 					android:layout_alignParentLeft="true"
 			        android:layout_centerVertical="true"
 					android:textColor="#939393"
-					android:layout_width="80dp"
+					android:layout_width="100dp"
 					android:maxLines="1" />
 			    
 			   	<EditText
 					style="@style/wrap_content"
 					android:layout_width="match_parent"
 					android:text=""
+					android:inputType="textEmailAddress"
 					android:layout_marginLeft="80dp"
 			        android:layout_centerVertical="true"
 					android:background="@null"
+					android:singleLine="true"
 					android:id="@+id/et_email" />
 			   			   			    
 			</RelativeLayout>
@@ -143,7 +148,7 @@
 					android:layout_alignParentLeft="true"
 			        android:layout_centerVertical="true"
 					android:textColor="#939393"
-					android:layout_width="80dp"
+					android:layout_width="100dp"
 					android:maxLines="1" />
 			    
 			   	<EditText
@@ -155,9 +160,96 @@
 					android:background="@null"
 					android:inputType="phone"
 					android:maxLength="20"
+					android:singleLine="true"
 					android:id="@+id/et_phone" />
 			   			   			    
 			</RelativeLayout>
+
+			<LinearLayout style="@style/line" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="QQ："
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="100dp"
+					android:maxLines="1" />
+
+				<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+					android:layout_centerVertical="true"
+					android:background="@null"
+					android:inputType="number"
+					android:maxLength="20"
+					android:singleLine="true"
+					android:id="@+id/et_qq" />
+			</RelativeLayout>
+
+			<LinearLayout style="@style/line" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="支付宝账号："
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="100dp"
+					android:maxLines="1" />
+
+				<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+					android:layout_centerVertical="true"
+					android:background="@null"
+					android:maxLength="20"
+					android:singleLine="true"
+					android:id="@+id/et_alipay" />
+			</RelativeLayout>
+
+			<LinearLayout style="@style/line" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<TextView
+					style="@style/wrap_content"
+					android:text="公司传真："
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true"
+					android:textColor="#939393"
+					android:layout_width="100dp"
+					android:maxLines="1" />
+
+				<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+					android:layout_centerVertical="true"
+					android:background="@null"
+					android:maxLength="20"
+					android:singleLine="true"
+					android:id="@+id/et_fax" />
+			</RelativeLayout>
+
 			<LinearLayout style="@style/line" />
 			
 		</LinearLayout>

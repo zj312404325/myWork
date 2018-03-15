@@ -71,6 +71,9 @@ public class RefundGoodsOneActivity extends TopActivity {
     @ViewInject(R.id.iv_uploadImg)
     private ImageView iv_uploadImg;
 
+    @ViewInject(R.id.iv_close_uploadImg)
+    private ImageView iv_close_uploadImg;
+
     @ViewInject(R.id.rl_refundReason)
     private RelativeLayout rl_refundReason;
 
@@ -107,6 +110,7 @@ public class RefundGoodsOneActivity extends TopActivity {
         orderid = i.getStringExtra("orderId");
         orderdtlid = i.getStringExtra("orderDtlId");
         initData();
+        iv_close_uploadImg.setVisibility(View.INVISIBLE);
     }
 
 
@@ -314,6 +318,14 @@ public class RefundGoodsOneActivity extends TopActivity {
         }).setTitle("提示").show();
     }
 
+    @Event(R.id.iv_close_uploadImg)
+    private void closeclick(View v){
+        iv_uploadImg.setImageBitmap(null);
+        iv_uploadImg.setBackgroundResource(R.drawable.mall_upload_common);
+        iv_close_uploadImg.setVisibility(View.INVISIBLE);
+        fileurl="";
+    }
+
     @Event(value=R.id.iv_uploadImg,type=View.OnTouchListener.class)
     private boolean uploadImg(View v, MotionEvent event){
         if (event.getAction() == event.ACTION_UP) {
@@ -371,15 +383,16 @@ public class RefundGoodsOneActivity extends TopActivity {
                 XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
                     @Override
                     public void onResponse(String result) {
+                        progressDialog.hide();
                         try{
                             JSONObject res = FormatUtil.toJSONObject(result);
                             if(res != null){
                                 if(res.get("d").equals("n")){
                                     CommonUtil.alter("图片上传失败");
-                                    progressDialog.hide();
                                 }
                                 else{
                                     fileurl=res.getString("fileUrl");
+                                    iv_close_uploadImg.setVisibility(View.VISIBLE);
                                 }
                             }
                         }
@@ -403,16 +416,16 @@ public class RefundGoodsOneActivity extends TopActivity {
 
                     @Override
                     public void onResponse(String result) {
+                        progressDialog.hide();
                         try{
                             JSONObject res = FormatUtil.toJSONObject(result);
                             if(res != null){
                                 if(res.get("d").equals("n")){
                                     CommonUtil.alter("图片上传失败");
-                                    progressDialog.hide();
                                 }
                                 else{
                                     fileurl=res.getString("fileUrl");
-                                    progressDialog.hide();
+                                    iv_close_uploadImg.setVisibility(View.VISIBLE);
                                 }
                             }
                         }

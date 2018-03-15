@@ -491,6 +491,27 @@ public class FormatUtil {
 	}
 
 	/**
+	 * 区号+座机号码+分机号码
+	 * @param fixedPhone
+	 * @return
+	 */
+	public static boolean isFixedPhone(String fixedPhone){
+		String reg="(?:(\\(\\+?86\\))(0[0-9]{2,3}\\-?)?([2-9][0-9]{6,7})+(\\-[0-9]{1,4})?)|" +
+				"(?:(86-?)?(0[0-9]{2,3}\\-?)?([2-9][0-9]{6,7})+(\\-[0-9]{1,4})?)";
+		return Pattern.matches(reg, fixedPhone);
+	}
+
+	/**
+	 * 匹配中国邮政编码
+	 * @param postcode 邮政编码
+	 * @return 验证成功返回true，验证失败返回false
+	 */
+	public static boolean isPostCode(String postCode){
+		String reg = "[1-9]\\d{5}";
+		return Pattern.matches(reg, postCode);
+	}
+
+	/**
 	 * 判断重复点击
 	 * @return
 	 */

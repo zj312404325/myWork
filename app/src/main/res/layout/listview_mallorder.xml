@@ -179,7 +179,7 @@
 		        	<Button
 						style="@style/btnwhite"
 						android:text="确认收货"
-		            	android:layout_width="60dp"
+		            	android:layout_width="90dp"
 						android:layout_height="30dp"
 		  				android:layout_marginRight="10dp"
 						android:id="@+id/btn_confirmProduct"

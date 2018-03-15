@@ -141,6 +141,9 @@ public class Register1Activity extends TopNoLoginActivity {
         if(et_realname.getText().toString().length() <1){
             CommonUtil.alter("真实姓名不能为空！");return;
         }
+        if(FormatUtil.getStringLength(et_realname.getText().toString())>20){
+            CommonUtil.alter("真实姓名过长！");return;
+        }
         if( ValidationUtil.textValidation(et_realname.getText().toString())){
             CommonUtil.alter("真实姓名不允许输入特殊符号！");return;
         }

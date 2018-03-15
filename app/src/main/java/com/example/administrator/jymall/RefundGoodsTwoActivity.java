@@ -112,6 +112,9 @@ public class RefundGoodsTwoActivity extends TopActivity {
     @ViewInject(R.id.iv_uploadImg)
     private ImageView iv_uploadImg;
 
+    @ViewInject(R.id.iv_close_uploadImg)
+    private ImageView iv_close_uploadImg;
+
     private String skey;
     private String orderid;
     private String orderdtlid;
@@ -155,6 +158,7 @@ public class RefundGoodsTwoActivity extends TopActivity {
         orderid = i.getStringExtra("orderId");
         orderdtlid = i.getStringExtra("orderDtlId");
         initData();
+        iv_close_uploadImg.setVisibility(View.INVISIBLE);
     }
 
 
@@ -575,6 +579,14 @@ public class RefundGoodsTwoActivity extends TopActivity {
         startActivity(i);
     }
 
+    @Event(R.id.iv_close_uploadImg)
+    private void closeclick(View v){
+        iv_uploadImg.setImageBitmap(null);
+        iv_uploadImg.setBackgroundResource(R.drawable.mall_upload_common);
+        iv_close_uploadImg.setVisibility(View.INVISIBLE);
+        fileurl="";
+    }
+
     @Event(value=R.id.iv_uploadImg,type=View.OnTouchListener.class)
     private boolean uploadImg(View v, MotionEvent event){
         if (event.getAction() == event.ACTION_UP) {
@@ -632,15 +644,16 @@ public class RefundGoodsTwoActivity extends TopActivity {
                 XUtilsHelper.getInstance().upLoadFile("fileUploadOkJson.htm", maps, file, new XUtilsHelper.XCallBack() {
                     @Override
                     public void onResponse(String result) {
+                        progressDialog.hide();
                         try{
                             JSONObject res = FormatUtil.toJSONObject(result);
                             if(res != null){
                                 if(res.get("d").equals("n")){
                                     CommonUtil.alter("图片上传失败");
-                                    progressDialog.hide();
                                 }
                                 else{
                                     fileurl=res.getString("fileUrl");
+                                    iv_close_uploadImg.setVisibility(View.VISIBLE);
                                 }
                             }
                         }
@@ -664,16 +677,16 @@ public class RefundGoodsTwoActivity extends TopActivity {
 
                     @Override
                     public void onResponse(String result) {
+                        progressDialog.hide();
                         try{
                             JSONObject res = FormatUtil.toJSONObject(result);
                             if(res != null){
                                 if(res.get("d").equals("n")){
                                     CommonUtil.alter("图片上传失败");
-                                    progressDialog.hide();
                                 }
                                 else{
-                                    progressDialog.hide();
                                     fileurl=res.getString("fileUrl");
+                                    iv_close_uploadImg.setVisibility(View.VISIBLE);
                                 }
                             }
                         }
@@ -715,5 +728,40 @@ public class RefundGoodsTwoActivity extends TopActivity {
         ll_refundCommitLogistic.setVisibility(View.GONE);
         ll_refundSendGoods.setVisibility(View.GONE);
         ll_refundOk.setVisibility(View.GONE);
+    }
+
+    @SuppressLint("NewApi")
+    @Event(value={R.id.et_refundFeeRemark},type=View.OnTouchListener.class)
+    private boolean tabTouch(View v, MotionEvent e){
+        //触摸的是EditText并且当前EditText可以滚动则将事件交给EditText处理；否则将事件交由其父类处理
+        if ((canVerticalScroll(et_refundFeeRemark))) {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            if (e.getAction() == MotionEvent.ACTION_UP) {
+                 v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * EditText竖直方向是否可以滚动
+     * @param editText  需要判断的EditText
+     * @return  true：可以滚动   false：不可以滚动
+     */
+    private boolean canVerticalScroll(EditText editText) {
+        //滚动的距离
+        int scrollY = editText.getScrollY();
+        //控件内容的总高度
+        int scrollRange = editText.getLayout().getHeight();
+        //控件实际显示的高度
+        int scrollExtent = editText.getHeight() - editText.getCompoundPaddingTop() -editText.getCompoundPaddingBottom();
+        //控件内容总高度与实际显示高度的差值
+        int scrollDifference = scrollRange - scrollExtent;
+
+        if(scrollDifference == 0) {
+            return false;
+        }
+
+        return (scrollY > 0) || (scrollY < scrollDifference - 1);
     }
 }

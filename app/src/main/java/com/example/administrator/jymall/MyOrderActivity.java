@@ -146,6 +146,9 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
     private TextView tv_fastMatch;
     @ViewInject(R.id.tv_orderMatch)
     private TextView tv_orderMatch;
+    @ViewInject(R.id.listiv)
+    private ImageView listiv;
+
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;
@@ -207,6 +210,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
             start=1;
         }
         listtv.setVisibility(View.GONE);
+        listiv.setVisibility(View.GONE);
         listViewAll.setPullLoadEnable(false);
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", skey);
@@ -221,6 +225,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
             @Override
             public void onResponse(String result)  {
                 listtv.setVisibility(View.GONE);
+                listiv.setVisibility(View.GONE);
                 if(flag){
                     dateMaps.clear();
                 }
@@ -240,6 +245,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                         JSONArray resjarr = (JSONArray)res.get("orderList");
                         if(resjarr.length()==0 && start == 1) {
                             listtv.setVisibility(View.VISIBLE);
+                            listiv.setVisibility(View.VISIBLE);
                         }
                         else if(resjarr.length() ==  15 ) {
                             listViewAll.setPullLoadEnable(true);

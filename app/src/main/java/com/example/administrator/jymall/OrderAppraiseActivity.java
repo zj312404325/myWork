@@ -240,6 +240,10 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                 final MyImageView iv_pic3 = (MyImageView)convertView.findViewById(R.id.iv_pic3);
                 final RatingBar rb_productLevel = (RatingBar)convertView.findViewById(R.id.rb_productLevel);
 
+                final ImageView iv_close_pic1 = (ImageView)convertView.findViewById(R.id.iv_close_pic1);
+                final ImageView iv_close_pic2 = (ImageView)convertView.findViewById(R.id.iv_close_pic2);
+                final ImageView iv_close_pic3 = (ImageView)convertView.findViewById(R.id.iv_close_pic3);
+
                 img_proImgPath.setBackgroundResource(0);
                 XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, mdata.get(position).get("proImgPath").toString(), true);
 
@@ -291,9 +295,11 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
 
                 if(FormatUtil.isNoEmpty(mdata.get(position).get("pic1").toString())){
                     XUtilsHelper.getInstance().bindCommonImage(iv_pic1,mdata.get(position).get("pic1").toString(),true);
+                    iv_close_pic1.setVisibility(View.VISIBLE);
                 }else{
                     iv_pic1.setImageBitmap(null);
                     iv_pic1.setBackgroundResource(R.drawable.mall_upload_common);
+                    iv_close_pic1.setVisibility(View.INVISIBLE);
                 }
                 iv_pic1.setTag(mdata.get(position).get("pic1").toString());
                 iv_pic1.setOnTouchListener(new View.OnTouchListener() {
@@ -339,9 +345,11 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
 
                 if(FormatUtil.isNoEmpty(mdata.get(position).get("pic2").toString())){
                     XUtilsHelper.getInstance().bindCommonImage(iv_pic2,mdata.get(position).get("pic2").toString(),true);
+                    iv_close_pic2.setVisibility(View.VISIBLE);
                 }else{
                     iv_pic2.setImageBitmap(null);
                     iv_pic2.setBackgroundResource(R.drawable.mall_upload_common);
+                    iv_close_pic2.setVisibility(View.INVISIBLE);
                 }
                 iv_pic2.setTag(mdata.get(position).get("pic2").toString());
                 iv_pic2.setOnTouchListener(new View.OnTouchListener() {
@@ -386,9 +394,11 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
 
                 if(FormatUtil.isNoEmpty(mdata.get(position).get("pic3").toString())){
                     XUtilsHelper.getInstance().bindCommonImage(iv_pic3,mdata.get(position).get("pic3").toString(),true);
+                    iv_close_pic3.setVisibility(View.VISIBLE);
                 }else{
                     iv_pic3.setImageBitmap(null);
                     iv_pic3.setBackgroundResource(R.drawable.mall_upload_common);
+                    iv_close_pic3.setVisibility(View.INVISIBLE);
                 }
                 iv_pic3.setTag(mdata.get(position).get("pic3").toString());
                 iv_pic3.setOnTouchListener(new View.OnTouchListener() {
@@ -430,6 +440,44 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                         return true;
                     }
                 });
+
+                //关闭按钮
+                iv_close_pic1.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == event.ACTION_UP) {
+                        dateMaps.get(TEMP_LL_COUNT).put("pic1","");
+                        sap.notifyDataSetChanged();
+                        return false;
+                    }
+                    return true;
+                    }
+                });
+
+                iv_close_pic2.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == event.ACTION_UP) {
+                            dateMaps.get(TEMP_LL_COUNT).put("pic2","");
+                            sap.notifyDataSetChanged();
+                            return false;
+                        }
+                        return true;
+                    }
+                });
+
+                iv_close_pic3.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == event.ACTION_UP) {
+                            dateMaps.get(TEMP_LL_COUNT).put("pic3","");
+                            sap.notifyDataSetChanged();
+                            return false;
+                        }
+                        return true;
+                    }
+                });
+
             }
             catch(Exception e){
                 Log.v("PRO", e.getMessage());

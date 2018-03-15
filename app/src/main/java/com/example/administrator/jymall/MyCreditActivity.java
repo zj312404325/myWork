@@ -93,6 +93,10 @@ public class MyCreditActivity extends TopActivity {
 
     @ViewInject(R.id.iv_officeImage)
     private ImageView iv_officeImage;
+
+    @ViewInject(R.id.iv_close_officeImage)
+    private ImageView iv_close_officeImage;
+
     @ViewInject(R.id.et_peopleCount)
     private EditText et_peopleCount;
 
@@ -139,6 +143,7 @@ public class MyCreditActivity extends TopActivity {
         super.title.setText("信用支付状态");
         tv_title.setText(Html.fromHtml("拥有VIP信用支付特权的用户，可享受订单<font color=\"#1a3688\">月度结算</font>或<font color=\"#1a3688\">年度结算</font>"));
         progressDialog.hide();
+        iv_close_officeImage.setVisibility(View.INVISIBLE);
         getState();
 
         initData();
@@ -341,6 +346,14 @@ public class MyCreditActivity extends TopActivity {
             }
 
         });
+    }
+
+    @Event(R.id.iv_close_officeImage)
+    private void closeclick(View v){
+        iv_officeImage.setImageBitmap(null);
+        iv_officeImage.setBackgroundResource(R.drawable.mall_upload_common);
+        iv_close_officeImage.setVisibility(View.INVISIBLE);
+        officeImage="";
     }
 
     @Event(R.id.submitbtn)
@@ -753,6 +766,7 @@ public class MyCreditActivity extends TopActivity {
                                 }
                                 else{
                                     officeImage=res.getString("fileUrl");
+                                    iv_close_officeImage.setVisibility(View.VISIBLE);
                                 }
                             }
                         }
@@ -785,6 +799,7 @@ public class MyCreditActivity extends TopActivity {
                                 }
                                 else{
                                     officeImage=res.getString("fileUrl");
+                                    iv_close_officeImage.setVisibility(View.VISIBLE);
                                 }
                             }
                         }

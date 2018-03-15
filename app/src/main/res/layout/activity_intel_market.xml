@@ -761,6 +761,39 @@
 						</RelativeLayout>
 						<RelativeLayout style="@style/fill" android:layout_weight="1" >
 							<ImageView
+								android:background="@drawable/icon_custom33"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_weight="1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical">
+
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom34"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true" />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
+								android:background="@drawable/icon_custom35"
+								android:layout_width="300dp"
+								android:layout_height="70dp"
+								android:scaleType="center"
+								android:layout_centerInParent="true"  />
+						</RelativeLayout>
+						<RelativeLayout style="@style/fill" android:layout_weight="1" >
+							<ImageView
 								android:layout_width="300dp"
 								android:layout_height="70dp"
 								android:scaleType="center"

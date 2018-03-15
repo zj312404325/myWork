@@ -29,16 +29,40 @@
 	    <LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
 		    android:background="#ffffff" android:layout_marginTop="10dp" android:id="@+id/ll_i1" >
 		 	    
-		    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="发票抬头：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-			        
-			       />
+		    <RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="发票抬头："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_title"  android:maxLength="50"
-			        />		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_title"
+					android:maxLength="50" />
 			   			    
 			</RelativeLayout>
 		</LinearLayout>
@@ -52,6 +76,7 @@
 			android:id="@+id/ll_i3" >
 
 			<RelativeLayout
+				android:id="@+id/rl_showCommonNo"
 				android:layout_width="match_parent"
 				android:layout_height="50dp"
 				android:layout_marginLeft="10dp"
@@ -78,43 +103,134 @@
 		</LinearLayout>
 	    
 	    
-		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
-		    android:background="#ffffff" android:layout_marginTop="10dp" android:visibility="gone" android:id="@+id/ll_i2" >
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+		    android:background="#ffffff"
+			android:layout_marginTop="10dp"
+			android:visibility="gone"
+			android:id="@+id/ll_i2" >
 		 	    
-		    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="单位名称：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-			        
-			       />
+		    <RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="单位名称："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_companyName" android:maxLength="50" />		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_companyName"
+					android:maxLength="50" />
 			   			    
 			</RelativeLayout>
-			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
 		    
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="纳税人识别号：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="100dp" android:maxLines="1" 
-			        
-			        />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="纳税人识别号："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="100dp" android:maxLines="1"
+						/>
+				</LinearLayout>
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="100dp" 
-			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_taxNo" android:maxLength="20"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="100dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_taxNo"
+					android:maxLength="20"/>
 			   			    
 			</RelativeLayout>
-			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="0.5dp"
+				android:background="#d0d0d0" />
 			
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="注册地址：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" 
-			        />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="注册地址："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null"  android:id="@+id/et_registerAddress" android:maxLength="100"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_registerAddress"
+					android:maxLength="100"/>
 			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
@@ -124,49 +240,143 @@
 		
 			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
 			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView
-					style="@style/wrap_content"
-					android:text="注册电话："
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:layout_alignParentLeft="true"
-			        android:layout_centerVertical="true"
-					android:textColor="#939393"
-					android:layout_width="80dp"
-					android:inputType="number"
-					android:maxLines="1" />
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="注册电话："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_registerPhone" android:maxLength="20"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:inputType="phone"
+					android:id="@+id/et_registerPhone"
+					android:maxLength="20"/>
 			  			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
 			
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="开户银行：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="开户银行："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_bankName" android:maxLength="50"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_bankName"
+					android:maxLength="50"/>
 			   			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
 			
-			<RelativeLayout android:layout_width="match_parent" android:layout_height="50dp" 
-			    android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
-			    <TextView style="@style/wrap_content" android:text="银行账户：" android:layout_alignParentLeft="true" 
-			        android:layout_centerVertical="true" android:textColor="#939393" android:layout_width="80dp" android:maxLines="1" />
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+			    android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="银行账户："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
-			   	<EditText style="@style/wrap_content" android:layout_width="match_parent" android:text="" android:layout_marginLeft="80dp" 
-			        android:layout_centerVertical="true" android:background="@null" android:id="@+id/et_bankNo" android:maxLength="20"/>		    
+			   	<EditText
+					style="@style/wrap_content"
+					android:layout_width="match_parent"
+					android:text=""
+					android:layout_marginLeft="80dp"
+			        android:layout_centerVertical="true"
+					android:background="@null"
+					android:id="@+id/et_bankNo"
+					android:maxLength="20"/>
 			   			   			    
 			</RelativeLayout>
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="0.5dp" android:background="#d0d0d0" />
 			
 		</LinearLayout>
 		
-		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" 
-		    android:background="#ffffff" android:layout_marginTop="10dp" android:padding="10dp" >
-		    <TextView style="@style/wrap_content" android:text="发票内容"/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+		    android:background="#ffffff"
+			android:layout_marginTop="10dp"
+			android:padding="10dp" >
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true">
+				<TextView
+					android:layout_width="10dp"
+					android:layout_height="wrap_content"
+					android:text="*"
+					android:textColor="#e60012"/>
+		    	<TextView
+					style="@style/wrap_content"
+					android:text="发票内容"/>
+			</LinearLayout>
 		   
 		        <RadioGroup
 					android:id="@+id/rg_invoiceContentType"

@@ -185,6 +185,7 @@ public class OnlinePayActivity extends TopActivity {
         progressDialog.show();
         Map<String, String> maps= new HashMap<String, String>();
         if(selectAli==1) {
+            CommonUtil.alter("敬请期待！");
             //payAli();
             /*maps.put("serverKey", super.serverKey);
             maps.put("orderId",id);
@@ -223,32 +224,7 @@ public class OnlinePayActivity extends TopActivity {
             });*/
         }
         else if(selectWechat==1){
-            XUtilsHelper.getInstance().post("app/doOfflinePay.htm", maps, new XUtilsHelper.XCallBack() {
 
-                @SuppressLint("NewApi")
-                @Override
-                public void onResponse(String result) {
-                    progressDialog.hide();
-                    JSONObject res;
-                    try {
-                        res = new JSONObject(result);
-                        setServerKey(res.get("serverKey").toString());
-                        if (res.get("d").equals("n")) {
-                            CommonUtil.alter(res.get("msg").toString());
-                        } else {
-                            CommonUtil.alter("支付成功");
-                            setResult(RESULT_OK);
-                            finish();
-                        }
-
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-
-                }
-
-            });
         }
     }
 

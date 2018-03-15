@@ -186,7 +186,7 @@ public class CountView extends LinearLayout implements View.OnClickListener, Tex
                 ivMinu.setEnabled(false);
                 ivAdd.setEnabled(true);
                 needUpdate = true;
-                Toast.makeText(mContext, String.format("最少添加%s个数量", minValue), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, String.format("最少添加%s个数量", minValue), Toast.LENGTH_SHORT).show();
             } else if (countValue >= maxValue) {
                 countValue = maxValue;
                 ivMinu.setEnabled(true);

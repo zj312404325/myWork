@@ -142,14 +142,11 @@ public class UpdateApp {
                     if (newVerCode > currentVerCode) {
                         showNoticeDialog();
                     }
-					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
-			
 		});*/
     	
     	
@@ -357,11 +354,14 @@ public class UpdateApp {
                     Log.d(LOG_TAG, "手机没有SD卡");
                 }
             } catch (MalformedURLException e) {
-            	CommonUtil.alter("下载文件线程异常MalformedURLException：" + e.toString());
+            	//CommonUtil.alter("下载文件线程异常MalformedURLException：" );
+                Log.i("update", "下载文件线程异常MalformedURLException：");
             } catch (IOException e) {
-            	CommonUtil.alter( "下载文件线程异常IOException：" + e.toString());
+                Log.i("update", "下载文件线程异常IOException：");
+                //CommonUtil.alter( "下载文件线程异常IOException：" );
             }catch(Exception e){
-            	CommonUtil.alter(e.getMessage());
+                Log.i("update", "e.getMessage()");
+            	//CommonUtil.alter(e.getMessage());
             }
             // 取消下载对话框显示
             mDownloadDialog.dismiss();
@@ -385,7 +385,8 @@ public class UpdateApp {
             Uri contentUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".fileProvider", apkfile);
             i.setDataAndType(contentUri, "application/vnd.android.package-archive");
         } else {
-            i.setDataAndType(Uri.fromFile(apkfile), "application/vnd.android.package-archive");
+            //i.setDataAndType(Uri.fromFile(apkfile), "application/vnd.android.package-archive");
+            i.setDataAndType(Uri.parse("file://" + apkfile.toString()), "application/vnd.android.package-archive");
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 

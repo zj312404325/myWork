@@ -104,8 +104,6 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		x.view().inject(this);
 		super.progressDialog.hide();
 		skey=super.serverKey;
-		parentControl();
-		changeDiv();
 		sap = new InfoSimpleAdapter(CartActivity.this, dateMaps,
 				R.layout.listview_cartinfo,
 				new String[]{"proName"},
@@ -113,6 +111,10 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		listViewAll.setAdapter(sap);
 		listViewAll.setPullLoadEnable(true);
 		listViewAll.setXListViewListener(this);
+
+		parentControl();
+		changeDiv();
+
 		ck_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			
 			@Override
@@ -127,6 +129,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 	private void getData(){
 		progressDialog.show();
 		listtv.setVisibility(View.GONE);
+		listViewAll.setPullLoadEnable(false);
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
 		dateMaps.clear();
@@ -144,6 +147,9 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 					JSONArray buyCartList = (JSONArray)res.get("data");
 					if(buyCartList.length()==0 ) {
 						listtv.setVisibility(View.VISIBLE);
+					}
+					else if(buyCartList.length() ==  5 ) {
+						listViewAll.setPullLoadEnable(true);
 					}
 
 					for(int i=0;i<buyCartList.length();i++){

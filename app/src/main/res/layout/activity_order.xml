@@ -415,11 +415,24 @@
 				android:layout_height="fill_parent"
 				android:cacheColorHint="#00000000">
 			</com.example.administrator.jymall.view.XListView>
-			<TextView
-				style="@style/wrap_content"
-				android:id="@+id/listtv"
-				android:text="暂无数据"
-				android:textColor="#939393"
-			    android:layout_centerInParent="true" />
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_centerHorizontal="true"
+				android:layout_marginTop="100dp">
+				<ImageView
+					android:id="@+id/listiv"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/icon_no_order_big"
+					android:layout_gravity="center"/>
+				<TextView
+					style="@style/wrap_content"
+					android:id="@+id/listtv"
+					android:text="			您还没有相关的订单\n可以去看看有哪些想买的"
+					android:textSize="18sp"
+					android:layout_gravity="center"/>
+			</LinearLayout>
 		</RelativeLayout>
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -172,6 +173,11 @@ public class CommitFastMatchActivity extends TopActivity {
             final MyImageView iv_pic1 = (MyImageView) childAt.findViewById(R.id.iv_pic1);
             final MyImageView iv_pic2 = (MyImageView) childAt.findViewById(R.id.iv_pic2);
             final MyImageView iv_pic3 = (MyImageView) childAt.findViewById(R.id.iv_pic3);
+
+            final ImageView iv_close_pic1 = (ImageView)childAt.findViewById(R.id.iv_close_pic1);
+            final ImageView iv_close_pic2 = (ImageView)childAt.findViewById(R.id.iv_close_pic2);
+            final ImageView iv_close_pic3 = (ImageView)childAt.findViewById(R.id.iv_close_pic3);
+
             String pic1="";
             String pic2="";
             String pic3="";
@@ -189,6 +195,33 @@ public class CommitFastMatchActivity extends TopActivity {
             }
             else{
                 btn_delete.setVisibility(View.VISIBLE);
+            }
+
+            if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic1.getTag()))){
+                XUtilsHelper.getInstance().bindCommonImage(iv_pic1,FormatUtil.toString(iv_pic1.getTag()),true);
+                iv_close_pic1.setVisibility(View.VISIBLE);
+            }else{
+                iv_pic1.setImageBitmap(null);
+                iv_pic1.setBackgroundResource(R.drawable.mall_upload_common);
+                iv_close_pic1.setVisibility(View.INVISIBLE);
+            }
+
+            if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic2.getTag()))){
+                XUtilsHelper.getInstance().bindCommonImage(iv_pic2,FormatUtil.toString(iv_pic2.getTag()),true);
+                iv_close_pic2.setVisibility(View.VISIBLE);
+            }else{
+                iv_pic2.setImageBitmap(null);
+                iv_pic2.setBackgroundResource(R.drawable.mall_upload_common);
+                iv_close_pic2.setVisibility(View.INVISIBLE);
+            }
+
+            if(FormatUtil.isNoEmpty(FormatUtil.toString(iv_pic3.getTag()))){
+                XUtilsHelper.getInstance().bindCommonImage(iv_pic3,FormatUtil.toString(iv_pic3.getTag()),true);
+                iv_close_pic3.setVisibility(View.VISIBLE);
+            }else{
+                iv_pic3.setImageBitmap(null);
+                iv_pic3.setBackgroundResource(R.drawable.mall_upload_common);
+                iv_close_pic3.setVisibility(View.INVISIBLE);
             }
 
             iv_pic1.setOnClickListener(new View.OnClickListener() {
@@ -283,6 +316,43 @@ public class CommitFastMatchActivity extends TopActivity {
                     mcd3.show();
                 }
             });
+
+            //关闭按钮
+            iv_close_pic1.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == event.ACTION_UP) {
+                        iv_pic1.setTag("");
+                        sortViewItem();
+                        return false;
+                    }
+                    return true;
+                }
+            });
+
+            iv_close_pic2.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == event.ACTION_UP) {
+                        iv_pic2.setTag("");
+                        sortViewItem();
+                        return false;
+                    }
+                    return true;
+                }
+            });
+
+            iv_close_pic3.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == event.ACTION_UP) {
+                        iv_pic3.setTag("");
+                        sortViewItem();
+                        return false;
+                    }
+                    return true;
+                }
+            });
         }
     }
 
@@ -340,6 +410,7 @@ public class CommitFastMatchActivity extends TopActivity {
                                 }
                                 else{
                                     iv_pic1.setTag(res.getString("fileUrl"));
+                                    sortViewItem();
                                 }
                             }
                         }
@@ -382,6 +453,7 @@ public class CommitFastMatchActivity extends TopActivity {
                                 else{
                                     //pic1=res.getString("fileUrl");
                                     iv_pic1.setTag(res.getString("fileUrl"));
+                                    sortViewItem();
                                 }
                             }
                         }
@@ -427,6 +499,7 @@ public class CommitFastMatchActivity extends TopActivity {
                                 }
                                 else{
                                     iv_pic1.setTag(res.getString("fileUrl"));
+                                    sortViewItem();
                                 }
                             }
                         }
@@ -469,6 +542,7 @@ public class CommitFastMatchActivity extends TopActivity {
                                 else{
                                     //pic1=res.getString("fileUrl");
                                     iv_pic1.setTag(res.getString("fileUrl"));
+                                    sortViewItem();
                                 }
                             }
                         }
@@ -514,6 +588,7 @@ public class CommitFastMatchActivity extends TopActivity {
                                 }
                                 else{
                                     iv_pic1.setTag(res.getString("fileUrl"));
+                                    sortViewItem();
                                 }
                             }
                         }
@@ -555,6 +630,7 @@ public class CommitFastMatchActivity extends TopActivity {
                                 else{
                                     //pic1=res.getString("fileUrl");
                                     iv_pic1.setTag(res.getString("fileUrl"));
+                                    sortViewItem();
                                 }
                             }
                         }

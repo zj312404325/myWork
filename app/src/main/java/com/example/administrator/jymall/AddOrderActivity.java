@@ -222,9 +222,14 @@ public class AddOrderActivity extends TopActivity {
 	@Event(R.id.btn_tj)
 	private void btn_tjclick(View v){
 		try{
+			String bankid="";
+			String invoiceid="";
 			if(bankAccount== null){
 				/*Toast.makeText(getApplicationContext(), "请先设置银行账号！",Toast.LENGTH_LONG*10000).show();
 				return;*/
+			}
+			else{
+				bankid=bankAccount.getString("id");
 			}
 			if(address== null){
 				Toast.makeText(getApplicationContext(), "请先设置收货地址！",Toast.LENGTH_LONG*10000).show();
@@ -233,6 +238,9 @@ public class AddOrderActivity extends TopActivity {
 			if(Invoice== null){
 				/*Toast.makeText(getApplicationContext(), "请先设置开票资料！",Toast.LENGTH_LONG*10000).show();
 				return;*/
+			}
+			else{
+				invoiceid=Invoice.getString("id");
 			}
 			if(!cb_agree.isChecked()){
 				Toast.makeText(getApplicationContext(), "请阅读并同意金赢网交易条款!",Toast.LENGTH_LONG*10000).show();
@@ -245,9 +253,9 @@ public class AddOrderActivity extends TopActivity {
 			maps.put("ids", ids);
 			maps.put("orderType", orderType);
 			maps.put("customid", customid);
-			maps.put("subBankId", bankAccount.getString("id"));
+			maps.put("subBankId", bankid);
 			maps.put("subAddressId", address.getString("id"));
-			maps.put("subInvoiceId", Invoice.getString("id"));
+			maps.put("subInvoiceId", invoiceid);
 			maps.put("buyMemo", et_buyMemo.getText().toString());
 			XUtilsHelper.getInstance().post("app/doMallOrder.htm", maps,new XUtilsHelper.XCallBack(){
 

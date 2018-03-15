@@ -89,7 +89,7 @@
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
-				android:visibility="gone">
+				android:visibility="invisible">
 
 				<TextView
 					style="@style/match_parent"
@@ -107,13 +107,27 @@
 					android:text="办公场所照片："
 					android:textSize="14dp"/>
 
-				<ImageView
-					android:id="@+id/iv_officeImage"
-					android:layout_marginTop="5dp"
-					android:layout_gravity="center"
-					android:layout_width="200dp"
-					android:layout_height="180dp"
-					android:background="@drawable/mall_upload_common"/>
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent">
+					<ImageView
+						android:id="@+id/iv_officeImage"
+						android:layout_marginTop="15dp"
+						android:layout_centerInParent="true"
+						android:layout_width="200dp"
+						android:layout_height="180dp"
+						android:background="@drawable/mall_upload_common"/>
+
+					<ImageView
+						android:id="@+id/iv_close_officeImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentEnd="true"
+						android:layout_alignParentTop="true"
+						android:layout_marginEnd="62dp"
+						android:background="@drawable/icon_ali_close"
+						android:visibility="invisible" />
+				</RelativeLayout>
 
 				<TextView
 					style="@style/match_parent"

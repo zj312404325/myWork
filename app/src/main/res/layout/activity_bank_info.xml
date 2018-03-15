@@ -21,14 +21,26 @@
 				android:layout_height="50dp"
 			    android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
-			    <TextView
-					style="@style/wrap_content"
-					android:text="银行名称："
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:layout_alignParentLeft="true"
-			        android:layout_centerVertical="true"
-					android:textColor="#939393"
-					android:layout_width="80dp"
-					android:maxLines="1" />
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="银行名称："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
 			   	<EditText
 					style="@style/wrap_content"
@@ -53,14 +65,26 @@
 				android:layout_height="50dp"
 			    android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
-			    <TextView
-					style="@style/wrap_content"
-					android:text="开户行："
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:layout_alignParentLeft="true"
-			        android:layout_centerVertical="true"
-					android:textColor="#939393"
-					android:layout_width="80dp"
-					android:maxLines="1" />
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="开户行："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
 			    
 			   	<EditText
 					style="@style/wrap_content"
@@ -83,15 +107,26 @@
 				android:layout_height="50dp"
 			    android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
-			    <TextView
-					style="@style/wrap_content"
-					android:text="银行账号："
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:layout_alignParentLeft="true"
-			        android:layout_centerVertical="true"
-					android:textColor="#939393"
-					android:layout_width="80dp"
-					android:maxLines="1" />
-			    
+					android:layout_centerVertical="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="银行账号："
+						android:layout_alignParentLeft="true"
+						android:layout_centerVertical="true"
+						android:textColor="#939393"
+						android:layout_width="80dp"
+						android:maxLines="1" />
+				</LinearLayout>
+
 			   	<EditText
 					style="@style/wrap_content"
 					android:layout_width="match_parent"

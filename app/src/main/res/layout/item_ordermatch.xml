@@ -311,25 +311,69 @@
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="110dp"
-			android:orientation="horizontal">
-			<com.example.administrator.jymall.view.MyImageView
-				android:id="@+id/iv_pic1"
-				android:layout_weight="1"
+			android:orientation="horizontal"
+			android:background="#ffffff">
+			<RelativeLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:background="@drawable/mall_upload_common"/>
-			<com.example.administrator.jymall.view.MyImageView
-				android:id="@+id/iv_pic2"
-				android:layout_weight="1"
+				android:layout_weight="1">
+				<com.example.administrator.jymall.view.MyImageView
+					android:id="@+id/iv_pic1"
+					android:layout_margin="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/mall_upload_common"/>
+
+				<ImageView
+					android:id="@+id/iv_close_pic1"
+					android:visibility="invisible"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentTop="true"
+					android:background="@drawable/icon_ali_close" />
+			</RelativeLayout>
+
+			<RelativeLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:background="@drawable/mall_upload_common"/>
-			<com.example.administrator.jymall.view.MyImageView
-				android:id="@+id/iv_pic3"
-				android:layout_weight="1"
+				android:layout_weight="1">
+				<com.example.administrator.jymall.view.MyImageView
+					android:id="@+id/iv_pic2"
+					android:layout_margin="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/mall_upload_common"/>
+
+				<ImageView
+					android:id="@+id/iv_close_pic2"
+					android:visibility="invisible"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentTop="true"
+					android:background="@drawable/icon_ali_close" />
+			</RelativeLayout>
+
+			<RelativeLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:background="@drawable/mall_upload_common"/>
+				android:layout_weight="1">
+				<com.example.administrator.jymall.view.MyImageView
+					android:id="@+id/iv_pic3"
+					android:layout_margin="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/mall_upload_common"/>
+				<ImageView
+					android:id="@+id/iv_close_pic3"
+					android:visibility="invisible"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentTop="true"
+					android:background="@drawable/icon_ali_close" />
+			</RelativeLayout>
 		</LinearLayout>
 
 		<Button

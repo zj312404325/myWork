@@ -104,7 +104,7 @@ public class SupplyMarketActivity extends TopActivity{
             }
         }
         if(FormatUtil.getStringLength(et_remark.getText().toString())>100){
-            CommonUtil.alter("备注不能超过100字符！");return;
+            CommonUtil.alter("备注输入过长！");return;
         }
 
         Map<String, String> maps= new HashMap<String, String>();

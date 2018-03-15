@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import com.example.administrator.jymall.common.MyApplication;
 import com.example.administrator.jymall.common.TopActivity;
@@ -83,7 +84,9 @@ public class InvoiceInfoActivity extends TopActivity {
 
 	@ViewInject(R.id.et_taxPersonNo)
 	private EditText et_taxPersonNo;
-	
+
+	@ViewInject(R.id.rl_showCommonNo)
+	private RelativeLayout rl_showCommonNo;
 
 	
 	
@@ -105,12 +108,14 @@ public class InvoiceInfoActivity extends TopActivity {
 					if(invoiceType.equals("COMMON")){
 						ll_i1.setVisibility(View.VISIBLE);
 						ll_i2.setVisibility(View.GONE);
+						rl_showCommonNo.setVisibility(View.VISIBLE);
 						et_taxPersonNo.setText(cJobj.getString("taxNo"));
 						rg_invoiceType1.setChecked(true);
 					}
 					else{
 						ll_i2.setVisibility(View.VISIBLE);
 						ll_i1.setVisibility(View.GONE);
+						rl_showCommonNo.setVisibility(View.GONE);
 						rg_invoiceType2.setChecked(true);
 					}
 					et_title.setText(cJobj.getString("title"));
@@ -148,11 +153,14 @@ public class InvoiceInfoActivity extends TopActivity {
 					invoiceType = "COMMON";
 					ll_i1.setVisibility(View.VISIBLE);
 					ll_i2.setVisibility(View.GONE);
+					rl_showCommonNo.setVisibility(View.VISIBLE);
+
 				}
 				else{
 					invoiceType = "VAT";
 					ll_i2.setVisibility(View.VISIBLE);
 					ll_i1.setVisibility(View.GONE);
+					rl_showCommonNo.setVisibility(View.GONE);
 				}
 				
 			}
@@ -190,32 +198,63 @@ public class InvoiceInfoActivity extends TopActivity {
 				CommonUtil.alter("发票抬头必须填写");
 				return;
 			}
+			if(FormatUtil.getStringLength(et_title.getText().toString())>50){
+				CommonUtil.alter("发票抬头过长！");
+				return;
+			}
 			taxNo=et_taxPersonNo.getText().toString();
 		}
 		else{
 			if(et_companyName.getText().toString().equals("")){
 				CommonUtil.alter("公司名称必须填写");return;
 			}
+			if(FormatUtil.getStringLength(et_companyName.getText().toString())>50){
+				CommonUtil.alter("公司名称过长！");
+				return;
+			}
 			if(et_taxNo.getText().toString().equals("")){
 				CommonUtil.alter("纳税人识别号必须填写");return;
+			}
+			if(FormatUtil.getStringLength(et_taxNo.getText().toString())>50){
+				CommonUtil.alter("纳税人识别号过长！");
+				return;
 			}
 			if(et_registerAddress.getText().toString().equals("")){
 				CommonUtil.alter("注册地址必须填写");return;
 			}
+			if(FormatUtil.getStringLength(et_registerAddress.getText().toString())>50){
+				CommonUtil.alter("注册地址过长！");
+				return;
+			}
 			if(et_registerPhone.getText().toString().equals("")){
 				CommonUtil.alter("注册电话必须填写");return;
+			}
+			if(!FormatUtil.isPhoneLegal(et_registerPhone.getText().toString()) && !FormatUtil.isFixedPhone(et_registerPhone.getText().toString())){
+				CommonUtil.alter("注册电话格式不正确");return;
 			}
 			if(et_bankName.getText().toString().equals("")){
 				CommonUtil.alter("开户银行必须填写");return;
 			}
+			if(FormatUtil.getStringLength(et_bankName.getText().toString())>50){
+				CommonUtil.alter("开户银行过长！");
+				return;
+			}
 			if(et_bankNo.getText().toString().equals("")){
 				CommonUtil.alter("银行账户必须填写");return;
+			}
+			if(FormatUtil.getStringLength(et_bankNo.getText().toString())>50){
+				CommonUtil.alter("银行账户过长！");
+				return;
 			}
 			taxNo=et_taxNo.getText().toString();
 		}		
 		if(!invoiceContent.equals("1") && et_invoiceContent.getText().toString().equals(""))
 		{
 			CommonUtil.alter("请输入发票内容");return;
+		}
+		else if(FormatUtil.getStringLength(et_invoiceContent.getText().toString())>50){
+			CommonUtil.alter("发票内容过长！");
+			return;
 		}
 		progressDialog.show();
 		maps.put("title", et_title.getText().toString());

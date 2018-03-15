@@ -136,6 +136,22 @@ public class AddressInfoActivity extends TopActivity implements ValidationListen
 				return;
 			}
 		}
+
+		if(FormatUtil.isNoEmpty(et_phone.getText().toString())){
+			if(!FormatUtil.isFixedPhone(et_phone.getText().toString())){
+				CommonUtil.alter("固定电话不正确！");
+				return;
+			}
+		}
+
+		if(FormatUtil.isNoEmpty(et_postcode.getText().toString())){
+			if(!FormatUtil.isPostCode(et_postcode.getText().toString())){
+				CommonUtil.alter("邮政编号不正确！");
+				return;
+			}
+		}
+
+
 		progressDialog.show();
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
