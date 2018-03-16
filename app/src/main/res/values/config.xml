@@ -2,9 +2,11 @@
 <resources>
   	<string name="site_url">http://172.19.3.113:8088/</string>
     <string name="img_url">http://172.19.10.229:8098/fileUpload/</string>
+    <string name="add_id">2C9383F162037598016204E2CDEB001C</string>
 
-  <!--<string name="site_url">http://www.jinying365.com/</string>
-  <string name="img_url">http://img.jinying365.com:9000/</string>-->
+  <!--<string name="site_url">http://www.jinjinmall.com/</string>
+  <string name="img_url">http://img.jinying365.com:9000/</string>
+  <string name="add_id">FF8080816227469701622CCE6EAB002F</string>-->
    
     
     <string name="save_file_path">/download</string> 
@@ -16,7 +18,7 @@
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
-    <string name="kefuTel">051252687830</string>
+    <string name="kefuTel">051252686666</string>
     <string name="bj">16dp</string>
     
      <string name="RECODE_RECHARGE">200</string>

@@ -1,17 +1,17 @@
 package com.example.administrator.jymall.view;
 
-import java.util.List;
-
-import org.xutils.x;
-import org.xutils.image.ImageOptions;
-
-import com.example.administrator.jymall.R;
-
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.administrator.jymall.R;
+
+import org.xutils.image.ImageOptions;
+import org.xutils.x;
+
+import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
@@ -40,7 +40,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         // 初始化图片布局
         ImageView view = new ImageView(mContext);
-        view.setBackgroundResource(R.drawable.ic_launcher);
+        view.setBackgroundResource(R.drawable.icon_logo);
         //用Xutils加载图片
         ImageOptions options = new ImageOptions.Builder().setLoadingDrawableId(R.drawable.loading).setFailureDrawableId(R.drawable.noimg).build();
         x.image().bind(view, mImageIds.get(position % mImageIds.size()),options);

@@ -126,20 +126,32 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 		mHandler = new Handler();
 	}
 
-	private void getData(){
-		progressDialog.show();
+	private void getData(final boolean isShow,final boolean flag){
+		if(isShow){
+			progressDialog.show();
+		}
+		if(flag){
+			start = 1;
+		}
 		listtv.setVisibility(View.GONE);
 		listViewAll.setPullLoadEnable(false);
 		Map<String, String> maps= new HashMap<String, String>();
 		maps.put("serverKey", super.serverKey);
-		dateMaps.clear();
+		maps.put("currentPage", ""+start);
+
 		XUtilsHelper.getInstance().post("app/showMallBuyCartList.htm", maps,new XUtilsHelper.XCallBack(){
 
 			@SuppressLint("NewApi")
 			@Override
 			public void onResponse(String result)  {
 				listtv.setVisibility(View.GONE);
-				progressDialog.hide();
+				if(flag){
+					dateMaps.clear();
+				}
+				if(isShow){
+					progressDialog.hide();
+				}
+
 				JSONObject res;
 				try {
 					res = new JSONObject(result);
@@ -349,6 +361,15 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 					startActivity(i);
 				}
 			});
+			holder.tv_proName.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					Intent i = new Intent(getApplicationContext(),ProductInfoActivity.class);
+					i.putExtra("id", myMaps.get(position).get("proID").toString());
+					startActivity(i);
+				}
+			});
 			return super.getView(position, convertView, parent);
 		}
 
@@ -447,7 +468,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 			tab_line1.setLayoutParams(lp2);
 			isfuture = "2";
 		}
-		getData();
+		getData(true,true);
 
 	}
 	
@@ -561,7 +582,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 			@Override
 			public void run() {
 				start = 1;
-				getData();
+				getData(true,true);
 				onLoad();
 			}
 		}, 1);
@@ -573,7 +594,7 @@ public class CartActivity extends  ButtomTapActivity implements IXListViewListen
 			@Override
 			public void run() {
 				start++;
-				getData();
+				getData(true,false);
 				onLoad();
 			}
 		}, 1);

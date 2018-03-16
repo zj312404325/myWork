@@ -159,14 +159,20 @@
 						style="@style/marginlr"
 						android:layout_marginTop="5dp"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content" >
-						<TextView
+						android:layout_height="match_parent" >
+						<!--<TextView
 							style="@style/wrap_content"
 							android:id="@+id/tv_giftDesc"
 							android:text="商品详情商品详情商品详情商品详情商品详情商品详情商品详情商品详情情商品详情商品详情商品详情商品详情商品详情商品详情"
 							android:lines="5"
 							android:textColor="@color/gray"
-							android:textSize="12dp"/>
+							android:textSize="12dp"/>-->
+						<WebView
+							android:id="@+id/wv_giftDesc"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content">
+
+						</WebView>
 
 					</RelativeLayout>
 

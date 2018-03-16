@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.administrator.jymall.R;
-import com.example.administrator.jymall.util.CommonUtil;
 
 public class MyEditText extends RelativeLayout {
 
@@ -52,7 +51,7 @@ public class MyEditText extends RelativeLayout {
         
         input_text_b = view.findViewById(R.id.input_text_b);
         if(isfouce == 0){
-        	input_text_b.setBackgroundResource(R.drawable.input_g);
+        	//input_text_b.setBackgroundResource(R.drawable.input_g);
         }
         
         int textColor = a.getColor(R.styleable.MyView_textColor,  
@@ -84,10 +83,10 @@ public class MyEditText extends RelativeLayout {
 			@Override
 			public void onFocusChange(View arg0, boolean arg1) {
 				if(arg1){
-					input_text_b.setBackground(CommonUtil.getDrawable(R.drawable.input_b));
+					//input_text_b.setBackground(CommonUtil.getDrawable(R.drawable.input_b));
 				}
 				else{
-					input_text_b.setBackground(CommonUtil.getDrawable(R.drawable.input_g));
+					//input_text_b.setBackground(CommonUtil.getDrawable(R.drawable.input_g));
 				}
 				
 			}

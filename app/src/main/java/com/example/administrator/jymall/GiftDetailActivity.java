@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -54,8 +55,8 @@ public class GiftDetailActivity extends UserActivity {
 
     @ViewInject(R.id.tv_giftName)
     private TextView tv_giftName;
-    @ViewInject(R.id.tv_giftDesc)
-    private TextView tv_giftDesc;
+    @ViewInject(R.id.wv_giftDesc)
+    private WebView wv_giftDesc;
     @ViewInject(R.id.tv_giftNo)
     private TextView tv_giftNo;
     @ViewInject(R.id.tv_giftScore)
@@ -154,10 +155,11 @@ public class GiftDetailActivity extends UserActivity {
                             } else {
                                 charSequence = Html.fromHtml(gift.getString("description"));
                             }
-                            tv_giftDesc.setText(charSequence);
+                            //tv_giftDesc.setText(charSequence);
+                            wv_giftDesc.loadDataWithBaseURL(null,gift.getString("description"),"text/html","utf-8",null);
                         }
                         else{
-                            tv_giftDesc.setText("");
+                            //tv_giftDesc.setText("");
                         }
                         if(FormatUtil.isNoEmpty(gift.getString("quantity")) && FormatUtil.toDouble(gift.getString("quantity"))>0) {
                             tv_quantity.setText("库存：" + gift.getString("quantity")+gift.getString("unit"));

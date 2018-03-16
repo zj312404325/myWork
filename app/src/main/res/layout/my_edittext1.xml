@@ -8,7 +8,7 @@
 	  	        android:textSize="14dp" android:id="@+id/input_txt"/>
 	  	    <LinearLayout android:layout_alignParentBottom="true" android:layout_width="match_parent" 
 	  	        android:layout_height="3dp"
-	  	        android:background="@drawable/input_b" 
+	  	        android:background="@null"
 	  	        android:id="@+id/input_text_b" 
 	  	        android:orientation="horizontal"></LinearLayout>
 </RelativeLayout>

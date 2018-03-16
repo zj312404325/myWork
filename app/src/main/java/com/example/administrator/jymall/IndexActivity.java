@@ -160,6 +160,7 @@ public class IndexActivity extends TopSearchActivity  {
         Map<String, String> maps= new HashMap<String, String>();
         maps.put("serverKey", super.serverKey);
         maps.put("id", "2C9383F162037598016204E2CDEB001C");
+        //maps.put("id", "FF8080816227469701622CCE6EAB002F");
         XUtilsHelper.getInstance().post("app/indexAdData.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")

@@ -17,7 +17,8 @@ tools:context=".IndexActivity" >
         android:orientation="vertical">
 
         <com.example.administrator.jymall.view.ShufflingView
-            android:id="@+id/shufflingView" android:layout_width="match_parent"
+            android:id="@+id/shufflingView"
+            android:layout_width="match_parent"
             android:layout_height="170dp" >
         </com.example.administrator.jymall.view.ShufflingView>
 

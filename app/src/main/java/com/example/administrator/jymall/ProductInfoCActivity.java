@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,7 +24,6 @@ import com.example.administrator.jymall.util.DateStyle;
 import com.example.administrator.jymall.util.DateUtil;
 import com.example.administrator.jymall.util.DensityUtil;
 import com.example.administrator.jymall.util.FormatUtil;
-import com.example.administrator.jymall.util.URLImageParser;
 import com.example.administrator.jymall.util.XUtilsHelper;
 import com.example.administrator.jymall.view.MyListView;
 import com.example.administrator.jymall.view.XListView;
@@ -102,6 +100,9 @@ public class ProductInfoCActivity extends TopActivity implements XListView.IXLis
 	private TextView tv_weight;
 	@ViewInject(R.id.tv_noData)
 	private TextView tv_noData;
+
+	@ViewInject(R.id.wv_proDesc)
+	private WebView wv_proDesc;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,10 +188,12 @@ public class ProductInfoCActivity extends TopActivity implements XListView.IXLis
 				tv_noData.setVisibility(View.VISIBLE);
 			}
 
-			URLImageParser p = new URLImageParser(tv_proDesc, ProductInfoCActivity.this);
+			String html = info.getString("prodesc");
+			/*URLImageParser p = new URLImageParser(tv_proDesc, ProductInfoCActivity.this);
 			String html = info.getString("prodesc");
 			Spanned htmlSpan = Html.fromHtml(html, p, null);
-			tv_proDesc.setText(htmlSpan.toString());
+			tv_proDesc.setText(htmlSpan.toString());*/
+			wv_proDesc.loadDataWithBaseURL(null,html,"text/html","utf-8",null);
 			tv_brand.setText(info.getJSONObject("mallProductAttr").get("var1").toString());
 			tv_quality.setText(defaultProp.get("proquality").toString());
 			tv_size.setText(info.getJSONObject("mallProductAttr").get("var4").toString());

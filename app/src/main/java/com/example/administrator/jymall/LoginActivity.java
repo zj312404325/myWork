@@ -76,10 +76,10 @@ public class LoginActivity extends BaseActivity {
     @Event(value=R.id.input_pwd,type=View.OnFocusChangeListener.class)
     private void onFocusChangePwd(View arg0, boolean arg1){
         if(arg1){
-            input_pwd_b.setBackground(CommonUtil.getDrawable(R.drawable.input_b));
+            //input_pwd_b.setBackground(CommonUtil.getDrawable(R.drawable.input_b));
         }
         else{
-            input_pwd_b.setBackground(CommonUtil.getDrawable(R.drawable.input_g));
+            //input_pwd_b.setBackground(CommonUtil.getDrawable(R.drawable.input_g));
         }
     }
 

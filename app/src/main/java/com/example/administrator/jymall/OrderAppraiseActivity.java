@@ -184,7 +184,7 @@ public class OrderAppraiseActivity extends TopActivity implements IXListViewList
                         dateMap1.put("proName", orderDtls.getJSONObject(j).get("proName"));
                         dateMap1.put("proID", orderDtls.getJSONObject(j).get("proID"));
                         dateMap1.put("proImgPath", orderDtls.getJSONObject(j).get("proImgPath"));
-                        dateMap1.put("rate", "");
+                        dateMap1.put("rate", "5");
                         dateMap1.put("remark", "");
                         dateMap1.put("pic1", "");
                         dateMap1.put("pic2", "");
