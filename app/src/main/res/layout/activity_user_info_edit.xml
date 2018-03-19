@@ -16,8 +16,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
-		    android:background="#ffffff"
-			android:layout_marginTop="15dp" >
+		    android:background="#ffffff">
 			<LinearLayout style="@style/line" />
 		    		    		
 			<RelativeLayout
@@ -61,7 +60,7 @@
 		            android:layout_alignParentLeft="true"
 		            android:layout_centerVertical="true"
 		            android:maxLines="1"
-		            android:text="性别："
+		            android:text="性				    别："
 		            android:textColor="#939393" />
 
 		    
@@ -174,7 +173,7 @@
 				android:layout_marginRight="10dp">
 				<TextView
 					style="@style/wrap_content"
-					android:text="QQ："
+					android:text="					     QQ："
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"
 					android:textColor="#939393"
@@ -203,7 +202,7 @@
 				android:layout_marginRight="10dp">
 				<TextView
 					style="@style/wrap_content"
-					android:text="支付宝账号："
+					android:text="支	付	  宝："
 					android:layout_alignParentLeft="true"
 					android:layout_centerVertical="true"
 					android:textColor="#939393"

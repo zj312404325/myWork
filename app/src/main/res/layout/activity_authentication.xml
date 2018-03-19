@@ -9,10 +9,15 @@
 	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
 		<LinearLayout android:layout_width="match_parent"  android:layout_height="wrap_content" android:orientation="vertical" >
 
-			<LinearLayout android:layout_width="match_parent"  android:layout_height="30dp"
-				android:background="#ffffff" android:orientation="horizontal" >
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="#ffffff"
+				android:orientation="horizontal" >
 				<TextView
 					style="@style/wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
 					android:text="公司名称、法人信息须与执照上信息完全一致，认证成功后如需修改证件，请重新上传并提交变更！"
 					android:textSize="12dp"
 					android:textColor="#f47d06"
@@ -81,6 +86,7 @@
 
 		    <TextView
 				style="@style/wrap_content"
+				android:padding="5dp"
 				android:text="注：图片限于jpg、jpeg、gif、png、bmp格式，不超过1MB或1024KB。"
 		      	android:textColor="#bdbdbd"
 				android:textSize="12dp"

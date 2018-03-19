@@ -2,7 +2,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="#ececec"
+	android:background="#ffffff"
 	tools:context=".MyCreditActivity" >
 
 	<include  android:id="@+id/top_title"  layout="@layout/top" />
@@ -11,8 +11,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
-			android:background="#ffffff"
-			android:layout_marginTop="10dp">
+			android:background="#ffffff">
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
 
 			<LinearLayout
@@ -33,6 +32,7 @@
 						android:id="@+id/tv_title"
 						style="@style/match_parent"
 						android:text="				 拥有VIP信用支付特权的用户，可享受订单月度结算或年度结算"
+						android:lineSpacingMultiplier="1.2"
 						android:textColor="#000000"
 						android:textSize="16dp"
 						android:layout_marginTop="5dp"/>
