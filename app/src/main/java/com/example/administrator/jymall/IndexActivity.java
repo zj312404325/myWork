@@ -3,6 +3,7 @@ package com.example.administrator.jymall;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -345,8 +346,8 @@ public class IndexActivity extends TopSearchActivity  {
                     holder=(ViewHolder) convertView.getTag();
                 }
                 holder.protitle.setText(data_list.get(position).get("proName").toString());
-                holder.promoney.setText(Html.fromHtml("￥"+data_list.get(position).get("salePrice").toString()
-                        +"<font color=\"#b1b1b1\">/"+data_list.get(position).get("unit").toString()+"</font>"));
+                holder.promoney.setText(Html.fromHtml("￥<b>"+data_list.get(position).get("salePrice").toString()
+                        +"</b><font color=\"#b1b1b1\">/"+data_list.get(position).get("unit").toString()+"</font>"));
                 XUtilsHelper.getInstance().bindCommonImage(holder.proimg, data_list.get(position).get("imagePath").toString(), true);
 
                 LinearLayout.LayoutParams lp1 =new LinearLayout.
@@ -415,10 +416,13 @@ public class IndexActivity extends TopSearchActivity  {
                     holder=(ViewHolder) convertView.getTag();
                 }
                 holder.protitle.setText(hot_data_list.get(position).get("proName").toString());
-                holder.promoney.setText(Html.fromHtml("现价：￥"+hot_data_list.get(position).get("newSaleprice").toString()
-                        +"<font color=\"#b1b1b1\">/"+hot_data_list.get(position).get("unit").toString()+"</font>"));
+                holder.promoney.setText(Html.fromHtml("现价：￥<b>"+hot_data_list.get(position).get("newSaleprice").toString()
+                        +"</b><font color=\"#b1b1b1\">/"+hot_data_list.get(position).get("unit").toString()+"</font>"));
                 holder.oldpromoney.setText(Html.fromHtml("原价：￥"+hot_data_list.get(position).get("formerPrice").toString()
                         +"<font color=\"#b1b1b1\">/"+hot_data_list.get(position).get("unit").toString()+"</font>"));
+
+                holder.oldpromoney.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);  // 设置中划线并加清晰
+
                 XUtilsHelper.getInstance().bindCommonImage(holder.proimg, hot_data_list.get(position).get("imagePath").toString(), true);
 
                 LinearLayout.LayoutParams lp1 =new LinearLayout.

@@ -29,7 +29,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:textSize="14sp"
-						android:hint="请输入老密码"
+						android:hint="请输入原密码"
 						android:inputType="textPassword"
 						android:layout_marginLeft="10dp"
 						android:maxLength="16"

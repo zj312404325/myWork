@@ -90,6 +90,7 @@
 				android:text="注：图片限于jpg、jpeg、gif、png、bmp格式，不超过1MB或1024KB。"
 		      	android:textColor="#bdbdbd"
 				android:textSize="12dp"
+				android:lineSpacingMultiplier="1.2"
 		      	android:layout_marginLeft="20dp"
 				android:layout_marginRight="20dp"
 				android:id="@+id/tv_ts" />
@@ -97,10 +98,10 @@
 		    <RelativeLayout
 				style="@style/fill"
 				android:background="#ffffff"
-				android:layout_height="110dp"
+				android:layout_height="220dp"
 		        android:id="@+id/rl_businesslicense">
 		        <LinearLayout style="@style/line" />
-		        <ImageView
+		        <!--<ImageView
 					android:background="@drawable/nopic"
 					android:layout_width="74dp"
 					android:layout_height="74dp"
@@ -123,58 +124,116 @@
 					<TextView
 						style="@style/wrap_content"
 						android:text="营业执照（副本）"/>
+				</LinearLayout>-->
+
+				<LinearLayout
+					android:id="@+id/ll_1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_centerHorizontal="true">
+					<TextView
+						android:layout_width="10dp"
+						android:layout_height="wrap_content"
+						android:text="*"
+						android:textSize="18sp"
+						android:textColor="#e60012"/>
+					<TextView
+						style="@style/wrap_content"
+						android:text="营业执照（副本）"/>
 				</LinearLayout>
 
-				<!--<TextView
-					android:layout_width="10dp"
-					android:layout_marginTop="20dp"
-					android:layout_marginLeft="5dp"
-					android:layout_height="wrap_content"
-					android:layout_toEndOf="@id/iv_businesslicense"
-					android:text="*"
-					android:textSize="18sp"
-					android:textColor="#e60012"/>
-		        <TextView
-					style="@style/wrap_content"
-					android:layout_marginTop="20dp"
-					android:layout_marginLeft="114dp"
-		            android:text="营业执照（副本）"/>-->
-		  
+				<ImageView
+					android:background="@drawable/realname_image"
+					android:layout_below="@id/ll_1"
+					android:layout_width="300dp"
+					android:layout_height="180dp"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:id="@+id/iv_businesslicense"/>
 		       
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>		    
 		    
-		    <RelativeLayout style="@style/fill" android:background="#ffffff" android:layout_height="110dp" android:layout_marginTop="2dp"
-		         android:id="@+id/rl_contractFile">
-		        <LinearLayout style="@style/line" />
-		        <ImageView android:background="@drawable/nopic" android:layout_width="74dp" android:layout_height="74dp"
-		            android:layout_marginLeft="20dp" android:layout_marginTop="20dp" android:id="@+id/iv_contractFile"/>
-		        <TextView style="@style/wrap_content" android:layout_marginTop="20dp" android:layout_marginLeft="114dp" 
-		            android:text="税务登记证（副本）"/>
-		       
-		       
-		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
-		    </RelativeLayout>
-		    
 		    <RelativeLayout
 				style="@style/fill"
 				android:background="#ffffff"
-				android:layout_height="110dp"
+				android:layout_height="220dp"
 				android:layout_marginTop="2dp"
-				android:id="@+id/rl_organizationFile">
+				android:id="@+id/rl_contractFile">
 		        <LinearLayout style="@style/line" />
-		        <ImageView
+		        <!--<ImageView
 					android:background="@drawable/nopic"
 					android:layout_width="74dp"
 					android:layout_height="74dp"
 		            android:layout_marginLeft="20dp"
 					android:layout_marginTop="20dp"
-					android:id="@+id/iv_organizationFile"/>
+					android:id="@+id/iv_contractFile"/>
 		        <TextView
 					style="@style/wrap_content"
 					android:layout_marginTop="20dp"
 					android:layout_marginLeft="114dp"
-		            android:text="组织机构代码证（副本）"/>
+		            android:text="税务登记证（副本）"/>-->
+
+				<LinearLayout
+					android:id="@+id/ll_2"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_centerHorizontal="true">
+					<TextView
+						style="@style/wrap_content"
+						android:id="@+id/tv_contractFile"
+						android:layout_marginTop="10dp"
+						android:layout_centerHorizontal="true"
+						android:text="税务登记证（副本）"/>
+				</LinearLayout>
+
+				<ImageView
+					android:background="@drawable/realname_image"
+					android:layout_below="@id/ll_2"
+					android:layout_width="300dp"
+					android:layout_height="180dp"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:id="@+id/iv_contractFile"/>
+		       
+		       
+		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
+		    </RelativeLayout>
+		    
+		    <RelativeLayout
+				style="@style/fill"
+				android:background="#ffffff"
+				android:layout_height="220dp"
+				android:layout_marginTop="2dp"
+				android:id="@+id/rl_organizationFile">
+		        <LinearLayout style="@style/line" />
+
+				<LinearLayout
+					android:id="@+id/ll_3"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_centerHorizontal="true">
+					<TextView
+						style="@style/wrap_content"
+						android:layout_marginTop="10dp"
+						android:layout_centerHorizontal="true"
+						android:text="组织机构代码证（副本）"/>
+				</LinearLayout>
+
+				<ImageView
+					android:background="@drawable/realname_image"
+					android:layout_below="@id/ll_3"
+					android:layout_width="300dp"
+					android:layout_height="180dp"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:id="@+id/iv_organizationFile"/>
 
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>
@@ -182,10 +241,10 @@
 		    <RelativeLayout
 				style="@style/fill"
 				android:background="#ffffff"
-				android:layout_height="110dp"
+				android:layout_height="220dp"
 				android:layout_marginTop="2dp">
 		        <LinearLayout style="@style/line" />
-		        <ImageView
+		        <!--<ImageView
 					android:background="@drawable/nopic"
 					android:layout_width="74dp"
 					android:layout_height="74dp"
@@ -197,7 +256,32 @@
 					android:layout_marginTop="20dp"
 					android:layout_marginLeft="114dp"
 		            android:text="身份证（正面）"
+					android:id="@+id/tv_legalUrl"/>-->
+
+				<LinearLayout
+					android:id="@+id/ll_4"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_centerHorizontal="true">
+
+				<TextView
+					style="@style/wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_centerHorizontal="true"
+					android:text="身份证（正面）"
 					android:id="@+id/tv_legalUrl"/>
+				</LinearLayout>
+
+				<ImageView
+					android:background="@drawable/realname_image"
+					android:layout_below="@id/ll_4"
+					android:layout_width="300dp"
+					android:layout_height="180dp"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:id="@+id/iv_legalUrl"/>
 		       
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>
@@ -206,14 +290,47 @@
 		    <RelativeLayout
 				style="@style/fill"
 				android:background="#ffffff"
-				android:layout_height="110dp"
+				android:layout_height="220dp"
 				android:layout_marginTop="2dp"
 		        android:id="@+id/rl_legalBackUrl">
 		        <LinearLayout style="@style/line" />
-		        <ImageView android:background="@drawable/nopic" android:layout_width="74dp" android:layout_height="74dp"
-		            android:layout_marginLeft="20dp" android:layout_marginTop="20dp" android:id="@+id/iv_legalBackUrl"/>
-		        <TextView style="@style/wrap_content" android:layout_marginTop="20dp" android:layout_marginLeft="114dp" 
-		            android:text="身份证（反面）" android:id="@+id/tv_legalBackUrl"/>
+		        <!--<ImageView
+					android:background="@drawable/nopic"
+					android:layout_width="74dp"
+					android:layout_height="74dp"
+		            android:layout_marginLeft="20dp"
+					android:layout_marginTop="20dp"
+					android:id="@+id/iv_legalBackUrl"/>
+		        <TextView
+					style="@style/wrap_content"
+					android:layout_marginTop="20dp"
+					android:layout_marginLeft="114dp"
+		            android:text="身份证（反面）"
+					android:id="@+id/tv_legalBackUrl"/>-->
+
+				<LinearLayout
+					android:id="@+id/ll_5"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:layout_centerHorizontal="true">
+					<TextView
+						style="@style/wrap_content"
+						android:layout_marginTop="10dp"
+						android:layout_centerHorizontal="true"
+						android:text="身份证（反面）"
+						android:id="@+id/tv_legalBackUrl"/>
+				</LinearLayout>
+
+				<ImageView
+					android:background="@drawable/realname_image"
+					android:layout_below="@id/ll_5"
+					android:layout_width="300dp"
+					android:layout_height="180dp"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:id="@+id/iv_legalBackUrl"/>
 		       
 		        <LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 		    </RelativeLayout>

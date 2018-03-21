@@ -10,7 +10,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
-			android:background="#ffffff">
+			android:background="#ffffff"
+			android:layout_marginTop="10dp">
 			<LinearLayout android:layout_width="fill_parent" android:layout_height="1dp" android:background="#d0d0d0" />
 
 			<RelativeLayout
@@ -19,12 +20,27 @@
 				android:id="@+id/rl_creditState"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:id="@+id/ll_1"
+					android:layout_width="30dp"
+					android:layout_height="match_parent">
+					<ImageView
+						android:id="@+id/iv1"
+						android:layout_marginLeft="5dp"
+						android:layout_width="25dp"
+						android:layout_height="18dp"
+						android:layout_gravity="center"
+						android:background="@drawable/left_icon_credit_state"
+						android:layout_centerVertical="true"/>
+				</LinearLayout>
+
 				<TextView
 					style="@style/wrap_content"
+					android:layout_marginLeft="10dp"
+					android:layout_toEndOf="@id/ll_1"
 					android:text="信用支付状态"
-					android:layout_alignParentLeft="true"
-					android:layout_centerVertical="true"
-					android:drawableLeft="@drawable/icon_mall"/>
+					android:layout_centerVertical="true"/>
 
 				<ImageView
 					android:layout_width="9dp"
@@ -32,6 +48,8 @@
 					android:background="@drawable/right"
 					android:layout_centerVertical="true"
 					android:layout_alignParentRight="true"/>
+
+
 
 			</RelativeLayout>
 			<LinearLayout
@@ -45,12 +63,25 @@
 				android:id="@+id/rl_creditStream"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
+
+				<LinearLayout
+					android:id="@+id/ll_2"
+					android:layout_width="30dp"
+					android:layout_height="match_parent">
+					<ImageView
+						android:id="@+id/iv2"
+						android:layout_marginLeft="10dp"
+						android:layout_width="18dp"
+						android:layout_height="25dp"
+						android:background="@drawable/left_icon_credit_stream"
+						android:layout_gravity="center"/>
+				</LinearLayout>
 				<TextView
 					style="@style/wrap_content"
+					android:layout_marginLeft="10dp"
+					android:layout_toEndOf="@id/ll_2"
 					android:text="信用支付流水"
-					android:layout_alignParentLeft="true"
-					android:layout_centerVertical="true"
-					android:drawableLeft="@drawable/icon_service_center"/>
+					android:layout_centerVertical="true"/>
 
 				<ImageView
 					android:layout_width="9dp"

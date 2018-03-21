@@ -72,8 +72,19 @@
 		            android:orientation="horizontal"
 					android:layout_marginLeft="80dp"
 					android:layout_centerVertical="true" >
-				     <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rg_sex1" android:text="男" android:checked="true"></RadioButton>
-				     <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/rg_sex2" android:text="女"></RadioButton>    
+				     <RadioButton
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:id="@+id/rg_sex1"
+						 android:text="男"
+						 android:checked="true">
+					 </RadioButton>
+				     <RadioButton
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:id="@+id/rg_sex2"
+						 android:text="女">
+					 </RadioButton>
 				 </RadioGroup>
 		    </RelativeLayout>
 

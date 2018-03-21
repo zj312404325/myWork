@@ -22,6 +22,8 @@
 			        <RelativeLayout style="@style/match_parent" android:layout_marginTop="10dp" android:layout_marginBottom="10dp">  
 		             	<RadioButton
 							 style="@style/wrap_content"
+							 android:layout_width="17dp"
+							 android:layout_height="17dp"
 							 android:button="@null"
 							 android:background="@drawable/radio_item"
 							 android:id="@+id/rb_AddrDefault"/>

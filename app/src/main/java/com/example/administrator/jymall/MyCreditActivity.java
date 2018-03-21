@@ -303,25 +303,6 @@ public class MyCreditActivity extends TopActivity {
                         paytype="";
                     }
 
-                    /*if(res.get("isEmpty").toString().equals("n")) {
-                        id=credit.getString("id");
-                        if(credit.getString("status").equals("0")){
-                            ll_step3.setVisibility(View.VISIBLE);
-                        }
-                        if(credit.getString("status").equals("2")){
-                            ll_step_refuse.setVisibility(View.VISIBLE);
-                        }
-                        if(credit.getString("status").equals("1") && !credit.getString("ischecked").equals("1")){
-                            ll_step4.setVisibility(View.VISIBLE);
-                        }
-                        if(credit.getString("status").equals("1") && credit.getString("ischecked").equals("1")){
-                            ll_step_ok.setVisibility(View.VISIBLE);
-                        }
-                    }
-                    else{
-                        ll_step1.setVisibility(View.VISIBLE);
-                    }*/
-
                     for(int i=0;i<servicelist.length();i++){
                         Map<String, Object> dateMap = new HashMap<String, Object>();
                         dateMap.put("id", servicelist.getJSONObject(i).get("id"));

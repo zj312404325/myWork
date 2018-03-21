@@ -6,7 +6,9 @@
 	tools:context=".MyCreditActivity" >
 
 	<include  android:id="@+id/top_title"  layout="@layout/top" />
-	<ScrollView style="@style/fill" android:layout_below="@id/top_title" >
+	<ScrollView
+		style="@style/fill"
+		android:layout_below="@id/top_title">
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -23,7 +25,7 @@
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
-				android:visibility="gone">
+				android:visibility="visible">
 
 				<LinearLayout
 					android:layout_width="match_parent"
@@ -35,20 +37,19 @@
 						android:lineSpacingMultiplier="1.2"
 						android:textColor="#000000"
 						android:textSize="16dp"
-						android:layout_marginTop="5dp"/>
+						android:layout_marginTop="5dp"
+						android:layout_marginBottom="5dp"/>
 				</LinearLayout>
 
 				<TextView
-					android:layout_marginTop="5dp"
-					android:layout_width="fill_parent"
-					android:layout_height="1dp"
-					android:background="#c6c6c6" />
-
-				<TextView
 					style="@style/match_parent"
+					android:layout_height="30dp"
 					android:layout_marginTop="5dp"
+					android:background="#ececec"
+					android:gravity="center_vertical"
 					android:text="获得特权步骤："
 					android:textSize="14dp"/>
+
 				
 				<ImageView
 					android:layout_marginTop="5dp"
@@ -73,6 +74,7 @@
 				<Button
 					style="@style/btndarkblue"
 					android:id="@+id/submitbtn"
+					android:layout_width="250dp"
 					android:layout_marginTop="5dp"
 					android:text="点击申请"
 					android:layout_gravity="center"
@@ -89,7 +91,7 @@
 				android:layout_gravity="center_vertical"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
-				android:visibility="invisible">
+				android:visibility="visible">
 
 				<TextView
 					style="@style/match_parent"
@@ -126,7 +128,7 @@
 						android:layout_alignParentTop="true"
 						android:layout_marginEnd="62dp"
 						android:background="@drawable/icon_ali_close"
-						android:visibility="invisible" />
+						android:visibility="gone" />
 				</RelativeLayout>
 
 				<TextView
@@ -196,6 +198,7 @@
 				<Button
 					style="@style/btndarkblue"
 					android:id="@+id/submit"
+					android:layout_width="250dp"
 					android:layout_marginTop="5dp"
 					android:text="提交"
 					android:layout_gravity="center"

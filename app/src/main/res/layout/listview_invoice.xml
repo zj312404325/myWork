@@ -21,13 +21,16 @@
 					<TextView
 						style="@style/match_parent"
 						android:text="苏州金赢网电子商务有限公司"
+						android:lineSpacingMultiplier="1.2"
 						android:id="@+id/tv_in_invoiceInfo"/>
 					<TextView
 						style="@style/match_parent"
+						android:layout_marginTop="5dp"
 						android:text="纳税人识别号123"
 						android:id="@+id/tv_in_taxNo"/>
 					<TextView
 						style="@style/match_parent"
+						android:layout_marginTop="5dp"
 						android:text="明细"
 						android:id="@+id/tv_in_invoiceContent"/>
 
@@ -46,8 +49,15 @@
 			   </LinearLayout>
 			    <LinearLayout style="@style/wrap_content" android:orientation="horizontal"
 					android:layout_gravity="center_vertical" android:layout_marginTop="5dp">
-					<RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" android:background="@drawable/radio_item"
-						android:text="" android:id="@+id/rb_invoiceDefault" android:layout_gravity="center_vertical" android:layout_marginLeft="10dp"/>
+					<RadioButton
+						android:layout_width="17dp"
+						android:layout_height="17dp"
+						android:button="@null"
+						android:background="@drawable/radio_item"
+						android:text=""
+						android:id="@+id/rb_invoiceDefault"
+						android:layout_gravity="center_vertical"
+						android:layout_marginLeft="10dp"/>
 					<TextView
 						style="@style/wrap_content"
 						android:text="默认发票"

@@ -43,6 +43,7 @@
 					android:id="@+id/tv_content"
 					style="@style/match_parent"
 					android:layout_marginTop="5dp"
+					android:lineSpacingMultiplier="1.2"
 					android:text="加载中..."
 					android:textSize="14dp"/>
 			</LinearLayout>

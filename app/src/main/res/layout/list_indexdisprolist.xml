@@ -37,6 +37,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="25dp"
 						android:text="原价：￥1231"
+						android:textSize="12sp"
 						android:gravity="center"
 						android:layout_weight="1"
 						android:textColor="#c96876"/>
