@@ -482,11 +482,15 @@
 				 	<LinearLayout
 					 	 android:layout_width="wrap_content"
 						 android:layout_height="wrap_content"
+						 android:layout_marginTop="5dp"
 						 android:layout_marginLeft="16dp"
 						 android:layout_marginRight="10dp">
 						 <CheckBox
-							 android:layout_width="wrap_content"
-							 android:layout_height="wrap_content"
+							 android:layout_width="20dp"
+							 android:layout_height="20dp"
+							 android:background="@drawable/checkbox_style"
+							 android:button="@null"
+							 android:layout_centerVertical="true"
 							 android:id="@+id/cb_agree"/>
 						 <TextView
 							 style="@style/wrap_content"

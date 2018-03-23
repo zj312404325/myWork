@@ -119,7 +119,6 @@
 					android:id="@+id/listtv"
 					android:text="暂无数据"
 					android:textColor="#939393"
-					android:layout_marginLeft="10dp"
 					android:layout_gravity="center"
 					android:visibility="gone"/>
 			</LinearLayout>

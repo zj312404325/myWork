@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.administrator.jymall.R;
-
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
@@ -42,7 +41,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView view = new ImageView(mContext);
         view.setBackgroundResource(R.drawable.icon_logo);
         //用Xutils加载图片
-        ImageOptions options = new ImageOptions.Builder().setLoadingDrawableId(R.drawable.loading).setFailureDrawableId(R.drawable.noimg).build();
+        ImageOptions options = new ImageOptions.Builder().setImageScaleType(ImageView.ScaleType.FIT_XY).setLoadingDrawableId(R.drawable.loading).setFailureDrawableId(R.drawable.noimg).build();
         x.image().bind(view, mImageIds.get(position % mImageIds.size()),options);
         container.addView(view);
         //点击监听的回调，给View层使用，要把position回传

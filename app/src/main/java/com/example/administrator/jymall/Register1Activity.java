@@ -252,4 +252,5 @@ public class Register1Activity extends TopNoLoginActivity {
         et_email.addTextChangedListener(mTextWatcher);
 
     }
+
 }

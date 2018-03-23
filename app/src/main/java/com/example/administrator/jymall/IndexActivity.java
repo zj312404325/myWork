@@ -100,8 +100,10 @@ public class IndexActivity extends TopSearchActivity  {
             else{
                 index_fast_btn.setBackgroundResource(R.drawable.index_fast_match_grey);
                 index_order_btn.setBackgroundResource(R.drawable.index_order_match_grey);
-                index_fast_btn.setEnabled(false);
-                index_order_btn.setEnabled(false);
+                index_fast_btn.setEnabled(true);
+                index_order_btn.setEnabled(true);
+                //index_fast_btn.setEnabled(false);
+                //index_order_btn.setEnabled(false);
             }
         }
         progressDialog.hide();
@@ -146,8 +148,13 @@ public class IndexActivity extends TopSearchActivity  {
 
     @Event(value=R.id.index_fast_btn)
     private void fastMatchClick(View v){
-        Intent i = new Intent(getApplicationContext(), CommitFastMatchActivity.class);
-        startActivity(i);
+        if(super.isRealName) {
+            Intent i = new Intent(getApplicationContext(), CommitFastMatchActivity.class);
+            startActivity(i);
+        }
+        else{
+            CommonUtil.alter("请先至 账户管理-实名认证 进行实名认证！");
+        }
     }
 
     @Event(value=R.id.index_order_btn)

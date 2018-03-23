@@ -74,7 +74,7 @@ public class LogisticInfoActivity extends TopActivity implements IXListViewListe
                 new String[]{},
                 new int[]{});
         listViewAll.setAdapter(sap);
-        listViewAll.setPullLoadEnable(true);
+        listViewAll.setPullLoadEnable(false);
         listViewAll.setXListViewListener(this);
         getOrderInfo();
         mHandler = new Handler();
@@ -168,14 +168,14 @@ public class LogisticInfoActivity extends TopActivity implements IXListViewListe
                                     dateMaps.add(dateMap);
                                 }
                                 listtv.setVisibility(View.GONE);
-                                listViewAll.setVisibility(View.VISIBLE);
+                                //listViewAll.setVisibility(View.VISIBLE);
                             }
                             else{
                                 //暂无快递信息！
                                 isNoLogistic="1";
                                 listtv.setText("暂无物流信息");
                                 listtv.setVisibility(View.VISIBLE);
-                                listViewAll.setVisibility(View.GONE);
+                                //listViewAll.setVisibility(View.GONE);
                             }
                         }
                         else{
@@ -183,7 +183,7 @@ public class LogisticInfoActivity extends TopActivity implements IXListViewListe
                             isErrorLogistic="1";
                             listtv.setText("物流信息异常");
                             listtv.setVisibility(View.VISIBLE);
-                            listViewAll.setVisibility(View.GONE);
+                            //listViewAll.setVisibility(View.GONE);
                         }
                     }
                     else{
@@ -191,7 +191,7 @@ public class LogisticInfoActivity extends TopActivity implements IXListViewListe
                         isNoLogistic="1";
                         listtv.setText("暂无物流信息");
                         listtv.setVisibility(View.VISIBLE);
-                        listViewAll.setVisibility(View.GONE);
+                        //listViewAll.setVisibility(View.GONE);
                     }
 
                     sap.notifyDataSetChanged();

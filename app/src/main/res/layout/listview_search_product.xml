@@ -10,13 +10,14 @@
 			    	android:orientation="horizontal"
 					android:id="@+id/ll_proInfo">
 			        <RelativeLayout
+						android:layout_marginTop="5dp"
 						android:layout_width="86dp"
 						android:layout_height="86dp" >
 			            <ImageView
-							android:layout_width="66dp"
-							android:layout_height="66dp"
+							android:layout_width="72dp"
+							android:layout_height="72dp"
 							android:id="@+id/proImage"
-			                android:background="@drawable/test"
+			                android:background="@drawable/loading"
 							android:layout_centerInParent="true"/>
 			        </RelativeLayout>
 			        <LinearLayout
@@ -32,7 +33,7 @@
 							android:lineSpacingExtra="4dp"
 							android:textColor="#333333"
 							android:id="@+id/proName"
-							android:layout_height="30dp"/>
+							android:layout_height="wrap_content"/>
 			       
 				         <RelativeLayout
 							 android:layout_width="match_parent"

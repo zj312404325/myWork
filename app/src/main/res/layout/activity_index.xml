@@ -162,24 +162,26 @@ tools:context=".IndexActivity" >
             <RelativeLayout
                 style="@style/fill"
                 android:layout_weight="1"
-                android:id="@+id/rl_fastMatch">
+                android:id="@+id/rl_fastMatch"
+                android:padding="5dp">
                 <ImageButton
                     android:id="@+id/index_fast_btn"
-                    android:background="@drawable/index_fast_match"
+                    android:background="@drawable/index_fast"
                     android:layout_width="180dp"
-                    android:layout_height="80dp"
+                    android:layout_height="73dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true"  />
             </RelativeLayout>
             <RelativeLayout
                 style="@style/fill"
                 android:layout_weight="1"
-                android:id="@+id/rl_orderMatch">
+                android:id="@+id/rl_orderMatch"
+                android:padding="5dp">
                 <ImageButton
                     android:id="@+id/index_order_btn"
-                    android:background="@drawable/index_order_match"
+                    android:background="@drawable/index_order"
                     android:layout_width="180dp"
-                    android:layout_height="80dp"
+                    android:layout_height="73dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true" />
             </RelativeLayout>
