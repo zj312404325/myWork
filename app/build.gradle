@@ -17,8 +17,8 @@ android {
         applicationId "com.example.administrator.jymall"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 9
-        versionName "0.0.9"
+        versionCode 11
+        versionName "0.0.11"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,13 +27,22 @@ android {
             //buildConfigField "boolean", "LOG_DEBUG", "false"
 
             //混淆
-            minifyEnabled false
+            minifyEnabled true
 
             //Zipalign优化
             //zipAlignEnabled true
 
             // 移除无用的resource文件
-            //shrinkResources false
+            shrinkResources true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        debug {
+            //混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
             //加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
@@ -63,7 +72,7 @@ dependencies {
     implementation files('libs/org.apache.httpcomponents.httpcore_4.4.8.jar')
     implementation files('libs/org.apache.httpcomponents.httpclient_4.5.3.jar')
     implementation files('libs/BaiduLBS_Android.jar')
-    compile 'com.android.support:recyclerview-v7:26.0.0}'
+    //compile 'com.android.support:recyclerview-v7:26.0.0}'
 }
 
 

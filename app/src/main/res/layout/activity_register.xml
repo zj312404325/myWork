@@ -188,6 +188,64 @@
 					android:background="@null"/>
 			</LinearLayout>
 		</RelativeLayout>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="10dp">
+			<CheckBox
+				android:layout_width="18dp"
+				android:layout_height="18dp"
+				android:background="@drawable/checkbox_style"
+				android:button="@null"
+				android:layout_centerVertical="true"
+				android:id="@+id/cb_agree_tip"/>
+			<TextView
+				style="@style/wrap_content"
+				android:text="我已阅读并同意"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true"
+				android:maxLines="1" />
+			<TextView
+				android:id="@+id/tv_agreement"
+				style="@style/wrap_content"
+				android:text="《温馨提示》"
+				android:textColor="@color/login_back_blue"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true"
+				android:maxLines="1" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="10dp">
+			<CheckBox
+				android:layout_width="18dp"
+				android:layout_height="18dp"
+				android:background="@drawable/checkbox_style"
+				android:button="@null"
+				android:layout_centerVertical="true"
+				android:id="@+id/cb_agree_rule"/>
+			<TextView
+				style="@style/wrap_content"
+				android:text="我已阅读并同意"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true"
+				android:maxLines="1" />
+			<TextView
+				android:id="@+id/tv_rule"
+				style="@style/wrap_content"
+				android:text="《用户注册与账户管理协议》"
+				android:textColor="@color/login_back_blue"
+				android:layout_alignParentLeft="true"
+				android:layout_centerVertical="true"
+				android:maxLines="1" />
+		</LinearLayout>
 	  	
 		<LinearLayout
 			android:layout_width="match_parent"

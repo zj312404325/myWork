@@ -1,6 +1,7 @@
 package com.example.administrator.jymall;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -100,7 +101,15 @@ public class LoginActivity extends BaseActivity {
                     if(res.get("d").equals("y")){
                         setUser(res.get("data").toString());
                         CommonUtil.alter(res.get("msg").toString());
+                        //原跳转
                         startActivity(new Intent(getApplicationContext(),IndexActivity.class));
+
+                        //新跳转
+                        /*LoginCarrier invoker = (LoginCarrier) getIntent().getParcelableExtra("CONFIG_INVOKER");
+                        invoker.invoke(LoginActivity.this);
+                        finish();*/
+
+                        //startActivity();
                     }
                     else{
                         CommonUtil.alter(res.get("msg").toString());
@@ -170,6 +179,24 @@ public class LoginActivity extends BaseActivity {
         input_user.getEditeText().addTextChangedListener(mTextWatcher);
         input_pwd.addTextChangedListener(mTextWatcher);
 
+    }
+
+    private void startActivity() {
+        if (getIntent().getExtras() != null && getIntent().getExtras().getString("className") != null) {
+            String className = getIntent().getExtras().getString("className");
+            getIntent().removeExtra("className");
+            if (className != null && !className.equals(getApplicationContext().getClass().getName())) {
+                try {
+                    ComponentName componentName = new ComponentName(getApplicationContext(), Class.forName(className));
+                    startActivity(getIntent().setComponent(componentName));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else{
+            startActivity(new Intent(getApplicationContext(),IndexActivity.class));
+        }
     }
 
 }

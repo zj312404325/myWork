@@ -89,7 +89,13 @@ public class IndexActivity extends TopSearchActivity  {
         new UpdateApp("app/versionCheck.htm",this);
         x.view().inject(this);
 
-        if(!super.isLogin){return;}
+        if(!super.isLogin){
+            index_fast_btn.setBackgroundResource(R.drawable.index_fast_match_grey);
+            index_order_btn.setBackgroundResource(R.drawable.index_order_match_grey);
+            index_fast_btn.setEnabled(true);
+            index_order_btn.setEnabled(true);
+            return;
+        }
         else{
             if(super.isRealName){
                 index_fast_btn.setBackgroundResource(R.drawable.index_fast_match);
@@ -148,19 +154,32 @@ public class IndexActivity extends TopSearchActivity  {
 
     @Event(value=R.id.index_fast_btn)
     private void fastMatchClick(View v){
-        if(super.isRealName) {
-            Intent i = new Intent(getApplicationContext(), CommitFastMatchActivity.class);
-            startActivity(i);
+        if(super.isLogin) {
+            if (super.isRealName) {
+                Intent i = new Intent(getApplicationContext(), CommitFastMatchActivity.class);
+                startActivity(i);
+            } else {
+                CommonUtil.alter("请先至 账户管理-实名认证 进行实名认证！");
+            }
         }
         else{
-            CommonUtil.alter("请先至 账户管理-实名认证 进行实名认证！");
+            CommonUtil.alter("请先登录！");
         }
     }
 
     @Event(value=R.id.index_order_btn)
     private void orderMatchClick(View v){
-        Intent i = new Intent(getApplicationContext(), CommitOrderMatchActivity.class);
-        startActivity(i);
+        if(super.isLogin) {
+            if (super.isRealName) {
+                Intent i = new Intent(getApplicationContext(), CommitOrderMatchActivity.class);
+                startActivity(i);
+            } else {
+                CommonUtil.alter("请先至 账户管理-实名认证 进行实名认证！");
+            }
+        }
+        else{
+            CommonUtil.alter("请先登录！");
+        }
     }
 
     public void getImgData(){

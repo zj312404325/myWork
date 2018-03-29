@@ -110,6 +110,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="25dp" >
 			            <TextView
+							android:layout_marginTop="5dp"
 							style="@style/wrap_content"
 							android:text="商品编号："
 							android:textColor="@color/gray"
@@ -122,6 +123,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="25dp" >
 						<TextView
+							android:layout_marginTop="5dp"
 							style="@style/wrap_content"
 							android:id="@+id/tv_brand"
 							android:text="品          牌："
@@ -135,6 +137,7 @@
 						android:layout_height="25dp"
 						android:visibility="gone">
 						<TextView
+							android:layout_marginTop="5dp"
 							style="@style/wrap_content"
 							android:id="@+id/tv_minqty"
 							android:text="起   批  量："
@@ -147,6 +150,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="25dp" >
 						<TextView
+							android:layout_marginTop="5dp"
 							style="@style/wrap_content"
 							android:id="@+id/tv_transfee"
 							android:text="运          费："
@@ -159,11 +163,11 @@
 						android:layout_width="match_parent"
 						android:layout_height="25dp" >
 						<TextView
+							android:layout_marginTop="5dp"
 							style="@style/wrap_content"
 							android:text="联系方式：0512-52686666"
 							android:textColor="@color/gray"
 							android:textSize="12dp"/>
-						<LinearLayout style="@style/line" android:layout_alignParentBottom="true" />
 					</RelativeLayout>
 			    </LinearLayout>
 		 

@@ -1,5 +1,6 @@
 package com.example.administrator.jymall.common;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import com.example.administrator.jymall.CartActivity;
 import com.example.administrator.jymall.DiscoveryActivity;
 import com.example.administrator.jymall.IndexActivity;
+import com.example.administrator.jymall.LoginActivity;
 import com.example.administrator.jymall.MallCategoryActivity;
 import com.example.administrator.jymall.R;
 import com.example.administrator.jymall.UserCenterActivity;
@@ -87,6 +89,8 @@ public class ButtomTapActivity extends UserActivity {
 	private boolean btn4(View v, MotionEvent event){
 		if (event.getAction() == event.ACTION_UP) {
 			startActivity(new Intent(getApplicationContext(),CartActivity.class));
+
+			//startActivityAfterLogin(new Intent(getApplicationContext(),CartActivity.class));
 			return false;
 		}
 		return true;
@@ -99,6 +103,18 @@ public class ButtomTapActivity extends UserActivity {
 			return false;
 		}
 		return true;
+	}
+
+	public void startActivityAfterLogin(Intent intent) {
+		//未登录（这里用自己的登录逻辑去判断是否未登录）
+		if (!super.isLogin) {
+			ComponentName componentName = new ComponentName(getApplicationContext(), LoginActivity.class);
+			intent.putExtra("className", intent.getComponent().getClassName());
+			intent.setComponent(componentName);
+			super.startActivity(intent);
+		} else {
+			super.startActivity(intent);
+		}
 	}
 	
 

@@ -12,8 +12,8 @@ import com.example.administrator.jymall.util.TokenUtil;
 import org.json.JSONObject;
 
 public class UserActivity extends BaseActivity {
-	public boolean isLogin = true;
-	public boolean isRealName = true;
+	public static boolean isLogin = true;
+	public static boolean isRealName = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class UserActivity extends BaseActivity {
 				MyApplication.backActivity = this.getClass();
 				startActivity(new Intent(getApplicationContext(),LoginActivity.class));
 				isLogin = false;
+				isRealName = false;
 			}
 			try {
 				JSONObject user = new JSONObject(getUser());

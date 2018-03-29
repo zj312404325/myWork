@@ -341,7 +341,12 @@ public class UserInfoActivity extends TopActivity {
 	private void exit(View v){
 		super.clearServerKey();
 		CommonUtil.alter("成功退出！！！");
-		startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+
+		Intent intent=new Intent();
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.setClass(getApplicationContext(),LoginActivity.class);
+		startActivity(intent);
+		finish();
 	}
 
 }
