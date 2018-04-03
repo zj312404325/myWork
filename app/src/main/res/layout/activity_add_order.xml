@@ -80,7 +80,7 @@
 					android:layout_marginTop="16dp">
 				    <TextView
 						style="@style/wrap_content"
-						android:text="大傻子"
+						android:text="二傻子"
 						android:textStyle="bold"
 						android:id="@+id/tv_ad_contact" />
 				    <TextView
