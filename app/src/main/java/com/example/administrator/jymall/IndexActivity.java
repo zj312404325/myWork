@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -67,7 +68,8 @@ public class IndexActivity extends TopSearchActivity  {
     private MyGridView mydiscountgw;
     @ViewInject(R.id.listdiscount)
     private TextView listdiscount;
-
+    @ViewInject(R.id.sv)
+    private ScrollView sv;
 
     @ViewInject(value=R.id.index_fast_btn)
     private ImageButton index_fast_btn;
@@ -180,6 +182,13 @@ public class IndexActivity extends TopSearchActivity  {
         else{
             CommonUtil.alter("请先登录！");
         }
+    }
+
+    //to top
+    @Event(value=R.id.iv_toTop)
+    private void totopClick(View v){
+        //listView返回到顶部
+        sv.smoothScrollTo(0,0);
     }
 
     public void getImgData(){

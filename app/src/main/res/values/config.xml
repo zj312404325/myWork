@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  	<string name="site_url">http://172.19.3.120:8088/</string>
-    <string name="img_url">http://172.19.3.128:8098/fileupload/</string>
+  	<string name="site_url">http://172.19.3.114:8088/</string>
+    <string name="img_url">http://172.19.3.116:8098/fileUpload/</string>
     <string name="ad_id">2C9383F86285F7BA01628602A1030002</string>
 
   <!--<string name="site_url">http://www.jinjinmall.com/</string>
