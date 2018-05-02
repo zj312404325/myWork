@@ -36,6 +36,8 @@ public class UserActivity extends BaseActivity {
 			try {
 				JSONObject user = new JSONObject(getUser());
 				JSONObject comp=user.getJSONObject("company");
+
+				isLogin = true;
 				// 1:公司审核通过 4:个人审核通过
 				if (FormatUtil.toInt(comp.get("ischeck")) == 1 || FormatUtil.toInt(comp.get("ischeck")) == 4) {
 					isRealName = true;
