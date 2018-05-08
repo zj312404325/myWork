@@ -185,7 +185,7 @@
 				android:background="@drawable/bg_edittext"
 				android:padding="5dp"
 				android:singleLine="true"
-				android:maxLength="10"/>
+				android:maxLength="20"/>
 		</LinearLayout>
 
 		<LinearLayout
