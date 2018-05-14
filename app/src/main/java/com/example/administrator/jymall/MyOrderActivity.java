@@ -419,8 +419,17 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 if(orderType.equals("fastMatch")){
                     iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_fast_match);
                 }
+                else if(orderType.equals("fabFastMatch")){
+                    iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_fab_fast_match);
+                }
                 else if(orderType.equals("orderMatch")){
                     iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_order_match);
+                    if(orderStatus>0){
+                        tv_firstMoney.setText("¥"+firstMoney+"元");
+                    }
+                }
+                else if(orderType.equals("fabOrderMatch")){
+                    iv_orderTypeIcon.setBackgroundResource(R.drawable.ordertype_fab_order_match);
                     if(orderStatus>0){
                         tv_firstMoney.setText("¥"+firstMoney+"元");
                     }
@@ -432,7 +441,7 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 btn_delete.setVisibility(View.GONE);
                 btn_logistic.setVisibility(View.GONE);
 
-                if(!orderType.equals("orderMatch")) {
+                if(!orderType.equals("orderMatch") && !orderType.equals("fabOrderMatch")) {
                     ll_firstMoney.setVisibility(View.GONE);
                     btn_payFirst.setVisibility(View.GONE);
                     btn_payLast.setVisibility(View.GONE);
@@ -1033,6 +1042,12 @@ public class MyOrderActivity extends TopActivity implements IXListViewListener{
                 }
                 else if(orderType.equals("orderMatch")){
                     img_proImgPath.setBackgroundResource(R.drawable.pro_order_match);
+                }
+                else if(orderType.equals("fabFastMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_fab_fast_match);
+                }
+                else if(orderType.equals("fabOrderMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_fab_order_match);
                 }
                 else{
                     XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);

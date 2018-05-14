@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 @ContentView(R.layout.activity_fast_match_list)
-public class FastMatchListActivity extends TopActivity implements IXListViewListener {
+public class FabFastMatchListActivity extends TopActivity implements IXListViewListener {
 
     @ViewInject(R.id.xListView)
     public XListView listViewAll = null ;
@@ -59,11 +59,11 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fast_match_list);
         x.view().inject(this);
-        super.title.setText("标准配管理");
+        super.title.setText("工厂标准配管理");
         progressDialog.hide();
         skey=super.serverKey;
 
-        sap = new ProSimpleAdapter(FastMatchListActivity.this, dateMaps,
+        sap = new ProSimpleAdapter(FabFastMatchListActivity.this, dateMaps,
                 R.layout.listview_fastmatch,
                 new String[]{"matchNo"},
                 new int[]{R.id.tv_matchNo});
@@ -87,7 +87,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
         maps.put("serverKey", super.serverKey);
         maps.put("currentPage", ""+start);
 
-        XUtilsHelper.getInstance().post("app/mallFastMatchList.htm", maps,new XUtilsHelper.XCallBack(){
+        XUtilsHelper.getInstance().post("app/mallFabFastMatchList.htm", maps,new XUtilsHelper.XCallBack(){
 
             @SuppressLint("NewApi")
             @Override
@@ -224,7 +224,7 @@ public class FastMatchListActivity extends TopActivity implements IXListViewList
                     @Override
                     public boolean onTouch(View arg0, MotionEvent e) {
                         if(e.getAction() == MotionEvent.ACTION_UP){
-                            new CommonDialog(FastMatchListActivity.this, R.style.dialog, "确定取消？", new CommonDialog.OnCloseListener() {
+                            new CommonDialog(FabFastMatchListActivity.this, R.style.dialog, "确定取消？", new CommonDialog.OnCloseListener() {
                                 @Override
                                 public void onClick(Dialog dialog, boolean confirm) {
                                     if(confirm){

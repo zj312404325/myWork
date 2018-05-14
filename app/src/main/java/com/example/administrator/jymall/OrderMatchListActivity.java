@@ -202,6 +202,19 @@ public class OrderMatchListActivity extends TopActivity implements IXListViewLis
                     }
                 });
             }
+            else if(status.equals("4")) {
+                holder.tv_matchState.setText("受理完成");
+                holder.ll_matchInfo.setClickable(true);
+                holder.btn_cancel.setVisibility(View.GONE);
+                holder.ll_matchInfo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        Intent i = new Intent(getApplicationContext(), OrderMatchDetailActivity.class);
+                        i.putExtra("matchid", id);
+                        startActivity(i);
+                    }
+                });
+            }
             else{
                 holder.tv_matchState.setText("待受理");
                 holder.ll_matchInfo.setClickable(false);

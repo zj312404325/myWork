@@ -156,6 +156,12 @@ public class RefundGoodsOneEditActivity extends TopActivity {
                     else if(orderType.equals("orderMatch")){
                         img_proImgPath.setBackgroundResource(R.drawable.pro_order_match);
                     }
+                    else if(orderType.equals("fabFastMatch")){
+                        img_proImgPath.setBackgroundResource(R.drawable.pro_fab_fast_match);
+                    }
+                    else if(orderType.equals("fabOrderMatch")){
+                        img_proImgPath.setBackgroundResource(R.drawable.pro_fab_order_match);
+                    }
                     else{
                         XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, orderdtl.getString("proImgPath"), true);
                     }

@@ -148,7 +148,7 @@ public class PreparePayActivity extends TopActivity {
 						tv_leftUmoney.setText(FormatUtil.toString(umoneysy)+"元");
 						tv_paidMoney.setText(Html.fromHtml("<font color=\"#333333\">已付金额：</font>¥"+FormatUtil.toString(paidMoney)));
 
-						if(res.getJSONObject("order").getString("orderType").equals("orderMatch")){
+						if(res.getJSONObject("order").getString("orderType").equals("orderMatch") || res.getJSONObject("order").getString("orderType").equals("fabOrderMatch")){
 							tv_orderMoney.setText(Html.fromHtml("<font color=\"#333333\">交易金额：</font>¥"+FormatUtil.toString(orderPayMoney)));
 							tv_money.setText(FormatUtil.toString(orderPayMoney));
 						}
@@ -167,7 +167,7 @@ public class PreparePayActivity extends TopActivity {
 							if(isChecked){//选中
 								try{
 									showUmoneyInfo();
-									if(res.getJSONObject("order").getString("orderType").equals("orderMatch")){
+									if(res.getJSONObject("order").getString("orderType").equals("orderMatch") || res.getJSONObject("order").getString("orderType").equals("fabOrderMatch")){
 										if(umoney>=orderPayMoney){
 											tv_money.setText("0.00");
 										}
@@ -194,7 +194,7 @@ public class PreparePayActivity extends TopActivity {
 								}
 							}else{//取消选中
 								try {
-									if (res.getJSONObject("order").getString("orderType").equals("orderMatch")) {
+									if (res.getJSONObject("order").getString("orderType").equals("orderMatch") || res.getJSONObject("order").getString("orderType").equals("fabOrderMatch")) {
 										tv_money.setText(FormatUtil.toString(orderPayMoney));
 									} else {
 										tv_money.setText(FormatUtil.toString(money));

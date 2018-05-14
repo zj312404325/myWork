@@ -69,6 +69,9 @@ public class FastMatchDetailActivity extends TopActivity implements IXListViewLi
     private String orderType;
     private String goodsMoney;
     private int selectCount=0;
+    private String factoryId="";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +136,7 @@ public class FastMatchDetailActivity extends TopActivity implements IXListViewLi
                     setServerKey(res.get("serverKey").toString());
                     JSONArray detailList = (JSONArray)res.get("detailList");
                     customid=res.get("customid").toString();
+                    factoryId=res.getJSONObject("match").getString("factoryid");
 
                     if(detailList.length()==0 && start == 1) {
                         listtv.setVisibility(View.VISIBLE);
@@ -289,7 +293,12 @@ public class FastMatchDetailActivity extends TopActivity implements IXListViewLi
                 @Override
                 public void onClick(Dialog dialog, boolean confirm) {
                     if (confirm) {
-                        orderType = "fastMatch";
+                        if(FormatUtil.isNoEmpty(factoryId)){
+                            orderType = "fabFastMatch";
+                        }
+                        else {
+                            orderType = "fastMatch";
+                        }
                         progressDialog.show();
                         Map<String, String> maps = new HashMap<String, String>();
                         maps.put("serverKey", skey);
@@ -313,7 +322,7 @@ public class FastMatchDetailActivity extends TopActivity implements IXListViewLi
                                         i.putExtra("data", (Serializable) dateMaps);
                                         i.putExtra("goodsMoney", goodsMoney);
                                         i.putExtra("goodsCount", FormatUtil.toString(selectCount));
-                                        i.putExtra("orderType", "fastMatch");
+                                        i.putExtra("orderType", orderType);
                                         i.putExtra("customid", customid);
                                         startActivity(i);
                                     }

@@ -168,7 +168,7 @@ public class AddOrderActivity extends TopActivity {
 				}
 			}
 		}
-		else if(orderType.equals("fastMatch")){
+		else if(orderType.equals("fastMatch") || orderType.equals("fabFastMatch")){
 			customid=intent.getStringExtra("customid");
 			for (int i = 0; i < dateMaps.size(); i++) {
 				if(dateMaps.get(i).get("hasCheck").toString().equals("1")){
@@ -183,7 +183,7 @@ public class AddOrderActivity extends TopActivity {
 				}
 			}
 		}
-		else if(orderType.equals("orderMatch")){
+		else if(orderType.equals("orderMatch") || orderType.equals("fabOrderMatch")){
 			customid=intent.getStringExtra("customid");
 			for (int i = 0; i < dateMaps.size(); i++) {
 				if(dateMaps.get(i).get("hasCheck").toString().equals("1")){
@@ -446,6 +446,12 @@ public class AddOrderActivity extends TopActivity {
 				}
 				else if(orderType.equals("orderMatch")){
 					img_picUrl.setBackgroundResource(R.drawable.pro_order_match);
+				}
+				else if(orderType.equals("fabFastMatch")){
+					img_picUrl.setBackgroundResource(R.drawable.pro_fab_fast_match);
+				}
+				else if(orderType.equals("fabOrderMatch")){
+					img_picUrl.setBackgroundResource(R.drawable.pro_fab_order_match);
 				}
 				tv_proName.setText(prolist.get(position).get("proName").toString());
 				pro_specifno.setText(prolist.get(position).get("specifno").toString());

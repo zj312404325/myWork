@@ -46,4 +46,22 @@ public class MyMatchIndexActivity extends TopActivity {
         }
         return true;
     }
+
+    @Event(value=R.id.rl_fabFastMatch,type=View.OnTouchListener.class)
+    private boolean fabFastTouch(View v, MotionEvent event){
+        if (event.getAction() == event.ACTION_UP) {
+            startActivity(new Intent(getApplicationContext(),FabFastMatchListActivity.class));
+            return false;
+        }
+        return true;
+    }
+
+    @Event(value=R.id.rl_fabOrderMatch,type=View.OnTouchListener.class)
+    private boolean fabOrderTouch(View v, MotionEvent event){
+        if (event.getAction() == event.ACTION_UP) {
+            startActivity(new Intent(getApplicationContext(),FabOrderMatchListActivity.class));
+            return false;
+        }
+        return true;
+    }
 }

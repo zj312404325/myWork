@@ -178,7 +178,7 @@ public class MyOrderInfoActivity extends TopActivity {
                     int refundstatus = order.getInt("refundstatus");
                     int refundtype = order.getInt("refundtype");
 
-                    if(!orderType.equals("orderMatch")) {
+                    if(!orderType.equals("orderMatch") && !orderType.equals("fabOrderMatch")) {
                         if (orderStatus == 0) {
                             tv_orderStatus.setText("未支付");
                             btn_pay.setVisibility(View.VISIBLE);
@@ -244,9 +244,12 @@ public class MyOrderInfoActivity extends TopActivity {
                         tv_invoiceType.setText("普通发票");
                         tv_title.setText(order.getString("title"));
                     }
-                    else{
+                    else if(invoiceType.equals("VAT")){
                         tv_invoiceType.setText("增值税发票");
                         tv_title.setText(order.getString("companyName"));
+                    }else{
+                        tv_invoiceType.setText("");
+                        tv_title.setText("");
                     }
                     tv_productMoney.setText("￥"+FormatUtil.toString(BigDecimalUtil.sub(FormatUtil.toDouble(order.getString("money")),FormatUtil.toDouble(order.getString("feeMoney")),2)));
                     tv_feeMoney.setText("￥"+order.getString("feeMoney"));
@@ -324,6 +327,12 @@ public class MyOrderInfoActivity extends TopActivity {
                 else if(orderType.equals("orderMatch")){
                     img_proImgPath.setBackgroundResource(R.drawable.pro_order_match);
                 }
+                else if(orderType.equals("fabFastMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_fab_fast_match);
+                }
+                else if(orderType.equals("fabOrderMatch")){
+                    img_proImgPath.setBackgroundResource(R.drawable.pro_fab_order_match);
+                }
                 else{
                     XUtilsHelper.getInstance().bindCommonImage(img_proImgPath, temp.getString("proImgPath"), true);
                 }
@@ -347,7 +356,7 @@ public class MyOrderInfoActivity extends TopActivity {
                 int refundStatus=FormatUtil.toInteger(temp.getString("refundStatus"));
                 int refundType=FormatUtil.toInteger(temp.getString("refundType"));
 
-                if(!orderType.equals("orderMatch")) {
+                if(!orderType.equals("orderMatch") && !orderType.equals("fabOrderMatch")) {
                     if (orderStatus >= 1 && orderStatus <= 3 && refundStatus == 0) {
                         tv_refundMoneySupply.setVisibility(View.GONE);
                         tv_refundMoneyOk.setVisibility(View.GONE);

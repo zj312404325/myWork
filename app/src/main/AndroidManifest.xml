@@ -447,12 +447,22 @@
         </activity>
 
         <activity
+            android:name=".FabFastMatchListActivity"
+            android:label="FabFastMatchListActivity" >
+        </activity>
+
+        <activity
             android:name=".OrderMatchListActivity"
             android:label="OrderMatchListActivity" >
         </activity>
         <activity
             android:name=".OrderMatchDetailActivity"
             android:label="OrderMatchDetailActivity" >
+        </activity>
+
+        <activity
+            android:name=".FabOrderMatchListActivity"
+            android:label="FabOrderMatchListActivity" >
         </activity>
 
         <activity
