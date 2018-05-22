@@ -445,6 +445,18 @@
             android:name=".FastMatchDetailActivity"
             android:label="FastMatchDetailActivity" >
         </activity>
+        <activity
+            android:name=".EditFastMatchDetailActivity"
+            android:label="EditFastMatchDetailActivity"
+            android:windowSoftInputMode=
+                "stateAlwaysHidden|adjustPan">
+        </activity>
+        <activity
+            android:name=".EditOrderMatchDetailActivity"
+            android:label="EditOrderMatchDetailActivity"
+            android:windowSoftInputMode=
+                "stateAlwaysHidden|adjustPan">
+        </activity>
 
         <activity
             android:name=".FabFastMatchListActivity"

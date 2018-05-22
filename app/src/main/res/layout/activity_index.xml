@@ -19,17 +19,17 @@ tools:context=".IndexActivity" >
         <com.example.administrator.jymall.view.ShufflingView
             android:id="@+id/shufflingView"
             android:layout_width="match_parent"
-            android:layout_height="170dp" >
+            android:layout_height="140dp" >
         </com.example.administrator.jymall.view.ShufflingView>
 
-        <LinearLayout  android:layout_width="match_parent"  android:layout_height="120dp" >
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="50dp" android:layout_marginTop="5dp">
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
                 <ImageButton
                     android:id="@+id/index_p1"
                     android:background="@drawable/index_pro1"
                     android:tag="1524"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true" />
             </RelativeLayout>
@@ -38,8 +38,8 @@ tools:context=".IndexActivity" >
                     android:id="@+id/index_p2"
                     android:background="@drawable/index_pro2"
                     android:tag="1528"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true"  />
             </RelativeLayout>
@@ -48,34 +48,34 @@ tools:context=".IndexActivity" >
                     android:id="@+id/index_p3"
                     android:background="@drawable/index_pro3"
                     android:tag="1520"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true" />
             </RelativeLayout>
 
         </LinearLayout>
 
-        <LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="20dp" >
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <TextView android:layout_width="100dp" android:text="办公用品" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center" />
+                <TextView android:layout_width="100dp" android:text="办公用品" android:layout_height="20dp" android:layout_centerInParent="true" android:gravity="center" />
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <TextView android:layout_width="100dp" android:text="劳保用品" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+                <TextView android:layout_width="100dp" android:text="劳保用品" android:layout_height="20dp" android:layout_centerInParent="true" android:gravity="center"/>
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <TextView android:layout_width="100dp" android:text="五金工具" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+                <TextView android:layout_width="100dp" android:text="五金工具" android:layout_height="20dp" android:layout_centerInParent="true" android:gravity="center"/>
             </RelativeLayout>
         </LinearLayout>
 
-        <LinearLayout  android:layout_width="match_parent"  android:layout_height="120dp" >
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="50dp" >
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
                 <ImageButton
                     android:id="@+id/index_p4"
                     android:background="@drawable/index_pro4"
                     android:tag="1526"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true" />
             </RelativeLayout>
@@ -84,8 +84,8 @@ tools:context=".IndexActivity" >
                     android:id="@+id/index_p5"
                     android:background="@drawable/index_pro5"
                     android:tag="1530"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true"  />
             </RelativeLayout>
@@ -94,26 +94,26 @@ tools:context=".IndexActivity" >
                     android:id="@+id/index_p6"
                     android:background="@drawable/index_pro6"
                     android:tag="1522"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:scaleType="center"
                     android:layout_centerInParent="true" />
             </RelativeLayout>
         </LinearLayout>
 
-        <LinearLayout  android:layout_width="match_parent"  android:layout_height="40dp" >
+        <LinearLayout  android:layout_width="match_parent"  android:layout_height="20dp" >
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <TextView android:layout_width="100dp" android:text="包装材料" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center" />
+                <TextView android:layout_width="100dp" android:text="包装材料" android:layout_height="20dp" android:layout_centerInParent="true" android:gravity="center" />
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <TextView android:layout_width="100dp" android:text="电工电器" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+                <TextView android:layout_width="100dp" android:text="电工电器" android:layout_height="20dp" android:layout_centerInParent="true" android:gravity="center"/>
             </RelativeLayout>
             <RelativeLayout style="@style/fill" android:layout_weight="1" >
-                <TextView android:layout_width="100dp" android:text="环保辅料" android:layout_height="30dp" android:layout_centerInParent="true" android:gravity="center"/>
+                <TextView android:layout_width="100dp" android:text="环保辅料" android:layout_height="20dp" android:layout_centerInParent="true" android:gravity="center"/>
             </RelativeLayout>
         </LinearLayout>
 
-        <RelativeLayout  android:layout_width="match_parent" android:layout_height="30dp"
+        <RelativeLayout  android:layout_width="match_parent" android:layout_height="25dp"
             >
 
             <ImageView

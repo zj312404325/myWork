@@ -13,13 +13,13 @@
 		         <ImageView
 					 android:id="@+id/proimg"
 					 android:layout_width="match_parent"
-					 android:layout_height="146dp" />
+					 android:layout_height="100dp" />
 		       
 		         <TextView
 					 android:id="@+id/protitle"
 					 android:layout_below="@id/proimg"
 					 android:layout_width="match_parent"
-					 android:layout_height="25dp"
+					 android:layout_height="20dp"
 		             android:text="放技术达力芬结束啦的房价圣达菲萨芬"
 					 android:singleLine="true"
 					 android:gravity="center"
@@ -29,26 +29,28 @@
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="50dp"
+					android:layout_height="35dp"
 					android:layout_below="@id/protitle"
 					android:orientation="vertical">
 					<TextView
+						android:id="@+id/promoney"
+						android:layout_width="match_parent"
+						android:layout_height="20dp"
+						android:text="现价：￥1231"
+						android:textSize="13sp"
+						android:gravity="center"
+						android:layout_weight="1"
+						android:textColor="#c96876"/>
+					<TextView
 						android:id="@+id/oldpromoney"
 						android:layout_width="match_parent"
-						android:layout_height="25dp"
+						android:layout_height="20dp"
 						android:text="原价：￥1231"
 						android:textSize="12sp"
 						android:gravity="center"
 						android:layout_weight="1"
 						android:textColor="#c96876"/>
-					<TextView
-						android:id="@+id/promoney"
-						android:layout_width="match_parent"
-						android:layout_height="25dp"
-						android:text="现价：￥1231"
-						android:gravity="center"
-						android:layout_weight="1"
-						android:textColor="#c96876"/>
+
 				</LinearLayout>
 
 		</RelativeLayout>
