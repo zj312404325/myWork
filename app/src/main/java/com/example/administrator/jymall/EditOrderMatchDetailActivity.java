@@ -506,6 +506,10 @@ public class EditOrderMatchDetailActivity extends TopActivity implements IXListV
                         CommonUtil.alter("数量不能为空！");
                         return;
                     }
+                    else if(FormatUtil.toDouble(et_quantity.getText().toString())<=0){
+                        CommonUtil.alter("数量输入有误！");
+                        return;
+                    }
                     if(!FormatUtil.isNoEmpty(FormatUtil.toString(et_unit.getText().toString()))){
                         CommonUtil.alter("单位不能为空！");
                         return;

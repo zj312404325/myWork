@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 
 import com.example.administrator.jymall.BuildConfig;
 import com.example.administrator.jymall.R;
+import com.example.administrator.jymall.common.MyApplication;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
@@ -62,6 +63,9 @@ public class UpdateApp {
     
     /*下载更新提示*/
     private String versionInfo;
+
+    /*是否强制更新*/
+    private String isFource="0";
 
     protected static final String LOG_TAG = "UpdateApp";
 
@@ -160,6 +164,7 @@ public class UpdateApp {
 		                newVerName = response.getJSONObject(0).getString("verName");
 		                downloadPath = response.getJSONObject(0).getString("apkPath");
 		                versionInfo = response.getJSONObject(0).getString("versionInfo");
+                        isFource = response.getJSONObject(0).getString("isFource");
 		                int currentVerCode = getCurrentVerCode();
 	                    if (newVerCode > currentVerCode) {
 	                        showNoticeDialog();
@@ -194,6 +199,7 @@ public class UpdateApp {
                 Builder builder = new Builder(mContext);
                 builder.setTitle(R.string.soft_update_title);
                 builder.setMessage(versionInfo);
+                builder.setCancelable(false);
                 // 更新
                 builder.setPositiveButton(R.string.soft_update_updatebtn,
                         new DialogInterface.OnClickListener() {
@@ -208,14 +214,26 @@ public class UpdateApp {
 							
 							
                         });
+                //强制更新,取消即退出
+                if(isFource.equalsIgnoreCase("1")){
+                    builder.setNegativeButton(R.string.soft_update_cancel,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    MyApplication.getInstance().AppExit();
+                                }
+                            });
+                }
                 // 稍后更新
-                builder.setNegativeButton(R.string.soft_update_later,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                    int which) {
-                                dialog.dismiss();
-                            }
-                        });
+                else{
+                    builder.setNegativeButton(R.string.soft_update_later,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                }
                 Dialog noticeDialog = builder.create();
                 noticeDialog.show();
             }
@@ -242,7 +260,13 @@ public class UpdateApp {
         builder.setNegativeButton(R.string.soft_update_cancel,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                        //强制更新,取消即退出
+                        if(isFource.equalsIgnoreCase("1")) {
+                            MyApplication.getInstance().AppExit();
+                        }
+                        else {
+                            dialog.dismiss();
+                        }
                         // 设置取消状态
                         cancelUpdate = true;
                     }
